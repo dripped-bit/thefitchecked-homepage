@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Careers at TheFitChecked - Join our team building the future of fashion technology">
-    <title>Careers - TheFitChecked</title>
+    <meta name="description" content="TheFitChecked Influencer Program - Get paid $500 to promote the future of fashion technology">
+    <title>Influencer Program - TheFitChecked</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,6 +24,7 @@
             --text-dark: #2C2C2C;
             --text-light: #666;
             --bg-light: #FFF5F7;
+            --gold: #FFD700;
         }
         
         body {
@@ -83,35 +84,47 @@
             font-size: 1.3rem;
             color: var(--text-light);
             max-width: 800px;
-            margin: 0 auto;
+            margin: 0 auto 2rem;
         }
         
-        .perks-section {
+        .bonus-banner {
+            background: linear-gradient(135deg, var(--gold), #FFA500);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            max-width: 600px;
+            margin: 2rem auto 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.3);
+        }
+        
+        .benefits-section {
             padding: 6rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
         
-        .perks-section h2 {
+        .benefits-section h2 {
             text-align: center;
             font-size: 3rem;
             margin-bottom: 3rem;
         }
         
-        .perks-grid {
+        .benefits-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2.5rem;
         }
         
-        .perk-card {
+        .benefit-card {
             background: var(--bg-light);
             padding: 2.5rem;
             border-radius: 20px;
             text-align: center;
         }
         
-        .perk-icon {
+        .benefit-icon {
             font-size: 3rem;
             margin-bottom: 1.5rem;
             background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
@@ -119,123 +132,228 @@
             -webkit-text-fill-color: transparent;
         }
         
-        .perk-card h3 {
+        .benefit-card h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
         }
         
-        .jobs-section {
+        .requirements-section {
             background: white;
             padding: 6rem 2rem;
         }
         
-        .jobs-container {
+        .requirements-container {
             max-width: 1000px;
             margin: 0 auto;
         }
         
-        .jobs-container h2 {
+        .requirements-container h2 {
             text-align: center;
             font-size: 3rem;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
         }
         
-        .coming-soon {
+        .requirement-card {
             background: var(--bg-light);
-            padding: 4rem;
-            border-radius: 30px;
-            text-align: center;
-        }
-        
-        .coming-soon h3 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--primary-pink);
-        }
-        
-        .coming-soon p {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            margin-bottom: 2rem;
-        }
-        
-        .email-form {
-            max-width: 500px;
-            margin: 2rem auto 0;
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .email-form input {
-            flex: 1;
-            padding: 1rem;
-            border: 2px solid #ddd;
-            border-radius: 50px;
-            font-size: 1rem;
-        }
-        
-        .email-form button {
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-        
-        .roles-preview {
-            margin-top: 4rem;
-        }
-        
-        .role-card {
-            background: white;
-            border: 2px solid #eee;
             padding: 2.5rem;
             border-radius: 20px;
             margin-bottom: 2rem;
         }
         
-        .role-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-        
-        .role-title {
+        .requirement-card h3 {
             font-size: 1.8rem;
+            margin-bottom: 1rem;
             color: var(--primary-pink);
         }
         
-        .role-type {
-            background: var(--bg-light);
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
+        .requirement-card ul {
+            list-style: none;
+            margin-top: 1rem;
         }
         
-        .role-details {
+        .requirement-card li {
+            padding: 0.75rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .requirement-card li i {
+            color: var(--primary-pink);
+            font-size: 1.2rem;
+        }
+        
+        .process-section {
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
+            padding: 6rem 2rem;
+            color: white;
+        }
+        
+        .process-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .process-container h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 4rem;
+        }
+        
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+        
+        .step {
+            text-align: center;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: white;
+            color: var(--primary-pink);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .step h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .deliverables-section {
+            padding: 6rem 2rem;
+            background: white;
+        }
+        
+        .deliverables-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .deliverables-container h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .deliverable-item {
+            background: var(--bg-light);
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
             display: flex;
             gap: 2rem;
-            margin-bottom: 1.5rem;
+            align-items: center;
+        }
+        
+        .deliverable-icon {
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            flex-shrink: 0;
+        }
+        
+        .deliverable-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .deliverable-content p {
             color: var(--text-light);
         }
         
-        .role-details span {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+        .apply-section {
+            background: var(--bg-light);
+            padding: 6rem 2rem;
+            text-align: center;
         }
         
-        .apply-button {
+        .apply-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .apply-container h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .application-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            margin-top: 3rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-pink);
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-button {
+            width: 100%;
+            padding: 1.5rem;
             background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
             color: white;
-            padding: 1rem 2.5rem;
+            border: none;
             border-radius: 50px;
-            text-decoration: none;
             font-weight: 600;
-            display: inline-block;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+        }
+        
+        .info-box {
+            background: linear-gradient(135deg, var(--gold), #FFA500);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            margin-top: 2rem;
         }
         
         footer {
@@ -250,14 +368,9 @@
                 font-size: 2.5rem;
             }
             
-            .email-form {
+            .deliverable-item {
                 flex-direction: column;
-            }
-            
-            .role-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
+                text-align: center;
             }
         }
     </style>
@@ -270,130 +383,223 @@
     </nav>
 
     <section class="hero">
-        <h1>Join Our Team</h1>
-        <p>Help us build the future of fashion technology and empower millions to express their style</p>
+        <h1>💰 Influencer Partnership Program</h1>
+        <p>Get paid to promote the future of fashion! Join our exclusive creator program and earn while helping others discover their style.</p>
+        <div class="bonus-banner">
+            🎁 $500 Sign-On Bonus + Lifetime Free Pro Access
+        </div>
     </section>
 
-    <section class="perks-section">
-        <h2>Why Work With Us?</h2>
+    <section class="benefits-section">
+        <h2>Why Partner With Us?</h2>
         
-        <div class="perks-grid">
-            <div class="perk-card">
-                <div class="perk-icon"><i class="fas fa-rocket"></i></div>
-                <h3>Early Stage Startup</h3>
-                <p>Join us at the ground floor and shape the future of the company</p>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon"><i class="fas fa-dollar-sign"></i></div>
+                <h3>$500 Cash Bonus</h3>
+                <p>Get paid upfront when you join our program + ongoing commission</p>
             </div>
             
-            <div class="perk-card">
-                <div class="perk-icon"><i class="fas fa-chart-line"></i></div>
-                <h3>Equity Options</h3>
-                <p>Own a piece of what you're building with competitive equity packages</p>
+            <div class="benefit-card">
+                <div class="benefit-icon"><i class="fas fa-crown"></i></div>
+                <h3>Lifetime Pro Access</h3>
+                <p>Free Pro tier ($20/mo value) forever - use all premium features</p>
             </div>
             
-            <div class="perk-card">
-                <div class="perk-icon"><i class="fas fa-home"></i></div>
-                <h3>Remote Friendly</h3>
-                <p>Work from anywhere - we believe in flexibility and work-life balance</p>
+            <div class="benefit-card">
+                <div class="benefit-icon"><i class="fas fa-percentage"></i></div>
+                <h3>Ongoing Commissions</h3>
+                <p>Earn 30% recurring commission on every user you refer</p>
             </div>
             
-            <div class="perk-card">
-                <div class="perk-icon"><i class="fas fa-brain"></i></div>
-                <h3>Learn & Grow</h3>
-                <p>Work with cutting-edge AI technology and modern development practices</p>
+            <div class="benefit-card">
+                <div class="benefit-icon"><i class="fas fa-star"></i></div>
+                <h3>Early Access</h3>
+                <p>Get new features before anyone else and exclusive content</p>
             </div>
             
-            <div class="perk-card">
-                <div class="perk-icon"><i class="fas fa-users"></i></div>
-                <h3>Small Team</h3>
-                <p>Your voice matters - directly influence product decisions and direction</p>
+            <div class="benefit-card">
+                <div class="benefit-icon"><i class="fas fa-handshake"></i></div>
+                <h3>Brand Partnerships</h3>
+                <p>Collaborate on exclusive content and special campaigns</p>
             </div>
             
-            <div class="perk-card">
-                <div class="perk-icon"><i class="fas fa-heart"></i></div>
-                <h3>Mission-Driven</h3>
-                <p>Build something that makes a real difference in people's daily lives</p>
+            <div class="benefit-card">
+                <div class="benefit-icon"><i class="fas fa-gift"></i></div>
+                <h3>Exclusive Merch</h3>
+                <p>Get TheFitChecked swag and exclusive influencer merchandise</p>
             </div>
         </div>
     </section>
 
-    <section class="jobs-section">
-        <div class="jobs-container">
-            <h2>Open Positions</h2>
+    <section class="requirements-section">
+        <div class="requirements-container">
+            <h2>Who We're Looking For</h2>
             
-            <div class="coming-soon">
-                <h3>🚀 We're Hiring Soon!</h3>
-                <p>We're launching in January 2026 and will be opening positions shortly after. Get notified when roles become available.</p>
+            <div class="requirement-card">
+                <h3>Follower Requirements (Any Platform)</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> <strong>Micro-Influencers:</strong> 5K-50K followers</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Mid-Tier:</strong> 50K-250K followers</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Macro:</strong> 250K+ followers</li>
+                </ul>
+                <p style="margin-top: 1rem; color: #666;">We accept creators from Instagram, TikTok, YouTube, or any platform where you have engaged followers!</p>
+            </div>
+            
+            <div class="requirement-card">
+                <h3>Content Niche</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> Fashion & Style</li>
+                    <li><i class="fas fa-check-circle"></i> Beauty & Lifestyle</li>
+                    <li><i class="fas fa-check-circle"></i> Tech Reviews</li>
+                    <li><i class="fas fa-check-circle"></i> Personal Development</li>
+                    <li><i class="fas fa-check-circle"></i> Sustainable Living</li>
+                </ul>
+            </div>
+            
+            <div class="requirement-card">
+                <h3>Engagement & Quality</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> Authentic, engaged audience (not bought followers)</li>
+                    <li><i class="fas fa-check-circle"></i> High-quality content that aligns with our brand</li>
+                    <li><i class="fas fa-check-circle"></i> Consistent posting schedule</li>
+                    <li><i class="fas fa-check-circle"></i> Professional communication</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="process-section">
+        <div class="process-container">
+            <h2>Application Process</h2>
+            
+            <div class="steps-grid">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Apply Below</h3>
+                    <p>Fill out the application form with your social media info and why you'd be a great fit</p>
+                </div>
                 
-                <form class="email-form" onsubmit="return handleSubmit(event)">
-                    <input type="email" placeholder="Your email" required>
-                    <button type="submit">Get Notified</button>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Create Demo Video</h3>
+                    <p>Record a 30-60 second video showing how you'd promote TheFitChecked (see requirements below)</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Send Resume/Media Kit</h3>
+                    <p>Email your demo video + resume/media kit to influencers@thefitchecked.com</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Review Process</h3>
+                    <p>We'll review within 5-7 business days and reach out if you're a good fit</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="deliverables-section">
+        <div class="deliverables-container">
+            <h2>What You'll Create</h2>
+            
+            <div class="deliverable-item">
+                <div class="deliverable-icon"><i class="fab fa-instagram"></i></div>
+                <div class="deliverable-content">
+                    <h3>Instagram Posts & Reels</h3>
+                    <p>2-4 posts per month featuring TheFitChecked. Show off the app, your outfits, and how AI helps you style.</p>
+                </div>
+            </div>
+            
+            <div class="deliverable-item">
+                <div class="deliverable-icon"><i class="fab fa-tiktok"></i></div>
+                <div class="deliverable-content">
+                    <h3>TikTok Videos</h3>
+                    <p>2-3 videos per month. Quick styling tips, "get ready with me" using the app, or fashion hacks.</p>
+                </div>
+            </div>
+            
+            <div class="deliverable-item">
+                <div class="deliverable-icon"><i class="fab fa-youtube"></i></div>
+                <div class="deliverable-content">
+                    <h3>YouTube Content (Optional)</h3>
+                    <p>Longer form reviews, tutorials, or styling sessions using TheFitChecked features.</p>
+                </div>
+            </div>
+            
+            <div class="deliverable-item">
+                <div class="deliverable-icon"><i class="fas fa-video"></i></div>
+                <div class="deliverable-content">
+                    <h3>Demo Video Requirements</h3>
+                    <p><strong>For your application:</strong> 30-60 seconds, authentic review of the app concept, show your personality, explain why your audience would love TheFitChecked</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="apply-section">
+        <div class="apply-container">
+            <h2>Ready to Join?</h2>
+            <p style="font-size: 1.2rem; color: #666;">Fill out the application below and we'll send you instructions for the demo video!</p>
+            
+            <div class="application-form">
+                <form onsubmit="return handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="Jane Smith">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="jane@example.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="platform">Primary Platform *</label>
+                        <select id="platform" name="platform" required>
+                            <option value="">Select platform...</option>
+                            <option value="instagram">Instagram</option>
+                            <option value="tiktok">TikTok</option>
+                            <option value="youtube">YouTube</option>
+                            <option value="twitter">Twitter/X</option>
+                            <option value="multiple">Multiple Platforms</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="handle">Social Media Handle *</label>
+                        <input type="text" id="handle" name="handle" required placeholder="@yourhandle">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="followers">Follower Count *</label>
+                        <input type="number" id="followers" name="followers" required placeholder="10000">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="niche">Content Niche *</label>
+                        <input type="text" id="niche" name="niche" required placeholder="Fashion, Beauty, Lifestyle, etc.">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="why">Why are you a good fit for TheFitChecked? *</label>
+                        <textarea id="why" name="why" required placeholder="Tell us about your audience, content style, and why you'd love to partner with us..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-button">
+                        <i class="fas fa-paper-plane"></i> Submit Application
+                    </button>
                 </form>
-            </div>
-            
-            <div class="roles-preview">
-                <h3 style="text-align: center; font-size: 2rem; margin-bottom: 2rem;">Roles We're Looking to Fill:</h3>
                 
-                <div class="role-card">
-                    <div class="role-header">
-                        <h3 class="role-title">Full-Stack Engineer</h3>
-                        <span class="role-type">Full-Time</span>
-                    </div>
-                    <div class="role-details">
-                        <span><i class="fas fa-map-marker-alt"></i> Remote</span>
-                        <span><i class="fas fa-clock"></i> Coming Q1 2026</span>
-                        <span><i class="fas fa-briefcase"></i> 2+ years experience</span>
-                    </div>
-                    <p style="margin-bottom: 1.5rem;">Help build our React/TypeScript frontend and Node.js backend. Experience with AI integration and mobile development is a plus.</p>
-                    <a href="mailto:careers@thefitchecked.com" class="apply-button">Express Interest</a>
+                <div class="info-box">
+                    <h3 style="margin-bottom: 1rem;">📧 Next Steps After Applying:</h3>
+                    <p>1. You'll receive an email with demo video guidelines</p>
+                    <p>2. Create your 30-60 second demo video</p>
+                    <p>3. Send video + resume/media kit to: <strong>influencers@thefitchecked.com</strong></p>
+                    <p>4. We'll review and respond within 5-7 business days</p>
                 </div>
-                
-                <div class="role-card">
-                    <div class="role-header">
-                        <h3 class="role-title">AI/ML Engineer</h3>
-                        <span class="role-type">Full-Time</span>
-                    </div>
-                    <div class="role-details">
-                        <span><i class="fas fa-map-marker-alt"></i> Remote</span>
-                        <span><i class="fas fa-clock"></i> Coming Q1 2026</span>
-                        <span><i class="fas fa-briefcase"></i> 3+ years experience</span>
-                    </div>
-                    <p style="margin-bottom: 1.5rem;">Improve our AI models for outfit recommendations, image recognition, and personalization. Experience with computer vision and NLP preferred.</p>
-                    <a href="mailto:careers@thefitchecked.com" class="apply-button">Express Interest</a>
-                </div>
-                
-                <div class="role-card">
-                    <div class="role-header">
-                        <h3 class="role-title">Product Designer (UI/UX)</h3>
-                        <span class="role-type">Contract to Full-Time</span>
-                    </div>
-                    <div class="role-details">
-                        <span><i class="fas fa-map-marker-alt"></i> Remote</span>
-                        <span><i class="fas fa-clock"></i> Coming Q2 2026</span>
-                        <span><i class="fas fa-briefcase"></i> 2+ years experience</span>
-                    </div>
-                    <p style="margin-bottom: 1.5rem;">Design beautiful, intuitive interfaces that make fashion technology accessible to everyone. Mobile app experience required.</p>
-                    <a href="mailto:careers@thefitchecked.com" class="apply-button">Express Interest</a>
-                </div>
-                
-                <div class="role-card">
-                    <div class="role-header">
-                        <h3 class="role-title">Marketing Manager</h3>
-                        <span class="role-type">Full-Time</span>
-                    </div>
-                    <div class="role-details">
-                        <span><i class="fas fa-map-marker-alt"></i> Remote</span>
-                        <span><i class="fas fa-clock"></i> Coming Q1 2026</span>
-                        <span><i class="fas fa-briefcase"></i> 3+ years experience</span>
-                    </div>
-                    <p style="margin-bottom: 1.5rem;">Lead our growth strategy across social media, content marketing, and influencer partnerships. Fashion industry experience is a plus.</p>
-                    <a href="mailto:careers@thefitchecked.com" class="apply-button">Express Interest</a>
-                </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 4rem; padding: 3rem; background: var(--bg-light); border-radius: 20px;">
-                <h3 style="font-size: 2rem; margin-bottom: 1rem;">Don't See Your Role?</h3>
-                <p style="font-size: 1.1rem; color: #666; margin-bottom: 2rem;">We're always looking for talented people. Send us your resume and tell us why you'd be a great fit!</p>
-                <a href="mailto:careers@thefitchecked.com" class="apply-button">Send Resume</a>
             </div>
         </div>
     </section>
@@ -405,8 +611,27 @@
     <script>
         function handleSubmit(e) {
             e.preventDefault();
-            const email = e.target.querySelector('input[type="email"]').value;
-            alert(`Thanks! We'll notify ${email} when positions open up. 🎉`);
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const handle = document.getElementById('handle').value;
+            const platform = document.getElementById('platform').options[document.getElementById('platform').selectedIndex].text;
+            
+            alert(`🎉 Thank you, ${name}!
+
+Your application has been received!
+
+Next Steps:
+1. Check ${email} for demo video guidelines
+2. Record your 30-60 second demo video
+3. Send video + resume/media kit to:
+   influencers@thefitchecked.com
+
+Subject Line: "Influencer Application - ${handle}"
+
+We'll review within 5-7 business days!
+
+💰 $500 bonus waiting for you! 🚀`);
+            
             e.target.reset();
             return false;
         }
