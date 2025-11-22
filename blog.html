@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TheFitChecked Fashion Blog - Style tips, wardrobe organization hacks, fashion trends, and AI styling insights.">
+    <meta name="keywords" content="fashion blog, style tips, wardrobe organization, outfit ideas, fashion trends, AI styling, personal fashion">
+    <title>Fashion Blog - TheFitChecked | Style Tips & Trends</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-pink: #FF69B4;
+            --secondary-purple: #9370DB;
+            --text-dark: #2C2C2C;
+            --text-light: #666;
+            --bg-light: #FFF5F7;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            padding: 1.5rem 2rem;
+        }
+        
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        nav a {
+            margin-left: 2rem;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+        
+        /* Hero */
+        .blog-hero {
+            background: linear-gradient(135deg, #FFF5F7 0%, #F0E6FF 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .blog-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .blog-hero p {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Search */
+        .search-section {
+            max-width: 600px;
+            margin: 2rem auto 0;
+        }
+        
+        .search-box {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .search-box input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 2px solid #ddd;
+            border-radius: 50px;
+            font-size: 1rem;
+        }
+        
+        .search-box button {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        /* Main Content */
+        .main-content {
+            max-width: 1400px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 4rem;
+        }
+        
+        /* Categories */
+        .categories {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .category-tag {
+            padding: 0.5rem 1.5rem;
+            background: var(--bg-light);
+            border-radius: 50px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .category-tag:hover, .category-tag.active {
+            border-color: var(--primary-pink);
+            background: white;
+            color: var(--primary-pink);
+        }
+        
+        /* Blog Grid */
+        .blog-articles {
+            display: grid;
+            gap: 3rem;
+        }
+        
+        .article-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+        
+        .article-image {
+            width: 350px;
+            height: 250px;
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .article-content {
+            padding: 2rem 2rem 2rem 0;
+            flex: 1;
+        }
+        
+        .article-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .article-category {
+            color: var(--primary-pink);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .article-card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .article-excerpt {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        
+        .read-more {
+            color: var(--primary-pink);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 2rem;
+            height: fit-content;
+        }
+        
+        .sidebar-widget {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+        
+        .sidebar-widget h3 {
+            margin-bottom: 1.5rem;
+            color: var(--primary-pink);
+        }
+        
+        /* Newsletter Widget */
+        .newsletter-widget input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+        
+        .newsletter-widget button {
+            width: 100%;
+            padding: 0.75rem;
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        /* Popular Posts */
+        .popular-post {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .popular-post:last-child {
+            border-bottom: none;
+        }
+        
+        .popular-post-thumb {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .popular-post-content h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .popular-post-meta {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+        
+        /* Ad Space */
+        .ad-widget {
+            background: var(--bg-light);
+            padding: 3rem 2rem;
+            text-align: center;
+            border: 2px dashed #ddd;
+        }
+        
+        .ad-widget p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 6rem;
+        }
+        
+        footer a {
+            color: var(--primary-pink);
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .article-card {
+                flex-direction: column;
+            }
+            
+            .article-image {
+                width: 100%;
+            }
+            
+            .article-content {
+                padding: 2rem;
+            }
+            
+            .blog-hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">TheFitChecked</div>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/blog">Blog</a>
+                <a href="/#features">Features</a>
+                <a href="/#waitlist">Download App</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="blog-hero">
+        <h1>Fashion & Style Blog</h1>
+        <p>Your ultimate guide to mastering your wardrobe, discovering trends, and elevating your personal style</p>
+        
+        <div class="search-section">
+            <div class="search-box">
+                <input type="search" placeholder="Search articles...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <div class="main-content">
+        <main>
+            <div class="categories">
+                <span class="category-tag active">All</span>
+                <span class="category-tag">Style Tips</span>
+                <span class="category-tag">Wardrobe</span>
+                <span class="category-tag">Technology</span>
+                <span class="category-tag">Sustainability</span>
+                <span class="category-tag">Trends</span>
+            </div>
+
+            <div class="blog-articles">
+                <!-- Featured Article -->
+                <article class="article-card">
+                    <div class="article-image"><i class="fas fa-tshirt"></i></div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="article-category">Style Guide</span>
+                            <span><i class="far fa-calendar"></i> November 22, 2025</span>
+                            <span><i class="far fa-clock"></i> 8 min read</span>
+                        </div>
+                        <h2>10 Wardrobe Essentials Every Closet Needs in 2026</h2>
+                        <p class="article-excerpt">Building a versatile wardrobe starts with timeless essentials. Discover the must-have pieces that create endless outfit possibilities and never go out of style...</p>
+                        <span class="read-more">Read Full Article <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-image"><i class="fas fa-robot"></i></div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="article-category">Technology</span>
+                            <span><i class="far fa-calendar"></i> November 20, 2025</span>
+                            <span><i class="far fa-clock"></i> 6 min read</span>
+                        </div>
+                        <h2>How AI is Revolutionizing Personal Styling</h2>
+                        <p class="article-excerpt">Artificial intelligence is transforming fashion. Learn how AI-powered apps analyze your style preferences, suggest outfits, and help you shop smarter...</p>
+                        <span class="read-more">Read Full Article <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-image"><i class="fas fa-leaf"></i></div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="article-category">Sustainability</span>
+                            <span><i class="far fa-calendar"></i> November 18, 2025</span>
+                            <span><i class="far fa-clock"></i> 7 min read</span>
+                        </div>
+                        <h2>Build a Sustainable Wardrobe Without Sacrificing Style</h2>
+                        <p class="article-excerpt">Eco-friendly fashion is the future. Discover practical tips for creating a sustainable wardrobe that's both ethical and stylish...</p>
+                        <span class="read-more">Read Full Article <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-image"><i class="fas fa-palette"></i></div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="article-category">Style Tips</span>
+                            <span><i class="far fa-calendar"></i> November 15, 2025</span>
+                            <span><i class="far fa-clock"></i> 5 min read</span>
+                        </div>
+                        <h2>Color Theory for Fashion: Match Your Outfits Like a Pro</h2>
+                        <p class="article-excerpt">Understanding color theory can elevate your style game. Learn the science behind color matching and create harmonious outfits effortlessly...</p>
+                        <span class="read-more">Read Full Article <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-image"><i class="fas fa-suitcase"></i></div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="article-category">Travel</span>
+                            <span><i class="far fa-calendar"></i> November 12, 2025</span>
+                            <span><i class="far fa-clock"></i> 9 min read</span>
+                        </div>
+                        <h2>The Ultimate Capsule Wardrobe for Travel</h2>
+                        <p class="article-excerpt">Pack light, look great. Master the art of creating a travel capsule wardrobe with mix-and-match pieces for any destination...</p>
+                        <span class="read-more">Read Full Article <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </article>
+            </div>
+        </main>
+
+        <aside class="sidebar">
+            <!-- Newsletter Widget -->
+            <div class="sidebar-widget newsletter-widget">
+                <h3>📧 Get Style Updates</h3>
+                <p style="margin-bottom: 1rem; color: #666; font-size: 0.95rem;">Join 50,000+ fashion lovers receiving weekly tips!</p>
+                <input type="email" placeholder="Your email">
+                <button>Subscribe</button>
+            </div>
+
+            <!-- Popular Posts -->
+            <div class="sidebar-widget">
+                <h3>🔥 Popular Articles</h3>
+                
+                <div class="popular-post">
+                    <div class="popular-post-thumb"><i class="fas fa-star"></i></div>
+                    <div class="popular-post-content">
+                        <h4>5 Style Mistakes Everyone Makes</h4>
+                        <div class="popular-post-meta">12.5K reads</div>
+                    </div>
+                </div>
+                
+                <div class="popular-post">
+                    <div class="popular-post-thumb"><i class="fas fa-shopping-bag"></i></div>
+                    <div class="popular-post-content">
+                        <h4>Smart Shopping: Save 50% on Fashion</h4>
+                        <div class="popular-post-meta">10.2K reads</div>
+                    </div>
+                </div>
+                
+                <div class="popular-post">
+                    <div class="popular-post-thumb"><i class="fas fa-user-tie"></i></div>
+                    <div class="popular-post-content">
+                        <h4>Dress for Success: Career Fashion</h4>
+                        <div class="popular-post-meta">8.9K reads</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ad Space -->
+            <div class="sidebar-widget ad-widget">
+                <p><strong>Advertisement Space</strong></p>
+                <p>300x250</p>
+            </div>
+
+            <!-- App Promo -->
+            <div class="sidebar-widget" style="background: linear-gradient(135deg, #FF69B4, #9370DB); color: white;">
+                <h3 style="color: white;">Get the App!</h3>
+                <p style="margin-bottom: 1rem;">Organize your wardrobe with AI-powered styling</p>
+                <a href="/#waitlist" style="display: block; background: white; color: #FF69B4; padding: 0.75rem; border-radius: 10px; text-align: center; font-weight: 600; text-decoration: none;">Download Now</a>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 TheFitChecked. All rights reserved.</p>
+        <div style="margin-top: 1rem;">
+            <a href="/privacy-policy">Privacy Policy</a>
+            <a href="/terms-of-service">Terms of Service</a>
+            <a href="mailto:hello@thefitchecked.com">Contact</a>
+        </div>
+    </footer>
+</body>
+</html>
