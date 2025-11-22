@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Careers at TheFitChecked - Join our team building the future of fashion technology">
+    <title>Careers - TheFitChecked</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-pink: #FF69B4;
+            --secondary-purple: #9370DB;
+            --text-dark: #2C2C2C;
+            --text-light: #666;
+            --bg-light: #FFF5F7;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+        
+        .hero {
+            margin-top: 80px;
+            background: linear-gradient(135deg, #FFF5F7 0%, #F0E6FF 100%);
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .perks-section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .perks-section h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .perks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .perk-card {
+            background: var(--bg-light);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+        }
+        
+        .perk-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .perk-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .jobs-section {
+            background: white;
+            padding: 6rem 2rem;
+        }
+        
+        .jobs-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .jobs-container h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .coming-soon {
+            background: var(--bg-light);
+            padding: 4rem;
+            border-radius: 30px;
+            text-align: center;
+        }
+        
+        .coming-soon h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-pink);
+        }
+        
+        .coming-soon p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+        
+        .email-form {
+            max-width: 500px;
+            margin: 2rem auto 0;
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .email-form input {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 50px;
+            font-size: 1rem;
+        }
+        
+        .email-form button {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .roles-preview {
+            margin-top: 4rem;
+        }
+        
+        .role-card {
+            background: white;
+            border: 2px solid #eee;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+        }
+        
+        .role-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .role-title {
+            font-size: 1.8rem;
+            color: var(--primary-pink);
+        }
+        
+        .role-type {
+            background: var(--bg-light);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+        }
+        
+        .role-details {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+        
+        .role-details span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .apply-button {
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
+        footer {
+            background: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        @media (max-width: 968px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .email-form {
+                flex-direction: column;
+            }
+            
+            .role-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="/index.html" class="logo">TheFitChecked</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Join Our Team</h1>
+        <p>Help us build the future of fashion technology and empower millions to express their style</p>
+    </section>
+
+    <section class="perks-section">
+        <h2>Why Work With Us?</h2>
+        
+        <div class="perks-grid">
+            <div class="perk-card">
+                <div class="perk-icon"><i class="fas fa-rocket"></i></div>
+                <h3>Early Stage Startup</h3>
+                <p>Join us at the ground floor and shape the future of the company</p>
+            </div>
+            
+            <div class="perk-card">
+                <div class="perk-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Equity Options</h3>
+                <p>Own a piece of what you're building with competitive equity packages</p>
+            </div>
+            
+            <div class="perk-card">
+                <div class="perk-icon"><i class="fas fa-home"></i></div>
+                <h3>Remote Friendly</h3>
+                <p>Work from anywhere - we believe in flexibility and work-life balance</p>
+            </div>
+            
+            <div class="perk-card">
+                <div class="perk-icon"><i class="fas fa-brain"></i></div>
+                <h3>Learn & Grow</h3>
+                <p>Work with cutting-edge AI technology and modern development practices</p>
+            </div>
+            
+            <div class="perk-card">
+                <div class="perk-icon"><i class="fas fa-users"></i></div>
+                <h3>Small Team</h3>
+                <p>Your voice matters - directly influence product decisions and direction</p>
+            </div>
+            
+            <div class="perk-card">
+                <div class="perk-icon"><i class="fas fa-heart"></i></div>
+                <h3>Mission-Driven</h3>
+                <p>Build something that makes a real difference in people's daily lives</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="jobs-section">
+        <div class="jobs-container">
+            <h2>Open Positions</h2>
+            
+            <div class="coming-soon">
+                <h3>🚀 We're Hiring Soon!</h3>
+                <p>We're launching in January 2026 and will be opening positions shortly after. Get notified when roles become available.</p>
+                
+                <form class="email-form" onsubmit="return handleSubmit(event)">
+                    <input type="email" placeholder="Your email" required>
+                    <button type="submit">Get Notified</button>
+                </form>
+            </div>
+            
+            <div class="roles-preview">
+                <h3 style="text-align: center; font-size: 2rem; margin-bottom: 2rem;">Roles We're Looking to Fill:</h3>
+                
+                <div class="role-card">
+                    <div class="role-header">
+                        <h3 class="role-title">Full-Stack Engineer</h3>
+                        <span class="role-type">Full-Time</span>
+                    </div>
+                    <div class="role-details">
+                        <span><i class="fas fa-map-marker-alt"></i> Remote</span>
+                        <span><i class="fas fa-clock"></i> Coming Q1 2026</span>
+                        <span><i class="fas fa-briefcase"></i> 2+ years experience</span>
+                    </div>
+                    <p style="margin-bottom: 1.5rem;">Help build our React/TypeScript frontend and Node.js backend. Experience with AI integration and mobile development is a plus.</p>
+                    <a href="mailto:careers@thefitchecked.com" class="apply-button">Express Interest</a>
+                </div>
+                
+                <div class="role-card">
+                    <div class="role-header">
+                        <h3 class="role-title">AI/ML Engineer</h3>
+                        <span class="role-type">Full-Time</span>
+                    </div>
+                    <div class="role-details">
+                        <span><i class="fas fa-map-marker-alt"></i> Remote</span>
+                        <span><i class="fas fa-clock"></i> Coming Q1 2026</span>
+                        <span><i class="fas fa-briefcase"></i> 3+ years experience</span>
+                    </div>
+                    <p style="margin-bottom: 1.5rem;">Improve our AI models for outfit recommendations, image recognition, and personalization. Experience with computer vision and NLP preferred.</p>
+                    <a href="mailto:careers@thefitchecked.com" class="apply-button">Express Interest</a>
+                </div>
+                
+                <div class="role-card">
+                    <div class="role-header">
+                        <h3 class="role-title">Product Designer (UI/UX)</h3>
+                        <span class="role-type">Contract to Full-Time</span>
+                    </div>
+                    <div class="role-details">
+                        <span><i class="fas fa-map-marker-alt"></i> Remote</span>
+                        <span><i class="fas fa-clock"></i> Coming Q2 2026</span>
+                        <span><i class="fas fa-briefcase"></i> 2+ years experience</span>
+                    </div>
+                    <p style="margin-bottom: 1.5rem;">Design beautiful, intuitive interfaces that make fashion technology accessible to everyone. Mobile app experience required.</p>
+                    <a href="mailto:careers@thefitchecked.com" class="apply-button">Express Interest</a>
+                </div>
+                
+                <div class="role-card">
+                    <div class="role-header">
+                        <h3 class="role-title">Marketing Manager</h3>
+                        <span class="role-type">Full-Time</span>
+                    </div>
+                    <div class="role-details">
+                        <span><i class="fas fa-map-marker-alt"></i> Remote</span>
+                        <span><i class="fas fa-clock"></i> Coming Q1 2026</span>
+                        <span><i class="fas fa-briefcase"></i> 3+ years experience</span>
+                    </div>
+                    <p style="margin-bottom: 1.5rem;">Lead our growth strategy across social media, content marketing, and influencer partnerships. Fashion industry experience is a plus.</p>
+                    <a href="mailto:careers@thefitchecked.com" class="apply-button">Express Interest</a>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 4rem; padding: 3rem; background: var(--bg-light); border-radius: 20px;">
+                <h3 style="font-size: 2rem; margin-bottom: 1rem;">Don't See Your Role?</h3>
+                <p style="font-size: 1.1rem; color: #666; margin-bottom: 2rem;">We're always looking for talented people. Send us your resume and tell us why you'd be a great fit!</p>
+                <a href="mailto:careers@thefitchecked.com" class="apply-button">Send Resume</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 TheFitChecked. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function handleSubmit(e) {
+            e.preventDefault();
+            const email = e.target.querySelector('input[type="email"]').value;
+            alert(`Thanks! We'll notify ${email} when positions open up. 🎉`);
+            e.target.reset();
+            return false;
+        }
+    </script>
+</body>
+</html>
