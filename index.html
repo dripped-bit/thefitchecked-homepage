@@ -589,11 +589,17 @@
             background-clip: text;
         }
 
-        /* Privacy Policy Link - Fixed Bottom Right */
-        .privacy-link {
+        /* Footer Links Container - Fixed Bottom Right */
+        .footer-links {
             position: fixed;
             bottom: 20px;
             right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .footer-link {
             color: #000;
             font-weight: bold;
             font-size: 14px;
@@ -602,11 +608,10 @@
             border-radius: 8px;
             text-decoration: none;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            z-index: 1000;
             transition: all 0.3s ease;
         }
 
-        .privacy-link:hover {
+        .footer-link:hover {
             background: rgba(255, 255, 255, 1);
             box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
             transform: translateY(-2px);
@@ -614,6 +619,11 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .footer-links {
+                flex-direction: column;
+                gap: 8px;
+            }
+
             .header-wrapper {
                 width: clamp(320px, 85vw, 600px);
             }
@@ -788,8 +798,11 @@
         </div>
     </footer>
 
-    <!-- Privacy Policy Link - Fixed Bottom Right -->
-    <a href="/privacy.html" class="privacy-link">Privacy Policy</a>
+    <!-- Footer Links - Fixed Bottom Right -->
+    <div class="footer-links">
+        <a href="/privacy.html" class="footer-link">Privacy Policy</a>
+        <a href="/support.html" class="footer-link">Support</a>
+    </div>
 
     <script>
         // Easter egg for developers
