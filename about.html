@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About TheFitChecked - Our mission to revolutionize fashion with AI technology">
+    <title>About Us - TheFitChecked</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-pink: #FF69B4;
+            --secondary-purple: #9370DB;
+            --text-dark: #2C2C2C;
+            --text-light: #666;
+            --bg-light: #FFF5F7;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+        
+        .hero {
+            margin-top: 80px;
+            background: linear-gradient(135deg, #FFF5F7 0%, #F0E6FF 100%);
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .story-section {
+            padding: 6rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .story-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary-pink);
+        }
+        
+        .story-section p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+        
+        .mission-section {
+            background: var(--bg-light);
+            padding: 6rem 2rem;
+        }
+        
+        .mission-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .mission-container h2 {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .mission-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+        
+        .mission-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .mission-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .team-section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .team-section h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .founder-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+        
+        .founder-card h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-pink);
+        }
+        
+        .founder-title {
+            color: var(--text-light);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .values-section {
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
+            padding: 6rem 2rem;
+            color: white;
+            text-align: center;
+        }
+        
+        .values-section h2 {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .values-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .value-item {
+            padding: 2rem;
+        }
+        
+        .value-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-section {
+            padding: 6rem 2rem;
+            text-align: center;
+            background: white;
+        }
+        
+        .cta-section h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
+            color: white;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            display: inline-block;
+        }
+        
+        footer {
+            background: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        @media (max-width: 968px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="/index.html" class="logo">TheFitChecked</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>About TheFitChecked</h1>
+        <p>Revolutionizing fashion with AI technology - one outfit at a time</p>
+    </section>
+
+    <section class="story-section">
+        <h2>Our Story</h2>
+        <p>TheFitChecked was born from a simple frustration: standing in front of a full closet with "nothing to wear." We realized that fashion isn't just about having clothes—it's about knowing what you have, how to style it, and having the confidence to express yourself.</p>
+        
+        <p>As a developer and fashion enthusiast, our founder Genevie saw an opportunity to combine cutting-edge AI technology with practical wardrobe management. What if your closet could be smart? What if you could see exactly how clothes would look on your body before buying? What if AI could be your personal stylist, available 24/7?</p>
+        
+        <p>After months of development and testing, TheFitChecked emerged as more than just an app—it's a complete fashion ecosystem that empowers you to make better style decisions, save money, and look your best every day.</p>
+        
+        <p>We're building TheFitChecked for everyone who's ever felt overwhelmed by their wardrobe, struggled with packing for trips, or wished they had a personal stylist on speed dial. Fashion should be fun, not stressful—and that's exactly what we're making possible.</p>
+    </section>
+
+    <section class="mission-section">
+        <div class="mission-container">
+            <h2>Our Mission</h2>
+            <p style="font-size: 1.2rem; color: #666; max-width: 800px; margin: 0 auto;">We're on a mission to democratize personal styling and make fashion accessible, sustainable, and enjoyable for everyone.</p>
+            
+            <div class="mission-grid">
+                <div class="mission-card">
+                    <div class="mission-icon"><i class="fas fa-brain"></i></div>
+                    <h3>AI-Powered</h3>
+                    <p>Leverage cutting-edge artificial intelligence to provide personalized style recommendations that actually understand you.</p>
+                </div>
+                
+                <div class="mission-card">
+                    <div class="mission-icon"><i class="fas fa-leaf"></i></div>
+                    <h3>Sustainable</h3>
+                    <p>Help reduce fashion waste by maximizing your existing wardrobe and making smarter purchasing decisions.</p>
+                </div>
+                
+                <div class="mission-card">
+                    <div class="mission-icon"><i class="fas fa-users"></i></div>
+                    <h3>Inclusive</h3>
+                    <p>Fashion for every body type, style preference, and budget. No judgment, just support and empowerment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-section">
+        <h2>Meet the Founder</h2>
+        
+        <div class="founder-card">
+            <h3>Genevie</h3>
+            <div class="founder-title">Founder & CEO</div>
+            <p>Genevie is a full-stack developer and fashion enthusiast who combines technical expertise with a passion for style. With experience in AI, mobile development, and user experience design, she's building TheFitChecked to solve real problems she's experienced herself.</p>
+            <p style="margin-top: 1rem;">"I wanted to create something that makes getting dressed in the morning exciting, not stressful. Fashion should be accessible to everyone, and AI can make that happen."</p>
+        </div>
+        
+        <div style="text-align: center; margin-top: 3rem;">
+            <p style="font-size: 1.2rem; color: #666; margin-bottom: 2rem;">We're a small but mighty team passionate about fashion, technology, and empowering people to look and feel their best.</p>
+            <a href="/careers.html" class="cta-button">Join Our Team</a>
+        </div>
+    </section>
+
+    <section class="values-section">
+        <h2>Our Values</h2>
+        
+        <div class="values-grid">
+            <div class="value-item">
+                <h3>🎯 User-First</h3>
+                <p>Every decision we make starts with: "Does this help our users?"</p>
+            </div>
+            
+            <div class="value-item">
+                <h3>🚀 Innovation</h3>
+                <p>We embrace new technology to solve old problems in creative ways.</p>
+            </div>
+            
+            <div class="value-item">
+                <h3>💖 Inclusivity</h3>
+                <p>Fashion is for everyone, and so is TheFitChecked.</p>
+            </div>
+            
+            <div class="value-item">
+                <h3>🌱 Sustainability</h3>
+                <p>We believe in conscious consumption and making the most of what you have.</p>
+            </div>
+            
+            <div class="value-item">
+                <h3>✨ Empowerment</h3>
+                <p>We build tools that give you confidence to express your unique style.</p>
+            </div>
+            
+            <div class="value-item">
+                <h3>🤝 Transparency</h3>
+                <p>We're honest about what we do, how we use AI, and how we protect your data.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Join the Fashion Revolution</h2>
+        <p style="font-size: 1.2rem; color: #666; margin-bottom: 2rem;">Be part of our journey to transform how the world approaches fashion</p>
+        <a href="/download.html" class="cta-button">Join Waitlist - Get 50% OFF</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 TheFitChecked. All rights reserved.</p>
+    </footer>
+</body>
+</html>
