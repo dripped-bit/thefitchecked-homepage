@@ -64,6 +64,37 @@
             text-decoration: none;
         }
         
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-pink);
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+        
         .hero {
             margin-top: 80px;
             background: linear-gradient(135deg, #FFF5F7 0%, #F0E6FF 100%);
@@ -235,8 +266,44 @@
         footer {
             background: var(--text-dark);
             color: white;
+            padding: 4rem 2rem 2rem;
+        }
+        
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-links h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-pink);
+        }
+        
+        footer > p {
             text-align: center;
-            padding: 2rem;
         }
         
         @media (max-width: 968px) {
@@ -250,6 +317,13 @@
     <nav>
         <div class="nav-container">
             <a href="/index.html" class="logo">TheFitChecked</a>
+            <ul class="nav-links">
+                <li><a href="/features.html">Features</a></li>
+                <li><a href="/how-it-works.html">How It Works</a></li>
+                <li><a href="/blog.html">Blog</a></li>
+                <li><a href="/about.html">About</a></li>
+            </ul>
+            <a href="/download.html" class="cta-button">Join Waitlist</a>
         </div>
     </nav>
 
@@ -355,6 +429,36 @@
     </section>
 
     <footer>
+        <div class="footer-container">
+            <div class="footer-links">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="/features.html">Features</a></li>
+                    <li><a href="/how-it-works.html">How It Works</a></li>
+                    <li><a href="/pricing.html">Pricing</a></li>
+                    <li><a href="/download.html">Download App</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="/about.html">About Us</a></li>
+                    <li><a href="/blog.html">Blog</a></li>
+                    <li><a href="/careers.html">Careers</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="/support.html">Help Center</a></li>
+                    <li><a href="/legal.html#privacy">Privacy Policy</a></li>
+                    <li><a href="/legal.html#terms">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
         <p>&copy; 2025 TheFitChecked. All rights reserved.</p>
     </footer>
 </body>
