@@ -589,6 +589,29 @@
             background-clip: text;
         }
 
+        /* Privacy Policy Link - Fixed Bottom Right */
+        .privacy-link {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            color: #000;
+            font-weight: bold;
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .privacy-link:hover {
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+            transform: translateY(-2px);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .header-wrapper {
@@ -764,6 +787,9 @@
             <p class="contact-email">Questions? hello@fitchecked.app</p>
         </div>
     </footer>
+
+    <!-- Privacy Policy Link - Fixed Bottom Right -->
+    <a href="/privacy.html" class="privacy-link">Privacy Policy</a>
 
     <script>
         // Easter egg for developers
