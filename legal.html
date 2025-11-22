@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal - TheFitChecked</title>
+    <style>
+        :root {
+            --primary-color: #e91e63; /* Pink accent from your app */
+            --text-color: #333;
+            --bg-color: #fff;
+            --section-bg: #f9f9f9;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        h1 { font-size: 2.5em; color: #222; margin-bottom: 10px; }
+        h2 { font-size: 1.8em; color: var(--primary-color); margin-top: 40px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        h3 { font-size: 1.3em; color: #444; margin-top: 25px; }
+        p, li { font-size: 1rem; margin-bottom: 15px; }
+        
+        /* Navigation Tabs */
+        .legal-nav {
+            position: sticky;
+            top: 0;
+            background: white;
+            padding: 20px 0;
+            border-bottom: 1px solid #ddd;
+            z-index: 100;
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+        }
+
+        .legal-nav a {
+            text-decoration: none;
+            color: #666;
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            padding: 5px 10px;
+        }
+
+        .legal-nav a:hover, .legal-nav a.active {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .last-updated {
+            font-style: italic;
+            color: #888;
+            margin-bottom: 40px;
+        }
+
+        .highlight-box {
+            background: #fff0f6;
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            background: #667eea;
+            color: white;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            background: #5568d3;
+            text-decoration: none;
+        }
+
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <div style="text-align:center; margin-bottom:40px;">
+        <h1>Legal Center</h1>
+        <p class="last-updated">Last Updated: November 22, 2025</p>
+    </div>
+
+    <nav class="legal-nav">
+        <a href="#privacy">Privacy Policy</a>
+        <a href="#terms">Terms of Service</a>
+        <a href="#cookies">Cookie Policy</a>
+        <a href="#disclaimer">Disclaimer</a>
+    </nav>
+
+    <!-- PRIVACY POLICY -->
+    <section id="privacy">
+        <h2>Privacy Policy</h2>
+        <p>At TheFitChecked ("we," "us," "our"), we take your privacy seriously. This Privacy Policy explains how we collect, use, and protect your information when you use our mobile application ("App") and website.</p>
+
+        <h3>1. Information We Collect</h3>
+        <ul>
+            <li><strong>Account Information:</strong> Name, email address, and password (stored securely via Firebase Authentication).</li>
+            <li><strong>User Content (The "Virtual Closet"):</strong> Photos of clothing you upload. These images are analyzed by AI to categorize items and are stored in our database linked to your user ID.</li>
+            <li><strong>Facial Data (For Avatars):</strong> If you use the "Custom Avatar" feature, you may upload a photo of your face. We use this strictly to generate a stylized 2D/3D avatar. <strong>We do not share your facial data with third parties for marketing or identification purposes.</strong></li>
+            <li><strong>Measurements & Style Preferences:</strong> Height, body type, and style preferences (e.g., "Boho," "Minimalist") used to personalize recommendations.</li>
+            <li><strong>Usage Data:</strong> Information about how you use the app, such as features accessed and time spent.</li>
+        </ul>
+
+        <h3>2. How We Use Your Information</h3>
+        <p>We use your data to provide the core functionality of the App:</p>
+        <ul>
+            <li>To generate AI-powered outfit recommendations based on your closet and local weather.</li>
+            <li>To create your personalized virtual avatar for the "Try-On" feature.</li>
+            <li>To suggest shopping items that match your style and budget.</li>
+            <li>To facilitate affiliate links and shopping transactions.</li>
+        </ul>
+
+        <h3>3. Third-Party Services (AI & Infrastructure)</h3>
+        <p>We utilize trusted third-party services to power our App. Data sent to these services is anonymized where possible:</p>
+        <ul>
+            <li><strong>OpenAI & Claude (Anthropic):</strong> For processing style queries and outfit generation.</li>
+            <li><strong>Google Firebase:</strong> For secure data storage, authentication, and hosting.</li>
+            <li><strong>SERP API / Google Shopping:</strong> To fetch real-time pricing and product availability.</li>
+        </ul>
+
+        <h3>4. Data Deletion</h3>
+        <p class="highlight-box">You have the right to delete your account and all associated data at any time. You can do this directly within the App settings under <strong>Account > Delete Account</strong>, or by emailing us at <a href="mailto:dripped@thefitchecked.com">dripped@thefitchecked.com</a>.</p>
+    </section>
+
+    <!-- TERMS OF SERVICE -->
+    <section id="terms">
+        <h2>Terms of Service</h2>
+        <p>By downloading or using TheFitChecked, you agree to these Terms. If you do not agree, please do not use the App.</p>
+
+        <h3>1. Use of the App</h3>
+        <p>You must be at least 13 years old to use this App. You agree not to use the App for any illegal purpose or to upload content that is offensive, infringing, or harmful.</p>
+
+        <h3>2. AI & Recommendations</h3>
+        <p>TheFitChecked uses Artificial Intelligence to generate fashion advice. While we strive for accuracy, AI can make mistakes. We do not guarantee that outfit recommendations will always be suitable or that shopping items will match exactly as pictured.</p>
+
+        <h3>3. Intellectual Property</h3>
+        <p>You retain ownership of the photos you upload. However, by uploading them, you grant TheFitChecked a license to process these images to provide the App's services (e.g., removing backgrounds, analyzing colors).</p>
+
+        <h3>4. Subscription & Payments</h3>
+        <p>Certain features may require a premium subscription. Subscriptions auto-renew unless canceled 24 hours before the end of the period via your Apple ID or Google Play account settings.</p>
+    </section>
+
+    <!-- COOKIE POLICY -->
+    <section id="cookies">
+        <h2>Cookie Policy</h2>
+        <p>Our website and App may use cookies and similar tracking technologies.</p>
+        
+        <h3>1. What are Cookies?</h3>
+        <p>Cookies are small text files stored on your device that help us remember your preferences and login state.</p>
+
+        <h3>2. How We Use Cookies</h3>
+        <ul>
+            <li><strong>Essential Cookies:</strong> Required for you to log in and keep your session active.</li>
+            <li><strong>Analytics Cookies:</strong> Help us understand which features are most popular so we can improve the App.</li>
+        </ul>
+        <p>You can control cookies through your browser settings, though disabling them may affect your ability to log in.</p>
+    </section>
+
+    <!-- DISCLAIMER -->
+    <section id="disclaimer">
+        <h2>Disclaimer</h2>
+
+        <h3>1. Affiliate Disclosure</h3>
+        <p class="highlight-box"><strong>Transparency Matters:</strong> TheFitChecked participates in affiliate marketing programs (such as LTK, Amazon Associates, and others). This means we may earn a commission if you click on a shopping link and make a purchase. This comes at no extra cost to you and helps support the development of the App.</p>
+
+        <h3>2. No Professional Advice</h3>
+        <p>The content provided by TheFitChecked is for entertainment and informational purposes only. It does not constitute professional fashion consulting. We are not responsible for purchases made through third-party retailer links provided in the App.</p>
+
+        <h3>3. "As Is" Basis</h3>
+        <p>The App is provided on an "AS IS" and "AS AVAILABLE" basis. We disclaim all warranties, express or implied, regarding the reliability or availability of the service.</p>
+    </section>
+
+    <a href="/" class="back-link">← Back to Home</a>
+
+    <footer>
+        <p>&copy; 2025 TheFitChecked. All rights reserved.</p>
+        <p><a href="/support.html">Support</a> | <a href="/legal.html">Legal Center</a></p>
+        <p>Contact: <a href="mailto:dripped@thefitchecked.com">dripped@thefitchecked.com</a></p>
+    </footer>
+
+</div>
+
+</body>
+</html>
