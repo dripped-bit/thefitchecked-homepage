@@ -238,7 +238,8 @@
         
         .phone-mockup {
             width: 100%;
-            height: 600px;
+            max-width: 320px;
+            aspect-ratio: 9 / 19.5;
             border-radius: 42px;
             box-shadow: 
                 0 25px 70px rgba(0, 0, 0, 0.15),
@@ -246,6 +247,7 @@
                 0 5px 15px rgba(0, 0, 0, 0.08);
             animation: float 6s ease-in-out infinite;
             object-fit: cover;
+            margin: 0 auto;
         }
         
         .phone-mockup:first-child {
@@ -619,7 +621,8 @@
             }
             
             .phone-mockup {
-                height: 400px;
+                max-width: 280px;
+                height: auto;
             }
             
 
