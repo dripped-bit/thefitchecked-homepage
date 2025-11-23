@@ -5,7 +5,6 @@
 
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
-import { SmtpClient } from 'https://deno.land/x/smtp@v0.7.0/mod.ts'
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -153,35 +152,36 @@ serve(async (req) => {
     `
 
     try {
-      const client = new SmtpClient()
+      const resendApiKey = Deno.env.get('RESEND_API_KEY')
       
-      await client.connectTLS({
-        hostname: 'smtp.gmail.com',
-        port: 465,
-        username: gmailEmail,
-        password: gmailPassword,
-      })
+      if (resendApiKey) {
+        const emailResponse = await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${resendApiKey}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            from: `TheFitChecked <${gmailEmail}>`,
+            to: signup.email,
+            subject: '🎉 Welcome to TheFitChecked Waitlist!',
+            html: welcomeEmailHtml,
+          }),
+        })
 
-      await client.send({
-        from: gmailEmail,
-        to: signup.email,
-        subject: '🎉 Welcome to TheFitChecked Waitlist!',
-        content: welcomeEmailHtml,
-        html: welcomeEmailHtml,
-      })
-
-      await client.close()
-      console.log('Welcome email sent to:', signup.email)
+        if (emailResponse.ok) {
+          console.log('Welcome email sent to:', signup.email)
+        } else {
+          const errorData = await emailResponse.text()
+          console.error('Resend API error:', errorData)
+        }
+      } else {
+        console.log('Email would be sent to:', signup.email)
+        console.log('No email service configured - add RESEND_API_KEY secret')
+      }
     } catch (emailError) {
       console.error('Email sending error:', emailError)
       console.error('Error details:', JSON.stringify(emailError, null, 2))
-      console.error('SMTP Config:', {
-        hostname: 'smtp.gmail.com',
-        port: 465,
-        username: gmailEmail,
-        hasPassword: !!gmailPassword,
-        passwordLength: gmailPassword?.length
-      })
     }
 
     // Redirect to success page
