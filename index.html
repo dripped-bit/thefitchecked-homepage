@@ -74,13 +74,15 @@
         }
         
         .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .logo-image {
+            height: 40px;
+            width: auto;
+            display: block;
         }
         
         .nav-links {
@@ -639,7 +641,9 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <div class="logo">TheFitChecked</div>
+            <a href="/" class="logo">
+                <img src="/transparentheader.png" alt="TheFitChecked" class="logo-image">
+            </a>
             <ul class="nav-links">
                 <li><a href="#features">Features</a></li>
                 <li><a href="#how-it-works">How It Works</a></li>
