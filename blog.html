@@ -351,6 +351,102 @@
                 font-size: 2.5rem;
             }
         }
+
+        /* Blog Card Styles for AI Fashion Revolution Article */
+        .blog-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .blog-content {
+            padding: 30px;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .blog-category {
+            background: linear-gradient(135deg, #FF69B4, #9370DB);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .blog-date,
+        .blog-read-time {
+            color: #666;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .blog-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            line-height: 1.4;
+            margin-bottom: 15px;
+            color: #2C2C2C;
+        }
+
+        .blog-excerpt {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .blog-card .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #FF69B4;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: gap 0.3s;
+        }
+
+        .blog-card .read-more:hover {
+            gap: 12px;
+        }
+
+        .blog-card .read-more i {
+            transition: transform 0.3s;
+        }
+
+        .blog-card .read-more:hover i {
+            transform: translateX(5px);
+        }
     </style>
 </head>
 <body>
@@ -390,20 +486,30 @@
             </div>
 
             <div class="blog-articles">
-                <!-- Featured Article -->
-                <article class="article-card">
-                    <div class="article-image"><i class="fas fa-tshirt"></i></div>
-                    <div class="article-content">
-                        <div class="article-meta">
-                            <span class="article-category">Style Guide</span>
-                            <span><i class="far fa-calendar"></i> November 22, 2025</span>
-                            <span><i class="far fa-clock"></i> 8 min read</span>
-                        </div>
-                        <h2>10 Wardrobe Essentials Every Closet Needs in 2026</h2>
-                        <p class="article-excerpt">Building a versatile wardrobe starts with timeless essentials. Discover the must-have pieces that create endless outfit possibilities and never go out of style...</p>
-                        <span class="read-more">Read Full Article <i class="fas fa-arrow-right"></i></span>
+                <!-- Blog Card for AI Fashion Revolution Article -->
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="/ai-fashion-blog.png" alt="AI Fashion Robot with Luxury Shopper">
                     </div>
-                </article>
+                    
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">STYLE GUIDE</span>
+                            <span class="blog-date"><i class="far fa-calendar"></i> November 22, 2025</span>
+                            <span class="blog-read-time"><i class="far fa-clock"></i> 8 min read</span>
+                        </div>
+                        
+                        <h3 class="blog-title">The AI Fashion Revolution: How Smart Technology is Saving You $1,450+ Per Year</h3>
+                        
+                        <p class="blog-excerpt">
+                            Stop wasting money on clothes you never wear. Discover how AI-powered fashion tools help you look incredible while cutting your clothing budget in half through smart shopping, virtual try-ons, and digital wardrobe management...
+                        </p>
+                        
+                        <a href="blog-ai-fashion-revolution.html" class="read-more">
+                            Read Full Article <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
 
                 <article class="article-card">
                     <div class="article-image"><i class="fas fa-robot"></i></div>
