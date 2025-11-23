@@ -468,8 +468,10 @@
             <div class="sidebar-widget newsletter-widget">
                 <h3>📧 Get Style Updates</h3>
                 <p style="margin-bottom: 1rem; color: #666; font-size: 0.95rem;">Join 50,000+ fashion lovers receiving weekly tips!</p>
-                <input type="email" placeholder="Your email">
-                <button>Subscribe</button>
+                <form id="newsletter-form" onsubmit="return handleNewsletterSubmit(event)">
+                    <input type="email" id="newsletter-email" placeholder="Your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
             </div>
 
             <!-- Popular Posts -->
@@ -519,10 +521,60 @@
     <footer>
         <p>&copy; 2025 TheFitChecked. All rights reserved.</p>
         <div style="margin-top: 1rem;">
-            <a href="/privacy-policy">Privacy Policy</a>
-            <a href="/terms-of-service">Terms of Service</a>
-            <a href="mailto:hello@thefitchecked.com">Contact</a>
+            <a href="/legal.html#privacy">Privacy Policy</a>
+            <a href="/legal.html#terms">Terms of Service</a>
+            <a href="/contact.html">Contact</a>
         </div>
     </footer>
+
+    <script>
+        async function handleNewsletterSubmit(e) {
+            e.preventDefault();
+            
+            const emailInput = document.getElementById('newsletter-email');
+            const submitButton = e.target.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            
+            submitButton.disabled = true;
+            submitButton.textContent = 'Subscribing...';
+            
+            const email = emailInput.value;
+            
+            try {
+                // Subscribe to newsletter via waitlist system (using source: 'newsletter')
+                const response = await fetch('https://kxmtbetklikewluwntyx.supabase.co/functions/v1/waitlist-signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        source: 'newsletter-blog'
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    if (data.alreadyConfirmed) {
+                        alert('✅ You\'re already subscribed to our newsletter!');
+                    } else {
+                        alert('🎉 Subscribed!\n\nCheck your email to confirm your subscription.\n\nYou\'ll receive:\n✨ Weekly fashion tips\n👗 Styling advice\n🎁 Exclusive early access offers\n📱 App launch updates');
+                    }
+                    emailInput.value = '';
+                } else {
+                    alert('❌ Subscription failed\n\n' + (data.error || 'Please try again later.'));
+                }
+            } catch (error) {
+                console.error('Newsletter subscription error:', error);
+                alert('❌ Network error\n\nPlease check your connection and try again.');
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = originalText;
+            }
+            
+            return false;
+        }
+    </script>
 </body>
 </html>
