@@ -1,2 +1,4 @@
 .vercel
 .supabase
+.DS_Store
+supabase/.temp/
