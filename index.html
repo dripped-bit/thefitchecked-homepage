@@ -77,12 +77,12 @@
             display: flex;
             align-items: center;
             text-decoration: none;
-        }
-        
-        .logo-image {
-            height: 140px;
-            width: auto;
-            display: block;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .nav-links {
@@ -622,9 +622,7 @@
                 height: 400px;
             }
             
-            .logo-image {
-                height: 70px;
-            }
+
             
             .footer-container {
                 grid-template-columns: 1fr;
@@ -650,9 +648,7 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <a href="/" class="logo">
-                <img src="/tfc.png" alt="TheFitChecked" class="logo-image">
-            </a>
+            <a href="/" class="logo">TheFitChecked</a>
             <ul class="nav-links">
                 <li><a href="#features">Features</a></li>
                 <li><a href="#how-it-works">How It Works</a></li>
