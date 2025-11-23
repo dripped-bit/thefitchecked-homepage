@@ -99,8 +99,14 @@ serve(async (req) => {
     // Send confirmation email via Gmail SMTP
     console.log('Sending confirmation email to:', email)
     
-    const gmailEmail = Deno.env.get('GMAIL_EMAIL')
+    const gmailEmail = Deno.env.get('GMAIL_EMAIL') || 'onboarding@resend.dev'
     const gmailPassword = Deno.env.get('GMAIL_APP_PASSWORD')
+    const newsletterEmail = Deno.env.get('NEWSLETTER_FROM_EMAIL') || 'style@thefitchecked.com'
+    
+    // Determine which email and name to use based on source
+    const isNewsletter = source === 'newsletter-blog'
+    const fromEmail = isNewsletter ? newsletterEmail : gmailEmail
+    const fromName = isNewsletter ? 'TheFitChecked Style' : 'TheFitChecked'
 
     // HTML email template
     const emailHtml = `
@@ -123,17 +129,24 @@ serve(async (req) => {
             <div class="logo">TheFitChecked</div>
           </div>
           <div class="content">
-            <h1 style="color: #FF69B4; margin-bottom: 20px;">You're Almost There!</h1>
+            <h1 style="color: #FF69B4; margin-bottom: 20px;">
+              ${isNewsletter ? 'Confirm Your Style Subscription! 👗' : 'You\'re Almost There!'}
+            </h1>
             <p style="font-size: 1.1rem; margin-bottom: 30px;">
               ${name ? `Hi ${name}, ` : 'Hi there! '}
-              Thank you for joining the TheFitChecked waitlist! Click the button below to confirm your email and secure your spot.
+              ${isNewsletter 
+                ? 'Thank you for subscribing to TheFitChecked Style Updates! Click below to confirm and start receiving weekly fashion tips.'
+                : 'Thank you for joining the TheFitChecked waitlist! Click the button below to confirm your email and secure your spot.'
+              }
             </p>
-            <a href="${confirmationUrl}" class="button">Confirm My Email</a>
+            <a href="${confirmationUrl}" class="button">
+              ${isNewsletter ? 'Confirm Subscription' : 'Confirm My Email'}
+            </a>
             <p style="margin-top: 30px; color: #666;">
-              🎁 As a waitlist member, you'll get:<br>
-              ✨ 50% off lifetime premium<br>
-              👗 Early access to all features<br>
-              💎 Exclusive style tips & updates
+              ${isNewsletter
+                ? '✨ Weekly fashion tips & trends<br>👗 Seasonal styling advice<br>🎁 Exclusive offers & early access<br>📱 App launch updates'
+                : '🎁 As a waitlist member, you\'ll get:<br>✨ 50% off lifetime premium<br>👗 Early access to all features<br>💎 Exclusive style tips & updates'
+              }
             </p>
           </div>
           <div class="footer">
@@ -178,9 +191,11 @@ serve(async (req) => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            from: `TheFitChecked <${gmailEmail}>`,
+            from: `${fromName} <${fromEmail}>`,
             to: email,
-            subject: 'Confirm your TheFitChecked waitlist signup',
+            subject: isNewsletter 
+              ? 'Confirm your TheFitChecked Style Updates subscription 👗'
+              : 'Confirm your TheFitChecked waitlist signup',
             html: emailHtml,
           }),
         })
