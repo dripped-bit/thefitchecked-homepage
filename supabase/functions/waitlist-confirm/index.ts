@@ -174,6 +174,14 @@ serve(async (req) => {
       console.log('Welcome email sent to:', signup.email)
     } catch (emailError) {
       console.error('Email sending error:', emailError)
+      console.error('Error details:', JSON.stringify(emailError, null, 2))
+      console.error('SMTP Config:', {
+        hostname: 'smtp.gmail.com',
+        port: 465,
+        username: gmailEmail,
+        hasPassword: !!gmailPassword,
+        passwordLength: gmailPassword?.length
+      })
     }
 
     // Redirect to success page
