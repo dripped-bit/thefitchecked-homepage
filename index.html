@@ -838,13 +838,49 @@
         });
 
         // Waitlist form submission
-        document.getElementById('waitlist-form').addEventListener('submit', function(e) {
+        document.getElementById('waitlist-form').addEventListener('submit', async function(e) {
             e.preventDefault();
-            const email = this.querySelector('input[type="email"]').value;
             
-            // Here you would typically send to your backend
-            alert('Thank you for joining the waitlist! Check your email for confirmation.');
-            this.reset();
+            const emailInput = this.querySelector('input[type="email"]');
+            const submitButton = this.querySelector('button[type="submit"]');
+            const email = emailInput.value;
+            
+            // Disable form during submission
+            submitButton.disabled = true;
+            const originalButtonText = submitButton.textContent;
+            submitButton.textContent = 'Joining...';
+            
+            try {
+                const response = await fetch('https://kxmtbetklikewluwntyx.supabase.co/functions/v1/waitlist-signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        source: 'homepage'
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    if (data.alreadyConfirmed) {
+                        alert('✅ You\'re already on our waitlist!');
+                    } else {
+                        alert('🎉 Success! Check your email to confirm your waitlist signup.');
+                    }
+                    this.reset();
+                } else {
+                    alert(data.error || 'Failed to join waitlist. Please try again.');
+                }
+            } catch (error) {
+                console.error('Signup error:', error);
+                alert('Network error. Please check your connection and try again.');
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+            }
         });
 
         // Add animation on scroll
