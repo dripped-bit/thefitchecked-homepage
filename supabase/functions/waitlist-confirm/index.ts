@@ -5,6 +5,7 @@
 
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+import { SmtpClient } from 'https://deno.land/x/smtp@v0.7.0/mod.ts'
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -77,9 +78,9 @@ serve(async (req) => {
 
     console.log('Waitlist confirmed for:', signup.email)
 
-    // Send welcome email via Gmail
-    const gmailApiKey = Deno.env.get('GMAIL_API_KEY')
-    const gmailFromEmail = Deno.env.get('GMAIL_FROM_EMAIL') || 'hello@thefitchecked.com'
+    // Send welcome email via Gmail SMTP
+    const gmailEmail = Deno.env.get('GMAIL_EMAIL')
+    const gmailPassword = Deno.env.get('GMAIL_APP_PASSWORD')
 
     const welcomeEmailHtml = `
       <!DOCTYPE html>
@@ -152,28 +153,25 @@ serve(async (req) => {
     `
 
     try {
-      const emailResponse = await fetch('https://gmail.googleapis.com/gmail/v1/users/me/messages/send', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${gmailApiKey}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          raw: btoa(
-            `To: ${signup.email}\r\n` +
-            `From: TheFitChecked <${gmailFromEmail}>\r\n` +
-            `Subject: 🎉 Welcome to TheFitChecked Waitlist!\r\n` +
-            `Content-Type: text/html; charset=utf-8\r\n\r\n` +
-            welcomeEmailHtml
-          ).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
-        })
+      const client = new SmtpClient()
+      
+      await client.connectTLS({
+        hostname: 'smtp.gmail.com',
+        port: 465,
+        username: gmailEmail,
+        password: gmailPassword,
       })
 
-      if (!emailResponse.ok) {
-        console.error('Gmail API error:', await emailResponse.text())
-      } else {
-        console.log('Welcome email sent to:', signup.email)
-      }
+      await client.send({
+        from: gmailEmail,
+        to: signup.email,
+        subject: '🎉 Welcome to TheFitChecked Waitlist!',
+        content: welcomeEmailHtml,
+        html: welcomeEmailHtml,
+      })
+
+      await client.close()
+      console.log('Welcome email sent to:', signup.email)
     } catch (emailError) {
       console.error('Email sending error:', emailError)
     }

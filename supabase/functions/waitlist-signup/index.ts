@@ -6,6 +6,7 @@
 
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+import { SmtpClient } from 'https://deno.land/x/smtp@v0.7.0/mod.ts'
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -96,11 +97,11 @@ serve(async (req) => {
       }
     }
 
-    // Send confirmation email via Gmail
+    // Send confirmation email via Gmail SMTP
     console.log('Sending confirmation email to:', email)
     
-    const gmailApiKey = Deno.env.get('GMAIL_API_KEY')
-    const gmailFromEmail = Deno.env.get('GMAIL_FROM_EMAIL') || 'hello@thefitchecked.com'
+    const gmailEmail = Deno.env.get('GMAIL_EMAIL')
+    const gmailPassword = Deno.env.get('GMAIL_APP_PASSWORD')
 
     // HTML email template
     const emailHtml = `
@@ -163,30 +164,26 @@ serve(async (req) => {
       © 2025 TheFitChecked. All rights reserved.
     `
 
-    // Send email using Gmail API
+    // Send email using Gmail SMTP
     try {
-      const gmailResponse = await fetch('https://gmail.googleapis.com/gmail/v1/users/me/messages/send', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${gmailApiKey}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          raw: btoa(
-            `To: ${email}\r\n` +
-            `From: TheFitChecked <${gmailFromEmail}>\r\n` +
-            `Subject: Confirm your TheFitChecked waitlist signup\r\n` +
-            `Content-Type: text/html; charset=utf-8\r\n\r\n` +
-            emailHtml
-          ).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
-        })
+      const client = new SmtpClient()
+      
+      await client.connectTLS({
+        hostname: 'smtp.gmail.com',
+        port: 465,
+        username: gmailEmail,
+        password: gmailPassword,
       })
 
-      if (!gmailResponse.ok) {
-        console.error('Gmail API error:', await gmailResponse.text())
-        throw new Error('Failed to send confirmation email')
-      }
+      await client.send({
+        from: gmailEmail,
+        to: email,
+        subject: 'Confirm your TheFitChecked waitlist signup',
+        content: emailHtml,
+        html: emailHtml,
+      })
 
+      await client.close()
       console.log('Confirmation email sent successfully to:', email)
     } catch (emailError) {
       console.error('Email sending error:', emailError)

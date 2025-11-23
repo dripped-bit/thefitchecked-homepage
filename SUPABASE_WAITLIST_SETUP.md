@@ -65,9 +65,9 @@ Or manually run the SQL in Supabase Dashboard:
 In your Supabase project dashboard, go to **Settings → Edge Functions** and add these secrets:
 
 ```bash
-# Your Gmail API credentials
-GMAIL_API_KEY=your_gmail_api_key_here
-GMAIL_FROM_EMAIL=hello@thefitchecked.com
+# Your Gmail SMTP credentials
+GMAIL_EMAIL=hello@thefitcheckedhomepage.com
+GMAIL_APP_PASSWORD=sysxgwyvuekzkhh
 
 # These are automatically available (no need to set):
 # SUPABASE_URL
@@ -76,8 +76,8 @@ GMAIL_FROM_EMAIL=hello@thefitchecked.com
 
 **To set secrets:**
 ```bash
-supabase secrets set GMAIL_API_KEY=your_gmail_api_key_here
-supabase secrets set GMAIL_FROM_EMAIL=hello@thefitchecked.com
+supabase secrets set GMAIL_EMAIL=hello@thefitcheckedhomepage.com
+supabase secrets set GMAIL_APP_PASSWORD=sysxgwyvuekzkhh
 ```
 
 Or via dashboard:
