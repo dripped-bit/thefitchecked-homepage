@@ -32,13 +32,15 @@
         }
         
         :root {
-            --primary-pink: #FF69B4;
-            --secondary-purple: #9370DB;
-            --accent-gold: #FFD700;
-            --text-dark: #2C2C2C;
-            --text-light: #666;
-            --bg-light: #FFF5F7;
+            --primary-pink: #F8B4D9;
+            --primary-pink-hover: #E89DC5;
+            --primary-blue: #A7C7E7;
+            --primary-blue-hover: #8FB5D9;
+            --text-dark: #000000;
+            --text-light: #4A4A4A;
             --bg-white: #FFFFFF;
+            --bg-light-pink: #FFF9FB;
+            --bg-light-blue: #F5FAFF;
         }
         
         body {
@@ -79,10 +81,7 @@
             text-decoration: none;
             font-size: 1.8rem;
             font-weight: 700;
-            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--primary-pink);
         }
         
         .nav-links {
@@ -99,7 +98,7 @@
         }
         
         .nav-links a[href="/blog.html"] {
-            color: var(--secondary-purple);
+            color: var(--primary-blue);
             font-weight: 600;
         }
 
@@ -107,46 +106,36 @@
             color: var(--primary-pink);
             font-weight: 600;
         }
-        
+
         .nav-links a:hover {
-            color: var(--primary-pink);
+            color: var(--primary-pink-hover);
         }
-        
+
         .cta-button {
-            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
-            color: white;
+            background: var(--primary-pink);
+            color: var(--text-dark);
             padding: 0.75rem 1.5rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
             transition: transform 0.3s, box-shadow 0.3s;
         }
-        
+
         .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+            background: var(--primary-pink-hover);
+            box-shadow: 0 10px 25px rgba(248, 180, 217, 0.35);
         }
         
         /* Hero Section */
         .hero {
             margin-top: 80px;
             min-height: 90vh;
-            background: linear-gradient(135deg, #FFF5F7 0%, #F0E6FF 100%);
+            background: var(--bg-light-pink);
             display: flex;
             align-items: center;
             position: relative;
             overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(255,105,180,0.1) 0%, transparent 70%);
-            top: -200px;
-            right: -200px;
-            border-radius: 50%;
         }
         
         .hero-container {
@@ -163,10 +152,7 @@
             font-size: 4rem;
             line-height: 1.2;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--text-dark);
         }
         
         .hero-content p {
@@ -183,8 +169,8 @@
         }
         
         .primary-btn {
-            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
-            color: white;
+            background: var(--primary-pink);
+            color: var(--text-dark);
             padding: 1rem 2.5rem;
             border-radius: 50px;
             text-decoration: none;
@@ -195,27 +181,28 @@
             align-items: center;
             gap: 0.5rem;
         }
-        
+
         .primary-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.4);
+            background: var(--primary-pink-hover);
+            box-shadow: 0 12px 30px rgba(248, 180, 217, 0.4);
         }
-        
+
         .secondary-btn {
             background: white;
-            color: var(--primary-pink);
+            color: var(--text-dark);
             padding: 1rem 2.5rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
             font-size: 1.1rem;
-            border: 2px solid var(--primary-pink);
+            border: 2px solid var(--primary-blue);
             transition: all 0.3s;
         }
-        
+
         .secondary-btn:hover {
-            background: var(--primary-pink);
-            color: white;
+            background: var(--primary-blue);
+            color: var(--text-dark);
         }
         
         .hero-stats {
@@ -305,26 +292,23 @@
         }
         
         .feature-card {
-            background: var(--bg-light);
+            background: var(--bg-light-pink);
             padding: 3rem;
             border-radius: 20px;
             transition: all 0.3s;
             border: 2px solid transparent;
         }
-        
+
         .feature-card:hover {
             transform: translateY(-10px);
             border-color: var(--primary-pink);
-            box-shadow: 0 20px 50px rgba(255, 105, 180, 0.2);
+            box-shadow: 0 15px 40px rgba(248, 180, 217, 0.25);
         }
-        
+
         .feature-icon {
             font-size: 3rem;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--primary-pink);
         }
         
         .feature-card h3 {
@@ -340,9 +324,9 @@
         /* How It Works */
         .how-it-works {
             padding: 6rem 2rem;
-            background: linear-gradient(135deg, #FFF5F7 0%, #F0E6FF 100%);
+            background: var(--bg-light-blue);
         }
-        
+
         .steps-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -350,23 +334,23 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 3rem;
         }
-        
+
         .step {
             text-align: center;
             position: relative;
         }
-        
+
         .step-number {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
+            background: var(--primary-pink);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2rem;
             font-weight: 700;
-            color: white;
+            color: var(--text-dark);
             margin: 0 auto 1.5rem;
         }
         
@@ -384,15 +368,15 @@
             padding: 6rem 2rem;
             background: white;
         }
-        
+
         .newsletter-container {
             max-width: 800px;
             margin: 0 auto;
             text-align: center;
-            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
+            background: var(--primary-blue);
             padding: 4rem;
             border-radius: 30px;
-            color: white;
+            color: var(--text-dark);
         }
         
         .newsletter h2 {
@@ -440,7 +424,7 @@
         /* Blog Preview */
         .blog-preview {
             padding: 6rem 2rem;
-            background: var(--bg-light);
+            background: var(--bg-light-pink);
         }
         
         .blog-grid {
@@ -468,12 +452,12 @@
         .blog-image {
             width: 100%;
             height: 250px;
-            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
+            background: var(--primary-blue);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 4rem;
-            color: white;
+            color: var(--text-dark);
         }
         
         .blog-content {
@@ -526,10 +510,7 @@
         .footer-about h3 {
             font-size: 1.8rem;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--primary-pink);
         }
         
         .footer-about p {
