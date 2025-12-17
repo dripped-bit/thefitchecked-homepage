@@ -742,6 +742,19 @@
                 </p>
             </div>
         </div>
+
+        <!-- Check My Progress Section -->
+        <div id="check-progress-section" style="max-width: 500px; margin: 3rem auto 0; text-align: center;">
+            <p style="color: var(--text-light); margin-bottom: 1rem;">Already signed up? Check your referral progress:</p>
+            <form id="check-progress-form" style="display: flex; gap: 0.5rem;">
+                <input type="email" id="check-email" placeholder="Enter your email" required
+                       style="flex: 1; padding: 0.9rem 1.2rem; border: 2px solid #e0e0e0; border-radius: 12px; font-size: 1rem;">
+                <button type="submit" class="option-button btn-primary" style="width: auto; padding: 0.9rem 1.5rem;">
+                    <i class="fas fa-search"></i> Check
+                </button>
+            </form>
+            <p id="check-progress-error" style="color: #e74c3c; font-size: 0.9rem; margin-top: 0.5rem; display: none;"></p>
+        </div>
     </section>
 
     <!-- What's Included Section -->
@@ -846,8 +859,62 @@
                 showSuccessState(userData);
                 // Refresh referral count from server
                 checkReferralCount(userData.email);
+                // Hide check progress section since user is already logged in
+                hideCheckProgressSection();
             }
         });
+
+        // Handle check progress form
+        document.getElementById('check-progress-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const email = document.getElementById('check-email').value.trim();
+            const errorEl = document.getElementById('check-progress-error');
+            const submitBtn = this.querySelector('button[type="submit"]');
+
+            errorEl.style.display = 'none';
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+
+            try {
+                const response = await fetch(`${SUPABASE_URL}/functions/v1/blueprint-signup`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: email,
+                        action: 'check_progress'
+                    })
+                });
+
+                const result = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(result.error || 'Email not found');
+                }
+
+                // Store user data and show success state
+                userData = result.user;
+                localStorage.setItem('blueprint_user', JSON.stringify(userData));
+                showSuccessState(userData);
+                hideCheckProgressSection();
+
+                // Scroll to the success state
+                document.getElementById('free-preview-card').scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            } catch (error) {
+                errorEl.textContent = error.message || 'Email not found. Please sign up first.';
+                errorEl.style.display = 'block';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-search"></i> Check';
+            }
+        });
+
+        function hideCheckProgressSection() {
+            const section = document.getElementById('check-progress-section');
+            if (section) section.style.display = 'none';
+        }
 
         // Form submission - calls edge function which handles DB + email
         document.getElementById('signup-form').addEventListener('submit', async function(e) {
@@ -889,6 +956,7 @@
 
                 // Show success state
                 showSuccessState(userData);
+                hideCheckProgressSection();
 
                 // Show appropriate message
                 if (result.isReturningUser) {
