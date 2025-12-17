@@ -19,11 +19,14 @@
         }
         
         :root {
-            --primary-pink: #FF69B4;
-            --secondary-purple: #9370DB;
-            --text-dark: #2C2C2C;
-            --text-light: #666;
-            --bg-light: #FFF5F7;
+            --primary-pink: #F8B4D9;
+            --primary-pink-hover: #E89DC5;
+            --primary-blue: #A7C7E7;
+            --primary-blue-hover: #8FB5D9;
+            --text-dark: #000000;
+            --text-light: #4A4A4A;
+            --bg-light-pink: #FFF9FB;
+            --bg-light-blue: #F5FAFF;
             --gold: #FFD700;
         }
         
@@ -59,25 +62,21 @@
             font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
             font-weight: 700;
-            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--primary-pink);
             text-decoration: none;
         }
         
         .hero {
             margin-top: 80px;
-            background: linear-gradient(135deg, #FFF5F7 0%, #F0E6FF 100%);
+            background: var(--bg-light-pink);
             padding: 6rem 2rem 4rem;
             text-align: center;
         }
-        
+
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--primary-pink);
         }
         
         .hero p {
@@ -118,18 +117,16 @@
         }
         
         .benefit-card {
-            background: var(--bg-light);
+            background: var(--bg-light-pink);
             padding: 2.5rem;
             border-radius: 20px;
             text-align: center;
         }
-        
+
         .benefit-icon {
             font-size: 3rem;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--primary-pink);
         }
         
         .benefit-card h3 {
@@ -154,7 +151,7 @@
         }
         
         .requirement-card {
-            background: var(--bg-light);
+            background: var(--bg-light-pink);
             padding: 2.5rem;
             border-radius: 20px;
             margin-bottom: 2rem;
@@ -184,9 +181,9 @@
         }
         
         .process-section {
-            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
+            background: var(--primary-blue);
             padding: 6rem 2rem;
-            color: white;
+            color: var(--text-dark);
         }
         
         .process-container {
@@ -246,7 +243,7 @@
         }
         
         .deliverable-item {
-            background: var(--bg-light);
+            background: var(--bg-light-pink);
             padding: 2.5rem;
             border-radius: 20px;
             margin-bottom: 2rem;
@@ -254,12 +251,10 @@
             gap: 2rem;
             align-items: center;
         }
-        
+
         .deliverable-icon {
             font-size: 3rem;
-            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--primary-pink);
             flex-shrink: 0;
         }
         
@@ -273,7 +268,7 @@
         }
         
         .apply-section {
-            background: var(--bg-light);
+            background: var(--bg-light-blue);
             padding: 6rem 2rem;
             text-align: center;
         }
@@ -333,8 +328,8 @@
         .submit-button {
             width: 100%;
             padding: 1.5rem;
-            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
-            color: white;
+            background: var(--primary-pink);
+            color: var(--text-dark);
             border: none;
             border-radius: 50px;
             font-weight: 600;
@@ -342,10 +337,11 @@
             cursor: pointer;
             transition: all 0.3s;
         }
-        
+
         .submit-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+            background: var(--primary-pink-hover);
+            box-shadow: 0 10px 30px rgba(248, 180, 217, 0.35);
         }
         
         .info-box {
