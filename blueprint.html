@@ -878,7 +878,10 @@
             try {
                 const response = await fetch(`${SUPABASE_URL}/functions/v1/blueprint-signup`, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                    },
                     body: JSON.stringify({
                         email: email,
                         action: 'check_progress'
@@ -936,6 +939,7 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
                     },
                     body: JSON.stringify({
                         name: name,
