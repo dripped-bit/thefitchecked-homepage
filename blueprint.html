@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zero To App Store Blueprint - The exact system used to build a 147-file AI-powered app with no coding experience. Get your free preview or unlock the full guide.">
+    <meta name="keywords" content="app development, no code, AI app, iOS development, app store, blueprint, guide, tutorial">
+    <meta property="og:title" content="Zero To App Store Blueprint">
+    <meta property="og:description" content="The exact system I used to build a 147-file AI-powered app with no coding experience">
+    <meta property="og:url" content="https://thefitcheckedhomepage.com/blueprint">
+    <title>Zero To App Store Blueprint - TheFitChecked</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-pink: #FF69B4;
+            --secondary-purple: #9370DB;
+            --accent-gold: #FFD700;
+            --text-dark: #2C2C2C;
+            --text-light: #666;
+            --bg-light: #FFF5F7;
+            --bg-white: #FFFFFF;
+            --success-green: #10B981;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-pink);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: 70vh;
+            background: linear-gradient(135deg, #FFF5F7 0%, #F0E6FF 100%);
+            display: flex;
+            align-items: center;
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255,105,180,0.1) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            border-radius: 50%;
+        }
+
+        .hero-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 1.4rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .hero .description {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+        }
+
+        .stat-item span {
+            color: var(--primary-pink);
+        }
+
+        /* Options Section */
+        .options-section {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .options-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .option-card {
+            background: var(--bg-light);
+            border-radius: 24px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            position: relative;
+        }
+
+        .option-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary-pink);
+            box-shadow: 0 20px 50px rgba(255, 105, 180, 0.15);
+        }
+
+        .option-card.featured {
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
+            color: white;
+        }
+
+        .option-card.featured .option-subtitle,
+        .option-card.featured .option-description {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .option-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-gold);
+            color: var(--text-dark);
+            padding: 0.4rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .option-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .option-card:not(.featured) .option-icon {
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .option-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .option-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .option-description {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .option-form {
+            margin-top: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-pink);
+        }
+
+        .option-button {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--primary-pink);
+        }
+
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-pink);
+            color: var(--primary-pink);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-pink);
+            color: white;
+        }
+
+        .price-tag {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Success State */
+        .success-state {
+            display: none;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .success-state.active {
+            display: block;
+        }
+
+        .success-icon {
+            font-size: 3rem;
+            color: var(--success-green);
+            margin-bottom: 1rem;
+        }
+
+        .referral-box {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border: 2px dashed var(--primary-pink);
+        }
+
+        .referral-link-container {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .referral-link-input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            background: #f8f8f8;
+        }
+
+        .copy-btn {
+            padding: 0.75rem 1.25rem;
+            background: var(--primary-pink);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .copy-btn:hover {
+            background: var(--secondary-purple);
+        }
+
+        .referral-progress {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: linear-gradient(135deg, #FFF5F7, #F0E6FF);
+            border-radius: 10px;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
+            border-radius: 4px;
+            transition: width 0.5s;
+        }
+
+        /* What's Included Section */
+        .included-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #FFF5F7 0%, #F0E6FF 100%);
+        }
+
+        .included-grid {
+            max-width: 1000px;
+            margin: 3rem auto 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+
+        .included-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .included-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .included-card h3 i {
+            color: var(--primary-pink);
+        }
+
+        .included-list {
+            list-style: none;
+        }
+
+        .included-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .included-list li:last-child {
+            border-bottom: none;
+        }
+
+        .included-list li i {
+            color: var(--success-green);
+            margin-top: 3px;
+        }
+
+        .included-list li.locked i {
+            color: #ccc;
+        }
+
+        .included-list li.locked {
+            color: var(--text-light);
+        }
+
+        /* Credibility Section */
+        .credibility-section {
+            padding: 4rem 2rem;
+            background: white;
+            text-align: center;
+        }
+
+        .credibility-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .credibility-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .credibility-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .cred-stat {
+            text-align: center;
+        }
+
+        .cred-stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cred-stat-label {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer a {
+            color: var(--primary-pink);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Loading State */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .options-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+
+            .included-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-bar {
+                gap: 1rem;
+            }
+
+            .stat-item {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .credibility-stats {
+                gap: 2rem;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hidden utility */
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">TheFitChecked</a>
+            <ul class="nav-links">
+                <li><a href="/#features">Features</a></li>
+                <li><a href="/blog.html">Blog</a></li>
+                <li><a href="/about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container fade-in">
+            <h1>Zero To App Store Blueprint</h1>
+            <p class="subtitle">The exact system I used to build a 147-file AI-powered app with no coding experience</p>
+            <p class="description">
+                A comprehensive guide covering everything from mindset and setup to AI integration,
+                monetization, and App Store submission. Built from real experience shipping The Fit Checked.
+            </p>
+
+            <div class="stats-bar">
+                <div class="stat-item"><span>147</span> Service Files</div>
+                <div class="stat-item"><span>80+</span> Components</div>
+                <div class="stat-item"><span>10+</span> AI Models</div>
+                <div class="stat-item"><span>4</span> Months</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Options Section -->
+    <section class="options-section">
+        <div class="section-header">
+            <h2 class="section-title">Choose Your Path</h2>
+        </div>
+
+        <div class="options-grid">
+            <!-- Option 1: Free Preview -->
+            <div class="option-card" id="free-preview-card">
+                <div class="option-icon"><i class="fas fa-gift"></i></div>
+                <h3 class="option-title">Free Preview</h3>
+                <p class="option-subtitle">Get Started Now</p>
+                <p class="option-description">
+                    Get instant access to Parts 1-4 covering mindset, account setup,
+                    dev environment, and project setup.
+                </p>
+
+                <!-- Form State -->
+                <div id="signup-form-container">
+                    <form class="option-form" id="signup-form">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <button type="submit" class="option-button btn-primary">
+                            <i class="fas fa-download"></i> Get Free Preview
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Success State -->
+                <div class="success-state" id="signup-success">
+                    <div class="success-icon"><i class="fas fa-party-horn"></i></div>
+                    <h4 style="font-size: 1.3rem; margin-bottom: 0.5rem;">You're in!</h4>
+                    <p style="color: var(--text-light); margin-bottom: 1.5rem;">Here's your free preview:</p>
+
+                    <!-- Download Button -->
+                    <a href="https://kxmtbetklikewluwntyx.supabase.co/storage/v1/object/public/blueprints/Zero_To_App_Store_PREVIEW.pdf"
+                       class="option-button btn-primary"
+                       target="_blank"
+                       style="display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem;">
+                        <i class="fas fa-file-pdf"></i> Download Free Preview (PDF)
+                    </a>
+
+                    <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 1rem;">
+                        <i class="fas fa-envelope"></i> Also sent to your email!
+                    </p>
+
+                    <div class="referral-box">
+                        <p style="font-weight: 600; margin-bottom: 0.5rem;">Your Referral Link:</p>
+                        <div class="referral-link-container">
+                            <input type="text" class="referral-link-input" id="referral-link" readonly>
+                            <button class="copy-btn" onclick="copyReferralLink()">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+
+                        <div class="referral-progress">
+                            <p style="font-size: 0.9rem;">
+                                <strong id="referral-count">0</strong>/3 friends referred
+                            </p>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <p style="font-size: 0.85rem; color: var(--text-light); margin-top: 0.5rem;" id="referral-message">
+                                Share with 3 friends to unlock the full guide!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Option 2: Unlock Full Guide -->
+            <div class="option-card featured">
+                <div class="option-badge">Most Popular</div>
+                <div class="option-icon"><i class="fas fa-users"></i></div>
+                <h3 class="option-title">Unlock Full Guide</h3>
+                <p class="option-subtitle">Refer 3 Friends</p>
+                <p class="option-description">
+                    Already signed up? Share your referral link with 3 friends
+                    to unlock the complete 13-part guide + 3 appendices.
+                </p>
+
+                <div style="margin: 1.5rem 0;">
+                    <p style="font-size: 0.95rem; opacity: 0.9;">
+                        <i class="fas fa-check"></i> Parts 1-13 Complete Guide<br>
+                        <i class="fas fa-check"></i> 3 Bonus Appendices<br>
+                        <i class="fas fa-check"></i> Future Updates
+                    </p>
+                </div>
+
+                <a href="#free-preview-card" class="option-button btn-white" onclick="scrollToSignup()">
+                    <i class="fas fa-arrow-up"></i> Sign Up First
+                </a>
+            </div>
+
+            <!-- Option 3: Buy Now -->
+            <div class="option-card">
+                <div class="option-icon"><i class="fas fa-bolt"></i></div>
+                <h3 class="option-title">Buy Now</h3>
+                <div class="price-tag">$29</div>
+                <p class="option-subtitle">Instant Access</p>
+                <p class="option-description">
+                    Skip the wait. Get immediate access to the complete guide
+                    including all 13 parts and 3 bonus appendices.
+                </p>
+
+                <a href="https://drippedfit.gumroad.com/l/trkfz" class="option-button btn-outline" target="_blank">
+                    <i class="fas fa-shopping-cart"></i> Buy on Gumroad
+                </a>
+                <p style="font-size: 0.85rem; color: var(--text-light); margin-top: 1rem;">
+                    Instant access. No waiting.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- What's Included Section -->
+    <section class="included-section">
+        <div class="section-header">
+            <h2 class="section-title">What's Inside</h2>
+        </div>
+
+        <div class="included-grid">
+            <!-- Free Preview -->
+            <div class="included-card">
+                <h3><i class="fas fa-unlock"></i> Free Preview</h3>
+                <ul class="included-list">
+                    <li><i class="fas fa-check"></i> Part 1: The Mindset</li>
+                    <li><i class="fas fa-check"></i> Part 2: Account Setup</li>
+                    <li><i class="fas fa-check"></i> Part 3: Dev Environment</li>
+                    <li><i class="fas fa-check"></i> Part 4: Project Setup</li>
+                </ul>
+            </div>
+
+            <!-- Full Guide -->
+            <div class="included-card">
+                <h3><i class="fas fa-crown"></i> Full Guide Adds</h3>
+                <ul class="included-list">
+                    <li><i class="fas fa-check"></i> Part 5: Database Architecture</li>
+                    <li><i class="fas fa-check"></i> Part 6: Authentication</li>
+                    <li><i class="fas fa-check"></i> Part 7: AI Integration</li>
+                    <li><i class="fas fa-check"></i> Part 8: API Development</li>
+                    <li><i class="fas fa-check"></i> Part 9: iOS Development</li>
+                    <li><i class="fas fa-check"></i> Part 10-13: Monetization, App Store & More</li>
+                    <li><i class="fas fa-check"></i> Appendix A: AI Models Guide</li>
+                    <li><i class="fas fa-check"></i> Appendix B: Troubleshooting</li>
+                    <li><i class="fas fa-check"></i> Appendix C: Resources</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Credibility Section -->
+    <section class="credibility-section">
+        <div class="credibility-container">
+            <div class="credibility-badge">
+                <i class="fas fa-rocket"></i> Built from Real Experience
+            </div>
+            <h2 class="section-title">Shipping The Fit Checked</h2>
+            <p style="color: var(--text-light); font-size: 1.1rem; margin-top: 1rem;">
+                Everything in this blueprint comes from hands-on experience building and shipping
+                a production AI-powered fashion app to the App Store.
+            </p>
+
+            <div class="credibility-stats">
+                <div class="cred-stat">
+                    <div class="cred-stat-number">147</div>
+                    <div class="cred-stat-label">Service Files</div>
+                </div>
+                <div class="cred-stat">
+                    <div class="cred-stat-number">80+</div>
+                    <div class="cred-stat-label">Components</div>
+                </div>
+                <div class="cred-stat">
+                    <div class="cred-stat-number">10+</div>
+                    <div class="cred-stat-label">AI Models</div>
+                </div>
+                <div class="cred-stat">
+                    <div class="cred-stat-number">4</div>
+                    <div class="cred-stat-label">Months to Ship</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 TheFitChecked. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;">
+            <a href="/privacy-policy.html">Privacy Policy</a> |
+            <a href="/terms-of-service.html">Terms of Service</a> |
+            <a href="/">Back to Home</a>
+        </p>
+    </footer>
+
+    <script>
+        // Supabase configuration
+        const SUPABASE_URL = 'https://kxmtbetklikewluwntyx.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt4bXRiZXRrbGlrZXdsdXdudHl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzA4NDkzMjUsImV4cCI6MjA0NjQyNTMyNX0.iRKgqPcyCXM06K3FxZpq5BgmeFGNjjKXlY7TqP0RLvM';
+
+        // PDF download URL
+        const PDF_URL = 'https://kxmtbetklikewluwntyx.supabase.co/storage/v1/object/public/blueprints/Zero_To_App_Store_PREVIEW.pdf';
+
+        // Get referral code from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const refCode = urlParams.get('ref');
+
+        // Store user data after signup
+        let userData = null;
+
+        // Check if user already signed up (stored in localStorage)
+        document.addEventListener('DOMContentLoaded', function() {
+            const storedUser = localStorage.getItem('blueprint_user');
+            if (storedUser) {
+                userData = JSON.parse(storedUser);
+                showSuccessState(userData);
+                // Refresh referral count from server
+                checkReferralCount(userData.email);
+            }
+        });
+
+        // Form submission - calls edge function which handles DB + email
+        document.getElementById('signup-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const form = this;
+            const submitBtn = form.querySelector('button[type="submit"]');
+
+            // Disable form
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            form.classList.add('loading');
+
+            try {
+                // Call edge function - handles signup + sends email
+                const response = await fetch(`${SUPABASE_URL}/functions/v1/blueprint-signup`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        referred_by: refCode || null
+                    })
+                });
+
+                const result = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(result.error || 'Failed to sign up');
+                }
+
+                // Store user data
+                userData = result.user;
+                localStorage.setItem('blueprint_user', JSON.stringify(userData));
+
+                // Show success state
+                showSuccessState(userData);
+
+                // Show appropriate message
+                if (result.isReturningUser) {
+                    // No alert for returning users - just show the success state
+                }
+            } catch (error) {
+                console.error('Signup error:', error);
+                alert('Error: ' + (error.message || 'Failed to sign up. Please try again.'));
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-download"></i> Get Free Preview';
+                form.classList.remove('loading');
+            }
+        });
+
+        // Show success state with referral info
+        function showSuccessState(user) {
+            document.getElementById('signup-form-container').classList.add('hidden');
+            document.getElementById('signup-success').classList.add('active');
+
+            // Set referral link
+            const referralLink = `https://thefitcheckedhomepage.com/blueprint?ref=${user.referral_code}`;
+            document.getElementById('referral-link').value = referralLink;
+
+            // Update referral count
+            updateReferralProgress(user.referral_count || 0, user.unlocked_full_guide);
+        }
+
+        // Update referral progress UI
+        function updateReferralProgress(count, unlocked) {
+            document.getElementById('referral-count').textContent = count;
+            const percentage = Math.min((count / 3) * 100, 100);
+            document.getElementById('progress-fill').style.width = percentage + '%';
+
+            const messageEl = document.getElementById('referral-message');
+            if (unlocked || count >= 3) {
+                messageEl.innerHTML = '<span style="color: var(--success-green);"><i class="fas fa-check-circle"></i> Full guide unlocked! Check your email.</span>';
+            } else {
+                const remaining = 3 - count;
+                messageEl.textContent = `Share with ${remaining} more friend${remaining !== 1 ? 's' : ''} to unlock the full guide!`;
+            }
+        }
+
+        // Check referral count from server
+        async function checkReferralCount(email) {
+            try {
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/blueprint_downloads?email=eq.${encodeURIComponent(email)}&select=referral_count,unlocked_full_guide`, {
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                    }
+                });
+
+                const data = await response.json();
+                if (data && data.length > 0) {
+                    updateReferralProgress(data[0].referral_count || 0, data[0].unlocked_full_guide);
+                }
+            } catch (error) {
+                console.error('Error checking referral count:', error);
+            }
+        }
+
+        // Copy referral link
+        function copyReferralLink() {
+            const linkInput = document.getElementById('referral-link');
+            linkInput.select();
+            linkInput.setSelectionRange(0, 99999); // For mobile
+
+            navigator.clipboard.writeText(linkInput.value).then(() => {
+                const copyBtn = document.querySelector('.copy-btn');
+                const originalHTML = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<i class="fas fa-check"></i>';
+                copyBtn.style.background = 'var(--success-green)';
+
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalHTML;
+                    copyBtn.style.background = '';
+                }, 2000);
+            }).catch(err => {
+                // Fallback for older browsers
+                document.execCommand('copy');
+                alert('Link copied!');
+            });
+        }
+
+        // Scroll to signup
+        function scrollToSignup() {
+            document.getElementById('free-preview-card').scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+        }
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.option-card, .included-card, .cred-stat').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
