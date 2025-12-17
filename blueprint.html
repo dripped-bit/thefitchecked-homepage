@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Zero To App Store Blueprint - The exact system used to build a 147-file AI-powered app with no coding experience. Get your free preview or unlock the full guide.">
-    <meta name="keywords" content="app development, no code, AI app, iOS development, app store, blueprint, guide, tutorial">
-    <meta property="og:title" content="Zero To App Store Blueprint">
-    <meta property="og:description" content="The exact system I used to build a 147-file AI-powered app with no coding experience">
+    <meta name="description" content="Zero To App Store Blueprint: Beginner Edition - Build your first app with zero coding experience. Step-by-step guide to building a Habit Tracker app using Claude Code.">
+    <meta name="keywords" content="app development, no code, beginner, habit tracker, Claude Code, iOS development, app store, blueprint, guide, tutorial">
+    <meta property="og:title" content="Zero To App Store Blueprint - Beginner Edition">
+    <meta property="og:description" content="Build your first app with zero coding experience. Step-by-step guide with visual diagrams and copy-paste prompts.">
     <meta property="og:url" content="https://thefitcheckedhomepage.com/blueprint">
-    <title>Zero To App Store Blueprint - TheFitChecked</title>
+    <title>Zero To App Store Blueprint - Beginner Edition | TheFitChecked</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,6 +40,7 @@
             color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
+            background: var(--bg-white);
         }
 
         h1, h2, h3, h4 {
@@ -99,8 +100,6 @@
             display: flex;
             align-items: center;
             padding: 4rem 2rem;
-            position: relative;
-            overflow: hidden;
         }
 
         .hero-container {
@@ -111,15 +110,26 @@
 
         .hero h1 {
             font-size: 3.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             color: var(--text-dark);
         }
 
-        .hero .subtitle {
-            font-size: 1.4rem;
+        .edition-badge {
+            display: inline-block;
+            background: var(--primary-blue);
             color: var(--text-dark);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            color: var(--primary-pink);
             margin-bottom: 1.5rem;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .hero .description {
@@ -130,25 +140,27 @@
             line-height: 1.8;
         }
 
-        .stats-bar {
+        .hero-features {
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
             margin-top: 2rem;
         }
 
-        .stat-item {
+        .hero-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             background: white;
-            padding: 0.75rem 1.5rem;
+            padding: 0.75rem 1.25rem;
             border-radius: 50px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            font-weight: 600;
             font-size: 0.9rem;
-            color: var(--text-dark);
+            font-weight: 500;
         }
 
-        .stat-item span {
+        .hero-feature i {
             color: var(--primary-pink);
         }
 
@@ -168,6 +180,11 @@
             font-size: 2.5rem;
             margin-bottom: 1rem;
             color: var(--text-dark);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
         }
 
         .options-grid {
@@ -196,17 +213,11 @@
 
         .option-card.featured {
             background: var(--primary-blue);
-            color: var(--text-dark);
         }
 
         .option-card.featured:hover {
             border-color: var(--primary-blue-hover);
             box-shadow: 0 15px 40px rgba(167, 199, 231, 0.35);
-        }
-
-        .option-card.featured .option-subtitle,
-        .option-card.featured .option-description {
-            color: var(--text-light);
         }
 
         .option-badge {
@@ -244,11 +255,21 @@
             margin-bottom: 1rem;
         }
 
+        .option-card.featured .option-subtitle {
+            color: var(--text-dark);
+            opacity: 0.8;
+        }
+
         .option-description {
             color: var(--text-light);
             margin-bottom: 1.5rem;
             font-size: 0.95rem;
             line-height: 1.7;
+        }
+
+        .option-card.featured .option-description {
+            color: var(--text-dark);
+            opacity: 0.9;
         }
 
         .option-form {
@@ -301,24 +322,21 @@
         .btn-white {
             background: white;
             color: var(--text-dark);
-            border: 2px solid var(--primary-blue);
         }
 
         .btn-white:hover {
             transform: translateY(-2px);
-            background: var(--primary-blue);
-            box-shadow: 0 10px 25px rgba(167, 199, 231, 0.35);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
 
         .btn-outline {
             background: transparent;
-            border: 2px solid var(--primary-blue);
+            border: 2px solid var(--primary-pink);
             color: var(--text-dark);
         }
 
         .btn-outline:hover {
-            background: var(--primary-blue);
-            color: var(--text-dark);
+            background: var(--primary-pink);
         }
 
         .price-tag {
@@ -404,7 +422,7 @@
             transition: width 0.5s;
         }
 
-        /* What's Included Section */
+        /* What's Inside Section */
         .included-section {
             padding: 5rem 2rem;
             background: var(--bg-light-blue);
@@ -415,18 +433,18 @@
             margin: 3rem auto 0;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 3rem;
+            gap: 2rem;
         }
 
         .included-card {
             background: white;
             border-radius: 20px;
-            padding: 2.5rem;
+            padding: 2rem;
             box-shadow: 0 10px 40px rgba(0,0,0,0.08);
         }
 
         .included-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
@@ -437,78 +455,61 @@
             color: var(--primary-pink);
         }
 
+        .included-card.locked-card h3 i {
+            color: var(--primary-blue);
+        }
+
         .included-list {
             list-style: none;
         }
 
         .included-list li {
-            padding: 0.75rem 0;
+            padding: 0.5rem 0;
             border-bottom: 1px solid #f0f0f0;
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
         }
 
         .included-list li:last-child {
             border-bottom: none;
         }
 
-        .included-list li i {
-            color: var(--success-green);
-            margin-top: 3px;
-        }
-
-        .included-list li.locked i {
-            color: #ccc;
-        }
-
-        .included-list li.locked {
-            color: var(--text-light);
-        }
-
-        /* Credibility Section */
-        .credibility-section {
-            padding: 4rem 2rem;
-            background: white;
-            text-align: center;
-        }
-
-        .credibility-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .credibility-badge {
-            display: inline-block;
-            background: var(--primary-pink);
-            color: var(--text-dark);
-            padding: 0.75rem 2rem;
-            border-radius: 50px;
+        .part-label {
             font-weight: 600;
-            margin-bottom: 2rem;
-        }
-
-        .credibility-stats {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-
-        .cred-stat {
-            text-align: center;
-        }
-
-        .cred-stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
             color: var(--primary-pink);
         }
 
-        .cred-stat-label {
-            color: var(--text-light);
-            font-size: 0.95rem;
+        .locked-card .part-label {
+            color: var(--primary-blue);
+        }
+
+        /* Who This Is For Section */
+        .who-section {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .who-grid {
+            max-width: 800px;
+            margin: 3rem auto 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .who-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--bg-light-pink);
+            padding: 1.5rem;
+            border-radius: 16px;
+            font-size: 1rem;
+        }
+
+        .who-item i {
+            font-size: 1.5rem;
+            color: var(--success-green);
         }
 
         /* Footer */
@@ -528,119 +529,45 @@
             text-decoration: underline;
         }
 
-        /* Loading State */
         .loading {
             opacity: 0.7;
             pointer-events: none;
         }
 
-        /* Mobile Responsive */
-        @media (max-width: 968px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero {
-                padding: 3rem 1rem;
-            }
-
-            .hero-container {
-                max-width: 100%;
-                padding: 0;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero .subtitle {
-                font-size: 1.1rem;
-            }
-
-            .hero .description {
-                max-width: 100%;
-            }
-
-            .options-section {
-                padding: 3rem 1rem;
-            }
-
-            .options-grid {
-                grid-template-columns: 1fr;
-                max-width: 100%;
-                width: 100%;
-                padding: 0;
-            }
-
-            .option-card {
-                width: 100%;
-            }
-
-            .included-section {
-                padding: 3rem 1rem;
-            }
-
-            .section-header {
-                max-width: 100%;
-            }
-
-            .included-grid {
-                grid-template-columns: 1fr;
-                max-width: 100%;
-            }
-
-            .cta-section {
-                padding: 3rem 1rem;
-            }
-
-            .cta-container {
-                max-width: 100%;
-            }
-
-            .stats-bar {
-                gap: 0.5rem;
-                flex-wrap: wrap;
-            }
-
-            .stat-item {
-                padding: 0.4rem 0.8rem;
-                font-size: 0.75rem;
-            }
-
-            .credibility-stats {
-                gap: 1.5rem;
-            }
-
-            #check-progress-section {
-                max-width: 100% !important;
-                padding: 0 1rem;
-            }
+        .hidden {
+            display: none !important;
         }
 
-        /* Animations */
+        /* Mobile Responsive */
+        @media (max-width: 968px) {
+            .nav-links { display: none; }
+            .hero { padding: 3rem 1rem; }
+            .hero-container { max-width: 100%; }
+            .hero h1 { font-size: 2rem; }
+            .hero .tagline { font-size: 1.2rem; }
+            .hero .description { max-width: 100%; font-size: 1rem; }
+            .hero-features { gap: 0.75rem; }
+            .hero-feature { padding: 0.5rem 1rem; font-size: 0.8rem; }
+            .options-section { padding: 3rem 1rem; }
+            .options-grid { grid-template-columns: 1fr; max-width: 100%; }
+            .included-section { padding: 3rem 1rem; }
+            .included-grid { grid-template-columns: 1fr; max-width: 100%; }
+            .who-section { padding: 3rem 1rem; }
+            .who-grid { grid-template-columns: 1fr; }
+            #check-progress-section { max-width: 100% !important; padding: 0 1rem; }
+        }
+
         .fade-in {
             animation: fadeIn 0.8s ease-out;
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Hidden utility */
-        .hidden {
-            display: none !important;
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav>
         <div class="nav-container">
             <a href="/" class="logo">TheFitChecked</a>
@@ -656,17 +583,16 @@
     <section class="hero">
         <div class="hero-container fade-in">
             <h1>Zero To App Store Blueprint</h1>
-            <p class="subtitle">The exact system I used to build a 147-file AI-powered app with no coding experience</p>
+            <span class="edition-badge">Beginner Edition</span>
+            <p class="tagline">Build your first app with zero coding experience</p>
             <p class="description">
-                A comprehensive guide covering everything from mindset and setup to AI integration,
-                monetization, and App Store submission. Built from real experience shipping The Fit Checked.
+                Step-by-step guide to building a Habit Tracker app using Claude Code.
+                Visual diagrams, copy-paste prompts, and hand-holding instructions for complete beginners.
             </p>
-
-            <div class="stats-bar">
-                <div class="stat-item"><span>147</span> Service Files</div>
-                <div class="stat-item"><span>80+</span> Components</div>
-                <div class="stat-item"><span>10+</span> AI Models</div>
-                <div class="stat-item"><span>4</span> Months</div>
+            <div class="hero-features">
+                <div class="hero-feature"><i class="fas fa-images"></i> Visual Diagrams</div>
+                <div class="hero-feature"><i class="fas fa-copy"></i> Copy-Paste Prompts</div>
+                <div class="hero-feature"><i class="fas fa-hand-holding-heart"></i> Hand-Holding Instructions</div>
             </div>
         </div>
     </section>
@@ -675,6 +601,7 @@
     <section class="options-section">
         <div class="section-header">
             <h2 class="section-title">Choose Your Path</h2>
+            <p class="section-subtitle">Get started for free or unlock the complete guide</p>
         </div>
 
         <div class="options-grid">
@@ -682,13 +609,11 @@
             <div class="option-card" id="free-preview-card">
                 <div class="option-icon"><i class="fas fa-gift"></i></div>
                 <h3 class="option-title">Free Preview</h3>
-                <p class="option-subtitle">Get Started Now</p>
+                <p class="option-subtitle">Parts 1-4</p>
                 <p class="option-description">
-                    Get instant access to Parts 1-4 covering mindset, account setup,
-                    dev environment, and project setup.
+                    Get instant access to the first 4 parts: Mindset, Account Setup, Dev Environment, and your first project.
                 </p>
 
-                <!-- Form State -->
                 <div id="signup-form-container">
                     <form class="option-form" id="signup-form">
                         <div class="form-group">
@@ -703,21 +628,18 @@
                     </form>
                 </div>
 
-                <!-- Success State -->
                 <div class="success-state" id="signup-success">
-                    <div class="success-icon"><i class="fas fa-party-horn"></i></div>
+                    <div class="success-icon"><i class="fas fa-check-circle"></i></div>
                     <h4 style="font-size: 1.3rem; margin-bottom: 0.5rem;">You're in!</h4>
-                    <p style="color: var(--text-light); margin-bottom: 1.5rem;">Here's your free preview:</p>
+                    <p style="color: var(--text-light); margin-bottom: 1rem;">Here's your free preview:</p>
 
-                    <!-- Download Button -->
-                    <a href="https://kxmtbetklikewluwntyx.supabase.co/storage/v1/object/public/blueprints/Zero_To_App_Store_PREVIEW.pdf"
-                       class="option-button btn-primary"
-                       target="_blank"
-                       style="display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem;">
-                        <i class="fas fa-file-pdf"></i> Download Free Preview (PDF)
+                    <a href="https://kxmtbetklikewluwntyx.supabase.co/storage/v1/object/public/blueprints/Zero_To_App_Store_PREVIEW-2.pdf"
+                       class="option-button btn-primary" target="_blank"
+                       style="display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <i class="fas fa-file-pdf"></i> Download Free Preview
                     </a>
 
-                    <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 1rem;">
+                    <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 1rem;">
                         <i class="fas fa-envelope"></i> Also sent to your email!
                     </p>
 
@@ -725,15 +647,10 @@
                         <p style="font-weight: 600; margin-bottom: 0.5rem;">Your Referral Link:</p>
                         <div class="referral-link-container">
                             <input type="text" class="referral-link-input" id="referral-link" readonly>
-                            <button class="copy-btn" onclick="copyReferralLink()">
-                                <i class="fas fa-copy"></i>
-                            </button>
+                            <button class="copy-btn" onclick="copyReferralLink()"><i class="fas fa-copy"></i></button>
                         </div>
-
                         <div class="referral-progress">
-                            <p style="font-size: 0.9rem;">
-                                <strong id="referral-count">0</strong>/3 friends referred
-                            </p>
+                            <p style="font-size: 0.9rem;"><strong id="referral-count">0</strong>/3 friends referred</p>
                             <div class="progress-bar">
                                 <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
                             </div>
@@ -741,6 +658,17 @@
                                 Share with 3 friends to unlock the full guide!
                             </p>
                         </div>
+                    </div>
+
+                    <div id="full-guide-download" class="hidden" style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-light-blue); border-radius: 12px;">
+                        <p style="font-weight: 600; color: var(--success-green); margin-bottom: 1rem;">
+                            <i class="fas fa-crown"></i> Full Guide Unlocked!
+                        </p>
+                        <a href="https://kxmtbetklikewluwntyx.supabase.co/storage/v1/object/public/blueprints/Zero_To_App_Store_BEGINNER_EDITION-2.pdf"
+                           class="option-button btn-primary" target="_blank"
+                           style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-file-pdf"></i> Download Full Guide
+                        </a>
                     </div>
                 </div>
             </div>
@@ -752,18 +680,14 @@
                 <h3 class="option-title">Unlock Full Guide</h3>
                 <p class="option-subtitle">Refer 3 Friends</p>
                 <p class="option-description">
-                    Already signed up? Share your referral link with 3 friends
-                    to unlock the complete 13-part guide + 3 appendices.
+                    Refer 3 friends to unlock the complete guide FREE. All 13 parts + 3 appendices.
                 </p>
-
-                <div style="margin: 1.5rem 0;">
-                    <p style="font-size: 0.95rem; opacity: 0.9;">
-                        <i class="fas fa-check"></i> Parts 1-13 Complete Guide<br>
-                        <i class="fas fa-check"></i> 3 Bonus Appendices<br>
-                        <i class="fas fa-check"></i> Future Updates
-                    </p>
+                <div style="margin: 1.5rem 0; text-align: left; font-size: 0.9rem; line-height: 1.8;">
+                    <p><i class="fas fa-check"></i> Parts 5-13: Complete Guide</p>
+                    <p><i class="fas fa-check"></i> Appendix A: How to Talk to Claude</p>
+                    <p><i class="fas fa-check"></i> Appendix B: Common Errors & Fixes</p>
+                    <p><i class="fas fa-check"></i> Appendix C: Resource Library</p>
                 </div>
-
                 <a href="#free-preview-card" class="option-button btn-white" onclick="scrollToSignup()">
                     <i class="fas fa-arrow-up"></i> Sign Up First
                 </a>
@@ -776,20 +700,15 @@
                 <div class="price-tag">$29</div>
                 <p class="option-subtitle">Instant Access</p>
                 <p class="option-description">
-                    Skip the wait. Get immediate access to the complete guide
-                    including all 13 parts and 3 bonus appendices.
+                    Skip the wait. Get immediate access to the complete guide with all 13 parts and 3 appendices.
                 </p>
-
                 <a href="https://drippedfit.gumroad.com/l/trkfz" class="option-button btn-outline" target="_blank">
-                    <i class="fas fa-shopping-cart"></i> Buy on Gumroad
+                    <i class="fas fa-shopping-cart"></i> Buy Now — $29
                 </a>
-                <p style="font-size: 0.85rem; color: var(--text-light); margin-top: 1rem;">
-                    Instant access. No waiting.
-                </p>
+                <p style="font-size: 0.85rem; color: var(--text-light); margin-top: 1rem;">Instant download. No waiting.</p>
             </div>
         </div>
 
-        <!-- Check My Progress Section -->
         <div id="check-progress-section" style="max-width: 500px; margin: 3rem auto 0; text-align: center;">
             <p style="color: var(--text-light); margin-bottom: 1rem;">Already signed up? Check your referral progress:</p>
             <form id="check-progress-form" style="display: flex; gap: 0.5rem;">
@@ -803,76 +722,59 @@
         </div>
     </section>
 
-    <!-- What's Included Section -->
+    <!-- What's Inside Section -->
     <section class="included-section">
         <div class="section-header">
             <h2 class="section-title">What's Inside</h2>
+            <p class="section-subtitle">Everything you need to build your first app from scratch</p>
         </div>
 
         <div class="included-grid">
-            <!-- Free Preview -->
             <div class="included-card">
-                <h3><i class="fas fa-unlock"></i> Free Preview</h3>
+                <h3><i class="fas fa-unlock"></i> Free Preview (Parts 1-4)</h3>
                 <ul class="included-list">
-                    <li><i class="fas fa-check"></i> Part 1: The Mindset</li>
-                    <li><i class="fas fa-check"></i> Part 2: Account Setup</li>
-                    <li><i class="fas fa-check"></i> Part 3: Dev Environment</li>
-                    <li><i class="fas fa-check"></i> Part 4: Project Setup</li>
+                    <li><span class="part-label">Part 1:</span> The Mindset — How to think like a builder</li>
+                    <li><span class="part-label">Part 2:</span> Account Setup — Every account you need with links</li>
+                    <li><span class="part-label">Part 3:</span> Development Environment — Install VS Code, Node.js, Claude Code</li>
+                    <li><span class="part-label">Part 4:</span> Your First Project — Create a Habit Tracker skeleton</li>
                 </ul>
             </div>
 
-            <!-- Full Guide -->
-            <div class="included-card">
-                <h3><i class="fas fa-crown"></i> Full Guide Adds</h3>
+            <div class="included-card locked-card">
+                <h3><i class="fas fa-lock"></i> Unlocks with 3 Referrals</h3>
                 <ul class="included-list">
-                    <li><i class="fas fa-check"></i> Part 5: Database Architecture</li>
-                    <li><i class="fas fa-check"></i> Part 6: Authentication</li>
-                    <li><i class="fas fa-check"></i> Part 7: AI Integration</li>
-                    <li><i class="fas fa-check"></i> Part 8: API Development</li>
-                    <li><i class="fas fa-check"></i> Part 9: iOS Development</li>
-                    <li><i class="fas fa-check"></i> Part 10-13: Monetization, App Store & More</li>
-                    <li><i class="fas fa-check"></i> Appendix A: AI Models Guide</li>
-                    <li><i class="fas fa-check"></i> Appendix B: Troubleshooting</li>
-                    <li><i class="fas fa-check"></i> Appendix C: Resources</li>
+                    <li><span class="part-label">Part 5:</span> Database Design — Supabase tables and relationships</li>
+                    <li><span class="part-label">Part 6:</span> Authentication — Google, Apple, and email login</li>
+                    <li><span class="part-label">Part 7:</span> AI Integration — Add OpenAI for smart features</li>
+                    <li><span class="part-label">Part 8:</span> Building Features — Every screen with copy-paste prompts</li>
+                    <li><span class="part-label">Part 9:</span> API Routes — Backend logic explained simply</li>
+                    <li><span class="part-label">Part 10:</span> iOS Development — Xcode and iPhone testing</li>
+                    <li><span class="part-label">Part 11:</span> Monetization — Subscriptions with RevenueCat</li>
+                    <li><span class="part-label">Part 12:</span> App Store Submission — Complete checklist</li>
+                    <li><span class="part-label">Part 13:</span> Launch Day — What to do when you go live</li>
+                    <li><span class="part-label">Appendix A:</span> How to Talk to Claude Code</li>
+                    <li><span class="part-label">Appendix B:</span> Common Errors & Fixes</li>
+                    <li><span class="part-label">Appendix C:</span> Resource Library</li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- Credibility Section -->
-    <section class="credibility-section">
-        <div class="credibility-container">
-            <div class="credibility-badge">
-                <i class="fas fa-rocket"></i> Built from Real Experience
-            </div>
-            <h2 class="section-title">Shipping The Fit Checked</h2>
-            <p style="color: var(--text-light); font-size: 1.1rem; margin-top: 1rem;">
-                Everything in this blueprint comes from hands-on experience building and shipping
-                a production AI-powered fashion app to the App Store.
-            </p>
+    <!-- Who This Is For Section -->
+    <section class="who-section">
+        <div class="section-header">
+            <h2 class="section-title">Who This Is For</h2>
+            <p class="section-subtitle">This guide is perfect if you're...</p>
+        </div>
 
-            <div class="credibility-stats">
-                <div class="cred-stat">
-                    <div class="cred-stat-number">147</div>
-                    <div class="cred-stat-label">Service Files</div>
-                </div>
-                <div class="cred-stat">
-                    <div class="cred-stat-number">80+</div>
-                    <div class="cred-stat-label">Components</div>
-                </div>
-                <div class="cred-stat">
-                    <div class="cred-stat-number">10+</div>
-                    <div class="cred-stat-label">AI Models</div>
-                </div>
-                <div class="cred-stat">
-                    <div class="cred-stat-number">4</div>
-                    <div class="cred-stat-label">Months to Ship</div>
-                </div>
-            </div>
+        <div class="who-grid">
+            <div class="who-item"><i class="fas fa-check-circle"></i> Complete beginners who've never coded</div>
+            <div class="who-item"><i class="fas fa-check-circle"></i> People intimidated by Terminal</div>
+            <div class="who-item"><i class="fas fa-check-circle"></i> Anyone who wants step-by-step hand-holding</div>
+            <div class="who-item"><i class="fas fa-check-circle"></i> Visual learners who need diagrams</div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2025 TheFitChecked. All rights reserved.</p>
         <p style="margin-top: 0.5rem;">
@@ -883,34 +785,25 @@
     </footer>
 
     <script>
-        // Supabase configuration
         const SUPABASE_URL = 'https://kxmtbetklikewluwntyx.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt4bXRiZXRrbGlrZXdsdXdudHl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzA4NDkzMjUsImV4cCI6MjA0NjQyNTMyNX0.iRKgqPcyCXM06K3FxZpq5BgmeFGNjjKXlY7TqP0RLvM';
+        const PREVIEW_PDF_URL = 'https://kxmtbetklikewluwntyx.supabase.co/storage/v1/object/public/blueprints/Zero_To_App_Store_PREVIEW-2.pdf';
+        const FULL_PDF_URL = 'https://kxmtbetklikewluwntyx.supabase.co/storage/v1/object/public/blueprints/Zero_To_App_Store_BEGINNER_EDITION-2.pdf';
 
-        // PDF download URL
-        const PDF_URL = 'https://kxmtbetklikewluwntyx.supabase.co/storage/v1/object/public/blueprints/Zero_To_App_Store_PREVIEW.pdf';
-
-        // Get referral code from URL
         const urlParams = new URLSearchParams(window.location.search);
         const refCode = urlParams.get('ref');
-
-        // Store user data after signup
         let userData = null;
 
-        // Check if user already signed up (stored in localStorage)
         document.addEventListener('DOMContentLoaded', function() {
             const storedUser = localStorage.getItem('blueprint_user');
             if (storedUser) {
                 userData = JSON.parse(storedUser);
                 showSuccessState(userData);
-                // Refresh referral count from server
                 checkReferralCount(userData.email);
-                // Hide check progress section since user is already logged in
                 hideCheckProgressSection();
             }
         });
 
-        // Handle check progress form
         document.getElementById('check-progress-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             const email = document.getElementById('check-email').value.trim();
@@ -924,33 +817,18 @@
             try {
                 const response = await fetch(`${SUPABASE_URL}/functions/v1/blueprint-signup`, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
-                    },
-                    body: JSON.stringify({
-                        email: email,
-                        action: 'check_progress'
-                    })
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email, action: 'check_progress' })
                 });
 
                 const result = await response.json();
+                if (!response.ok) throw new Error(result.error || 'Email not found');
 
-                if (!response.ok) {
-                    throw new Error(result.error || 'Email not found');
-                }
-
-                // Store user data and show success state
                 userData = result.user;
                 localStorage.setItem('blueprint_user', JSON.stringify(userData));
                 showSuccessState(userData);
                 hideCheckProgressSection();
-
-                // Scroll to the success state
-                document.getElementById('free-preview-card').scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center'
-                });
+                document.getElementById('free-preview-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
             } catch (error) {
                 errorEl.textContent = error.message || 'Email not found. Please sign up first.';
                 errorEl.style.display = 'block';
@@ -965,101 +843,69 @@
             if (section) section.style.display = 'none';
         }
 
-        // Form submission - calls edge function which handles DB + email
         document.getElementById('signup-form').addEventListener('submit', async function(e) {
             e.preventDefault();
-
             const name = document.getElementById('name').value.trim();
             const email = document.getElementById('email').value.trim();
-            const form = this;
-            const submitBtn = form.querySelector('button[type="submit"]');
+            const submitBtn = this.querySelector('button[type="submit"]');
 
-            // Disable form
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-            form.classList.add('loading');
+            this.classList.add('loading');
 
             try {
-                // Call edge function - handles signup + sends email
                 const response = await fetch(`${SUPABASE_URL}/functions/v1/blueprint-signup`, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
-                    },
-                    body: JSON.stringify({
-                        name: name,
-                        email: email,
-                        referred_by: refCode || null
-                    })
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: name, email: email, referred_by: refCode || null })
                 });
 
                 const result = await response.json();
+                if (!response.ok) throw new Error(result.error || 'Failed to sign up');
 
-                if (!response.ok) {
-                    throw new Error(result.error || 'Failed to sign up');
-                }
-
-                // Store user data
                 userData = result.user;
                 localStorage.setItem('blueprint_user', JSON.stringify(userData));
-
-                // Show success state
                 showSuccessState(userData);
                 hideCheckProgressSection();
-
-                // Show appropriate message
-                if (result.isReturningUser) {
-                    // No alert for returning users - just show the success state
-                }
             } catch (error) {
                 console.error('Signup error:', error);
                 alert('Error: ' + (error.message || 'Failed to sign up. Please try again.'));
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = '<i class="fas fa-download"></i> Get Free Preview';
-                form.classList.remove('loading');
+                this.classList.remove('loading');
             }
         });
 
-        // Show success state with referral info
         function showSuccessState(user) {
             document.getElementById('signup-form-container').classList.add('hidden');
             document.getElementById('signup-success').classList.add('active');
-
-            // Set referral link
-            const referralLink = `https://thefitcheckedhomepage.com/blueprint?ref=${user.referral_code}`;
-            document.getElementById('referral-link').value = referralLink;
-
-            // Update referral count
+            document.getElementById('referral-link').value = `https://thefitcheckedhomepage.com/blueprint?ref=${user.referral_code}`;
             updateReferralProgress(user.referral_count || 0, user.unlocked_full_guide);
         }
 
-        // Update referral progress UI
         function updateReferralProgress(count, unlocked) {
             document.getElementById('referral-count').textContent = count;
-            const percentage = Math.min((count / 3) * 100, 100);
-            document.getElementById('progress-fill').style.width = percentage + '%';
+            document.getElementById('progress-fill').style.width = Math.min((count / 3) * 100, 100) + '%';
 
             const messageEl = document.getElementById('referral-message');
+            const fullGuideDownload = document.getElementById('full-guide-download');
+
             if (unlocked || count >= 3) {
-                messageEl.innerHTML = '<span style="color: var(--success-green);"><i class="fas fa-check-circle"></i> Full guide unlocked! Check your email.</span>';
+                messageEl.innerHTML = '<span style="color: var(--success-green);"><i class="fas fa-check-circle"></i> Full guide unlocked!</span>';
+                fullGuideDownload.classList.remove('hidden');
             } else {
                 const remaining = 3 - count;
                 messageEl.textContent = `Share with ${remaining} more friend${remaining !== 1 ? 's' : ''} to unlock the full guide!`;
+                fullGuideDownload.classList.add('hidden');
             }
         }
 
-        // Check referral count from server
         async function checkReferralCount(email) {
             try {
                 const response = await fetch(`${SUPABASE_URL}/rest/v1/blueprint_downloads?email=eq.${encodeURIComponent(email)}&select=referral_count,unlocked_full_guide`, {
-                    headers: {
-                        'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
-                    }
+                    headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` }
                 });
-
                 const data = await response.json();
                 if (data && data.length > 0) {
                     updateReferralProgress(data[0].referral_count || 0, data[0].unlocked_full_guide);
@@ -1069,54 +915,26 @@
             }
         }
 
-        // Copy referral link
         function copyReferralLink() {
             const linkInput = document.getElementById('referral-link');
             linkInput.select();
-            linkInput.setSelectionRange(0, 99999); // For mobile
-
             navigator.clipboard.writeText(linkInput.value).then(() => {
                 const copyBtn = document.querySelector('.copy-btn');
-                const originalHTML = copyBtn.innerHTML;
                 copyBtn.innerHTML = '<i class="fas fa-check"></i>';
                 copyBtn.style.background = 'var(--success-green)';
-
                 setTimeout(() => {
-                    copyBtn.innerHTML = originalHTML;
+                    copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
                     copyBtn.style.background = '';
                 }, 2000);
-            }).catch(err => {
-                // Fallback for older browsers
+            }).catch(() => {
                 document.execCommand('copy');
                 alert('Link copied!');
             });
         }
 
-        // Scroll to signup
         function scrollToSignup() {
-            document.getElementById('free-preview-card').scrollIntoView({
-                behavior: 'smooth',
-                block: 'center'
-            });
+            document.getElementById('free-preview-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
-
-        // Add animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.option-card, .included-card, .cred-stat').forEach(el => {
-            observer.observe(el);
-        });
     </script>
 </body>
 </html>
