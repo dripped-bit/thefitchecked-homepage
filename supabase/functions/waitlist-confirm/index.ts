@@ -1,6 +1,7 @@
 /**
  * Waitlist Confirmation Edge Function
  * Confirms email addresses and sends welcome email via Gmail
+ * Includes blueprint referral link promotion
  */
 
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
@@ -9,6 +10,61 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+}
+
+// Helper function to get or create blueprint referral code
+async function getOrCreateBlueprintCode(supabase: any, email: string, name?: string): Promise<string> {
+  const normalizedEmail = email.toLowerCase()
+
+  // Check if user already has a blueprint entry
+  const { data: existing } = await supabase
+    .from('blueprint_downloads')
+    .select('referral_code')
+    .eq('email', normalizedEmail)
+    .single()
+
+  if (existing?.referral_code) {
+    return existing.referral_code
+  }
+
+  // Create new blueprint entry
+  const { data: newEntry, error } = await supabase
+    .from('blueprint_downloads')
+    .insert({
+      email: normalizedEmail,
+      name: name || 'Friend',
+    })
+    .select('referral_code')
+    .single()
+
+  if (error) {
+    console.error('Failed to create blueprint entry:', error)
+    return ''
+  }
+
+  return newEntry?.referral_code || ''
+}
+
+// Blueprint P.S. section for emails
+function getBlueprintPS(referralCode: string): string {
+  if (!referralCode) return ''
+
+  return `
+    <div style="margin-top: 40px; padding-top: 30px; border-top: 2px dashed #F8B4D9;">
+      <p style="font-size: 0.95rem; color: #4A4A4A; margin-bottom: 15px;">
+        <strong>P.S.</strong> Want to build your own app? I created a free guide showing exactly how I built The Fit Checked with no coding experience.
+      </p>
+      <p style="text-align: center; margin: 20px 0;">
+        <a href="https://thefitcheckedhomepage.com/blueprint?ref=${referralCode}"
+           style="display: inline-block; background: #F8B4D9; color: #000; padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 600;">
+          Get the Free Blueprint
+        </a>
+      </p>
+      <p style="font-size: 0.85rem; color: #666; text-align: center;">
+        Share with 3 friends to unlock the full guide!
+      </p>
+    </div>
+  `
 }
 
 serve(async (req) => {
@@ -77,6 +133,10 @@ serve(async (req) => {
 
     console.log('Waitlist confirmed for:', signup.email)
 
+    // Get or create blueprint referral code
+    const blueprintCode = await getOrCreateBlueprintCode(supabase, signup.email, signup.name)
+    const blueprintPS = getBlueprintPS(blueprintCode)
+
     // Send welcome email via Gmail SMTP
     const gmailEmail = Deno.env.get('GMAIL_EMAIL')
     const gmailPassword = Deno.env.get('GMAIL_APP_PASSWORD')
@@ -134,8 +194,9 @@ serve(async (req) => {
             <p style="margin-top: 30px; color: #666;">
               We'll notify you as soon as we launch. Get ready to transform your wardrobe! 💃
             </p>
-            
+
             <a href="https://thefitcheckedhomepage.com" class="button">Visit Our Website</a>
+            ${blueprintPS}
           </div>
           <div class="footer">
             <p>Follow us for style inspiration:</p>

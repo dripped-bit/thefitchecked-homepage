@@ -1,6 +1,7 @@
 /**
  * Contact Form Edge Function
  * Handles contact form submissions with smart email routing and auto-responses
+ * Includes blueprint referral link promotion
  */
 
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
@@ -19,6 +20,61 @@ interface ContactFormData {
   message: string;
 }
 
+// Helper function to get or create blueprint referral code
+async function getOrCreateBlueprintCode(supabase: any, email: string, name?: string): Promise<string> {
+  const normalizedEmail = email.toLowerCase()
+
+  // Check if user already has a blueprint entry
+  const { data: existing } = await supabase
+    .from('blueprint_downloads')
+    .select('referral_code')
+    .eq('email', normalizedEmail)
+    .single()
+
+  if (existing?.referral_code) {
+    return existing.referral_code
+  }
+
+  // Create new blueprint entry
+  const { data: newEntry, error } = await supabase
+    .from('blueprint_downloads')
+    .insert({
+      email: normalizedEmail,
+      name: name || 'Friend',
+    })
+    .select('referral_code')
+    .single()
+
+  if (error) {
+    console.error('Failed to create blueprint entry:', error)
+    return ''
+  }
+
+  return newEntry?.referral_code || ''
+}
+
+// Blueprint P.S. section for emails
+function getBlueprintPS(referralCode: string): string {
+  if (!referralCode) return ''
+
+  return `
+    <div style="margin-top: 40px; padding-top: 30px; border-top: 2px dashed #F8B4D9;">
+      <p style="font-size: 0.95rem; color: #4A4A4A; margin-bottom: 15px;">
+        <strong>P.S.</strong> Want to build your own app? I created a free guide showing exactly how I built The Fit Checked with no coding experience.
+      </p>
+      <p style="text-align: center; margin: 20px 0;">
+        <a href="https://thefitcheckedhomepage.com/blueprint?ref=${referralCode}"
+           style="display: inline-block; background: #F8B4D9; color: #000; padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 600;">
+          Get the Free Blueprint
+        </a>
+      </p>
+      <p style="font-size: 0.85rem; color: #666; text-align: center;">
+        Share with 3 friends to unlock the full guide!
+      </p>
+    </div>
+  `
+}
+
 // Email routing configuration
 const emailRouting: Record<string, string> = {
   'support': 'support@thefitchecked.com',
@@ -31,7 +87,7 @@ const emailRouting: Record<string, string> = {
 }
 
 // Auto-response email templates
-function generateAutoResponseEmail(data: ContactFormData, ticketId: string): { subject: string; html: string } {
+function generateAutoResponseEmail(data: ContactFormData, ticketId: string, blueprintPS: string): { subject: string; html: string } {
   const { name, subject_type, subject_display, message } = data
   
   const templates: Record<string, { subject: string; content: string }> = {
@@ -147,9 +203,10 @@ function generateAutoResponseEmail(data: ContactFormData, ticketId: string): { s
       </div>
       
       <p>Hi ${name},</p>
-      
+
       ${template.content}
-      
+      ${blueprintPS}
+
       <div class="footer">
         <p>&copy; 2025 TheFitChecked. All rights reserved.</p>
         <p>Austin, Texas, USA</p>
@@ -264,18 +321,22 @@ serve(async (req) => {
     
     const ticketId = submission.id.substring(0, 8).toUpperCase()
     console.log('Contact form submitted:', { ticketId, email: data.email, type: data.subject_type })
-    
+
+    // Get or create blueprint referral code
+    const blueprintCode = await getOrCreateBlueprintCode(supabase, data.email, data.name)
+    const blueprintPS = getBlueprintPS(blueprintCode)
+
     // Send emails via Resend
     const resendApiKey = Deno.env.get('RESEND_API_KEY')
     const fromEmail = Deno.env.get('GMAIL_EMAIL') || 'onboarding@resend.dev'
-    
+
     let autoResponseSent = false
     let teamEmailSent = false
-    
+
     if (resendApiKey) {
       try {
         // Send auto-response to customer
-        const autoResponse = generateAutoResponseEmail(data, ticketId)
+        const autoResponse = generateAutoResponseEmail(data, ticketId, blueprintPS)
         const customerEmailResponse = await fetch('https://api.resend.com/emails', {
           method: 'POST',
           headers: {
