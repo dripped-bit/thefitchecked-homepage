@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/blueprint", "destination": "/blueprint.html" }
+  ],
+  "trailingSlash": false
+}
