@@ -3,801 +3,1041 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TheFitChecked - AI-Powered Personal Styling & Wardrobe Management App. Organize your closet, get outfit recommendations, try clothes virtually, and shop smarter with AI.">
-    <meta name="keywords" content="fashion app, virtual closet, AI stylist, wardrobe organizer, outfit planner, virtual try-on, fashion AI, style assistant, personal stylist app, digital wardrobe">
-    <meta name="author" content="TheFitChecked">
+    <meta name="description" content="TheFitChecked - AI-Powered Personal Styling & Wardrobe Management App. Your personal stylist in your pocket.">
+    <meta name="keywords" content="fashion app, virtual closet, AI stylist, wardrobe organizer, outfit planner, virtual try-on">
     <meta property="og:title" content="TheFitChecked - Your AI Fashion Assistant">
-    <meta property="og:description" content="Transform your wardrobe with AI. Get personalized outfit recommendations, virtual try-ons, and smart shopping all in one app.">
-    <meta property="og:image" content="https://thefitcheckedhomepage.com/images/og-image.jpg">
+    <meta property="og:description" content="Transform your wardrobe with AI. Get personalized outfit recommendations, virtual try-ons, and smart shopping.">
+    <meta property="og:image" content="/logo.png">
     <meta property="og:url" content="https://thefitcheckedhomepage.com">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="TheFitChecked - Your AI Fashion Assistant">
-    <meta name="twitter:description" content="Transform your wardrobe with AI. Get personalized outfit recommendations, virtual try-ons, and smart shopping all in one app.">
-    
-    <title>TheFitChecked - AI-Powered Personal Styling & Wardrobe Management</title>
-    
+    <title>TheFitChecked - AI-Powered Personal Styling</title>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         :root {
-            --primary-pink: #F8B4D9;
-            --primary-pink-hover: #E89DC5;
-            --primary-blue: #A7C7E7;
-            --primary-blue-hover: #8FB5D9;
-            --text-dark: #000000;
-            --text-light: #4A4A4A;
-            --bg-white: #FFFFFF;
-            --bg-light-pink: #FFF9FB;
-            --bg-light-blue: #F5FAFF;
+            --baby-pink: #FFE4EC;
+            --pink-medium: #FFB6C1;
+            --pink-accent: #FF69B4;
+            --pink-dark: #DB7093;
+            --white: #FFFFFF;
+            --black: #1a1a1a;
+            --gray: #666666;
+            --gray-light: #f5f5f5;
         }
-        
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            color: var(--text-dark);
+            font-family: 'Outfit', sans-serif;
+            background: var(--baby-pink);
+            color: var(--black);
             line-height: 1.6;
             overflow-x: hidden;
         }
-        
+
         h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
         }
-        
-        /* Navigation */
+
+        /* ===== NAVIGATION ===== */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-        }
-        
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
+            padding: 1.25rem 3rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.5rem 2rem;
+            z-index: 1000;
+            background: rgba(255, 228, 236, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 182, 193, 0.3);
         }
-        
-        .logo {
+
+        .nav-left {
             display: flex;
-            align-items: center;
-            text-decoration: none;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary-pink);
+            gap: 2.5rem;
         }
-        
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-        
-        .nav-links a {
+
+        .nav-left a {
             text-decoration: none;
-            color: var(--text-dark);
+            color: var(--black);
             font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        .nav-links a[href="/blog.html"] {
-            color: var(--primary-blue);
-            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+            position: relative;
         }
 
-        .nav-links a[href="/blueprint.html"] {
-            color: var(--primary-pink);
-            font-weight: 600;
+        .nav-left a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--pink-accent);
+            transition: width 0.3s ease;
         }
 
-        .nav-links a:hover {
-            color: var(--primary-pink-hover);
+        .nav-left a:hover::after {
+            width: 100%;
         }
 
-        .cta-button {
-            background: var(--primary-pink);
-            color: var(--text-dark);
-            padding: 0.75rem 1.5rem;
+        .nav-left a:hover {
+            color: var(--pink-accent);
+        }
+
+        .waitlist-btn {
+            background: var(--pink-accent);
+            color: var(--white);
+            padding: 0.875rem 2rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
         }
 
-        .cta-button:hover {
+        .waitlist-btn:hover {
             transform: translateY(-2px);
-            background: var(--primary-pink-hover);
-            box-shadow: 0 10px 25px rgba(248, 180, 217, 0.35);
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.4);
+            background: var(--pink-dark);
         }
-        
-        /* Hero Section */
+
+        /* ===== HERO SECTION ===== */
         .hero {
-            margin-top: 80px;
-            min-height: 90vh;
-            background: var(--bg-light-pink);
-            display: flex;
-            align-items: center;
+            min-height: 100vh;
+            padding: 120px 3rem 4rem;
             position: relative;
             overflow: hidden;
         }
-        
-        .hero-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        
-        .hero-content h1 {
-            font-size: 4rem;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            color: var(--text-dark);
-        }
-        
-        .hero-content p {
-            font-size: 1.3rem;
-            color: var(--text-light);
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-        
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        
-        .primary-btn {
-            background: var(--primary-pink);
-            color: var(--text-dark);
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+
+        /* Translucent Logo Background */
+        .logo-background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 1200px;
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: 0;
         }
 
-        .primary-btn:hover {
-            transform: translateY(-3px);
-            background: var(--primary-pink-hover);
-            box-shadow: 0 12px 30px rgba(248, 180, 217, 0.4);
-        }
-
-        .secondary-btn {
-            background: white;
-            color: var(--text-dark);
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            border: 2px solid var(--primary-blue);
-            transition: all 0.3s;
-        }
-
-        .secondary-btn:hover {
-            background: var(--primary-blue);
-            color: var(--text-dark);
-        }
-        
-        .hero-stats {
-            display: flex;
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-        
-        .stat {
-            text-align: center;
-        }
-        
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary-pink);
-        }
-        
-        .stat-label {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-        
-        .hero-images {
-            position: relative;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-        
-        .phone-mockup {
+        .logo-background img {
             width: 100%;
-            max-width: 320px;
-            aspect-ratio: 9 / 19.5;
-            border-radius: 42px;
-            box-shadow: 
-                0 25px 70px rgba(0, 0, 0, 0.15),
-                0 10px 30px rgba(0, 0, 0, 0.1),
-                0 5px 15px rgba(0, 0, 0, 0.08);
-            animation: float 6s ease-in-out infinite;
-            object-fit: cover;
-            margin: 0 auto;
+            height: auto;
         }
-        
-        .phone-mockup:first-child {
-            align-self: center;
-        }
-        
-        .phone-mockup:nth-child(2) {
-            animation-delay: 3s;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        /* Features Section */
-        .features {
-            padding: 6rem 2rem;
-            background: white;
-        }
-        
-        .section-header {
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
             text-align: center;
-            max-width: 800px;
-            margin: 0 auto 4rem;
+            margin-bottom: 4rem;
         }
-        
-        .section-title {
-            font-size: 3rem;
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
             margin-bottom: 1rem;
-            color: var(--text-dark);
+            color: var(--black);
+            letter-spacing: -1px;
         }
-        
-        .section-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-light);
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 400;
         }
-        
+
+        /* ===== FEATURES GRID ===== */
+        .features-section {
+            position: relative;
+            z-index: 1;
+            padding: 0 2rem;
+        }
+
         .features-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
             max-width: 1400px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
         }
-        
+
+        @media (max-width: 1200px) {
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+                max-width: 280px;
+            }
+        }
+
+        /* iPhone Mockup Card */
         .feature-card {
-            background: var(--bg-light-pink);
-            padding: 3rem;
-            border-radius: 20px;
-            transition: all 0.3s;
-            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
         }
 
         .feature-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary-pink);
-            box-shadow: 0 15px 40px rgba(248, 180, 217, 0.25);
+            transform: translateY(-15px) scale(1.02);
         }
 
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary-pink);
-        }
-        
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .feature-card p {
-            color: var(--text-light);
-            line-height: 1.8;
-        }
-        
-        /* How It Works */
-        .how-it-works {
-            padding: 6rem 2rem;
-            background: var(--bg-light-blue);
+        .feature-card:hover .iphone-frame {
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
         }
 
-        .steps-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
+        .iphone-frame {
+            background: #1a1a1a;
+            border-radius: 45px;
+            padding: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transition: box-shadow 0.4s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .step {
+        .iphone-frame::before {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 25px;
+            background: #1a1a1a;
+            border-radius: 0 0 15px 15px;
+            z-index: 10;
+        }
+
+        .iphone-screen {
+            background: var(--white);
+            border-radius: 35px;
+            overflow: hidden;
+            aspect-ratio: 9 / 19.5;
+        }
+
+        .iphone-screen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+        }
+
+        .feature-name {
             text-align: center;
+            margin-top: 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--black);
+            letter-spacing: 0.3px;
+        }
+
+        /* ===== FEATURE MODAL ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: 30px;
+            max-width: 1000px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.9) translateY(30px);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--baby-pink);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--black);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background: var(--pink-accent);
+            color: var(--white);
+            transform: rotate(90deg);
+        }
+
+        .modal-header {
+            padding: 2.5rem 2.5rem 1.5rem;
+            border-bottom: 1px solid var(--baby-pink);
+        }
+
+        .modal-header h2 {
+            font-size: 2.5rem;
+            color: var(--black);
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-header p {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .modal-body {
+            padding: 2rem 2.5rem 2.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .modal-body {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .modal-video {
+            border-radius: 20px;
+            overflow: hidden;
+            background: var(--black);
+            aspect-ratio: 9 / 16;
+        }
+
+        .modal-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .modal-description {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .modal-description h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--pink-accent);
+        }
+
+        .modal-description p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--gray);
+        }
+
+        .modal-description .step {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            align-items: flex-start;
+        }
+
+        .modal-description .step-icon {
+            width: 30px;
+            height: 30px;
+            background: var(--baby-pink);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--pink-accent);
+            flex-shrink: 0;
+            margin-top: 0.2rem;
+        }
+
+        /* ===== PODCAST SECTION ===== */
+        .podcast-section {
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .podcast-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--black);
+        }
+
+        .tv-container {
+            max-width: 500px;
+            margin: 0 auto;
+            cursor: pointer;
+            transition: transform 0.4s ease;
+        }
+
+        .tv-container:hover {
+            transform: scale(1.03);
+        }
+
+        .tv-frame {
+            background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+            border-radius: 20px;
+            padding: 20px 20px 40px;
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.3),
+                inset 0 2px 4px rgba(255, 255, 255, 0.1);
             position: relative;
         }
 
-        .step-number {
-            width: 80px;
-            height: 80px;
-            background: var(--primary-pink);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin: 0 auto 1.5rem;
-        }
-        
-        .step h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .step p {
-            color: var(--text-light);
-        }
-        
-        /* Newsletter Signup */
-        .newsletter {
-            padding: 6rem 2rem;
-            background: white;
+        .tv-screen {
+            background: var(--black);
+            border-radius: 10px;
+            overflow: hidden;
+            aspect-ratio: 1 / 1;
+            border: 3px solid #333;
         }
 
-        .newsletter-container {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            background: var(--primary-blue);
-            padding: 4rem;
-            border-radius: 30px;
-            color: var(--text-dark);
-        }
-        
-        .newsletter h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .newsletter p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-        
-        .newsletter-form {
-            display: flex;
-            gap: 1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .newsletter-form input {
-            flex: 1;
-            padding: 1rem 1.5rem;
-            border-radius: 50px;
-            border: none;
-            font-size: 1rem;
-        }
-        
-        .newsletter-form button {
-            padding: 1rem 2.5rem;
-            background: white;
-            color: var(--primary-pink);
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .newsletter-form button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-        
-        /* Blog Preview */
-        .blog-preview {
-            padding: 6rem 2rem;
-            background: var(--bg-light-pink);
-        }
-        
-        .blog-grid {
-            max-width: 1400px;
-            margin: 3rem auto 0;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-        }
-        
-        .blog-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.3s;
-            text-decoration: none;
-            color: inherit;
-        }
-        
-        .blog-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-        }
-        
-        .blog-image {
+        .tv-screen img {
             width: 100%;
-            height: 250px;
-            background: var(--primary-blue);
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .tv-stand {
+            width: 100px;
+            height: 15px;
+            background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+            margin: 0 auto;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .tv-label {
+            margin-top: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        .tv-sublabel {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-top: 0.3rem;
+        }
+
+        /* ===== PODCAST PAGE (Hidden by default) ===== */
+        .podcast-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--baby-pink);
+            z-index: 3000;
+            overflow-y: auto;
+            transform: translateX(100%);
+            transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .podcast-page.active {
+            transform: translateX(0);
+        }
+
+        .podcast-page-header {
+            padding: 2rem 3rem;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: var(--text-dark);
+            border-bottom: 1px solid rgba(255, 182, 193, 0.3);
+            position: sticky;
+            top: 0;
+            background: rgba(255, 228, 236, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 10;
         }
-        
-        .blog-content {
-            padding: 2rem;
+
+        .podcast-page-title {
+            font-size: 2rem;
+            color: var(--black);
         }
-        
-        .blog-category {
-            color: var(--primary-pink);
+
+        .back-btn {
+            background: var(--white);
+            border: 2px solid var(--pink-accent);
+            color: var(--pink-accent);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
             font-weight: 600;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .blog-card h3 {
-            margin: 1rem 0;
-            font-size: 1.5rem;
-        }
-        
-        .blog-excerpt {
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-        
-        .read-more {
-            color: var(--primary-pink);
-            font-weight: 600;
-            margin-top: 1rem;
-            display: inline-flex;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            display: flex;
             align-items: center;
             gap: 0.5rem;
         }
-        
-        /* Footer */
-        footer {
-            background: var(--text-dark);
-            color: white;
-            padding: 4rem 2rem 2rem;
+
+        .back-btn:hover {
+            background: var(--pink-accent);
+            color: var(--white);
         }
-        
+
+        .podcast-page-content {
+            padding: 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .episode-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .episode-video {
+            aspect-ratio: 16 / 9;
+            width: 100%;
+        }
+
+        .episode-video iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .episode-info {
+            padding: 1.5rem 2rem;
+        }
+
+        .episode-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--black);
+        }
+
+        .episode-info p {
+            color: var(--gray);
+        }
+
+        .youtube-subscribe {
+            text-align: center;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 20px;
+            margin-top: 2rem;
+        }
+
+        .youtube-subscribe p {
+            margin-bottom: 1rem;
+            color: var(--gray);
+        }
+
+        .youtube-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: #FF0000;
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .youtube-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 0, 0, 0.3);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 4rem 3rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
         .footer-container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
+            grid-template-columns: repeat(3, 1fr);
             gap: 3rem;
-            margin-bottom: 3rem;
         }
-        
-        .footer-about h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--primary-pink);
+
+        @media (max-width: 768px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
         }
-        
-        .footer-about p {
-            line-height: 1.8;
-            opacity: 0.8;
+
+        .footer-column h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--pink-accent);
         }
-        
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-column ul a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .footer-column ul a:hover {
+            color: var(--pink-accent);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
         .social-links {
             display: flex;
             gap: 1rem;
-            margin-top: 1.5rem;
         }
-        
+
         .social-links a {
             width: 40px;
             height: 40px;
-            background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: var(--white);
             text-decoration: none;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
-        
+
         .social-links a:hover {
-            background: var(--primary-pink);
+            background: var(--pink-accent);
             transform: translateY(-3px);
         }
-        
-        .footer-links h4 {
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
+
+        /* ===== WAITLIST MODAL ===== */
+        .waitlist-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 4000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
         }
-        
-        .footer-links ul {
-            list-style: none;
-        }
-        
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: all 0.3s;
-            display: block;
-            margin-bottom: 0.75rem;
-        }
-        
-        .footer-links a:hover {
+
+        .waitlist-modal.active {
             opacity: 1;
-            color: var(--primary-pink);
-            transform: translateX(5px);
+            visibility: visible;
         }
-        
-        .footer-bottom {
+
+        .waitlist-content {
+            background: var(--white);
+            border-radius: 30px;
+            padding: 3rem;
+            max-width: 500px;
+            width: 100%;
             text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            opacity: 0.7;
+            transform: scale(0.9);
+            transition: transform 0.4s ease;
         }
-        
-        /* Mobile Menu */
+
+        .waitlist-modal.active .waitlist-content {
+            transform: scale(1);
+        }
+
+        .waitlist-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+
+        .waitlist-content p {
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        .waitlist-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .waitlist-form input {
+            padding: 1rem 1.5rem;
+            border: 2px solid var(--baby-pink);
+            border-radius: 50px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .waitlist-form input:focus {
+            outline: none;
+            border-color: var(--pink-accent);
+        }
+
+        .waitlist-form button {
+            padding: 1rem 2rem;
+            background: var(--pink-accent);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .waitlist-form button:hover {
+            background: var(--pink-dark);
+            transform: translateY(-2px);
+        }
+
+        .waitlist-bonus {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: var(--baby-pink);
+            border-radius: 15px;
+            font-size: 0.9rem;
+            color: var(--pink-dark);
+        }
+
+        /* ===== MOBILE NAV ===== */
         .mobile-menu-btn {
             display: none;
             background: none;
             border: none;
             font-size: 1.5rem;
-            color: var(--text-dark);
             cursor: pointer;
+            color: var(--black);
         }
-        
-        /* Responsive Design */
-        @media (max-width: 968px) {
-            .nav-links {
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-left {
                 display: none;
             }
-            
+
             .mobile-menu-btn {
                 display: block;
             }
-            
-            .hero-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-buttons {
-                justify-content: center;
-            }
-            
-            .hero-images {
-                max-width: 500px;
-                margin: 0 auto;
-            }
-            
-            .phone-mockup {
-                max-width: 280px;
-                height: auto;
-            }
-            
 
-            
-            .footer-container {
-                grid-template-columns: 1fr;
+            .hero {
+                padding: 100px 1.5rem 3rem;
             }
-            
-            .newsletter-form {
-                flex-direction: column;
+
+            .features-section {
+                padding: 0 1rem;
+            }
+
+            .modal-body {
+                padding: 1.5rem;
+            }
+
+            .modal-header {
+                padding: 2rem 1.5rem 1rem;
+            }
+
+            .podcast-page-header {
+                padding: 1.5rem;
+            }
+
+            .podcast-page-content {
+                padding: 1.5rem;
+            }
+
+            footer {
+                padding: 3rem 1.5rem 1.5rem;
             }
         }
-        
-        /* Animations */
-        .fade-in {
-            animation: fadeIn 1s ease-in;
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease forwards;
         }
+
+        .feature-card {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .feature-card:nth-child(2) { animation-delay: 0.15s; }
+        .feature-card:nth-child(3) { animation-delay: 0.2s; }
+        .feature-card:nth-child(4) { animation-delay: 0.25s; }
+        .feature-card:nth-child(5) { animation-delay: 0.3s; }
+        .feature-card:nth-child(6) { animation-delay: 0.35s; }
+        .feature-card:nth-child(7) { animation-delay: 0.4s; }
+        .feature-card:nth-child(8) { animation-delay: 0.45s; }
+        .feature-card:nth-child(9) { animation-delay: 0.5s; }
+        .feature-card:nth-child(10) { animation-delay: 0.55s; }
     </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav>
-        <div class="nav-container">
-            <a href="/" class="logo">TheFitChecked</a>
-            <ul class="nav-links">
-                <li><a href="#features">Features</a></li>
-                <li><a href="#how-it-works">How It Works</a></li>
-                <li><a href="/blog.html">Blog</a></li>
-                <li><a href="/blueprint.html">Blueprint</a></li>
-                <li><a href="/about.html">About</a></li>
-            </ul>
-            <a href="#waitlist" class="cta-button">Join Waitlist</a>
-            <button class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
+        <div class="nav-left">
+            <a href="/blog.html">Blog</a>
+            <a href="/blueprint.html">Blueprint</a>
         </div>
+        <a href="#" class="waitlist-btn" onclick="openWaitlist(event)">Join Waitlist</a>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-container">
-            <div class="hero-content fade-in">
-                <h1>Your AI-Powered Fashion Assistant</h1>
-                <p>Transform your wardrobe with intelligent styling. Get personalized outfit recommendations, virtual try-ons, and smart shopping - all powered by AI.</p>
-                
-                <div class="hero-buttons">
-                    <a href="#waitlist" class="primary-btn">
-                        <i class="fas fa-download"></i> Download App
-                    </a>
-                    <a href="#features" class="secondary-btn">Learn More</a>
+        <!-- Translucent Logo Background -->
+        <div class="logo-background">
+            <img src="/logo.png" alt="TheFitChecked">
+        </div>
+
+        <div class="hero-content fade-in-up">
+            <h1 class="hero-title">Your AI Fashion Assistant</h1>
+            <p class="hero-subtitle">Discover every feature that makes TheFitChecked your personal stylist in your pocket</p>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="features-section">
+            <div class="features-grid">
+                <!-- Feature 1: AI Avatar Creation -->
+                <div class="feature-card" onclick="openModal('avatar')">
+                    <div class="iphone-frame">
+                        <div class="iphone-screen">
+                            <img src="/images/avatar.png" alt="AI Avatar Creation">
+                        </div>
+                    </div>
+                    <p class="feature-name">AI Avatar Creation</p>
                 </div>
-                
-            </div>
-            
-            <div class="hero-images fade-in">
-                <img src="/left2.png" alt="TheFitChecked App Screenshot 1" class="phone-mockup">
-                <img src="/right2.png" alt="TheFitChecked App Screenshot 2" class="phone-mockup">
+
+                <!-- Feature 2: Smart Closet -->
+                <div class="feature-card" onclick="openModal('closet')">
+                    <div class="iphone-frame">
+                        <div class="iphone-screen">
+                            <img src="/images/closet.png" alt="Smart Closet">
+                        </div>
+                    </div>
+                    <p class="feature-name">Smart Closet</p>
+                </div>
+
+                <!-- Feature 3: Outfit Calendar -->
+                <div class="feature-card" onclick="openModal('calendar')">
+                    <div class="iphone-frame">
+                        <div class="iphone-screen">
+                            <img src="/images/calendar.png" alt="Outfit Calendar">
+                        </div>
+                    </div>
+                    <p class="feature-name">Outfit Calendar</p>
+                </div>
+
+                <!-- Feature 4: Trip Planner -->
+                <div class="feature-card" onclick="openModal('trip')">
+                    <div class="iphone-frame">
+                        <div class="iphone-screen">
+                            <img src="/images/trip.png" alt="Trip Planner">
+                        </div>
+                    </div>
+                    <p class="feature-name">Trip Planner</p>
+                </div>
+
+                <!-- Feature 5: Weather Picks -->
+                <div class="feature-card" onclick="openModal('weather')">
+                    <div class="iphone-frame">
+                        <div class="iphone-screen">
+                            <img src="/images/weather.png" alt="Weather Picks">
+                        </div>
+                    </div>
+                    <p class="feature-name">Weather Picks</p>
+                </div>
+
+                <!-- Feature 6: Wishlist & Price Comparison -->
+                <div class="feature-card" onclick="openModal('wishlist')">
+                    <div class="iphone-frame">
+                        <div class="iphone-screen">
+                            <img src="/images/wishlist.png" alt="Wishlist & Deals">
+                        </div>
+                    </div>
+                    <p class="feature-name">Wishlist & Deals</p>
+                </div>
+
+                <!-- Feature 7: Closet Analytics -->
+                <div class="feature-card" onclick="openModal('analytics')">
+                    <div class="iphone-frame">
+                        <div class="iphone-screen">
+                            <img src="/images/analytics.png" alt="Closet Analytics">
+                        </div>
+                    </div>
+                    <p class="feature-name">Closet Analytics</p>
+                </div>
+
+                <!-- Feature 8: Design & Shop -->
+                <div class="feature-card" onclick="openModal('design')">
+                    <div class="iphone-frame">
+                        <div class="iphone-screen">
+                            <img src="/images/design.png" alt="Design & Shop">
+                        </div>
+                    </div>
+                    <p class="feature-name">Design & Shop</p>
+                </div>
+
+                <!-- Feature 9: Occasion Planner + Try On -->
+                <div class="feature-card" onclick="openModal('occasion')">
+                    <div class="iphone-frame">
+                        <div class="iphone-screen">
+                            <img src="/images/occasion.png" alt="Occasion Planner">
+                        </div>
+                    </div>
+                    <p class="feature-name">Occasion + Try On</p>
+                </div>
+
+                <!-- Feature 10: AI Stylist Chat -->
+                <div class="feature-card" onclick="openModal('stylist')">
+                    <div class="iphone-frame">
+                        <div class="iphone-screen">
+                            <img src="/images/stylist.png" alt="AI Stylist Chat">
+                        </div>
+                    </div>
+                    <p class="feature-name">AI Stylist Chat</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <div class="section-header">
-            <h2 class="section-title">Everything You Need to Master Your Style</h2>
-            <p class="section-subtitle">Powered by cutting-edge AI technology to give you a personalized fashion experience</p>
-        </div>
-        
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-magic"></i></div>
-                <h3>AI Stylist</h3>
-                <p>A celebrity stylist in your pocket — minus the $500/hour fee. Get outfit recommendations tailored to your body, your vibe, and today's weather.</p>
+    <!-- Podcast Section -->
+    <section class="podcast-section">
+        <h2 class="podcast-title">Watch the Podcast</h2>
+        <div class="tv-container" onclick="openPodcastPage()">
+            <div class="tv-frame">
+                <div class="tv-screen">
+                    <img src="/images/dresscode.png" alt="Dress Code Podcast">
+                </div>
             </div>
-
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-tshirt"></i></div>
-                <h3>Smart Digital Closet</h3>
-                <p>Organize your entire wardrobe digitally. AI automatically categorizes, detects brands, and tracks your closet value.</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-user-astronaut"></i></div>
-                <h3>Custom AI Avatar</h3>
-                <p>Create your personalized avatar for realistic virtual try-ons. See exactly how clothes look on YOUR body before buying.</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-calendar-check"></i></div>
-                <h3>Outfit Calendar Planning</h3>
-                <p>Plan outfits for any occasion with weather-based recommendations and seamless calendar integration.</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-plane-departure"></i></div>
-                <h3>Intelligent Trip Planner</h3>
-                <p>Pack perfectly for any destination. AI analyzes weather, activities, and culture to recommend what you need.</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-shopping-bag"></i></div>
-                <h3>Smart Shopping Assistant</h3>
-                <p>Find the best deals across retailers. AI-powered price tracking and visual comparison saves you money.</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-trophy"></i></div>
-                <h3>Gamified Style Journey</h3>
-                <p>Earn XP, unlock achievements, and complete weekly challenges as you develop your personal style.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works -->
-    <section id="how-it-works" class="how-it-works">
-        <div class="section-header">
-            <h2 class="section-title">How TheFitChecked Works</h2>
-            <p class="section-subtitle">Get started in minutes with our simple 3-step process</p>
-        </div>
-        
-        <div class="steps-container">
-            <div class="step">
-                <div class="step-number">1</div>
-                <h3>Upload Your Closet</h3>
-                <p>Snap photos of your clothes. AI automatically organizes and categorizes everything.</p>
-            </div>
-            
-            <div class="step">
-                <div class="step-number">2</div>
-                <h3>Create Your Avatar</h3>
-                <p>Upload a photo and measurements. Get a personalized avatar for virtual try-ons.</p>
-            </div>
-            
-            <div class="step">
-                <div class="step-number">3</div>
-                <h3>Get AI Recommendations</h3>
-                <p>Receive personalized outfit suggestions, shopping recommendations, and style insights daily.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter/Waitlist Signup -->
-    <section id="waitlist" class="newsletter">
-        <div class="newsletter-container">
-            <h2>Join the Waitlist</h2>
-            <p>Be among the first to experience the future of fashion. Get exclusive early access and special launch pricing.</p>
-            <form class="newsletter-form" id="waitlist-form">
-                <input type="email" placeholder="Enter your email" required>
-                <button type="submit">Get Early Access</button>
-            </form>
-            <p style="font-size: 0.9rem; margin-top: 1rem;">🎁 First 20 users get lifetime premium features!</p>
+            <div class="tv-stand"></div>
+            <p class="tv-label">Dress Code</p>
+            <p class="tv-sublabel">Click to watch episodes</p>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
         <div class="footer-container">
-            <div class="footer-about">
-                <h3>TheFitChecked</h3>
-                <p>Your AI-powered fashion assistant that helps you look your best every day. Organize, style, and shop smarter with cutting-edge technology.</p>
-                <div class="social-links">
-                    <a href="https://www.instagram.com/thefitchecked?igsh=dTluYm1keTFyMHVh&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://x.com/thefitchecked?s=21" target="_blank"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.tiktok.com/@genevieguevara?_r=1&_t=ZP-92IMg5WFvJu" target="_blank"><i class="fab fa-tiktok"></i></a>
-                    <a href="https://www.facebook.com/profile.php?id=61585260362773" target="_blank"><i class="fab fa-facebook"></i></a>
-                </div>
-            </div>
-            
-            <div class="footer-links">
+            <div class="footer-column">
                 <h4>Product</h4>
                 <ul>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="/features.html">Features</a></li>
+                    <li><a href="/how-it-works.html">How It Works</a></li>
                     <li><a href="/pricing.html">Pricing</a></li>
                     <li><a href="/download.html">Download App</a></li>
                 </ul>
             </div>
-            
-            <div class="footer-links">
+            <div class="footer-column">
                 <h4>Company</h4>
                 <ul>
                     <li><a href="/about.html">About Us</a></li>
@@ -806,8 +1046,7 @@
                     <li><a href="/contact.html">Contact</a></li>
                 </ul>
             </div>
-            
-            <div class="footer-links">
+            <div class="footer-column">
                 <h4>Legal</h4>
                 <ul>
                     <li><a href="/legal.html#privacy">Privacy Policy</a></li>
@@ -817,45 +1056,218 @@
                 </ul>
             </div>
         </div>
-        
         <div class="footer-bottom">
             <p>&copy; 2025 TheFitChecked. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/thefitchecked" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://x.com/thefitchecked" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.tiktok.com/@genevieguevara" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.youtube.com/@TheFitChecked" target="_blank"><i class="fab fa-youtube"></i></a>
+            </div>
         </div>
     </footer>
 
-    <!-- Footer Links - Fixed Bottom Right -->
-    <div class="footer-links">
-        <a href="/legal.html" class="footer-link">Legal Center</a>
-        <a href="/support.html" class="footer-link">Support</a>
+    <!-- Feature Modal -->
+    <div class="modal-overlay" id="featureModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <h2 id="modalTitle">Feature Name</h2>
+                <p id="modalSubtitle">Learn how to use this feature</p>
+            </div>
+            <div class="modal-body">
+                <div class="modal-video">
+                    <video id="modalVideo" controls playsinline>
+                        <source src="" type="video/mp4">
+                    </video>
+                </div>
+                <div class="modal-description">
+                    <h3>How It Works</h3>
+                    <p id="modalDescription"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Podcast Page -->
+    <div class="podcast-page" id="podcastPage">
+        <div class="podcast-page-header">
+            <h1 class="podcast-page-title">Dress Code Podcast</h1>
+            <button class="back-btn" onclick="closePodcastPage()">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+        </div>
+        <div class="podcast-page-content">
+            <!-- Episode 1 -->
+            <div class="episode-card">
+                <div class="episode-video">
+                    <iframe src="https://www.youtube.com/embed/7whMf0CiU2k" allowfullscreen></iframe>
+                </div>
+                <div class="episode-info">
+                    <h3>Episode 1: The Beginning</h3>
+                    <p>Welcome to Dress Code — where fashion meets mindset transformation.</p>
+                </div>
+            </div>
+
+            <!-- Subscribe CTA -->
+            <div class="youtube-subscribe">
+                <p>Want more episodes? Subscribe to stay updated!</p>
+                <a href="https://www.youtube.com/@TheFitChecked" target="_blank" class="youtube-btn">
+                    <i class="fab fa-youtube"></i> Subscribe on YouTube
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Waitlist Modal -->
+    <div class="waitlist-modal" id="waitlistModal">
+        <div class="waitlist-content">
+            <button class="modal-close" onclick="closeWaitlist()" style="position: absolute; top: 1rem; right: 1rem;">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2>Join the Waitlist</h2>
+            <p>Be among the first to experience the future of fashion.</p>
+            <form class="waitlist-form" id="waitlistForm" onsubmit="submitWaitlist(event)">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Get Early Access</button>
+            </form>
+            <div class="waitlist-bonus">
+                🎁 First 20 users get lifetime premium features!
+            </div>
+        </div>
     </div>
 
     <script>
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
+        // Feature Data
+        const features = {
+            avatar: {
+                title: "AI Avatar Creation",
+                subtitle: "Create your personalized digital twin",
+                video: "https://vazv5ogmbgg6bqw7.public.blob.vercel-storage.com/homepage-videos/AVATARCREATION.mov",
+                description: "As a new user, click the blue \"Create Your Avatar\" button and upload a headshot — make sure it's clear, facing forward with good lighting. Then upload an image of your body (no baggy clothes). Click \"Continue to Avatar\" at the bottom of the screen and it'll direct you to your measurements and gender selection. Fill out the style preference quiz as accurately as possible — this helps the AI system get to know you better for a more personalized experience as your personal stylist. Fill out your name, birthday, and location so the app knows your weather when suggesting outfits. Once finished, you'll see your complete avatar. Depending on your subscription tier, you can create multiple avatars — free tier gets one, second tier gets two, and third tier gets unlimited."
+            },
+            closet: {
+                title: "Smart Closet",
+                subtitle: "Your entire wardrobe, digitized",
+                video: "https://vazv5ogmbgg6bqw7.public.blob.vercel-storage.com/homepage-videos/CLOSET.MP4",
+                description: "You have all different categories of clothes so you can see everything organized from your actual closet in your app. You can upload five outfit images at a time — flat lay preferably or on a hanger. Don't upload photos of you wearing the item if you want a clean look. The app uses background removal to leave a clean garment or accessory image. The more items you add, the better the app will suggest outfits for the weather picks feature."
+            },
+            calendar: {
+                title: "Outfit Calendar",
+                subtitle: "Plan your looks ahead of time",
+                video: "https://vazv5ogmbgg6bqw7.public.blob.vercel-storage.com/homepage-videos/CALANDER.mov",
+                description: "You can connect your smart calendar through Google or Apple to sync with your actual calendar and schedule daily outfits. See your shopping links you saved to buy with reminders to purchase as well. Never wonder what to wear again — your outfits are planned and ready."
+            },
+            trip: {
+                title: "Trip Planner",
+                subtitle: "Pack perfectly for any destination",
+                video: "https://vazv5ogmbgg6bqw7.public.blob.vercel-storage.com/homepage-videos/TRIPPLANNER.mov",
+                description: "Click \"New Trip\" button at the top to plan a new trip — any already planned trips will show below and on your calendar. Fill out trip name and destination, and add your booking link so it can be added to your budget cost. Start and end dates are necessary for activity and outfit planning. Trip type allows AI to know what shopping suggestions to make. You'll see your trip days go horizontally with Morning, Afternoon, and Evening sections with plus marks to plan activity and outfit for each time slot. You can manually plan your outfit from your closet or let AI grab items based on trip type, time, and activity. In the Pack section, you'll see everything you've packed with a checklist. Shopping links are generated as suggestions to buy for your trip, and the budget page has price monitoring for deals on items you want."
+            },
+            weather: {
+                title: "Weather Picks",
+                subtitle: "AI-powered daily outfit suggestions",
+                video: "https://vazv5ogmbgg6bqw7.public.blob.vercel-storage.com/homepage-videos/WEATHERPICKS.mov",
+                description: "Based on your lifestyle (from the style preference questions in onboarding), time of day, and current weather, three outfits are chosen using our AI system that puts outfits together from your closet. There's also a \"Shop Picks\" button in the top right that does the same thing but with actual shopping links to purchase new outfits for fashion inspiration."
+            },
+            wishlist: {
+                title: "Wishlist & Deals",
+                subtitle: "Find the best prices on items you love",
+                video: "https://vazv5ogmbgg6bqw7.public.blob.vercel-storage.com/homepage-videos/WISHLIST.mov",
+                description: "Click the Compare button in the top left and select an item in your wishlist — it will find items with the same style for better or similar deals. You can also compare deals or add the compared item to your wishlist. If you decide to purchase, it'll end up in the Purchased tab, keeping track of what you bought and spent. You can also share your wishlist to anyone as a hint to buy!"
+            },
+            analytics: {
+                title: "Closet Analytics",
+                subtitle: "See your wardrobe insights",
+                video: "https://vazv5ogmbgg6bqw7.public.blob.vercel-storage.com/homepage-videos/ANALYTICS.mov",
+                description: "When you upload an image into your closet, always fill out the cost. You'll see the total cost of your wardrobe here, where your money goes the most, what color is in your closet the most, and cost per wear on your top three items. Get real insights into your fashion investments."
+            },
+            design: {
+                title: "Design & Shop",
+                subtitle: "Create your dream item",
+                video: "https://vazv5ogmbgg6bqw7.public.blob.vercel-storage.com/homepage-videos/DESIGN.MP4",
+                description: "Similar to Occasion Planner but creates one item at a time. Describe a shoe, purse, top, bottom, or dress in detail. The AI will create your item and you can shop for it and add it to your wishlist. Bring your fashion vision to life!"
+            },
+            occasion: {
+                title: "Occasion + Try On",
+                subtitle: "Design outfits and see them on you",
+                video: "https://vazv5ogmbgg6bqw7.public.blob.vercel-storage.com/homepage-videos/OCCASIONPLANNER.mov",
+                description: "Describe your vision for the outfit you want (leave out accessories and shoes). When you finish describing it, choose an occasion type below. It'll generate three outfits as you described. You can generate new options, restart a design, or Try On. When you try on, shopping links are automatically triggered for the outfit you described. You can also just click Shop Now without trying on. Once you find a link you like, click it. When you close the browser, \"Save to Calendar,\" \"Add to Wishlist,\" \"Generate New,\" or \"Cancel\" buttons pop up. Save to calendar lets you set a purchase reminder date with notifications."
+            },
+            stylist: {
+                title: "AI Stylist Chat",
+                subtitle: "Your personal fashion advisor",
+                video: "https://vazv5ogmbgg6bqw7.public.blob.vercel-storage.com/homepage-videos/AISTYLIST.mov",
+                description: "Your personal stylist. Fill out all 18 questions so it can know you deeper — the AI will know you and your style and act like an actual professional stylist. It knows what's in your closet and it's linked to weather. It can show you shopping options. You can ask it anything fashion related about yourself and it will tell you everything. It's like having a celebrity stylist in your pocket!"
+            }
+        };
 
-        // Waitlist form submission
-        document.getElementById('waitlist-form').addEventListener('submit', async function(e) {
+        // Open Feature Modal
+        function openModal(featureId) {
+            const feature = features[featureId];
+            if (!feature) return;
+
+            document.getElementById('modalTitle').textContent = feature.title;
+            document.getElementById('modalSubtitle').textContent = feature.subtitle;
+            document.getElementById('modalDescription').textContent = feature.description;
+            
+            const video = document.getElementById('modalVideo');
+            video.src = feature.video;
+            
+            document.getElementById('featureModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close Feature Modal
+        function closeModal() {
+            const video = document.getElementById('modalVideo');
+            video.pause();
+            video.src = '';
+            
+            document.getElementById('featureModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Open Podcast Page
+        function openPodcastPage() {
+            document.getElementById('podcastPage').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close Podcast Page
+        function closePodcastPage() {
+            document.getElementById('podcastPage').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Open Waitlist Modal
+        function openWaitlist(e) {
             e.preventDefault();
-            
-            const emailInput = this.querySelector('input[type="email"]');
-            const submitButton = this.querySelector('button[type="submit"]');
+            document.getElementById('waitlistModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close Waitlist Modal
+        function closeWaitlist() {
+            document.getElementById('waitlistModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Submit Waitlist Form
+        async function submitWaitlist(e) {
+            e.preventDefault();
+            const form = e.target;
+            const emailInput = form.querySelector('input[type="email"]');
+            const submitButton = form.querySelector('button[type="submit"]');
             const email = emailInput.value;
-            
-            // Disable form during submission
+
             submitButton.disabled = true;
-            const originalButtonText = submitButton.textContent;
             submitButton.textContent = 'Joining...';
-            
+
             try {
-                const response = await fetch('https://kxmtbetklikewluwntyx.supabase.co/functions/v1/waitlist-signup', {
+                const response = await fetch('https://scyprstpwxjxvnszoquy.supabase.co/functions/v1/waitlist-signup', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -865,16 +1277,13 @@
                         source: 'homepage'
                     })
                 });
-                
+
                 const data = await response.json();
-                
+
                 if (response.ok) {
-                    if (data.alreadyConfirmed) {
-                        alert('✅ You\'re already on our waitlist!');
-                    } else {
-                        alert('🎉 Success! Check your email to confirm your waitlist signup.');
-                    }
-                    this.reset();
+                    alert('🎉 Success! Check your email to confirm your waitlist signup.');
+                    form.reset();
+                    closeWaitlist();
                 } else {
                     alert(data.error || 'Failed to join waitlist. Please try again.');
                 }
@@ -883,27 +1292,33 @@
                 alert('Network error. Please check your connection and try again.');
             } finally {
                 submitButton.disabled = false;
-                submitButton.textContent = originalButtonText;
+                submitButton.textContent = 'Get Early Access';
+            }
+        }
+
+        // Close modals on overlay click
+        document.getElementById('featureModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        document.getElementById('waitlistModal').addEventListener('click', function(e) {
+            if (e.target === this) closeWaitlist();
+        });
+
+        // Close modals on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+                closeWaitlist();
+                closePodcastPage();
             }
         });
 
-        // Add animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.feature-card, .step, .blog-card').forEach(el => {
-            observer.observe(el);
-        });
+        // Mobile menu toggle (placeholder)
+        function toggleMobileMenu() {
+            // You can implement mobile menu functionality here
+            alert('Mobile menu coming soon!');
+        }
     </script>
 </body>
 </html>
