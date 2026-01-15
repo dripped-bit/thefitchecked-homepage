@@ -3,849 +3,793 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TheFitChecked Fashion Blog - Style tips, wardrobe organization hacks, fashion trends, and AI styling insights.">
-    <meta name="keywords" content="fashion blog, style tips, wardrobe organization, outfit ideas, fashion trends, AI styling, personal fashion">
-    <title>Fashion Blog - TheFitChecked | Style Tips & Trends</title>
-    
+    <meta name="description" content="TheFitChecked Blog - Fashion tips, style guides, and the latest trends in AI-powered styling">
+    <title>Blog - TheFitChecked | Style Tips & Trends</title>
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         :root {
-            --primary-pink: #F8B4D9;
-            --primary-pink-hover: #E89DC5;
-            --primary-blue: #A7C7E7;
-            --primary-blue-hover: #8FB5D9;
-            --text-dark: #000000;
-            --text-light: #4A4A4A;
-            --bg-light-pink: #FFF9FB;
-            --bg-light-blue: #F5FAFF;
+            --baby-pink: #FFE4EC;
+            --pink-medium: #FFB6C1;
+            --pink-accent: #FF69B4;
+            --pink-dark: #DB7093;
+            --white: #FFFFFF;
+            --black: #1a1a1a;
+            --gray: #666666;
+            --gray-light: #999999;
         }
-        
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
+            font-family: 'Outfit', sans-serif;
+            background: var(--baby-pink);
+            color: var(--black);
+            line-height: 1.7;
         }
-        
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
+
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
         }
-        
-        /* Navigation */
+
+        /* ===== NAVIGATION ===== */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
+            padding: 1rem 3rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.5rem 2rem;
+            z-index: 1000;
+            background: rgba(253, 248, 245, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 105, 180, 0.1);
         }
 
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary-pink);
-            text-decoration: none;
-        }
-
-        .nav-links {
+        .nav-left {
             display: flex;
-            gap: 2rem;
-            list-style: none;
+            gap: 2.5rem;
         }
 
-        .nav-links a {
+        .nav-left a {
             text-decoration: none;
-            color: var(--text-dark);
+            color: var(--black);
             font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a[href="/blog.html"] {
-            color: var(--primary-blue);
-            font-weight: 600;
-        }
-
-        .nav-links a[href="/blueprint.html"] {
-            color: var(--primary-pink);
-            font-weight: 600;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-pink-hover);
-        }
-
-        .cta-button {
-            background: var(--primary-pink);
-            color: var(--text-dark);
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            background: var(--primary-pink-hover);
-            box-shadow: 0 10px 25px rgba(248, 180, 217, 0.35);
-        }
-        
-        /* Hero */
-        .blog-hero {
-            margin-top: 80px;
-            background: var(--bg-light-pink);
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-
-        .blog-hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary-pink);
-        }
-        
-        .blog-hero p {
-            font-size: 1.3rem;
-            color: var(--text-light);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        /* Search */
-        .search-section {
-            max-width: 600px;
-            margin: 2rem auto 0;
-        }
-        
-        .search-box {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .search-box input {
-            flex: 1;
-            padding: 1rem 1.5rem;
-            border: 2px solid #ddd;
-            border-radius: 50px;
-            font-size: 1rem;
-        }
-        
-        .search-box button {
-            padding: 1rem 2rem;
-            background: var(--primary-pink);
-            color: var(--text-dark);
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .search-box button:hover {
-            background: var(--primary-pink-hover);
-        }
-        
-        /* Main Content */
-        .main-content {
-            max-width: 1400px;
-            margin: 4rem auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 1fr 350px;
-            gap: 4rem;
-        }
-        
-        /* Categories */
-        .categories {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-        
-        .category-tag {
-            padding: 0.5rem 1.5rem;
-            background: var(--bg-light-pink);
-            border-radius: 50px;
-            border: 2px solid transparent;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .category-tag:hover, .category-tag.active {
-            border-color: var(--primary-pink);
-            background: white;
-            color: var(--primary-pink);
-        }
-        
-        /* Blog Grid */
-        .blog-articles {
-            display: grid;
-            gap: 3rem;
-        }
-        
-        .article-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: all 0.3s;
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            gap: 2rem;
-        }
-        
-        .article-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
-        }
-        
-        .article-image {
-            width: 350px;
-            height: 250px;
-            background: var(--primary-pink);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: var(--text-dark);
-            flex-shrink: 0;
-        }
-        
-        .article-content {
-            padding: 2rem 2rem 2rem 0;
-            flex: 1;
-        }
-        
-        .article-meta {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-        
-        .article-category {
-            color: var(--primary-pink);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .article-card h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-        }
-        
-        .article-excerpt {
-            color: var(--text-light);
-            line-height: 1.8;
-            margin-bottom: 1rem;
-        }
-        
-        .read-more {
-            color: var(--primary-pink);
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        /* Sidebar */
-        .sidebar {
-            position: sticky;
-            top: 2rem;
-            height: fit-content;
-        }
-        
-        .sidebar-widget {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            margin-bottom: 2rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-        }
-        
-        .sidebar-widget h3 {
-            margin-bottom: 1.5rem;
-            color: var(--primary-pink);
-        }
-        
-        /* Newsletter Widget */
-        .newsletter-widget input {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            margin-bottom: 1rem;
-        }
-        
-        .newsletter-widget button {
-            width: 100%;
-            padding: 0.75rem;
-            background: var(--primary-pink);
-            color: var(--text-dark);
-            border: none;
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .newsletter-widget button:hover {
-            background: var(--primary-pink-hover);
-        }
-        
-        /* Popular Posts */
-        .popular-post {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .popular-post:last-child {
-            border-bottom: none;
-        }
-        
-        .popular-post-thumb {
-            width: 80px;
-            height: 80px;
-            background: var(--primary-pink);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-dark);
-            font-size: 1.5rem;
-            flex-shrink: 0;
-        }
-        
-        .popular-post-content h4 {
             font-size: 0.95rem;
-            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
         }
-        
-        .popular-post-meta {
-            font-size: 0.85rem;
-            color: var(--text-light);
+
+        .nav-left a:hover {
+            color: var(--pink-accent);
         }
-        .popular-post a:hover {
-            transform: translateX(5px);
-        }
-        .popular-post a:hover h4 {
-            color: var(--primary-pink);
-        }
-        
-        /* Ad Space */
-        .ad-widget {
-            background: var(--bg-light-pink);
-            padding: 3rem 2rem;
-            text-align: center;
-            border: 2px dashed #ddd;
-        }
-        
-        .ad-widget p {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--text-dark);
-            color: white;
-            text-align: center;
-            padding: 3rem 2rem;
-            margin-top: 6rem;
-        }
-        
-        footer a {
-            color: var(--primary-pink);
+
+        .nav-right .waitlist-btn {
+            background: var(--pink-accent);
+            color: var(--white);
+            padding: 0.75rem 1.75rem;
+            border-radius: 30px;
             text-decoration: none;
-            margin: 0 1rem;
-        }
-        
-        /* Responsive */
-        @media (max-width: 968px) {
-            .nav-links, .cta-button {
-                display: none;
-            }
-
-            .main-content {
-                grid-template-columns: 1fr;
-            }
-
-            .article-card {
-                flex-direction: column;
-            }
-
-            .article-image {
-                width: 100%;
-            }
-
-            .article-content {
-                padding: 2rem;
-            }
-
-            .blog-hero h1 {
-                font-size: 2.5rem;
-            }
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
         }
 
-        /* Blog Card Styles for AI Fashion Revolution Article */
-        .blog-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
+        .nav-right .waitlist-btn:hover {
+            background: var(--pink-dark);
+            transform: translateY(-2px);
         }
 
-        .blog-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.12);
-        }
-
-        .blog-image {
-            width: 100%;
-            height: 300px;
+        /* ===== HEADER ===== */
+        .blog-header {
+            padding-top: 80px;
+            background: var(--baby-pink);
             position: relative;
             overflow: hidden;
         }
 
-        .blog-image img {
+        .header-image {
             width: 100%;
-            height: 100%;
+            max-height: 500px;
             object-fit: cover;
+            display: block;
         }
 
-        .blog-content {
-            padding: 30px;
+        /* Wavy Divider */
+        .wave-divider {
+            position: relative;
+            height: 80px;
+            background: var(--baby-pink);
+            margin-top: -1px;
         }
 
-        .blog-meta {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
+        .wave-divider::before {
+            content: '';
+            position: absolute;
+            top: -79px;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: var(--baby-pink);
+            clip-path: ellipse(55% 100% at 50% 100%);
+        }
+
+        /* ===== INTRO SECTION ===== */
+        .intro-section {
+            padding: 2rem 2rem 4rem;
+            text-align: center;
+            background: var(--baby-pink);
+        }
+
+        .intro-section h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--pink-dark);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .intro-section p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* ===== FEATURED SECTION ===== */
+        .featured-section {
+            background: var(--white);
+            position: relative;
+            padding: 4rem 2rem;
+        }
+
+        .featured-section::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: var(--white);
+            clip-path: ellipse(55% 100% at 50% 100%);
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
             align-items: center;
         }
 
-        .blog-category {
-            background: var(--primary-pink);
-            color: var(--text-dark);
-            padding: 5px 15px;
+        .featured-image {
+            position: relative;
+        }
+
+        .featured-image img {
+            width: 100%;
             border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
+            box-shadow: 0 20px 50px rgba(255, 105, 180, 0.2);
+        }
+
+        .featured-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 100px;
+            height: 100px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="3" fill="%23B76E79" opacity="0.3"/></svg>');
+            background-size: 15px 15px;
+        }
+
+        .featured-content h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            color: var(--pink-dark);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        .blog-date,
-        .blog-read-time {
-            color: #666;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .blog-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            line-height: 1.4;
-            margin-bottom: 15px;
-            color: #2C2C2C;
-        }
-
-        .blog-excerpt {
-            color: #666;
-            line-height: 1.8;
-            margin-bottom: 20px;
+        .featured-content p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
             font-size: 1rem;
+            line-height: 1.8;
         }
 
-        .blog-card .read-more {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--primary-pink);
+        .read-btn {
+            display: inline-block;
+            background: var(--pink-accent);
+            color: var(--white);
+            padding: 0.9rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .read-btn:hover {
+            background: var(--pink-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+        }
+
+        /* ===== MAUVE BANNER ===== */
+        .mauve-banner {
+            background: var(--pink-accent);
+            position: relative;
+            padding: 5rem 2rem;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .mauve-banner::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: var(--pink-accent);
+            clip-path: ellipse(55% 100% at 50% 100%);
+        }
+
+        .mauve-banner::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: var(--pink-accent);
+            clip-path: ellipse(55% 100% at 50% 0%);
+            z-index: 1;
+        }
+
+        .mauve-banner h2 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .mauve-banner p {
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .mauve-banner .read-btn {
+            background: var(--white);
+            color: var(--pink-accent);
+        }
+
+        .mauve-banner .read-btn:hover {
+            background: var(--baby-pink);
+        }
+
+        /* ===== CATEGORIES SECTION ===== */
+        .categories-section {
+            background: var(--baby-pink);
+            padding: 6rem 2rem 4rem;
+            position: relative;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .category-item {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .category-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .category-item img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--white);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 1rem;
+        }
+
+        .category-item span {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--black);
+        }
+
+        /* ===== ARTICLES GRID ===== */
+        .articles-section {
+            background: var(--white);
+            position: relative;
+            padding: 4rem 2rem 6rem;
+        }
+
+        .articles-section::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: var(--white);
+            clip-path: ellipse(55% 100% at 50% 100%);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            color: var(--pink-dark);
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .article-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .article-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(255, 105, 180, 0.15);
+        }
+
+        .article-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .article-card-content {
+            padding: 1.5rem;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--gray-light);
+            margin-bottom: 0.75rem;
+        }
+
+        .article-card h3 {
+            font-size: 1.2rem;
+            color: var(--black);
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .article-card p {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .article-card .read-more {
+            color: var(--pink-accent);
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.1rem;
-            transition: gap 0.3s;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .blog-card .read-more:hover {
-            gap: 12px;
+        .article-card .read-more:hover {
+            color: var(--pink-dark);
         }
 
-        .blog-card .read-more i {
-            transition: transform 0.3s;
+        /* ===== NEWSLETTER ===== */
+        .newsletter-section {
+            background: var(--baby-pink);
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
         }
 
-        .blog-card .read-more:hover i {
-            transform: translateX(5px);
+        .newsletter-section::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: var(--baby-pink);
+            clip-path: ellipse(55% 100% at 50% 100%);
+        }
+
+        .newsletter-box {
+            background: var(--white);
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+        }
+
+        .newsletter-box h2 {
+            font-size: 2rem;
+            color: var(--pink-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .newsletter-box p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 2px solid var(--white);
+            border-radius: 30px;
+            font-family: inherit;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .newsletter-form input:focus {
+            border-color: var(--pink-accent);
+        }
+
+        .newsletter-form button {
+            background: var(--pink-accent);
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-family: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background: var(--pink-dark);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--pink-dark);
+            color: var(--white);
+            padding: 3rem 2rem 1.5rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-social a {
+            color: var(--white);
+            font-size: 1.3rem;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            opacity: 1;
+            transform: translateY(-3px);
+        }
+
+        .footer-copyright {
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .featured-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .articles-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-left {
+                display: none;
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
         }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
     <nav>
-        <div class="nav-container">
-            <a href="/" class="logo">TheFitChecked</a>
-            <ul class="nav-links">
-                <li><a href="/#features">Features</a></li>
-                <li><a href="/#how-it-works">How It Works</a></li>
-                <li><a href="/blog.html">Blog</a></li>
-                <li><a href="/blueprint.html">Blueprint</a></li>
-                <li><a href="/about.html">About</a></li>
-            </ul>
-            <a href="/#waitlist" class="cta-button">Join Waitlist</a>
+        <div class="nav-left">
+            <a href="/">Home</a>
+            <a href="/blog.html">Blog</a>
+            <a href="/blueprint.html">Blueprint</a>
+        </div>
+        <div class="nav-right">
+            <a href="/#waitlist" class="waitlist-btn">Join Waitlist</a>
         </div>
     </nav>
 
-    <section class="blog-hero">
-        <h1>Fashion & Style Blog</h1>
-        <p>Your ultimate guide to mastering your wardrobe, discovering trends, and elevating your personal style</p>
-        
-        <div class="search-section">
-            <div class="search-box">
-                <input type="search" placeholder="Search articles...">
-                <button><i class="fas fa-search"></i></button>
+    <!-- Header with BLOGGED image -->
+    <header class="blog-header">
+        <img src="images/blogged.png" alt="BLOGGED - TheFitChecked Fashion Blog" class="header-image">
+    </header>
+
+    <div class="wave-divider"></div>
+
+    <!-- Intro Section -->
+    <section class="intro-section">
+        <h1>STYLE STORIES & TIPS</h1>
+        <p>Your ultimate guide to mastering your wardrobe, discovering trends, and elevating your personal style with AI-powered fashion</p>
+    </section>
+
+    <!-- Featured Article -->
+    <section class="featured-section">
+        <div class="featured-grid">
+            <div class="featured-image">
+                <img src="ai-avatar-dream-closet.png" alt="AI Avatar and Dream Closet">
+            </div>
+            <div class="featured-content">
+                <h2>From Cher's Closet to YOUR Closet</h2>
+                <p>Remember Cher's digital closet in Clueless? You have something 1000x better. Create clothes from imagination with AI text prompts, try them on YOUR digital twin avatar, then find real versions to buy. Fantasy has become reality.</p>
+                <a href="blog-ai-avatar-closet.html" class="read-btn">Read Article</a>
             </div>
         </div>
     </section>
 
-    <div class="main-content">
-        <main>
-            <div class="categories">
-                <span class="category-tag active">All</span>
-                <span class="category-tag">Style Tips</span>
-                <span class="category-tag">Wardrobe</span>
-                <span class="category-tag">Technology</span>
-                <span class="category-tag">Sustainability</span>
-                <span class="category-tag">Trends</span>
+    <!-- Mauve Banner -->
+    <section class="mauve-banner">
+        <h2>The AI Fashion Revolution</h2>
+        <p>Discover how smart technology is saving you $1,450+ per year</p>
+        <a href="blog-ai-fashion-revolution.html" class="read-btn">Shop Now</a>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories-section">
+        <div class="categories-grid">
+            <div class="category-item">
+                <img src="ai-fashion-blog.png" alt="New Articles">
+                <span>New</span>
             </div>
-
-            <div class="blog-articles">
-                <!-- Blog Card for AI Fashion Revolution Article -->
-                <div class="blog-card">
-                    <div class="blog-image">
-                        <img src="/ai-fashion-blog.png" alt="AI Fashion Robot with Luxury Shopper">
-                    </div>
-                    
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span class="blog-category">STYLE GUIDE</span>
-                            <span class="blog-date"><i class="far fa-calendar"></i> November 22, 2025</span>
-                            <span class="blog-read-time"><i class="far fa-clock"></i> 8 min read</span>
-                        </div>
-                        
-                        <h3 class="blog-title">The AI Fashion Revolution: How Smart Technology is Saving You $1,450+ Per Year</h3>
-                        
-                        <p class="blog-excerpt">
-                            Stop wasting money on clothes you never wear. Discover how AI-powered fashion tools help you look incredible while cutting your clothing budget in half through smart shopping, virtual try-ons, and digital wardrobe management...
-                        </p>
-                        
-                        <a href="blog-ai-fashion-revolution.html" class="read-more">
-                            Read Full Article <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Blog Card for Virtual Try-On Article -->
-                <div class="blog-card">
-                    <div class="blog-image">
-                        <img src="/virtual-try-on-blog.png" alt="Woman using virtual try-on technology on tablet">
-                    </div>
-                    
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span class="blog-category">STYLE GUIDE</span>
-                            <span class="blog-date"><i class="far fa-calendar"></i> November 22, 2025</span>
-                            <span class="blog-read-time"><i class="far fa-clock"></i> 10 min read</span>
-                        </div>
-                        
-                        <h3 class="blog-title">No More Guessing: How Virtual Try-On Technology Ended the Online Shopping Nightmare</h3>
-                        
-                        <p class="blog-excerpt">
-                            Remember ordering 5 sizes and returning 4? Those days are over. Discover how virtual try-on technology is giving shoppers real confidence, cutting returns by 40%, and transforming a $38 billion guessing game into the future of fashion...
-                        </p>
-                        
-                        <a href="blog-virtual-try-on.html" class="read-more">
-                            Read Full Article <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Blog Card for Virtual Closet Analytics Article -->
-                <div class="blog-card">
-                    <div class="blog-image">
-                        <img src="/virtual-closet-blog.png" alt="Digital wardrobe app showing closet analytics and budget tracking">
-                    </div>
-                    
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span class="blog-category">STYLE GUIDE</span>
-                            <span class="blog-date"><i class="far fa-calendar"></i> November 22, 2025</span>
-                            <span class="blog-read-time"><i class="far fa-clock"></i> 12 min read</span>
-                        </div>
-                        
-                        <h3 class="blog-title">The $1,700 Wake-Up Call: How a Virtual Closet Reveals Where Your Money Really Goes</h3>
-                        
-                        <p class="blog-excerpt">
-                            You spend $1,700/year on clothes yet wear only 30% of your wardrobe. Virtual closet analytics expose the shocking truth about duplicate purchases, unworn items, and cost-per-wear failures—then help you save $800-1,500 annually. Includes FREE 3-month budget tracker...
-                        </p>
-                        
-                        <a href="blog-virtual-closet.html" class="read-more">
-                            Read Full Article + Download Free Tracker <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Blog Card for Fashion Evolution Through Decades Article -->
-                <div class="blog-card">
-                    <div class="blog-image">
-                        <img src="/fashion-evolution-blog.png" alt="Women walking in different fashion styles from different decades">
-                    </div>
-                    
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span class="blog-category">STYLE GUIDE</span>
-                            <span class="blog-date"><i class="far fa-calendar"></i> November 22, 2025</span>
-                            <span class="blog-read-time"><i class="far fa-clock"></i> 15 min read</span>
-                        </div>
-                        
-                        <h3 class="blog-title">From One Look to Endless Looks: How Fashion Evolved from Conformity to Creative Freedom</h3>
-                        
-                        <p class="blog-excerpt">
-                            Your grandmother had ONE acceptable way to dress. You have 47 TikTok aesthetics before breakfast. Journey through 100 years of fashion—from flapper dresses to Cottagecore to Mob Wife—and discover why the 2020s is the most creatively chaotic, beautifully individual era in style history...
-                        </p>
-                        
-                        <a href="blog-fashion-evolution.html" class="read-more">
-                            Read Full Article <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Blog Card for AI Identity & Authenticity Article -->
-                <div class="blog-card">
-                    <div class="blog-image">
-                        <img src="/ai-identity-authenticity.png" alt="Person maintaining authentic identity in AI world">
-                    </div>
-                    
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span class="blog-category">STYLE GUIDE</span>
-                            <span class="blog-date"><i class="far fa-calendar"></i> November 22, 2025</span>
-                            <span class="blog-read-time"><i class="far fa-clock"></i> 14 min read</span>
-                        </div>
-                        
-                        <h3 class="blog-title">The Identity Revolution: How to Stay Authentically YOU While AI Transforms Everything</h3>
-                        
-                        <p class="blog-excerpt">
-                            64% of businesses use AI for branding. 62% of people mistrust AI content. In this paradox lies your power: humanity is the new premium. Learn to leverage AI for income and influence without losing yourself—because in 2025, being irreplaceably YOU is your competitive advantage...
-                        </p>
-                        
-                        <a href="blog-ai-identity.html" class="read-more">
-                            Read Full Article <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Blog Card for AI Personal Styling Revolution Article -->
-                <div class="blog-card">
-                    <div class="blog-image">
-                        <img src="/ai-personal-styling.png" alt="AI personal stylist app on phone with virtual try-on">
-                    </div>
-                    
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span class="blog-category">STYLE GUIDE</span>
-                            <span class="blog-date"><i class="far fa-calendar"></i> November 22, 2025</span>
-                            <span class="blog-read-time"><i class="far fa-clock"></i> 16 min read</span>
-                        </div>
-                        
-                        <h3 class="blog-title">The $16 Billion Revolution: How AI Personal Stylists Are Replacing (And Improving) Human Fashion Experts</h3>
-                        
-                        <p class="blog-excerpt">
-                            The AI personal styling market is exploding from $127M to $2.8B by 2034. Human stylists cost $500/hour. AI? Free. We ranked the top 10 FREE AI stylist apps, compared AI vs human expertise, and show you exactly how to get professional styling advice without spending a cent...
-                        </p>
-                        
-                        <a href="blog-ai-styling-revolution.html" class="read-more">
-                            Read Full Article <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Blog Card for AI Avatar Dream Closet Article -->
-                <div class="blog-card">
-                    <div class="blog-image">
-                        <img src="/ai-avatar-dream-closet.png" alt="Woman using AI avatar and virtual try-on technology">
-                    </div>
-                    
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span class="blog-category">STYLE GUIDE</span>
-                            <span class="blog-date"><i class="far fa-calendar"></i> November 22, 2025</span>
-                            <span class="blog-read-time"><i class="far fa-clock"></i> 18 min read</span>
-                        </div>
-                        
-                        <h3 class="blog-title">From Cher's Closet to YOUR Closet: The AI Avatar Revolution That Makes Fantasy Fashion Real</h3>
-                        
-                        <p class="blog-excerpt">
-                            Remember Cher's digital closet in Clueless? You have something 1000x better. Create clothes from imagination with AI text prompts, try them on YOUR digital twin avatar, then find real versions to buy. Fantasy has become reality. Here's how to use it FREE today...
-                        </p>
-                        
-                        <a href="blog-ai-avatar-closet.html" class="read-more">
-                            Read Full Article <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
+            <div class="category-item">
+                <img src="ai-personal-styling.png" alt="Best Sellers">
+                <span>Popular</span>
             </div>
-        </main>
-
-        <aside class="sidebar">
-            <!-- Newsletter Widget -->
-            <div class="sidebar-widget newsletter-widget">
-                <h3>📧 Get Style Updates</h3>
-                <p style="margin-bottom: 1rem; color: #666; font-size: 0.95rem;">Join 50,000+ fashion lovers receiving weekly tips!</p>
-                <form id="newsletter-form" onsubmit="return handleNewsletterSubmit(event)">
-                    <input type="email" id="newsletter-email" placeholder="Your email" required>
-                    <button type="submit">Subscribe</button>
-                </form>
+            <div class="category-item">
+                <img src="virtual-try-on-blog.png" alt="Style Tips">
+                <span>Style Tips</span>
             </div>
+            <div class="category-item">
+                <img src="fashion-evolution-blog.png" alt="Trends">
+                <span>Trends</span>
+            </div>
+        </div>
+    </section>
 
-            <!-- Popular Posts -->
-            <div class="sidebar-widget">
-                <h3>🔥 Popular Articles</h3>
-                
-                <div class="popular-post">
-                    <a href="/blog-ai-avatar-closet.html" style="display: flex; gap: 1rem; text-decoration: none; color: inherit; transition: transform 0.2s;">
-                        <div class="popular-post-thumb"><i class="fas fa-magic"></i></div>
-                        <div class="popular-post-content">
-                            <h4>From Cher's Closet to YOUR Closet</h4>
-                            <div class="popular-post-meta">18 min read</div>
-                        </div>
-                    </a>
+    <!-- Latest Articles -->
+    <section class="articles-section">
+        <h2 class="section-title">Latest Articles</h2>
+        <div class="articles-grid">
+            <article class="article-card">
+                <img src="virtual-try-on-blog.png" alt="Virtual Try-On Technology">
+                <div class="article-card-content">
+                    <div class="article-meta">
+                        <span><i class="far fa-calendar"></i> Nov 22, 2025</span>
+                        <span><i class="far fa-clock"></i> 10 min</span>
+                    </div>
+                    <h3>No More Guessing: How Virtual Try-On Technology Ended the Online Shopping Nightmare</h3>
+                    <p>Remember ordering 5 sizes and returning 4? Those days are over. Discover how virtual try-on technology is giving shoppers real confidence...</p>
+                    <a href="blog-virtual-try-on.html" class="read-more">Read More →</a>
                 </div>
-                
-                <div class="popular-post">
-                    <a href="/blog-ai-styling-revolution.html" style="display: flex; gap: 1rem; text-decoration: none; color: inherit; transition: transform 0.2s;">
-                        <div class="popular-post-thumb"><i class="fas fa-robot"></i></div>
-                        <div class="popular-post-content">
-                            <h4>The $16 Billion AI Styling Revolution</h4>
-                            <div class="popular-post-meta">16 min read</div>
-                        </div>
-                    </a>
+            </article>
+
+            <article class="article-card">
+                <img src="virtual-closet-blog.png" alt="Virtual Closet Analytics">
+                <div class="article-card-content">
+                    <div class="article-meta">
+                        <span><i class="far fa-calendar"></i> Nov 22, 2025</span>
+                        <span><i class="far fa-clock"></i> 12 min</span>
+                    </div>
+                    <h3>The $1,700 Wake-Up Call: How a Virtual Closet Reveals Where Your Money Really Goes</h3>
+                    <p>You spend $1,700/year on clothes yet wear only 30% of your wardrobe. Virtual closet analytics expose the shocking truth...</p>
+                    <a href="blog-virtual-closet.html" class="read-more">Read More →</a>
                 </div>
-                
-                <div class="popular-post">
-                    <a href="/blog-fashion-evolution.html" style="display: flex; gap: 1rem; text-decoration: none; color: inherit; transition: transform 0.2s;">
-                        <div class="popular-post-thumb"><i class="fas fa-book-open"></i></div>
-                        <div class="popular-post-content">
-                            <h4>100 Years of Fashion Evolution</h4>
-                            <div class="popular-post-meta">15 min read</div>
-                        </div>
-                    </a>
+            </article>
+
+            <article class="article-card">
+                <img src="fashion-evolution-blog.png" alt="Fashion Evolution">
+                <div class="article-card-content">
+                    <div class="article-meta">
+                        <span><i class="far fa-calendar"></i> Nov 22, 2025</span>
+                        <span><i class="far fa-clock"></i> 15 min</span>
+                    </div>
+                    <h3>From One Look to Endless Looks: How Fashion Evolved from Conformity to Freedom</h3>
+                    <p>Your grandmother had ONE acceptable way to dress. You have 47 TikTok aesthetics before breakfast. Journey through 100 years of fashion...</p>
+                    <a href="blog-fashion-evolution.html" class="read-more">Read More →</a>
                 </div>
-            </div>
+            </article>
 
-            <!-- Ad Space -->
-            <div class="sidebar-widget ad-widget">
-                <p><strong>Advertisement Space</strong></p>
-                <p>300x250</p>
-            </div>
+            <article class="article-card">
+                <img src="ai-identity-authenticity.png" alt="AI Identity">
+                <div class="article-card-content">
+                    <div class="article-meta">
+                        <span><i class="far fa-calendar"></i> Nov 22, 2025</span>
+                        <span><i class="far fa-clock"></i> 14 min</span>
+                    </div>
+                    <h3>The Identity Revolution: How to Stay Authentically YOU While AI Transforms Everything</h3>
+                    <p>64% of businesses use AI for branding. 62% of people mistrust AI content. In this paradox lies your power...</p>
+                    <a href="blog-ai-identity.html" class="read-more">Read More →</a>
+                </div>
+            </article>
 
-            <!-- App Promo -->
-            <div class="sidebar-widget" style="background: #A7C7E7; color: #000000;">
-                <h3 style="color: #000000;">Get the App!</h3>
-                <p style="margin-bottom: 1rem;">Organize your wardrobe with AI-powered styling</p>
-                <a href="/#waitlist" style="display: block; background: white; color: #F8B4D9; padding: 0.75rem; border-radius: 10px; text-align: center; font-weight: 600; text-decoration: none;">Download Now</a>
-            </div>
-        </aside>
-    </div>
+            <article class="article-card">
+                <img src="ai-personal-styling.png" alt="AI Personal Styling">
+                <div class="article-card-content">
+                    <div class="article-meta">
+                        <span><i class="far fa-calendar"></i> Nov 22, 2025</span>
+                        <span><i class="far fa-clock"></i> 16 min</span>
+                    </div>
+                    <h3>The $16 Billion Revolution: How AI Personal Stylists Are Replacing Human Fashion Experts</h3>
+                    <p>The AI personal styling market is exploding from $127M to $2.8B by 2034. Human stylists cost $500/hour. AI? Free...</p>
+                    <a href="blog-ai-styling-revolution.html" class="read-more">Read More →</a>
+                </div>
+            </article>
 
+            <article class="article-card">
+                <img src="ai-fashion-blog.png" alt="AI Fashion">
+                <div class="article-card-content">
+                    <div class="article-meta">
+                        <span><i class="far fa-calendar"></i> Nov 22, 2025</span>
+                        <span><i class="far fa-clock"></i> 8 min</span>
+                    </div>
+                    <h3>The AI Fashion Revolution: How Smart Technology is Saving You $1,450+ Per Year</h3>
+                    <p>Stop wasting money on clothes you never wear. Discover how AI-powered fashion tools help you look incredible while cutting your budget...</p>
+                    <a href="blog-ai-fashion-revolution.html" class="read-more">Read More →</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter-section">
+        <div class="newsletter-box">
+            <h2>📧 Get Style Updates</h2>
+            <p>Join 50,000+ fashion lovers receiving weekly tips!</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 TheFitChecked. All rights reserved.</p>
-        <div style="margin-top: 1rem;">
+        <div class="footer-links">
             <a href="/privacy-policy.html">Privacy Policy</a>
             <a href="/terms-of-service.html">Terms of Service</a>
             <a href="mailto:hello@thefitcheckedhomepage.com">Contact</a>
         </div>
+        <div class="footer-social">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p class="footer-copyright">© 2025 TheFitChecked. All rights reserved.</p>
     </footer>
-
-    <script>
-        async function handleNewsletterSubmit(e) {
-            e.preventDefault();
-            
-            const emailInput = document.getElementById('newsletter-email');
-            const submitButton = e.target.querySelector('button[type="submit"]');
-            const originalText = submitButton.textContent;
-            
-            submitButton.disabled = true;
-            submitButton.textContent = 'Subscribing...';
-            
-            const email = emailInput.value;
-            
-            try {
-                // Subscribe to newsletter via waitlist system (using source: 'newsletter')
-                const response = await fetch('https://kxmtbetklikewluwntyx.supabase.co/functions/v1/waitlist-signup', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        email: email,
-                        source: 'newsletter-blog'
-                    })
-                });
-                
-                const data = await response.json();
-                
-                if (response.ok) {
-                    if (data.alreadyConfirmed) {
-                        alert('✅ You\'re already subscribed to our newsletter!');
-                    } else {
-                        alert('🎉 Subscribed!\n\nCheck your email to confirm your subscription.\n\nYou\'ll receive:\n✨ Weekly fashion tips\n👗 Styling advice\n🎁 Exclusive early access offers\n📱 App launch updates');
-                    }
-                    emailInput.value = '';
-                } else {
-                    alert('❌ Subscription failed\n\n' + (data.error || 'Please try again later.'));
-                }
-            } catch (error) {
-                console.error('Newsletter subscription error:', error);
-                alert('❌ Network error\n\nPlease check your connection and try again.');
-            } finally {
-                submitButton.disabled = false;
-                submitButton.textContent = originalText;
-            }
-            
-            return false;
-        }
-    </script>
 </body>
 </html>
