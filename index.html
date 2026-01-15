@@ -208,16 +208,13 @@
         /* iPhone Mockup Card */
         .feature-card {
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s ease;
             position: relative;
         }
 
-        .feature-card:hover {
-            transform: translateY(-15px) scale(1.02);
-        }
-
         .feature-card:hover .iphone-frame {
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+            transform: translateY(-5px);
         }
 
         .iphone-frame {
@@ -225,7 +222,7 @@
             border-radius: 45px;
             padding: 12px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-            transition: box-shadow 0.4s ease;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
@@ -858,6 +855,16 @@
             }
         }
 
+        @keyframes shakeUp {
+            0%, 100% { transform: translateY(0); }
+            10% { transform: translateY(-8px); }
+            20% { transform: translateY(-4px); }
+            30% { transform: translateY(-10px); }
+            40% { transform: translateY(-2px); }
+            50% { transform: translateY(-6px); }
+            60% { transform: translateY(0); }
+        }
+
         .fade-in-up {
             animation: fadeInUp 0.8s ease forwards;
         }
@@ -865,6 +872,10 @@
         .feature-card {
             opacity: 0;
             animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .feature-card:hover {
+            animation: shakeUp 0.6s ease;
         }
 
         .feature-card:nth-child(1) { animation-delay: 0.1s; }
@@ -896,7 +907,7 @@
     <section class="hero">
         <!-- Translucent Logo Background -->
         <div class="logo-background">
-            <img src="/logo.png" alt="TheFitChecked">
+            <img src="images/logo.png" alt="TheFitChecked">
         </div>
 
         <div class="hero-content fade-in-up">
@@ -1215,6 +1226,7 @@
             
             const video = document.getElementById('modalVideo');
             video.src = feature.video;
+            video.play();
             
             document.getElementById('featureModal').classList.add('active');
             document.body.style.overflow = 'hidden';
