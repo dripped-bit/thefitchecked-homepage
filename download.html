@@ -36,19 +36,29 @@
 
         /* Full Page Background */
         .page-container {
+            position: relative;
+            width: 100%;
             min-height: 100vh;
-            height: 100%;
-            background-image: url('images/coming-soon-bg.png');
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
+        }
+
+        .bg-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .page-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            position: relative;
             padding: 3rem 2rem;
+            z-index: 2;
         }
 
         .page-container::before {
@@ -397,45 +407,49 @@
 </head>
 <body>
     <div class="page-container">
-        <a href="/" class="logo">TheFitChecked</a>
+        <img src="images/coming-soon-bg.png" alt="" class="bg-image">
 
-        <div class="content">
-            <!-- Countdown Timer -->
-            <div class="countdown-container">
-                <div class="countdown">
-                    <div class="countdown-item">
-                        <span class="countdown-number" id="days">35</span>
-                        <span class="countdown-label">Days</span>
+        <div class="page-content">
+            <a href="/" class="logo">TheFitChecked</a>
+
+            <div class="content">
+                <!-- Countdown Timer -->
+                <div class="countdown-container">
+                    <div class="countdown">
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="days">35</span>
+                            <span class="countdown-label">Days</span>
+                        </div>
+                        <span class="countdown-separator">:</span>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="hours">00</span>
+                            <span class="countdown-label">Hours</span>
+                        </div>
+                        <span class="countdown-separator">:</span>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="minutes">00</span>
+                            <span class="countdown-label">Minutes</span>
+                        </div>
+                        <span class="countdown-separator">:</span>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="seconds">00</span>
+                            <span class="countdown-label">Seconds</span>
+                        </div>
                     </div>
-                    <span class="countdown-separator">:</span>
-                    <div class="countdown-item">
-                        <span class="countdown-number" id="hours">00</span>
-                        <span class="countdown-label">Hours</span>
-                    </div>
-                    <span class="countdown-separator">:</span>
-                    <div class="countdown-item">
-                        <span class="countdown-number" id="minutes">00</span>
-                        <span class="countdown-label">Minutes</span>
-                    </div>
-                    <span class="countdown-separator">:</span>
-                    <div class="countdown-item">
-                        <span class="countdown-number" id="seconds">00</span>
-                        <span class="countdown-label">Seconds</span>
-                    </div>
+                    <p class="until-launch">Until Launch</p>
                 </div>
-                <p class="until-launch">Until Launch</p>
+
+                <!-- Join Waitlist Button -->
+                <button class="waitlist-btn" onclick="openWaitlistModal()">Join the Waitlist</button>
             </div>
 
-            <!-- Join Waitlist Button -->
-            <button class="waitlist-btn" onclick="openWaitlistModal()">Join the Waitlist</button>
-        </div>
-
-        <!-- Footer -->
-        <div class="footer">
-            <div class="footer-links">
-                <a href="/legal.html#privacy">Privacy Policy</a>
-                <a href="/legal.html#terms">Terms of Service</a>
-                <a href="/">Back to Home</a>
+            <!-- Footer -->
+            <div class="footer">
+                <div class="footer-links">
+                    <a href="/legal.html#privacy">Privacy Policy</a>
+                    <a href="/legal.html#terms">Terms of Service</a>
+                    <a href="/">Back to Home</a>
+                </div>
             </div>
         </div>
     </div>
