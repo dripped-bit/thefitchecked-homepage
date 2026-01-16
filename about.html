@@ -3,499 +3,714 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="About TheFitChecked - Our mission to revolutionize fashion with AI technology">
+    <meta name="description" content="About TheFitChecked - Revolutionizing fashion with AI technology">
     <title>About Us - TheFitChecked</title>
-    
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         :root {
-            --primary-pink: #F8B4D9;
-            --primary-pink-hover: #E89DC5;
-            --primary-blue: #A7C7E7;
-            --primary-blue-hover: #8FB5D9;
-            --text-dark: #000000;
-            --text-light: #4A4A4A;
-            --bg-light-pink: #FFF9FB;
-            --bg-light-blue: #F5FAFF;
+            --baby-pink: #FFE4EC;
+            --pink-medium: #FFB6C1;
+            --pink-accent: #FF69B4;
+            --pink-dark: #DB7093;
+            --cream: #FFF8F0;
+            --peach: #FFECD2;
+            --white: #FFFFFF;
+            --black: #1a1a1a;
+            --gray: #666666;
         }
-        
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            color: var(--text-dark);
-            line-height: 1.6;
+            font-family: 'Outfit', sans-serif;
+            background: var(--cream);
+            color: var(--black);
+            line-height: 1.7;
+            overflow-x: hidden;
         }
-        
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
+
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
         }
-        
+
+        /* ===== NAVIGATION ===== */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.98);
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
+            padding: 1rem 3rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 2rem;
+            z-index: 1000;
+            background: rgba(255, 248, 240, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 105, 180, 0.1);
         }
-        
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary-pink);
-            text-decoration: none;
-        }
-        
-        .nav-links {
-            list-style: none;
+
+        .nav-left {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
         }
-        
-        .nav-links a {
+
+        .nav-left a {
             text-decoration: none;
-            color: var(--text-dark);
+            color: var(--black);
             font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary-pink);
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
         }
 
-        .nav-links a[href="/blog.html"] {
-            color: var(--primary-blue);
-            font-weight: 600;
+        .nav-left a:hover {
+            color: var(--pink-accent);
         }
 
-        .nav-links a[href="/blueprint.html"] {
-            color: var(--primary-pink);
-            font-weight: 600;
-        }
-        
-        .cta-button {
-            background: var(--primary-pink);
-            color: var(--text-dark);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
+        .nav-right .waitlist-btn {
+            background: var(--pink-accent);
+            color: var(--white);
+            padding: 0.75rem 1.75rem;
+            border-radius: 30px;
             text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
         }
 
-        .cta-button:hover {
+        .nav-right .waitlist-btn:hover {
+            background: var(--pink-dark);
             transform: translateY(-2px);
-            background: var(--primary-pink-hover);
-            box-shadow: 0 10px 25px rgba(248, 180, 217, 0.35);
         }
-        
-        .hero {
-            margin-top: 80px;
-            background: var(--bg-light-pink);
-            padding: 6rem 2rem 4rem;
+
+        /* ===== HEADER ===== */
+        .about-header {
+            padding-top: 70px;
+            background: var(--baby-pink);
+        }
+
+        .header-image {
+            width: 100%;
+            max-height: 450px;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        /* ===== MARQUEE ===== */
+        .marquee-section {
+            background: var(--pink-accent);
+            padding: 0.75rem 0;
+            overflow: hidden;
+        }
+
+        .marquee-track {
+            display: flex;
+            animation: marquee 20s linear infinite;
+        }
+
+        .marquee-text {
+            white-space: nowrap;
+            color: var(--white);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            padding: 0 3rem;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ===== OUR STORY ===== */
+        .story-section {
+            background: var(--cream);
+            padding: 5rem 2rem;
             text-align: center;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary-pink);
+        .section-badge {
+            display: inline-block;
+            background: var(--peach);
+            color: var(--pink-dark);
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
         }
-        
-        .hero p {
-            font-size: 1.3rem;
-            color: var(--text-light);
+
+        .story-section h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: var(--black);
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+
+        .story-section h2 em {
+            color: var(--pink-accent);
+            font-style: italic;
+        }
+
+        .story-content {
             max-width: 800px;
             margin: 0 auto;
         }
-        
-        .story-section {
-            padding: 6rem 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
-        .story-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: var(--primary-pink);
-        }
-        
-        .story-section p {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: var(--text-light);
+
+        .story-content p {
+            font-size: 1.1rem;
+            color: var(--gray);
             margin-bottom: 1.5rem;
+            line-height: 1.9;
         }
-        
+
+        /* ===== MISSION SECTION ===== */
         .mission-section {
-            background: var(--bg-light-blue);
-            padding: 6rem 2rem;
+            background: var(--baby-pink);
+            padding: 5rem 2rem;
+            position: relative;
         }
-        
-        .mission-container {
-            max-width: 1200px;
+
+        .mission-section::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: var(--baby-pink);
+            clip-path: ellipse(55% 100% at 50% 100%);
+        }
+
+        .mission-content {
+            max-width: 900px;
             margin: 0 auto;
             text-align: center;
         }
-        
-        .mission-container h2 {
-            font-size: 3rem;
-            margin-bottom: 3rem;
-        }
-        
-        .mission-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-        
-        .mission-card {
-            background: white;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-        }
-        
-        .mission-icon {
-            font-size: 3rem;
+
+        .mission-section h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--black);
             margin-bottom: 1.5rem;
-            color: var(--primary-pink);
         }
-        
-        .mission-card h3 {
-            font-size: 1.8rem;
+
+        .mission-section h2 em {
+            color: var(--pink-accent);
+            font-style: italic;
+        }
+
+        .mission-text {
+            font-size: 1.15rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+        }
+
+        /* ===== CLOUD BOXES ===== */
+        .values-grid {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .cloud-box {
+            background: var(--white);
+            width: 280px;
+            padding: 2.5rem 2rem;
+            border-radius: 100px 100px 100px 100px / 80px 80px 80px 80px;
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.15);
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cloud-box::before {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: var(--white);
+            border-radius: 50%;
+            top: -20px;
+            left: 30px;
+            box-shadow: 0 5px 20px rgba(255, 105, 180, 0.1);
+        }
+
+        .cloud-box::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: var(--white);
+            border-radius: 50%;
+            top: -10px;
+            right: 40px;
+            box-shadow: 0 5px 20px rgba(255, 105, 180, 0.1);
+        }
+
+        .cloud-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(255, 105, 180, 0.25);
+        }
+
+        .cloud-box-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cloud-icon {
+            font-size: 2.5rem;
             margin-bottom: 1rem;
         }
-        
-        .team-section {
-            padding: 6rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+
+        .cloud-box h3 {
+            font-size: 1.5rem;
+            color: var(--black);
+            margin-bottom: 0.75rem;
         }
-        
-        .team-section h2 {
+
+        .cloud-box p {
+            font-size: 0.95rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* ===== FOUNDER SECTION ===== */
+        .founder-section {
+            background: var(--pink-dark);
+            padding: 5rem 2rem;
+            position: relative;
+            color: var(--white);
+        }
+
+        .founder-section::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: var(--pink-dark);
+            clip-path: ellipse(55% 100% at 50% 100%);
+        }
+
+        .founder-section::after {
+            content: '';
+            position: absolute;
+            bottom: -60px;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: var(--pink-dark);
+            clip-path: ellipse(55% 100% at 50% 0%);
+            z-index: 1;
+        }
+
+        .founder-header {
             text-align: center;
-            font-size: 3rem;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .founder-header h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--white);
+        }
+
+        .founder-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .founder-image-wrapper {
+            position: relative;
         }
 
         .founder-image {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto 2rem;
-            display: block;
-            border: 4px solid var(--primary-pink);
-            box-shadow: 0 10px 30px rgba(248, 180, 217, 0.3);
-        }
-
-        .founder-card {
-            background: white;
-            padding: 3rem;
+            width: 100%;
             border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            max-width: 800px;
-            margin: 0 auto 3rem;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
         }
-        
-        .founder-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+
+        .founder-info {
+            text-align: left;
+        }
+
+        .founder-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 3px;
             margin-bottom: 0.5rem;
-        }
-
-        .founder-card h3 {
-            font-size: 2rem;
-            margin-bottom: 0;
-            color: var(--primary-pink);
-        }
-
-        .founder-logo {
-            width: 200px;
-            height: 200px;
-            object-fit: contain;
+            color: var(--white);
         }
 
         .founder-title {
-            color: var(--text-light);
-            font-size: 1.2rem;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+            color: var(--pink-medium);
+        }
+
+        .founder-bio {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            opacity: 0.95;
             margin-bottom: 1.5rem;
         }
-        
-        .values-section {
-            background: var(--primary-blue);
+
+        .founder-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 4px solid var(--pink-medium);
+            border-radius: 0 10px 10px 0;
+            margin-top: 2rem;
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            background: var(--cream);
             padding: 6rem 2rem;
-            color: var(--text-dark);
             text-align: center;
+            position: relative;
         }
-        
-        .values-section h2 {
-            font-size: 3rem;
-            margin-bottom: 3rem;
-        }
-        
-        .values-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-        
-        .value-item {
-            padding: 2rem;
-        }
-        
-        .value-item h3 {
-            font-size: 1.5rem;
+
+        .cta-section h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--black);
             margin-bottom: 1rem;
         }
-        
-        .cta-section {
-            padding: 6rem 2rem;
-            text-align: center;
-            background: white;
-        }
-        
-        .cta-section h2 {
-            font-size: 3rem;
+
+        .cta-section p {
+            color: var(--gray);
             margin-bottom: 2rem;
+            font-size: 1.1rem;
         }
-        
-        .cta-section .cta-button {
-            background: var(--primary-pink);
-            color: var(--text-dark);
-            padding: 1.2rem 3rem;
-            border-radius: 50px;
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--pink-accent);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.2rem;
-            display: inline-block;
+            font-size: 1rem;
+            transition: all 0.3s ease;
         }
-        
+
+        .cta-btn:hover {
+            background: var(--pink-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.3);
+        }
+
+        /* ===== FOOTER ===== */
         footer {
-            background: var(--text-dark);
-            color: white;
+            background: var(--black);
+            color: var(--white);
             padding: 4rem 2rem 2rem;
         }
-        
-        .footer-container {
-            max-width: 1400px;
-            margin: 0 auto;
+
+        .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 3rem;
-            margin-bottom: 2rem;
+            max-width: 1000px;
+            margin: 0 auto 3rem;
         }
-        
-        .footer-links h4 {
-            font-size: 1.2rem;
+
+        .footer-column h4 {
+            color: var(--pink-accent);
+            font-size: 1rem;
             margin-bottom: 1.5rem;
-            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        
-        .footer-links ul {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-        
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
+
+        .footer-column a {
+            display: block;
+            color: var(--white);
             text-decoration: none;
-            transition: color 0.3s;
+            opacity: 0.8;
+            margin-bottom: 0.75rem;
+            transition: opacity 0.3s ease;
         }
-        
-        .footer-links a:hover {
-            color: var(--primary-pink);
+
+        .footer-column a:hover {
+            opacity: 1;
         }
-        
-        footer > p {
-            text-align: center;
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 1000px;
+            margin: 0 auto;
         }
-        
-        @media (max-width: 968px) {
-            .hero h1 {
-                font-size: 2.5rem;
+
+        .footer-copyright {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-social a {
+            color: var(--white);
+            font-size: 1.3rem;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-social a:hover {
+            opacity: 1;
+            background: var(--pink-accent);
+            transform: translateY(-3px);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .founder-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
             }
+
+            .founder-info {
+                text-align: center;
+            }
+
+            .founder-image-wrapper {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-left {
+                display: none;
+            }
+
+            .values-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cloud-box {
+                width: 100%;
+                max-width: 320px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
         }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
     <nav>
-        <div class="nav-container">
-            <a href="/index.html" class="logo">TheFitChecked</a>
-            <ul class="nav-links">
-                <li><a href="/#features">Features</a></li>
-                <li><a href="/#how-it-works">How It Works</a></li>
-                <li><a href="/blog.html">Blog</a></li>
-                <li><a href="/blueprint.html">Blueprint</a></li>
-                <li><a href="/about.html">About</a></li>
-            </ul>
-            <a href="/#waitlist" class="cta-button">Join Waitlist</a>
+        <div class="nav-left">
+            <a href="/">Home</a>
+            <a href="/blog.html">Blog</a>
+            <a href="/blueprint.html">Blueprint</a>
+        </div>
+        <div class="nav-right">
+            <a href="/#waitlist" class="waitlist-btn">Join Waitlist</a>
         </div>
     </nav>
 
-    <section class="hero">
-        <h1>About TheFitChecked</h1>
-        <p>Revolutionizing fashion with AI technology - one outfit at a time</p>
-    </section>
+    <!-- Header with About image -->
+    <header class="about-header">
+        <img src="images/about-header.png" alt="About TheFitChecked - Revolutionizing Fashion with AI Technology" class="header-image">
+    </header>
 
+    <!-- Marquee -->
+    <div class="marquee-section">
+        <div class="marquee-track">
+            <span class="marquee-text">✨ AI-POWERED FASHION ✨ YOUR PERSONAL STYLIST ✨ SMART WARDROBE ✨ VIRTUAL TRY-ON ✨ AI-POWERED FASHION ✨ YOUR PERSONAL STYLIST ✨ SMART WARDROBE ✨ VIRTUAL TRY-ON ✨</span>
+            <span class="marquee-text">✨ AI-POWERED FASHION ✨ YOUR PERSONAL STYLIST ✨ SMART WARDROBE ✨ VIRTUAL TRY-ON ✨ AI-POWERED FASHION ✨ YOUR PERSONAL STYLIST ✨ SMART WARDROBE ✨ VIRTUAL TRY-ON ✨</span>
+        </div>
+    </div>
+
+    <!-- Our Story Section -->
     <section class="story-section">
-        <h2>Our Story</h2>
-        <p>TheFitChecked was born from a simple frustration: standing in front of a full closet with "nothing to wear." We realized that fashion isn't just about having clothes—it's about knowing what you have, how to style it, and having the confidence to express yourself.</p>
-        
-        <p>As a developer and fashion enthusiast, our founder Genevie saw an opportunity to combine cutting-edge AI technology with practical wardrobe management. What if your closet could be smart? What if you could see exactly how clothes would look on your body before buying? What if AI could be your personal stylist, available 24/7?</p>
-        
-        <p>After months of development and testing, TheFitChecked emerged as more than just an app—it's a complete fashion ecosystem that empowers you to make better style decisions, save money, and look your best every day.</p>
-        
-        <p>We're building TheFitChecked for everyone who's ever felt overwhelmed by their wardrobe, struggled with packing for trips, or wished they had a personal stylist on speed dial. Fashion should be fun, not stressful—and that's exactly what we're making possible.</p>
+        <span class="section-badge">Our Story</span>
+        <h2>Inspired. <em>Empowered.</em> Confident.<br>Welcome to <em>TheFitChecked</em></h2>
+        <div class="story-content">
+            <p>TheFitChecked was born from a simple frustration: standing in front of a full closet with "nothing to wear." We realized that fashion isn't just about having clothes—it's about knowing what you have, how to style it, and having the confidence to express yourself.</p>
+            <p>What if your closet could be smart? What if you could see exactly how clothes would look on your body before buying? What if AI could be your personal stylist, available 24/7?</p>
+            <p>After months of development and testing, TheFitChecked emerged as more than just an app—it's a complete fashion ecosystem that empowers you to make better style decisions, save money, and look your best every day.</p>
+        </div>
     </section>
 
+    <!-- Mission Section -->
     <section class="mission-section">
-        <div class="mission-container">
-            <h2>Our Mission</h2>
-            <p style="font-size: 1.2rem; color: #666; max-width: 800px; margin: 0 auto;">We're on a mission to democratize personal styling and make fashion accessible, sustainable, and enjoyable for everyone.</p>
+        <div class="mission-content">
+            <span class="section-badge">Our Mission</span>
+            <h2>We're <em>passionate</em> about style<br>and the <em>confidence</em> it brings</h2>
+            <p class="mission-text">Our goal is to democratize personal styling and make fashion accessible, sustainable, and enjoyable for everyone. We believe everyone deserves to feel confident in what they wear.</p>
             
-            <div class="mission-grid">
-                <div class="mission-card">
-                    <div class="mission-icon"><i class="fas fa-brain"></i></div>
-                    <h3>AI-Powered</h3>
-                    <p>Leverage cutting-edge artificial intelligence to provide personalized style recommendations that actually understand you.</p>
+            <!-- Cloud Boxes -->
+            <div class="values-grid">
+                <div class="cloud-box">
+                    <div class="cloud-box-content">
+                        <div class="cloud-icon">🤖</div>
+                        <h3>AI-Powered</h3>
+                        <p>Cutting-edge artificial intelligence that provides personalized style recommendations that actually understand you.</p>
+                    </div>
                 </div>
-                
-                <div class="mission-card">
-                    <div class="mission-icon"><i class="fas fa-leaf"></i></div>
-                    <h3>Sustainable</h3>
-                    <p>Help reduce fashion waste by maximizing your existing wardrobe and making smarter purchasing decisions.</p>
+                <div class="cloud-box">
+                    <div class="cloud-box-content">
+                        <div class="cloud-icon">🌱</div>
+                        <h3>Sustainable</h3>
+                        <p>Reduce fashion waste by maximizing your existing wardrobe and making smarter purchasing decisions.</p>
+                    </div>
                 </div>
-                
-                <div class="mission-card">
-                    <div class="mission-icon"><i class="fas fa-users"></i></div>
-                    <h3>Inclusive</h3>
-                    <p>Fashion for every body type, style preference, and budget. No judgment, just support and empowerment.</p>
+                <div class="cloud-box">
+                    <div class="cloud-box-content">
+                        <div class="cloud-icon">💖</div>
+                        <h3>Inclusive</h3>
+                        <p>Fashion for every body type, style preference, and budget. No judgment, just support and empowerment.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="team-section">
-        <h2>Meet the Founder</h2>
-        <img src="/founder.png" alt="Genevie - Founder of TheFitChecked" class="founder-image">
-
-        <div class="founder-card">
-            <div class="founder-header">
-                <h3>Genevie</h3>
-                <img src="/tfc.png" alt="TheFitChecked Logo" class="founder-logo">
-            </div>
-            <div class="founder-title">Founder & CEO</div>
-            <p>Genevie is a full-stack developer and fashion enthusiast who combines technical expertise with a passion for style. With experience in AI, mobile development, and user experience design, she's building TheFitChecked to solve real problems she's experienced herself.</p>
-            <p style="margin-top: 1rem;">"I wanted to create something that makes getting dressed in the morning exciting, not stressful. Fashion should be accessible to everyone, and AI can make that happen."</p>
+    <!-- Founder Section -->
+    <section class="founder-section">
+        <div class="founder-header">
+            <span class="section-badge" style="background: rgba(255,255,255,0.2); color: white;">Meet The Founder</span>
+            <h2>About the Founder</h2>
         </div>
-        
-        <div style="text-align: center; margin-top: 3rem;">
-            <p style="font-size: 1.2rem; color: #666; margin-bottom: 2rem;">We're a small but mighty team passionate about fashion, technology, and empowering people to look and feel their best.</p>
-        </div>
-    </section>
-
-    <section class="values-section">
-        <h2>Our Values</h2>
-        
-        <div class="values-grid">
-            <div class="value-item">
-                <h3>🎯 User-First</h3>
-                <p>Every decision we make starts with: "Does this help our users?"</p>
+        <div class="founder-grid">
+            <div class="founder-image-wrapper">
+                <img src="images/founder.png" alt="Genevie Guevara - Founder of TheFitChecked" class="founder-image">
             </div>
-            
-            <div class="value-item">
-                <h3>🚀 Innovation</h3>
-                <p>We embrace new technology to solve old problems in creative ways.</p>
-            </div>
-            
-            <div class="value-item">
-                <h3>💖 Inclusivity</h3>
-                <p>Fashion is for everyone, and so is TheFitChecked.</p>
-            </div>
-            
-            <div class="value-item">
-                <h3>🌱 Sustainability</h3>
-                <p>We believe in conscious consumption and making the most of what you have.</p>
-            </div>
-            
-            <div class="value-item">
-                <h3>✨ Empowerment</h3>
-                <p>We build tools that give you confidence to express your unique style.</p>
-            </div>
-            
-            <div class="value-item">
-                <h3>🤝 Transparency</h3>
-                <p>We're honest about what we do, how we use AI, and how we protect your data.</p>
+            <div class="founder-info">
+                <h3 class="founder-name">GENEVIE GUEVARA</h3>
+                <p class="founder-title">Founder & CEO</p>
+                <p class="founder-bio">Genevie is a full-stack developer and fashion enthusiast who combines technical expertise with a passion for style. With experience in AI, mobile development, and user experience design, she's building TheFitChecked to solve real problems she's experienced herself.</p>
+                <p class="founder-bio">Her mission is to empower every person to feel confident in their style choices, using technology as a bridge between fashion dreams and everyday reality.</p>
+                <div class="founder-quote">
+                    "I wanted to create something that makes getting dressed in the morning exciting, not stressful. Fashion should be accessible to everyone, and AI can make that happen."
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- CTA Section -->
     <section class="cta-section">
         <h2>Join the Fashion Revolution</h2>
-        <p style="font-size: 1.2rem; color: #666; margin-bottom: 2rem;">Be part of our journey to transform how the world approaches fashion</p>
-        <a href="/#waitlist" class="cta-button">Join Waitlist - Get 50% OFF</a>
+        <p>Be part of our journey to transform how the world approaches fashion</p>
+        <a href="/#waitlist" class="cta-btn">Join Waitlist - Get 50% OFF</a>
     </section>
 
+    <!-- Footer -->
     <footer>
-        <div class="footer-container">
-            <div class="footer-links">
+        <div class="footer-grid">
+            <div class="footer-column">
                 <h4>Product</h4>
-                <ul>
-                    <li><a href="/#features">Features</a></li>
-                    <li><a href="/#how-it-works">How It Works</a></li>
-                    <li><a href="/blueprint.html">Blueprint</a></li>
-                    <li><a href="/#waitlist">Download App</a></li>
-                </ul>
+                <a href="/#features">Features</a>
+                <a href="/#how-it-works">How It Works</a>
+                <a href="/blueprint.html">Blueprint</a>
+                <a href="/#waitlist">Download App</a>
             </div>
-            
-            <div class="footer-links">
+            <div class="footer-column">
                 <h4>Company</h4>
-                <ul>
-                    <li><a href="/about.html">About Us</a></li>
-                    <li><a href="/blog.html">Blog</a></li>
-                    <li><a href="/contact.html">Contact</a></li>
-                </ul>
+                <a href="/about.html">About Us</a>
+                <a href="/blog.html">Blog</a>
+                <a href="/careers.html">Careers</a>
+                <a href="mailto:hello@thefitcheckedhomepage.com">Contact</a>
             </div>
-            
-            <div class="footer-links">
-                <h4>Support</h4>
-                <ul>
-                    <li><a href="/support.html">Help Center</a></li>
-                    <li><a href="/legal.html#privacy">Privacy Policy</a></li>
-                    <li><a href="/legal.html#terms">Terms of Service</a></li>
-                </ul>
+            <div class="footer-column">
+                <h4>Legal</h4>
+                <a href="/legal.html#privacy">Privacy Policy</a>
+                <a href="/legal.html#terms">Terms of Service</a>
+                <a href="/legal.html#cookies">Cookie Policy</a>
+                <a href="/legal.html#disclaimer">Disclaimer</a>
             </div>
         </div>
-        <p>&copy; 2025 TheFitChecked. All rights reserved.</p>
+        <div class="footer-bottom">
+            <p class="footer-copyright">© 2025 TheFitChecked. All rights reserved.</p>
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
     </footer>
 </body>
 </html>
