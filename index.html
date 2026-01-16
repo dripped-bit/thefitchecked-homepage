@@ -178,6 +178,17 @@
             font-weight: 400;
         }
 
+        .tap-hint {
+            color: var(--pink-accent);
+            font-size: 1rem;
+            font-weight: 500;
+            margin-top: 1rem;
+        }
+
+        .tap-hint::after {
+            content: ' →';
+        }
+
         /* ===== FEATURES GRID ===== */
         .features-section {
             position: relative;
@@ -979,6 +990,7 @@
         <div class="hero-content fade-in-up">
             <h1 class="hero-title">Your AI Fashion Assistant</h1>
             <p class="hero-subtitle">Discover every feature that makes TheFitChecked your personal stylist in your pocket</p>
+            <p class="tap-hint">Tap any screen to see it in action</p>
         </div>
 
         <!-- Features Grid -->
