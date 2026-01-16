@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Zero To App Store Blueprint: Beginner Edition - Build your first app with zero coding experience. Step-by-step guide to building a Habit Tracker app using Claude Code.">
-    <meta name="keywords" content="app development, no code, beginner, habit tracker, Claude Code, iOS development, app store, blueprint, guide, tutorial">
-    <meta property="og:title" content="Zero To App Store Blueprint - Beginner Edition">
-    <meta property="og:description" content="Build your first app with zero coding experience. Step-by-step guide with visual diagrams and copy-paste prompts.">
-    <meta property="og:url" content="https://thefitcheckedhomepage.com/blueprint">
+    <meta name="description" content="Zero To App Store Blueprint - Build your first app with zero coding experience">
     <title>Zero To App Store Blueprint - Beginner Edition | TheFitChecked</title>
 
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -23,918 +22,847 @@
         }
 
         :root {
-            --primary-pink: #F8B4D9;
-            --primary-pink-hover: #E89DC5;
-            --primary-blue: #A7C7E7;
-            --primary-blue-hover: #8FB5D9;
-            --text-dark: #000000;
-            --text-light: #4A4A4A;
-            --bg-white: #FFFFFF;
-            --bg-light-pink: #FFF9FB;
-            --bg-light-blue: #F5FAFF;
-            --success-green: #10B981;
+            --baby-pink: #FFE4EC;
+            --pink-medium: #FFB6C1;
+            --pink-accent: #FF69B4;
+            --pink-dark: #DB7093;
+            --lavender: #E6E6FA;
+            --lavender-dark: #B8A9C9;
+            --mint: #98D8C8;
+            --cream: #FFFAF5;
+            --white: #FFFFFF;
+            --black: #1a1a1a;
+            --gray: #666666;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            color: var(--text-dark);
-            line-height: 1.6;
+            font-family: 'Outfit', sans-serif;
+            background: var(--cream);
+            color: var(--black);
+            line-height: 1.7;
             overflow-x: hidden;
-            background: var(--bg-white);
         }
 
         h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
         }
 
-        /* Navigation */
+        /* ===== NAVIGATION ===== */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.98);
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
+            padding: 1rem 3rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 2rem;
+            z-index: 1000;
+            background: var(--white);
+            border-bottom: 2px solid var(--black);
         }
 
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
             font-weight: 700;
-            color: var(--primary-pink);
+            color: var(--black);
             text-decoration: none;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
-            list-style: none;
+            gap: 2.5rem;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: var(--text-dark);
+            color: var(--black);
             font-weight: 500;
-            transition: color 0.3s;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: var(--primary-pink);
+            color: var(--pink-accent);
         }
 
-        /* Hero Section */
-        .hero {
-            margin-top: 80px;
-            min-height: 70vh;
-            background: var(--bg-light-pink);
-            display: flex;
-            align-items: center;
-            padding: 4rem 2rem;
-        }
-
-        .hero-container {
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-dark);
-        }
-
-        .edition-badge {
-            display: inline-block;
-            background: var(--primary-blue);
-            color: var(--text-dark);
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .hero .tagline {
-            font-size: 1.5rem;
-            color: var(--primary-pink);
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-        }
-
-        .hero .description {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            line-height: 1.8;
-        }
-
-        .hero-features {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-
-        .hero-feature {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: white;
-            padding: 0.75rem 1.25rem;
-            border-radius: 50px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            font-size: 0.9rem;
+        .nav-btn {
+            background: var(--black);
+            color: var(--white);
+            padding: 0.75rem 1.75rem;
+            border-radius: 30px;
+            text-decoration: none;
             font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
         }
 
-        .hero-feature i {
-            color: var(--primary-pink);
+        .nav-btn:hover {
+            background: var(--pink-accent);
+            transform: translateY(-2px);
         }
 
-        /* Options Section */
-        .options-section {
-            padding: 5rem 2rem;
-            background: white;
-        }
-
-        .section-header {
+        /* ===== HERO SECTION ===== */
+        .hero-section {
+            padding: 120px 2rem 4rem;
+            background: var(--white);
             text-align: center;
-            max-width: 800px;
-            margin: 0 auto 3rem;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
-        }
-
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-light);
-        }
-
-        .options-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .option-card {
-            background: var(--bg-light-pink);
-            border-radius: 24px;
-            padding: 2.5rem;
-            text-align: center;
-            transition: all 0.3s;
-            border: 2px solid transparent;
             position: relative;
         }
 
-        .option-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--primary-pink);
-            box-shadow: 0 15px 40px rgba(248, 180, 217, 0.25);
+        .hero-badge {
+            display: inline-block;
+            background: var(--mint);
+            color: var(--black);
+            padding: 0.5rem 1.25rem;
+            border-radius: 5px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
         }
 
-        .option-card.featured {
-            background: var(--primary-blue);
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            color: var(--black);
         }
 
-        .option-card.featured:hover {
-            border-color: var(--primary-blue-hover);
-            box-shadow: 0 15px 40px rgba(167, 199, 231, 0.35);
+        .hero-title .highlight-pink {
+            color: var(--pink-accent);
+            font-style: italic;
         }
 
-        .option-badge {
+        .hero-title .highlight-lavender {
+            color: var(--lavender-dark);
+            font-style: italic;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            background: var(--black);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .hero-btn:hover {
+            background: var(--pink-accent);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+        }
+
+        /* Floating decorative images */
+        .hero-decor {
             position: absolute;
-            top: -12px;
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+        }
+
+        .decor-1 {
+            top: 100px;
+            right: 10%;
+            transform: rotate(15deg);
+        }
+
+        .decor-2 {
+            bottom: 50px;
+            left: 8%;
+            transform: rotate(-10deg);
+        }
+
+        /* ===== MARQUEE ===== */
+        .marquee-section {
+            background: var(--pink-accent);
+            padding: 0.75rem 0;
+            overflow: hidden;
+            border-top: 2px solid var(--black);
+            border-bottom: 2px solid var(--black);
+        }
+
+        .marquee-track {
+            display: flex;
+            animation: marquee 25s linear infinite;
+        }
+
+        .marquee-text {
+            white-space: nowrap;
+            color: var(--white);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            padding: 0 3rem;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ===== INTRO SECTION ===== */
+        .intro-section {
+            background: var(--baby-pink);
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .intro-section::before {
+            content: '✨';
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .intro-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        .intro-title {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            color: var(--black);
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+            line-height: 1.3;
+        }
+
+        .intro-subtitle {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1rem;
+        }
+
+        /* ===== FEATURES CARDS ===== */
+        .features-section {
+            background: var(--baby-pink);
+            padding: 0 2rem 5rem;
+            position: relative;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 2px solid var(--black);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 8px 8px 0 var(--black);
+        }
+
+        .feature-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            color: var(--black);
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-card p {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .feature-btn {
+            display: inline-block;
+            background: var(--white);
+            color: var(--black);
+            padding: 0.6rem 1.5rem;
+            border: 2px solid var(--black);
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-btn:hover {
+            background: var(--pink-accent);
+            color: var(--white);
+            border-color: var(--pink-accent);
+        }
+
+        /* ===== MEMBERSHIP SECTION ===== */
+        .membership-section {
+            background: var(--white);
+            padding: 5rem 2rem;
+            position: relative;
+        }
+
+        .membership-badge {
+            display: inline-block;
+            background: var(--lavender);
+            color: var(--black);
+            padding: 0.4rem 1rem;
+            border-radius: 5px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .membership-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .membership-content h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--black);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .membership-content p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .membership-image {
+            position: relative;
+        }
+
+        .membership-image img {
+            width: 100%;
+            border-radius: 20px;
+            border: 2px solid var(--black);
+            box-shadow: 10px 10px 0 var(--lavender);
+        }
+
+        .floating-badge {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background: var(--mint);
+            color: var(--black);
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 2px solid var(--black);
+        }
+
+        /* ===== PRICING SECTION ===== */
+        .pricing-section {
+            background: var(--lavender);
+            padding: 5rem 2rem;
+            position: relative;
+        }
+
+        .pricing-section::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: var(--lavender);
+            clip-path: polygon(0 100%, 50% 0, 100% 100%);
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .pricing-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--black);
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            border: 2px solid var(--black);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 8px 8px 0 var(--black);
+        }
+
+        .pricing-card.popular {
+            border-color: var(--pink-accent);
+            box-shadow: 8px 8px 0 var(--pink-accent);
+        }
+
+        .popular-tag {
+            position: absolute;
+            top: -15px;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--primary-pink);
-            color: var(--text-dark);
-            padding: 0.4rem 1.2rem;
+            background: var(--pink-accent);
+            color: var(--white);
+            padding: 0.4rem 1.5rem;
             border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
+            font-size: 0.75rem;
+            font-weight: 600;
             text-transform: uppercase;
         }
 
-        .option-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary-pink);
-        }
-
-        .option-card.featured .option-icon {
-            color: var(--text-dark);
-        }
-
-        .option-title {
+        .pricing-card h3 {
             font-size: 1.5rem;
+            color: var(--black);
             margin-bottom: 0.5rem;
         }
 
-        .option-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            margin-bottom: 1rem;
-        }
-
-        .option-card.featured .option-subtitle {
-            color: var(--text-dark);
-            opacity: 0.8;
-        }
-
-        .option-description {
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        .option-card.featured .option-description {
-            color: var(--text-dark);
-            opacity: 0.9;
-        }
-
-        .option-form {
-            margin-top: 1.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-            text-align: left;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 0.9rem 1.2rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--primary-pink);
-        }
-
-        .option-button {
-            width: 100%;
-            padding: 1rem 1.5rem;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-primary {
-            background: var(--primary-pink);
-            color: var(--text-dark);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            background: var(--primary-pink-hover);
-            box-shadow: 0 10px 25px rgba(248, 180, 217, 0.35);
-        }
-
-        .btn-white {
-            background: white;
-            color: var(--text-dark);
-        }
-
-        .btn-white:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary-pink);
-            color: var(--text-dark);
-        }
-
-        .btn-outline:hover {
-            background: var(--primary-pink);
-        }
-
-        .price-tag {
+        .pricing-card .price {
             font-size: 2.5rem;
             font-weight: 700;
+            color: var(--pink-accent);
             margin-bottom: 0.5rem;
         }
 
-        /* Success State */
-        .success-state {
-            display: none;
-            text-align: center;
-            padding: 1rem;
-        }
-
-        .success-state.active {
-            display: block;
-        }
-
-        .success-icon {
-            font-size: 3rem;
-            color: var(--success-green);
-            margin-bottom: 1rem;
-        }
-
-        .referral-box {
-            background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-top: 1.5rem;
-            border: 2px dashed var(--primary-pink);
-        }
-
-        .referral-link-container {
-            display: flex;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .referral-link-input {
-            flex: 1;
-            padding: 0.75rem 1rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
+        .pricing-card .price-note {
             font-size: 0.85rem;
-            background: #f8f8f8;
-        }
-
-        .copy-btn {
-            padding: 0.75rem 1.25rem;
-            background: var(--primary-pink);
-            color: var(--text-dark);
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .copy-btn:hover {
-            background: var(--primary-pink-hover);
-        }
-
-        .referral-progress {
-            margin-top: 1rem;
-            padding: 1rem;
-            background: var(--bg-light-blue);
-            border-radius: 10px;
-        }
-
-        .progress-bar {
-            height: 8px;
-            background: #e0e0e0;
-            border-radius: 4px;
-            margin-top: 0.5rem;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: var(--primary-pink);
-            border-radius: 4px;
-            transition: width 0.5s;
-        }
-
-        /* What's Inside Section */
-        .included-section {
-            padding: 5rem 2rem;
-            background: var(--bg-light-blue);
-        }
-
-        .included-grid {
-            max-width: 1000px;
-            margin: 3rem auto 0;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
-
-        .included-card {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-        }
-
-        .included-card h3 {
-            font-size: 1.3rem;
+            color: var(--gray);
             margin-bottom: 1.5rem;
+        }
+
+        .pricing-features {
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+            list-style: none;
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+            color: var(--gray);
             display: flex;
             align-items: center;
             gap: 0.75rem;
         }
 
-        .included-card h3 i {
-            color: var(--primary-pink);
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--mint);
+            font-weight: bold;
         }
 
-        .included-card.locked-card h3 i {
-            color: var(--primary-blue);
-        }
-
-        .included-list {
-            list-style: none;
-        }
-
-        .included-list li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #f0f0f0;
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-
-        .included-list li:last-child {
-            border-bottom: none;
-        }
-
-        .part-label {
+        .pricing-btn {
+            display: block;
+            background: var(--black);
+            color: var(--white);
+            padding: 1rem;
+            border-radius: 30px;
+            text-decoration: none;
             font-weight: 600;
-            color: var(--primary-pink);
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
         }
 
-        .locked-card .part-label {
-            color: var(--primary-blue);
+        .pricing-btn:hover {
+            background: var(--pink-accent);
         }
 
-        /* Who This Is For Section */
-        .who-section {
+        .pricing-card.popular .pricing-btn {
+            background: var(--pink-accent);
+        }
+
+        .pricing-card.popular .pricing-btn:hover {
+            background: var(--black);
+        }
+
+        /* ===== WHO'S THIS FOR ===== */
+        .audience-section {
+            background: var(--white);
             padding: 5rem 2rem;
-            background: white;
-        }
-
-        .who-grid {
-            max-width: 800px;
-            margin: 3rem auto 0;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-        }
-
-        .who-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            background: var(--bg-light-pink);
-            padding: 1.5rem;
-            border-radius: 16px;
-            font-size: 1rem;
-        }
-
-        .who-item i {
-            font-size: 1.5rem;
-            color: var(--success-green);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--text-dark);
-            color: white;
-            padding: 3rem 2rem;
             text-align: center;
         }
 
-        footer a {
-            color: var(--primary-pink);
+        .audience-section h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--black);
+            margin-bottom: 3rem;
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .audience-item {
+            background: var(--baby-pink);
+            padding: 2rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .audience-item:nth-child(2) {
+            background: var(--lavender);
+        }
+
+        .audience-item:nth-child(4) {
+            background: var(--mint);
+        }
+
+        .audience-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .audience-item .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .audience-item p {
+            font-size: 0.95rem;
+            color: var(--black);
+            font-weight: 500;
+        }
+
+        /* ===== DECORATIVE IMAGE SECTION ===== */
+        .decor-section {
+            background: var(--cream);
+            padding: 3rem 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .decor-section img {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .decor-section img:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 3rem 2rem 1.5rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--white);
             text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
         }
 
-        footer a:hover {
-            text-decoration: underline;
+        .footer-links a:hover {
+            opacity: 1;
         }
 
-        .loading {
+        .footer-copyright {
+            font-size: 0.85rem;
             opacity: 0.7;
-            pointer-events: none;
         }
 
-        .hidden {
-            display: none !important;
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .membership-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+
+            .audience-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
-        /* Mobile Responsive */
-        @media (max-width: 968px) {
-            .nav-links { display: none; }
-            .hero { padding: 3rem 1rem; }
-            .hero-container { max-width: 100%; }
-            .hero h1 { font-size: 2rem; }
-            .hero .tagline { font-size: 1.2rem; }
-            .hero .description { max-width: 100%; font-size: 1rem; }
-            .hero-features { gap: 0.75rem; }
-            .hero-feature { padding: 0.5rem 1rem; font-size: 0.8rem; }
-            .options-section { padding: 3rem 1rem; }
-            .options-grid { grid-template-columns: 1fr; max-width: 100%; }
-            .included-section { padding: 3rem 1rem; }
-            .included-grid { grid-template-columns: 1fr; max-width: 100%; }
-            .who-section { padding: 3rem 1rem; }
-            .who-grid { grid-template-columns: 1fr; }
-            #check-progress-section { max-width: 100% !important; padding: 0 1rem; }
-        }
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
 
-        .fade-in {
-            animation: fadeIn 0.8s ease-out;
-        }
+            .nav-links {
+                display: none;
+            }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            .features-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+
+            .audience-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-decor {
+                display: none;
+            }
+
+            .decor-section {
+                flex-wrap: wrap;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
     <nav>
-        <div class="nav-container">
-            <a href="/" class="logo">TheFitChecked</a>
-            <ul class="nav-links">
-                <li><a href="/#features">Features</a></li>
-                <li><a href="/blog.html">Blog</a></li>
-                <li><a href="/about.html">About</a></li>
-            </ul>
+        <a href="/" class="nav-logo">TheFitChecked</a>
+        <div class="nav-links">
+            <a href="/about.html">About</a>
+            <a href="/blog.html">Blog</a>
+            <a href="/#features">Features</a>
         </div>
+        <a href="#pricing" class="nav-btn">Get The Blueprint</a>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-container fade-in">
-            <h1>Zero To App Store Blueprint</h1>
-            <span class="edition-badge">Beginner Edition</span>
-            <p class="tagline">Build your first app with zero coding experience</p>
-            <p class="description">
-                Step-by-step guide to building a Habit Tracker app using Claude Code.
-                Visual diagrams, copy-paste prompts, and hand-holding instructions for complete beginners.
-            </p>
-            <div class="hero-features">
-                <div class="hero-feature"><i class="fas fa-images"></i> Visual Diagrams</div>
-                <div class="hero-feature"><i class="fas fa-copy"></i> Copy-Paste Prompts</div>
-                <div class="hero-feature"><i class="fas fa-hand-holding-heart"></i> Hand-Holding Instructions</div>
+    <section class="hero-section">
+        <span class="hero-badge">Zero Coding Required</span>
+        <h1 class="hero-title">
+            the <span class="highlight-pink">blueprint</span><br>
+            for building<br>
+            <span class="highlight-lavender">your first app</span>
+        </h1>
+        <p class="hero-subtitle">Step-by-step guide to building a Habit Tracker app using Claude Code. Visual diagrams, copy-paste prompts, and hand-holding instructions.</p>
+        <a href="#pricing" class="hero-btn">Get Started →</a>
+        
+        <!-- Floating decorations -->
+        <img src="images/lightbulb.jpg" alt="" class="hero-decor decor-1">
+        <img src="images/tickets.jpg" alt="" class="hero-decor decor-2">
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee-section">
+        <div class="marquee-track">
+            <span class="marquee-text">✨ BUILD YOUR FIRST APP ✨ NO CODING EXPERIENCE NEEDED ✨ BUILD YOUR FIRST APP ✨ NO CODING EXPERIENCE NEEDED ✨ BUILD YOUR FIRST APP ✨ NO CODING EXPERIENCE NEEDED ✨</span>
+            <span class="marquee-text">✨ BUILD YOUR FIRST APP ✨ NO CODING EXPERIENCE NEEDED ✨ BUILD YOUR FIRST APP ✨ NO CODING EXPERIENCE NEEDED ✨ BUILD YOUR FIRST APP ✨ NO CODING EXPERIENCE NEEDED ✨</span>
+        </div>
+    </div>
+
+    <!-- Intro Section -->
+    <section class="intro-section">
+        <p class="intro-label">Welcome to the Blueprint</p>
+        <h2 class="intro-title">For The Overwhelmed, The Confused, And The "I Don't Know Where To Start"</h2>
+        <p class="intro-subtitle">Helping complete beginners build their first app, one step at a time. Visual guides, copy-paste prompts, and zero judgment.</p>
+    </section>
+
+    <!-- Features Cards -->
+    <section class="features-section">
+        <div class="features-grid">
+            <div class="feature-card">
+                <img src="images/cloud-ladder.jpg" alt="Reach Higher">
+                <h3>Visual Diagrams</h3>
+                <p>Every concept explained with clear visuals so you never feel lost or confused.</p>
+                <a href="#pricing" class="feature-btn">Learn More</a>
+            </div>
+            <div class="feature-card">
+                <img src="images/lightbulb.jpg" alt="Bright Ideas">
+                <h3>Copy-Paste Prompts</h3>
+                <p>Ready-to-use prompts for Claude Code. Just copy, paste, and watch the magic happen.</p>
+                <a href="#pricing" class="feature-btn">Get Prompts</a>
+            </div>
+            <div class="feature-card">
+                <img src="images/tickets.jpg" alt="Do It For The Plot">
+                <h3>Hand-Holding Guide</h3>
+                <p>Every single step explained like you're 5. No assumptions, no skipped steps.</p>
+                <a href="#pricing" class="feature-btn">Start Learning</a>
+            </div>
+            <div class="feature-card">
+                <img src="images/cloud-ladder.jpg" alt="Level Up">
+                <h3>Real Results</h3>
+                <p>By the end, you'll have a real app in the App Store. Not a tutorial—an actual product.</p>
+                <a href="#pricing" class="feature-btn">See Results</a>
             </div>
         </div>
     </section>
 
-    <!-- Options Section -->
-    <section class="options-section">
-        <div class="section-header">
-            <h2 class="section-title">Choose Your Path</h2>
-            <p class="section-subtitle">Get started for free or unlock the complete guide</p>
-        </div>
-
-        <div class="options-grid">
-            <!-- Option 1: Free Preview -->
-            <div class="option-card" id="free-preview-card">
-                <div class="option-icon"><i class="fas fa-gift"></i></div>
-                <h3 class="option-title">Free Preview</h3>
-                <p class="option-subtitle">Parts 1-4</p>
-                <p class="option-description">
-                    Get instant access to the first 4 parts: Mindset, Account Setup, Dev Environment, and your first project.
-                </p>
-
-                <div id="signup-form-container">
-                    <form class="option-form" id="signup-form">
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="Your Email" required>
-                        </div>
-                        <button type="submit" class="option-button btn-primary">
-                            <i class="fas fa-download"></i> Get Free Preview
-                        </button>
-                    </form>
-                </div>
-
-                <div class="success-state" id="signup-success">
-                    <div class="success-icon"><i class="fas fa-check-circle"></i></div>
-                    <h4 style="font-size: 1.3rem; margin-bottom: 0.5rem;">You're in!</h4>
-                    <p style="color: var(--text-light); margin-bottom: 1rem;">Here's your free preview:</p>
-
-                    <a href="https://kxmtbetklikewluwntyx.supabase.co/storage/v1/object/public/blueprints/Zero_To_App_Store_PREVIEW-2.pdf"
-                       class="option-button btn-primary" target="_blank"
-                       style="display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                        <i class="fas fa-file-pdf"></i> Download Free Preview
-                    </a>
-
-                    <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 1rem;">
-                        <i class="fas fa-envelope"></i> Also sent to your email!
-                    </p>
-
-                    <div class="referral-box">
-                        <p style="font-weight: 600; margin-bottom: 0.5rem;">Your Referral Link:</p>
-                        <div class="referral-link-container">
-                            <input type="text" class="referral-link-input" id="referral-link" readonly>
-                            <button class="copy-btn" onclick="copyReferralLink()"><i class="fas fa-copy"></i></button>
-                        </div>
-                        <div class="referral-progress">
-                            <p style="font-size: 0.9rem;"><strong id="referral-count">0</strong>/3 friends referred</p>
-                            <div class="progress-bar">
-                                <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
-                            </div>
-                            <p style="font-size: 0.85rem; color: var(--text-light); margin-top: 0.5rem;" id="referral-message">
-                                Share with 3 friends to unlock the full guide!
-                            </p>
-                        </div>
-                    </div>
-
-                    <div id="full-guide-download" class="hidden" style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-light-blue); border-radius: 12px;">
-                        <p style="font-weight: 600; color: var(--success-green); margin-bottom: 1rem;">
-                            <i class="fas fa-crown"></i> Full Guide Unlocked!
-                        </p>
-                        <a href="https://kxmtbetklikewluwntyx.supabase.co/storage/v1/object/public/blueprints/Zero_To_App_Store_BEGINNER_EDITION-2.pdf"
-                           class="option-button btn-primary" target="_blank"
-                           style="display: inline-flex; align-items: center; gap: 0.5rem;">
-                            <i class="fas fa-file-pdf"></i> Download Full Guide
-                        </a>
-                    </div>
-                </div>
+    <!-- Membership Section -->
+    <section class="membership-section">
+        <div class="membership-grid">
+            <div class="membership-content">
+                <span class="membership-badge">The Blueprint</span>
+                <h2>join the app builder's club</h2>
+                <p><strong>This Is Where The Overwhelmed Become Confident, The Confused Get Clarity, And The Dreamers Become Builders.</strong></p>
+                <p>A guide where you can ask questions without judgment, follow along at your own pace, and actually finish something you're proud of.</p>
+                <p>Ready to stop dreaming and start building?</p>
+                <a href="#pricing" class="hero-btn">Get The Blueprint →</a>
             </div>
-
-            <!-- Option 2: Unlock Full Guide -->
-            <div class="option-card featured">
-                <div class="option-badge">Most Popular</div>
-                <div class="option-icon"><i class="fas fa-users"></i></div>
-                <h3 class="option-title">Unlock Full Guide</h3>
-                <p class="option-subtitle">Refer 3 Friends</p>
-                <p class="option-description">
-                    Refer 3 friends to unlock the complete guide FREE. All 13 parts + 3 appendices.
-                </p>
-                <div style="margin: 1.5rem 0; text-align: left; font-size: 0.9rem; line-height: 1.8;">
-                    <p><i class="fas fa-check"></i> Parts 5-13: Complete Guide</p>
-                    <p><i class="fas fa-check"></i> Appendix A: How to Talk to Claude</p>
-                    <p><i class="fas fa-check"></i> Appendix B: Common Errors & Fixes</p>
-                    <p><i class="fas fa-check"></i> Appendix C: Resource Library</p>
-                </div>
-                <a href="#free-preview-card" class="option-button btn-white" onclick="scrollToSignup()">
-                    <i class="fas fa-arrow-up"></i> Sign Up First
-                </a>
+            <div class="membership-image">
+                <img src="images/cloud-ladder.jpg" alt="Reach Your Dreams">
+                <div class="floating-badge">13 Parts + 3 Appendices</div>
             </div>
-
-            <!-- Option 3: Buy Now -->
-            <div class="option-card">
-                <div class="option-icon"><i class="fas fa-bolt"></i></div>
-                <h3 class="option-title">Buy Now</h3>
-                <div class="price-tag">$29</div>
-                <p class="option-subtitle">Instant Access</p>
-                <p class="option-description">
-                    Skip the wait. Get immediate access to the complete guide with all 13 parts and 3 appendices.
-                </p>
-                <a href="https://drippedfit.gumroad.com/l/trkfz" class="option-button btn-outline" target="_blank">
-                    <i class="fas fa-shopping-cart"></i> Buy Now — $29
-                </a>
-                <p style="font-size: 0.85rem; color: var(--text-light); margin-top: 1rem;">Instant download. No waiting.</p>
-            </div>
-        </div>
-
-        <div id="check-progress-section" style="max-width: 500px; margin: 3rem auto 0; text-align: center;">
-            <p style="color: var(--text-light); margin-bottom: 1rem;">Already signed up? Check your referral progress:</p>
-            <form id="check-progress-form" style="display: flex; gap: 0.5rem;">
-                <input type="email" id="check-email" placeholder="Enter your email" required
-                       style="flex: 1; padding: 0.9rem 1.2rem; border: 2px solid #e0e0e0; border-radius: 12px; font-size: 1rem;">
-                <button type="submit" class="option-button btn-primary" style="width: auto; padding: 0.9rem 1.5rem;">
-                    <i class="fas fa-search"></i> Check
-                </button>
-            </form>
-            <p id="check-progress-error" style="color: #e74c3c; font-size: 0.9rem; margin-top: 0.5rem; display: none;"></p>
         </div>
     </section>
 
-    <!-- What's Inside Section -->
-    <section class="included-section">
-        <div class="section-header">
-            <h2 class="section-title">What's Inside</h2>
-            <p class="section-subtitle">Everything you need to build your first app from scratch</p>
-        </div>
+    <!-- Decorative Section -->
+    <div class="decor-section">
+        <img src="images/lightbulb.jpg" alt="Bright Ideas">
+        <img src="images/cloud-ladder.jpg" alt="Reach Higher">
+        <img src="images/tickets.jpg" alt="Do It For The Plot">
+    </div>
 
-        <div class="included-grid">
-            <div class="included-card">
-                <h3><i class="fas fa-unlock"></i> Free Preview (Parts 1-4)</h3>
-                <ul class="included-list">
-                    <li><span class="part-label">Part 1:</span> The Mindset — How to think like a builder</li>
-                    <li><span class="part-label">Part 2:</span> Account Setup — Every account you need with links</li>
-                    <li><span class="part-label">Part 3:</span> Development Environment — Install VS Code, Node.js, Claude Code</li>
-                    <li><span class="part-label">Part 4:</span> Your First Project — Create a Habit Tracker skeleton</li>
+    <!-- Pricing Section -->
+    <section class="pricing-section" id="pricing">
+        <div class="pricing-header">
+            <h2>Choose Your Path</h2>
+            <p>Get started for free or unlock the complete guide</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Free Preview</h3>
+                <div class="price">$0</div>
+                <div class="price-note">Parts 1-4</div>
+                <ul class="pricing-features">
+                    <li>Part 1: The Mindset</li>
+                    <li>Part 2: Account Setup</li>
+                    <li>Part 3: Dev Environment</li>
+                    <li>Part 4: First Project</li>
                 </ul>
+                <a href="https://kxmtbetklikewluwntyx.supabase.co/storage/v1/object/public/blueprints/Zero_To_App_Store_PREVIEW-2.pdf" class="pricing-btn">Get Free Preview</a>
             </div>
-
-            <div class="included-card locked-card">
-                <h3><i class="fas fa-lock"></i> Unlocks with 3 Referrals</h3>
-                <ul class="included-list">
-                    <li><span class="part-label">Part 5:</span> Database Design — Supabase tables and relationships</li>
-                    <li><span class="part-label">Part 6:</span> Authentication — Google, Apple, and email login</li>
-                    <li><span class="part-label">Part 7:</span> AI Integration — Add OpenAI for smart features</li>
-                    <li><span class="part-label">Part 8:</span> Building Features — Every screen with copy-paste prompts</li>
-                    <li><span class="part-label">Part 9:</span> API Routes — Backend logic explained simply</li>
-                    <li><span class="part-label">Part 10:</span> iOS Development — Xcode and iPhone testing</li>
-                    <li><span class="part-label">Part 11:</span> Monetization — Subscriptions with RevenueCat</li>
-                    <li><span class="part-label">Part 12:</span> App Store Submission — Complete checklist</li>
-                    <li><span class="part-label">Part 13:</span> Launch Day — What to do when you go live</li>
-                    <li><span class="part-label">Appendix A:</span> How to Talk to Claude Code</li>
-                    <li><span class="part-label">Appendix B:</span> Common Errors & Fixes</li>
-                    <li><span class="part-label">Appendix C:</span> Resource Library</li>
+            <div class="pricing-card popular">
+                <span class="popular-tag">Most Popular</span>
+                <h3>Refer Friends</h3>
+                <div class="price">FREE</div>
+                <div class="price-note">Refer 3 Friends</div>
+                <ul class="pricing-features">
+                    <li>All 13 Parts Unlocked</li>
+                    <li>Appendix A: Talk to Claude</li>
+                    <li>Appendix B: Error Fixes</li>
+                    <li>Appendix C: Resources</li>
                 </ul>
+                <a href="#" class="pricing-btn">Start Referring</a>
+            </div>
+            <div class="pricing-card">
+                <h3>Buy Now</h3>
+                <div class="price">$29</div>
+                <div class="price-note">Instant Access</div>
+                <ul class="pricing-features">
+                    <li>Complete Guide (13 Parts)</li>
+                    <li>All 3 Appendices</li>
+                    <li>Instant Download</li>
+                    <li>Lifetime Access</li>
+                </ul>
+                <a href="https://drippedfit.gumroad.com/l/trkfz" class="pricing-btn">Buy Now — $29</a>
             </div>
         </div>
     </section>
 
-    <!-- Who This Is For Section -->
-    <section class="who-section">
-        <div class="section-header">
-            <h2 class="section-title">Who This Is For</h2>
-            <p class="section-subtitle">This guide is perfect if you're...</p>
-        </div>
-
-        <div class="who-grid">
-            <div class="who-item"><i class="fas fa-check-circle"></i> Complete beginners who've never coded</div>
-            <div class="who-item"><i class="fas fa-check-circle"></i> People intimidated by Terminal</div>
-            <div class="who-item"><i class="fas fa-check-circle"></i> Anyone who wants step-by-step hand-holding</div>
-            <div class="who-item"><i class="fas fa-check-circle"></i> Visual learners who need diagrams</div>
+    <!-- Who's This For -->
+    <section class="audience-section">
+        <h2>Who This Is For</h2>
+        <div class="audience-grid">
+            <div class="audience-item">
+                <div class="icon">👶</div>
+                <p>Complete beginners who've never coded</p>
+            </div>
+            <div class="audience-item">
+                <div class="icon">😰</div>
+                <p>People intimidated by Terminal</p>
+            </div>
+            <div class="audience-item">
+                <div class="icon">🤝</div>
+                <p>Anyone who needs step-by-step hand-holding</p>
+            </div>
+            <div class="audience-item">
+                <div class="icon">🎨</div>
+                <p>Visual learners who need diagrams</p>
+            </div>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 TheFitChecked. All rights reserved.</p>
-        <p style="margin-top: 0.5rem;">
-            <a href="/privacy-policy.html">Privacy Policy</a> |
-            <a href="/terms-of-service.html">Terms of Service</a> |
+        <div class="footer-links">
+            <a href="/legal.html#privacy">Privacy Policy</a>
+            <a href="/legal.html#terms">Terms of Service</a>
             <a href="/">Back to Home</a>
-        </p>
+        </div>
+        <p class="footer-copyright">© 2025 TheFitChecked. All rights reserved.</p>
     </footer>
-
-    <script>
-        const SUPABASE_URL = 'https://kxmtbetklikewluwntyx.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt4bXRiZXRrbGlrZXdsdXdudHl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzA4NDkzMjUsImV4cCI6MjA0NjQyNTMyNX0.iRKgqPcyCXM06K3FxZpq5BgmeFGNjjKXlY7TqP0RLvM';
-        const PREVIEW_PDF_URL = 'https://kxmtbetklikewluwntyx.supabase.co/storage/v1/object/public/blueprints/Zero_To_App_Store_PREVIEW-2.pdf';
-        const FULL_PDF_URL = 'https://kxmtbetklikewluwntyx.supabase.co/storage/v1/object/public/blueprints/Zero_To_App_Store_BEGINNER_EDITION-2.pdf';
-
-        const urlParams = new URLSearchParams(window.location.search);
-        const refCode = urlParams.get('ref');
-        let userData = null;
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const storedUser = localStorage.getItem('blueprint_user');
-            if (storedUser) {
-                userData = JSON.parse(storedUser);
-                showSuccessState(userData);
-                checkReferralCount(userData.email);
-                hideCheckProgressSection();
-            }
-        });
-
-        document.getElementById('check-progress-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const email = document.getElementById('check-email').value.trim();
-            const errorEl = document.getElementById('check-progress-error');
-            const submitBtn = this.querySelector('button[type="submit"]');
-
-            errorEl.style.display = 'none';
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-
-            try {
-                const response = await fetch(`${SUPABASE_URL}/functions/v1/blueprint-signup`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email: email, action: 'check_progress' })
-                });
-
-                const result = await response.json();
-                if (!response.ok) throw new Error(result.error || 'Email not found');
-
-                userData = result.user;
-                localStorage.setItem('blueprint_user', JSON.stringify(userData));
-                showSuccessState(userData);
-                hideCheckProgressSection();
-                document.getElementById('free-preview-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
-            } catch (error) {
-                errorEl.textContent = error.message || 'Email not found. Please sign up first.';
-                errorEl.style.display = 'block';
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<i class="fas fa-search"></i> Check';
-            }
-        });
-
-        function hideCheckProgressSection() {
-            const section = document.getElementById('check-progress-section');
-            if (section) section.style.display = 'none';
-        }
-
-        document.getElementById('signup-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const submitBtn = this.querySelector('button[type="submit"]');
-
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-            this.classList.add('loading');
-
-            try {
-                const response = await fetch(`${SUPABASE_URL}/functions/v1/blueprint-signup`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name: name, email: email, referred_by: refCode || null })
-                });
-
-                const result = await response.json();
-                if (!response.ok) throw new Error(result.error || 'Failed to sign up');
-
-                userData = result.user;
-                localStorage.setItem('blueprint_user', JSON.stringify(userData));
-                showSuccessState(userData);
-                hideCheckProgressSection();
-            } catch (error) {
-                console.error('Signup error:', error);
-                alert('Error: ' + (error.message || 'Failed to sign up. Please try again.'));
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<i class="fas fa-download"></i> Get Free Preview';
-                this.classList.remove('loading');
-            }
-        });
-
-        function showSuccessState(user) {
-            document.getElementById('signup-form-container').classList.add('hidden');
-            document.getElementById('signup-success').classList.add('active');
-            document.getElementById('referral-link').value = `https://thefitcheckedhomepage.com/blueprint?ref=${user.referral_code}`;
-            updateReferralProgress(user.referral_count || 0, user.unlocked_full_guide);
-        }
-
-        function updateReferralProgress(count, unlocked) {
-            document.getElementById('referral-count').textContent = count;
-            document.getElementById('progress-fill').style.width = Math.min((count / 3) * 100, 100) + '%';
-
-            const messageEl = document.getElementById('referral-message');
-            const fullGuideDownload = document.getElementById('full-guide-download');
-
-            if (unlocked || count >= 3) {
-                messageEl.innerHTML = '<span style="color: var(--success-green);"><i class="fas fa-check-circle"></i> Full guide unlocked!</span>';
-                fullGuideDownload.classList.remove('hidden');
-            } else {
-                const remaining = 3 - count;
-                messageEl.textContent = `Share with ${remaining} more friend${remaining !== 1 ? 's' : ''} to unlock the full guide!`;
-                fullGuideDownload.classList.add('hidden');
-            }
-        }
-
-        async function checkReferralCount(email) {
-            try {
-                const response = await fetch(`${SUPABASE_URL}/rest/v1/blueprint_downloads?email=eq.${encodeURIComponent(email)}&select=referral_count,unlocked_full_guide`, {
-                    headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` }
-                });
-                const data = await response.json();
-                if (data && data.length > 0) {
-                    updateReferralProgress(data[0].referral_count || 0, data[0].unlocked_full_guide);
-                }
-            } catch (error) {
-                console.error('Error checking referral count:', error);
-            }
-        }
-
-        function copyReferralLink() {
-            const linkInput = document.getElementById('referral-link');
-            linkInput.select();
-            navigator.clipboard.writeText(linkInput.value).then(() => {
-                const copyBtn = document.querySelector('.copy-btn');
-                copyBtn.innerHTML = '<i class="fas fa-check"></i>';
-                copyBtn.style.background = 'var(--success-green)';
-                setTimeout(() => {
-                    copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
-                    copyBtn.style.background = '';
-                }, 2000);
-            }).catch(() => {
-                document.execCommand('copy');
-                alert('Link copied!');
-            });
-        }
-
-        function scrollToSignup() {
-            document.getElementById('free-preview-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-    </script>
 </body>
 </html>
