@@ -311,10 +311,14 @@ const emailStyles = `
 
 async function sendWelcomeEmail(email: string, name: string, referralCode: string) {
   const resendApiKey = Deno.env.get('RESEND_API_KEY')
+  const fromEmail = Deno.env.get('GMAIL_EMAIL') || 'onboarding@resend.dev'
+
   if (!resendApiKey) {
     console.log('No RESEND_API_KEY configured - skipping email')
     return
   }
+
+  console.log('Attempting to send welcome email to:', email, 'from:', fromEmail)
 
   const referralLink = `https://thefitcheckedhomepage.com/blueprint?ref=${referralCode}`
   const firstName = name.split(' ')[0]
@@ -386,18 +390,18 @@ async function sendWelcomeEmail(email: string, name: string, referralCode: strin
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'Genevie <hello@thefitcheckedhomepage.com>',
+        from: `Genevie <${fromEmail}>`,
         to: email,
         subject: 'Your Zero To App Store Blueprint is here',
         html: emailHtml,
       }),
     })
 
+    const responseText = await response.text()
     if (response.ok) {
-      console.log('Welcome email sent successfully to:', email)
+      console.log('Welcome email sent successfully to:', email, 'Response:', responseText)
     } else {
-      const errorData = await response.text()
-      console.error('Resend API error:', errorData)
+      console.error('Resend API error:', response.status, responseText)
     }
   } catch (emailError) {
     console.error('Email sending error:', emailError)
@@ -406,6 +410,8 @@ async function sendWelcomeEmail(email: string, name: string, referralCode: strin
 
 async function sendReferralNotificationEmail(email: string, name: string, count: number, unlocked: boolean) {
   const resendApiKey = Deno.env.get('RESEND_API_KEY')
+  const fromEmail = Deno.env.get('GMAIL_EMAIL') || 'onboarding@resend.dev'
+
   if (!resendApiKey) {
     console.log('No RESEND_API_KEY configured - skipping referral notification')
     return
@@ -471,7 +477,7 @@ async function sendReferralNotificationEmail(email: string, name: string, count:
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          from: 'Genevie <hello@thefitcheckedhomepage.com>',
+          from: `Genevie <${fromEmail}>`,
           to: email,
           subject: 'You unlocked the full Blueprint!',
           html: emailHtml,
@@ -538,7 +544,7 @@ async function sendReferralNotificationEmail(email: string, name: string, count:
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          from: 'Genevie <hello@thefitcheckedhomepage.com>',
+          from: `Genevie <${fromEmail}>`,
           to: email,
           subject: 'Someone just signed up with your link!',
           html: emailHtml,

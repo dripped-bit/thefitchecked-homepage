@@ -404,12 +404,81 @@
             }
         }
 
+        /* ===== MOBILE MENU ===== */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--black);
+            z-index: 1001;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            padding: 1.5rem 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            flex-direction: column;
+            gap: 1rem;
+            border-bottom: 2px solid var(--pink-accent);
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--baby-pink);
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--pink-accent);
+        }
+
+        .mobile-waitlist-btn {
+            background: var(--pink-accent) !important;
+            color: var(--white) !important;
+            padding: 1rem !important;
+            border-radius: 30px;
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+
+        .mobile-waitlist-btn:hover {
+            background: var(--pink-dark) !important;
+        }
+
         @media (max-width: 768px) {
             nav {
                 padding: 1rem 1.5rem;
             }
 
             .nav-left {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-right .waitlist-btn {
                 display: none;
             }
 
@@ -439,7 +508,18 @@
         <div class="nav-right">
             <button onclick="openWaitlistModal()" class="waitlist-btn">Join Waitlist</button>
         </div>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars" id="menuIcon"></i>
+        </button>
     </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="/">Home</a>
+        <a href="/blog.html">Blog</a>
+        <a href="/about.html">About</a>
+        <a href="#" class="mobile-waitlist-btn" onclick="openWaitlistModal()">Join Waitlist</a>
+    </div>
 
     <!-- Header -->
     <header class="contact-header">
@@ -743,6 +823,29 @@
                 }, 300);
             }, 2500);
         }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuIcon = document.getElementById('menuIcon');
+            mobileMenu.classList.toggle('active');
+
+            if (mobileMenu.classList.contains('active')) {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+            } else {
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
+        }
+
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileMenu').classList.remove('active');
+                document.getElementById('menuIcon').classList.remove('fa-times');
+                document.getElementById('menuIcon').classList.add('fa-bars');
+            });
+        });
     </script>
 </body>
 </html>
