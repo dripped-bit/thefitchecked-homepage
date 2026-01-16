@@ -38,14 +38,22 @@
         .page-container {
             min-height: 100vh;
             background-image: url('images/coming-soon-bg.png');
-            background-size: cover;
-            background-position: center;
+            background-size: 100% auto;
+            background-position: top center;
             background-repeat: no-repeat;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             position: relative;
+            aspect-ratio: auto;
+        }
+
+        @media (min-width: 769px) {
+            .page-container {
+                background-size: cover;
+                min-height: 100vh;
+            }
         }
 
         .page-container::before {
@@ -101,11 +109,9 @@
             font-size: clamp(4rem, 12vw, 8rem);
             font-weight: 700;
             color: var(--pink-neon);
-            text-shadow: 
-                0 0 10px var(--pink-neon),
-                0 0 20px var(--pink-neon),
-                0 0 40px var(--pink-neon),
-                0 0 80px var(--pink-accent);
+            text-shadow:
+                0 0 5px var(--pink-neon),
+                0 0 15px var(--pink-accent);
             line-height: 1;
             letter-spacing: 2px;
         }
@@ -115,10 +121,9 @@
             font-size: clamp(3rem, 10vw, 6rem);
             font-weight: 700;
             color: var(--pink-neon);
-            text-shadow: 
-                0 0 10px var(--pink-neon),
-                0 0 20px var(--pink-neon),
-                0 0 40px var(--pink-neon);
+            text-shadow:
+                0 0 5px var(--pink-neon),
+                0 0 15px var(--pink-accent);
             line-height: 1;
             padding: 0 0.25rem;
         }
