@@ -3,456 +3,546 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Download TheFitChecked - Join the waitlist and get exclusive early access with 50% off lifetime!">
-    <title>Download App - TheFitChecked</title>
-    
+    <meta name="description" content="TheFitChecked - Coming Soon. Join the waitlist for early access.">
+    <title>Coming Soon - TheFitChecked</title>
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         :root {
-            --primary-pink: #FF69B4;
-            --secondary-purple: #9370DB;
-            --text-dark: #2C2C2C;
-            --text-light: #666;
-            --bg-light: #FFF5F7;
+            --baby-pink: #FFE4EC;
+            --pink-medium: #FFB6C1;
+            --pink-accent: #FF69B4;
+            --pink-dark: #DB7093;
+            --pink-neon: #FF1493;
+            --white: #FFFFFF;
+            --black: #1a1a1a;
         }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            color: var(--text-dark);
-            line-height: 1.6;
+
+        html, body {
+            height: 100%;
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
         }
-        
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-        }
-        
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.98);
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
+
+        /* Full Page Background */
+        .page-container {
+            min-height: 100vh;
+            background-image: url('images/coming-soon-bg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
-            padding: 1rem 2rem;
-        }
-        
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-decoration: none;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 500;
-        }
-        
-        .hero {
-            margin-top: 80px;
-            min-height: 90vh;
-            background: linear-gradient(135deg, #FFF5F7 0%, #F0E6FF 100%);
-            display: flex;
-            align-items: center;
-            padding: 4rem 2rem;
-        }
-        
-        .hero-container {
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .hero p {
-            font-size: 1.4rem;
-            color: var(--text-light);
-            margin-bottom: 3rem;
-        }
-        
-        .countdown {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            margin-bottom: 3rem;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-        }
-        
-        .countdown h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary-pink);
-        }
-        
-        .countdown-timer {
-            display: flex;
-            gap: 2rem;
             justify-content: center;
-            margin-top: 1rem;
+            position: relative;
         }
-        
-        .countdown-item {
+
+        .page-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
             text-align: center;
+            padding: 2rem;
         }
-        
-        .countdown-number {
-            font-size: 3rem;
+
+        /* Logo */
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
             font-weight: 700;
-            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--white);
+            text-decoration: none;
+            margin-bottom: 3rem;
+            display: block;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
         }
-        
+
+        /* Countdown Timer */
+        .countdown-container {
+            margin-bottom: 1.5rem;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .countdown-number {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(4rem, 12vw, 8rem);
+            font-weight: 700;
+            color: var(--pink-neon);
+            text-shadow: 
+                0 0 10px var(--pink-neon),
+                0 0 20px var(--pink-neon),
+                0 0 40px var(--pink-neon),
+                0 0 80px var(--pink-accent);
+            line-height: 1;
+            letter-spacing: 2px;
+        }
+
+        .countdown-separator {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 700;
+            color: var(--pink-neon);
+            text-shadow: 
+                0 0 10px var(--pink-neon),
+                0 0 20px var(--pink-neon),
+                0 0 40px var(--pink-neon);
+            line-height: 1;
+            padding: 0 0.25rem;
+        }
+
         .countdown-label {
             font-size: 0.9rem;
-            color: var(--text-light);
+            color: var(--white);
             text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-top: 0.5rem;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
         }
-        
-        .waitlist-form {
-            background: white;
-            padding: 3rem;
-            border-radius: 30px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-            margin-bottom: 3rem;
+
+        /* Until Launch Text */
+        .until-launch {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            margin-top: 1rem;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
         }
-        
-        .waitlist-form h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        .waitlist-form p {
-            color: var(--text-light);
-            margin-bottom: 2rem;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-            text-align: left;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
+
+        /* Join Waitlist Button */
+        .waitlist-btn {
+            display: inline-block;
+            background: var(--pink-accent);
+            color: var(--white);
+            padding: 1.25rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
             font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 3rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4);
         }
-        
-        .form-group input {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #ddd;
-            border-radius: 15px;
+
+        .waitlist-btn:hover {
+            background: var(--pink-neon);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 20, 147, 0.5);
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        /* Modal Box */
+        .modal-box {
+            background: var(--white);
+            border-radius: 30px;
+            padding: 3rem 2.5rem;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 40px;
+            height: 40px;
+            background: var(--baby-pink);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--black);
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--pink-accent);
+            color: var(--white);
+        }
+
+        .modal-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: var(--black);
+            text-align: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .modal-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2rem;
             font-size: 1rem;
         }
-        
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--primary-pink);
+
+        .modal-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
-        
-        .submit-button {
+
+        .modal-input {
             width: 100%;
-            padding: 1.2rem;
-            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
-            color: white;
+            padding: 1.25rem 1.5rem;
+            border: 2px solid var(--baby-pink);
+            border-radius: 50px;
+            font-size: 1rem;
+            font-family: 'Outfit', sans-serif;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .modal-input:focus {
+            border-color: var(--pink-accent);
+        }
+
+        .modal-input::placeholder {
+            color: #999;
+        }
+
+        .modal-submit {
+            width: 100%;
+            padding: 1.25rem;
+            background: var(--pink-accent);
+            color: var(--white);
             border: none;
             border-radius: 50px;
+            font-size: 1.1rem;
             font-weight: 600;
-            font-size: 1.2rem;
+            font-family: 'Outfit', sans-serif;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
-        
-        .submit-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+
+        .modal-submit:hover {
+            background: var(--pink-neon);
         }
-        
-        .benefits {
-            padding: 4rem 2rem;
-            background: white;
-        }
-        
-        .benefits-container {
-            max-width: 1200px;
-            margin: 0 auto;
+
+        .modal-perk {
+            background: var(--baby-pink);
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
             text-align: center;
+            margin-top: 1rem;
+            color: var(--pink-dark);
+            font-weight: 500;
         }
-        
-        .benefits h2 {
-            font-size: 3rem;
-            margin-bottom: 3rem;
+
+        .modal-perk span {
+            font-size: 1.2rem;
+            margin-right: 0.5rem;
         }
-        
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-        }
-        
-        .benefit-item {
+
+        /* Success State */
+        .modal-success {
+            display: none;
             text-align: center;
+            padding: 2rem 0;
         }
-        
-        .benefit-icon {
-            font-size: 3rem;
+
+        .modal-success.active {
+            display: block;
+        }
+
+        .modal-form.hidden {
+            display: none;
+        }
+
+        .success-icon {
+            font-size: 4rem;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
-        
-        .benefit-item h3 {
-            font-size: 1.5rem;
+
+        .success-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--black);
             margin-bottom: 0.5rem;
         }
-        
-        .benefit-item p {
-            color: var(--text-light);
+
+        .success-text {
+            color: #666;
         }
-        
-        .social-proof {
-            background: var(--bg-light);
-            padding: 4rem 2rem;
+
+        /* Footer */
+        .footer {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
             text-align: center;
         }
-        
-        .social-proof h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-        }
-        
-        .stats {
+
+        .footer-links {
             display: flex;
+            gap: 1.5rem;
             justify-content: center;
-            gap: 4rem;
-            margin-top: 2rem;
         }
-        
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--primary-pink);
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.85rem;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
         }
-        
-        .stat-label {
-            color: var(--text-light);
+
+        .footer-links a:hover {
+            opacity: 1;
         }
-        
-        footer {
-            background: var(--text-dark);
-            color: white;
-            text-align: center;
-            padding: 2rem;
-        }
-        
-        @media (max-width: 968px) {
-            .hero h1 {
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .countdown-number {
+                font-size: 3rem;
+            }
+
+            .countdown-separator {
                 font-size: 2.5rem;
             }
-            
-            .countdown-timer {
-                flex-wrap: wrap;
+
+            .until-launch {
+                letter-spacing: 4px;
             }
-            
-            .stats {
+
+            .modal-box {
+                padding: 2rem 1.5rem;
+            }
+
+            .modal-title {
+                font-size: 2rem;
+            }
+
+            .footer-links {
                 flex-direction: column;
-                gap: 2rem;
-            }
-            
-            .nav-links {
-                display: none;
+                gap: 0.75rem;
             }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="nav-container">
-            <a href="/index.html" class="logo">TheFitChecked</a>
-            <ul class="nav-links">
-                <li><a href="/blog.html">Blog</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <section class="hero">
-        <div class="hero-container">
-            <h1>Coming Very Soon! 🎉</h1>
-            <p>TheFitChecked is launching in January 2026. Join the waitlist now and secure your exclusive launch discount!</p>
+    <div class="page-container">
+        <div class="content">
+            <a href="/" class="logo">TheFitChecked</a>
             
-            <div class="countdown">
-                <h3>⏰ Estimated Launch</h3>
-                <div class="countdown-timer">
+            <!-- Countdown Timer -->
+            <div class="countdown-container">
+                <div class="countdown">
                     <div class="countdown-item">
-                        <div class="countdown-number">1-2</div>
-                        <div class="countdown-label">Months</div>
+                        <span class="countdown-number" id="days">35</span>
+                        <span class="countdown-label">Days</span>
                     </div>
+                    <span class="countdown-separator">:</span>
                     <div class="countdown-item">
-                        <div class="countdown-number">30-60</div>
-                        <div class="countdown-label">Days</div>
+                        <span class="countdown-number" id="hours">00</span>
+                        <span class="countdown-label">Hours</span>
+                    </div>
+                    <span class="countdown-separator">:</span>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="minutes">00</span>
+                        <span class="countdown-label">Minutes</span>
+                    </div>
+                    <span class="countdown-separator">:</span>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="seconds">00</span>
+                        <span class="countdown-label">Seconds</span>
                     </div>
                 </div>
-                <p style="margin-top: 1rem; color: #666;">We're in final production! 🚀</p>
+                <p class="until-launch">Until Launch</p>
             </div>
+
+            <!-- Join Waitlist Button -->
+            <button class="waitlist-btn" onclick="openWaitlistModal()">Join the Waitlist</button>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-links">
+                <a href="/legal.html#privacy">Privacy Policy</a>
+                <a href="/legal.html#terms">Terms of Service</a>
+                <a href="/">Back to Home</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Waitlist Modal -->
+    <div class="modal-overlay" id="waitlistModal">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeWaitlistModal()">×</button>
             
-            <div class="waitlist-form">
-                <h2>Join the Exclusive Waitlist</h2>
-                <p>🎁 First 20 users get <strong>50% OFF FOR LIFE</strong> + 6 months free premium!</p>
+            <div class="modal-form" id="waitlistForm">
+                <h2 class="modal-title">Join the Waitlist</h2>
+                <p class="modal-subtitle">Be among the first to experience the future of fashion.</p>
                 
-                <form onsubmit="return handleSubmit(event)">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" required placeholder="Jane Smith">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required placeholder="jane@example.com">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="device">Preferred Device</label>
-                        <select id="device" name="device" style="width: 100%; padding: 1rem; border: 2px solid #ddd; border-radius: 15px; font-size: 1rem;">
-                            <option value="ios">iOS (iPhone)</option>
-                            <option value="android">Android</option>
-                            <option value="both">Both</option>
-                        </select>
-                    </div>
-                    
-                    <button type="submit" class="submit-button">
-                        <i class="fas fa-rocket"></i> Secure My Spot - Get 50% OFF
-                    </button>
+                <form id="emailForm" onsubmit="submitWaitlist(event)">
+                    <input type="email" class="modal-input" placeholder="Enter your email" required id="emailInput">
+                    <button type="submit" class="modal-submit">Get Early Access</button>
                 </form>
                 
-                <p style="font-size: 0.9rem; margin-top: 1.5rem; color: #999;">
-                    <i class="fas fa-lock"></i> Your information is 100% secure. We'll never share your email.
-                </p>
-            </div>
-            
-            <div style="background: white; padding: 2rem; border-radius: 20px;">
-                <h3 style="margin-bottom: 1rem;">Early Adopter Benefits:</h3>
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; text-align: left;">
-                    <div>✅ 50% off forever ($4.99/mo instead of $9.99)</div>
-                    <div>✅ 6 months free premium access</div>
-                    <div>✅ Exclusive launch merchandise</div>
-                    <div>✅ Direct line to founders</div>
-                    <div>✅ Feature request priority</div>
-                    <div>✅ Beta testing access</div>
+                <div class="modal-perk">
+                    <span>🎁</span> First 20 users get lifetime premium features!
                 </div>
             </div>
-        </div>
-    </section>
 
-    <section class="benefits">
-        <div class="benefits-container">
-            <h2>Why Join the Waitlist?</h2>
-            
-            <div class="benefits-grid">
-                <div class="benefit-item">
-                    <div class="benefit-icon"><i class="fas fa-tags"></i></div>
-                    <h3>Lifetime Discount</h3>
-                    <p>Lock in 50% off forever - your price will never increase!</p>
-                </div>
-                
-                <div class="benefit-item">
-                    <div class="benefit-icon"><i class="fas fa-crown"></i></div>
-                    <h3>VIP Treatment</h3>
-                    <p>Get early access before the public launch</p>
-                </div>
-                
-                <div class="benefit-item">
-                    <div class="benefit-icon"><i class="fas fa-gift"></i></div>
-                    <h3>Exclusive Perks</h3>
-                    <p>Free merchandise and bonus features</p>
-                </div>
-                
-                <div class="benefit-item">
-                    <div class="benefit-icon"><i class="fas fa-users"></i></div>
-                    <h3>Founder's Circle</h3>
-                    <p>Direct communication with our team</p>
-                </div>
+            <div class="modal-success" id="waitlistSuccess">
+                <div class="success-icon">🎉</div>
+                <h3 class="success-title">You're on the list!</h3>
+                <p class="success-text">We'll notify you when we launch.</p>
             </div>
         </div>
-    </section>
-
-    <section class="social-proof">
-        <h2>Join 50,000+ Fashion Lovers</h2>
-        <p style="color: #666; font-size: 1.1rem;">Already on the waitlist and excited for launch!</p>
-        
-        <div class="stats">
-            <div class="stat">
-                <div class="stat-number">50K+</div>
-                <div class="stat-label">Waitlist Members</div>
-            </div>
-            <div class="stat">
-                <div class="stat-number">4.9★</div>
-                <div class="stat-label">Beta Rating</div>
-            </div>
-            <div class="stat">
-                <div class="stat-number">1M+</div>
-                <div class="stat-label">Outfits Already Created</div>
-            </div>
-        </div>
-        
-        <div style="margin-top: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
-            <p style="font-style: italic; color: #666;">"I've been beta testing TheFitChecked and it's completely changed how I get dressed every morning. Can't wait for the full launch!" - Sarah M., Beta Tester</p>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2025 TheFitChecked. All rights reserved.</p>
-        <p style="margin-top: 0.5rem;"><a href="/privacy-policy.html" style="color: var(--primary-pink); text-decoration: none;">Privacy Policy</a> | <a href="/terms-of-service.html" style="color: var(--primary-pink); text-decoration: none;">Terms of Service</a></p>
-    </footer>
+    </div>
 
     <script>
-        function handleSubmit(e) {
+        // Countdown Timer - Set launch date 35 days from now
+        const launchDate = new Date();
+        launchDate.setDate(launchDate.getDate() + 35);
+        launchDate.setHours(0, 0, 0, 0);
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = launchDate.getTime() - now;
+
+            if (distance < 0) {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+
+        // Update every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Modal Functions
+        function openWaitlistModal() {
+            document.getElementById('waitlistModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeWaitlistModal() {
+            document.getElementById('waitlistModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('waitlistModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeWaitlistModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeWaitlistModal();
+            }
+        });
+
+        // Form submission
+        function submitWaitlist(e) {
             e.preventDefault();
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const device = document.getElementById('device').value;
+            const email = document.getElementById('emailInput').value;
             
-            // Here you would typically send to your backend/email service
-            alert(`🎉 Welcome to TheFitChecked, ${name}!\n\nYou're on the waitlist! Check ${email} for your confirmation.\n\nYou've locked in 50% OFF FOR LIFE! 🔒`);
+            // Here you would normally send to your backend
+            console.log('Email submitted:', email);
             
-            e.target.reset();
-            return false;
+            // Show success state
+            document.getElementById('waitlistForm').classList.add('hidden');
+            document.getElementById('waitlistSuccess').classList.add('active');
+            
+            // Reset after 3 seconds
+            setTimeout(() => {
+                closeWaitlistModal();
+                setTimeout(() => {
+                    document.getElementById('waitlistForm').classList.remove('hidden');
+                    document.getElementById('waitlistSuccess').classList.remove('active');
+                    document.getElementById('emailInput').value = '';
+                }, 300);
+            }, 2500);
         }
     </script>
 </body>
