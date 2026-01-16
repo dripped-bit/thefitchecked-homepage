@@ -127,10 +127,10 @@
         .contact-main::before {
             content: '';
             position: absolute;
-            top: -50px;
+            top: -20px;
             left: 0;
             right: 0;
-            height: 50px;
+            height: 20px;
             background: var(--baby-pink);
             clip-path: ellipse(55% 100% at 50% 100%);
         }
@@ -336,6 +336,8 @@
             background: var(--pink-darker);
             padding: 0.75rem 0;
             overflow: hidden;
+            position: relative;
+            z-index: 2;
         }
 
         .marquee-track {
