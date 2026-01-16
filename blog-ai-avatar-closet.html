@@ -8,55 +8,69 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --primary-pink: #FF69B4;
-            --secondary-purple: #9370DB;
-            --text-dark: #2C2C2C;
-            --text-light: #666;
-            --bg-light: #FFF5F7;
+            --baby-pink: #FFE4EC;
+            --pink-medium: #FFB6C1;
+            --pink-accent: #FF69B4;
+            --pink-dark: #DB7093;
+            --white: #FFFFFF;
+            --black: #1a1a1a;
+            --gray: #666666;
         }
-        body { font-family: 'Inter', sans-serif; line-height: 1.8; color: var(--text-dark); }
-        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; line-height: 1.3; }
-        nav { background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 1.5rem 2rem; position: sticky; top: 0; z-index: 1000; }
+        body { font-family: 'Outfit', sans-serif; line-height: 1.8; color: var(--black); }
+        h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; line-height: 1.3; }
+        nav { position: fixed; top: 0; width: 100%; padding: 1rem 3rem; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(253, 248, 245, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 105, 180, 0.1); }
+        .nav-left { display: flex; gap: 2.5rem; }
+        .nav-left a { text-decoration: none; color: var(--black); font-weight: 500; font-size: 0.95rem; letter-spacing: 0.5px; transition: color 0.3s ease; }
+        .nav-left a:hover { color: var(--pink-accent); }
+        .nav-right .waitlist-btn { background: var(--pink-accent); color: var(--white); padding: 0.75rem 1.75rem; border-radius: 30px; text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: all 0.3s ease; }
+        .nav-right .waitlist-btn:hover { background: var(--pink-dark); transform: translateY(-2px); }
         .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.8rem; font-weight: 700; background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
-        .article-header { background: linear-gradient(135deg, #FFF5F7 0%, #F0E6FF 100%); padding: 4rem 2rem 2rem; text-align: center; }
+        .logo { font-size: 1.8rem; font-weight: 700; background: var(--pink-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
+        .article-header { background: var(--baby-pink); padding: 7rem 2rem 3rem; text-align: center; }
         .article-meta { display: flex; gap: 20px; justify-content: center; margin-bottom: 2rem; flex-wrap: wrap; }
-        .meta-item { display: flex; align-items: center; gap: 8px; color: var(--text-light); font-size: 0.95rem; }
-        .category-badge { background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple)); color: white; padding: 8px 20px; border-radius: 25px; font-weight: 700; letter-spacing: 1px; font-size: 0.85rem; }
-        h1 { font-size: 3.5rem; max-width: 900px; margin: 0 auto 2rem; background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .meta-item { display: flex; align-items: center; gap: 8px; color: var(--gray); font-size: 0.95rem; }
+        .category-badge { background: var(--pink-accent); color: white; padding: 8px 20px; border-radius: 25px; font-weight: 700; letter-spacing: 1px; font-size: 0.85rem; }
+        h1 { font-size: 3.5rem; max-width: 900px; margin: 0 auto 2rem; color: var(--pink-dark); }
         .article-content { max-width: 800px; margin: 0 auto; padding: 3rem 2rem; }
-        .article-content h2 { font-size: 2.2rem; margin: 3rem 0 1.5rem; color: var(--text-dark); }
-        .article-content h3 { font-size: 1.6rem; margin: 2rem 0 1rem; color: var(--primary-pink); }
+        .article-content h2 { font-size: 2.2rem; margin: 3rem 0 1.5rem; color: var(--black); }
+        .article-content h3 { font-size: 1.6rem; margin: 2rem 0 1rem; color: var(--pink-accent); }
         .article-content p { margin-bottom: 1.5rem; font-size: 1.1rem; }
         .article-content ul, .article-content ol { margin: 1.5rem 0; padding-left: 2rem; }
         .article-content li { margin-bottom: 1rem; font-size: 1.05rem; }
-        .highlight-box { background: var(--bg-light); border-left: 4px solid var(--primary-pink); padding: 1.5rem 2rem; margin: 2rem 0; border-radius: 10px; }
-        .stats-box { background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple)); color: white; padding: 2rem; border-radius: 20px; margin: 2rem 0; }
+        .highlight-box { background: var(--baby-pink); border-left: 4px solid var(--pink-accent); padding: 1.5rem 2rem; margin: 2rem 0; border-radius: 10px; }
+        .stats-box { background: var(--pink-accent); color: white; padding: 2rem; border-radius: 20px; margin: 2rem 0; }
         .stats-box h3, .stats-box h4 { color: white; }
         .stats-box ul { list-style: none; padding-left: 0; }
         .stats-box li { margin-bottom: 0.5rem; }
         .tech-box { background: #F0F8FF; border-left: 4px solid #4169E1; padding: 1.5rem 2rem; margin: 2rem 0; border-radius: 10px; }
-        .use-case { background: var(--bg-light); padding: 2rem; margin: 2rem 0; border-radius: 15px; }
+        .use-case { background: var(--baby-pink); padding: 2rem; margin: 2rem 0; border-radius: 15px; }
         .prompt-example { background: #F5F5F5; padding: 1rem 1.5rem; margin: 1rem 0; border-radius: 10px; font-family: monospace; font-size: 0.95rem; font-style: italic; }
-        .tool-box { background: var(--bg-light); padding: 1.5rem; margin: 1rem 0; border-radius: 10px; border-left: 4px solid var(--primary-pink); }
-        .cta-section { background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple)); color: white; padding: 4rem 2rem; text-align: center; margin: 4rem 0; border-radius: 20px; }
+        .tool-box { background: var(--baby-pink); padding: 1.5rem; margin: 1rem 0; border-radius: 10px; border-left: 4px solid var(--pink-accent); }
+        .cta-section { background: var(--pink-accent); color: white; padding: 4rem 2rem; text-align: center; margin: 4rem 0; border-radius: 20px; }
         .cta-section h2 { color: white; font-size: 2.5rem; margin-bottom: 1rem; }
-        .cta-button { display: inline-block; background: white; color: var(--primary-pink); padding: 1.2rem 3rem; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.2rem; margin-top: 2rem; transition: transform 0.3s; }
+        .cta-button { display: inline-block; background: white; color: var(--pink-accent); padding: 1.2rem 3rem; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.2rem; margin-top: 2rem; transition: transform 0.3s; }
         .cta-button:hover { transform: translateY(-3px); }
-        .share-section { text-align: center; padding: 2rem; border-top: 2px solid var(--bg-light); margin-top: 3rem; }
+        .share-section { text-align: center; padding: 2rem; border-top: 2px solid var(--baby-pink); margin-top: 3rem; }
         .share-buttons { display: flex; gap: 1rem; justify-content: center; margin-top: 1rem; }
         .share-btn { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 1.2rem; transition: transform 0.3s; }
         .share-btn:hover { transform: translateY(-5px); }
         .twitter { background: #1DA1F2; }
         .facebook { background: #4267B2; }
         .email { background: #EA4335; }
-        footer { background: var(--text-dark); color: white; text-align: center; padding: 3rem 2rem; }
+        footer { background: var(--pink-dark); color: var(--white); padding: 3rem 2rem 1.5rem; text-align: center; }
+        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .footer-links a { color: var(--white); text-decoration: none; font-size: 0.9rem; transition: opacity 0.3s ease; }
+        .footer-links a:hover { opacity: 0.8; }
+        .footer-social { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1.5rem; }
+        .footer-social a { color: var(--white); font-size: 1.3rem; transition: transform 0.3s ease; }
+        .footer-social a:hover { transform: translateY(-3px); }
+        .footer-copyright { font-size: 0.85rem; opacity: 0.9; }
         @media (max-width: 768px) {
             h1 { font-size: 2.2rem; }
             .article-content h2 { font-size: 1.8rem; }
@@ -65,9 +79,13 @@
 </head>
 <body>
     <nav>
-        <div class="nav-container">
-            <a href="/index.html" class="logo">TheFitChecked</a>
-            <a href="/blog.html" style="color: var(--text-dark); text-decoration: none; font-weight: 600;">← Back to Blog</a>
+        <div class="nav-left">
+            <a href="/">Home</a>
+            <a href="/blog.html">Blog</a>
+            <a href="/blueprint.html">Blueprint</a>
+        </div>
+        <div class="nav-right">
+            <a href="/#waitlist" class="waitlist-btn">Join Waitlist</a>
         </div>
     </nav>
 
@@ -1096,12 +1114,18 @@
     </article>
 
     <footer>
-        <div style="max-width: 800px; margin: 0 auto;">
-            <h3 style="margin-bottom: 1rem;">About TheFitChecked</h3>
-            <p style="margin-bottom: 2rem;">We're bringing fantasy fashion to reality with AI avatars, virtual try-on, and smart shopping that turns imagination into your actual wardrobe.</p>
-            <p><a href="/index.html" style="color: var(--primary-pink); text-decoration: none; font-weight: 600;">Learn More About TheFitChecked</a> | <a href="/blog.html" style="color: var(--primary-pink); text-decoration: none; font-weight: 600;">Read More Fashion Tips</a></p>
-            <p style="margin-top: 2rem; color: #999; font-size: 0.9rem;">&copy; 2025 TheFitChecked. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="/legal.html#privacy">Privacy Policy</a>
+            <a href="/legal.html#terms">Terms of Service</a>
+            <a href="mailto:hello@thefitcheckedhomepage.com">Contact</a>
         </div>
+        <div class="footer-social">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p class="footer-copyright">&copy; 2025 TheFitChecked. All rights reserved.</p>
     </footer>
 </body>
 </html>
