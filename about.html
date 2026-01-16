@@ -103,13 +103,13 @@
         .about-header {
             padding-top: 70px;
             background: var(--baby-pink);
+            position: relative;
+            z-index: 1;
         }
 
         .header-image {
             width: 100%;
-            max-height: 450px;
-            object-fit: cover;
-            object-position: center;
+            height: auto;
             display: block;
         }
 
@@ -118,6 +118,8 @@
             background: var(--pink-accent);
             padding: 0.75rem 0;
             overflow: hidden;
+            position: relative;
+            z-index: 2;
         }
 
         .marquee-track {
