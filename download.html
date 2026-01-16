@@ -36,29 +36,16 @@
 
         /* Full Page Background */
         .page-container {
-            position: relative;
-            width: 100%;
             min-height: 100vh;
-        }
-
-        .bg-image {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .page-content {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            background-image: url('images/coming-soon-bg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-between;
-            padding: 3rem 2rem;
-            z-index: 2;
+            justify-content: center;
+            position: relative;
         }
 
         .page-container::before {
@@ -72,29 +59,23 @@
             z-index: 1;
         }
 
-        /* Logo at Top */
-        .logo {
-            position: relative;
-            z-index: 2;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--white);
-            text-decoration: none;
-            display: block;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-        }
-
         .content {
             position: relative;
             z-index: 2;
             text-align: center;
             padding: 2rem;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+        }
+
+        /* Logo */
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+            margin-bottom: 3rem;
+            display: block;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
         }
 
         /* Countdown Timer */
@@ -120,9 +101,11 @@
             font-size: clamp(4rem, 12vw, 8rem);
             font-weight: 700;
             color: var(--pink-neon);
-            text-shadow:
-                0 0 5px var(--pink-neon),
-                0 0 15px var(--pink-accent);
+            text-shadow: 
+                0 0 10px var(--pink-neon),
+                0 0 20px var(--pink-neon),
+                0 0 40px var(--pink-neon),
+                0 0 80px var(--pink-accent);
             line-height: 1;
             letter-spacing: 2px;
         }
@@ -132,9 +115,10 @@
             font-size: clamp(3rem, 10vw, 6rem);
             font-weight: 700;
             color: var(--pink-neon);
-            text-shadow:
-                0 0 5px var(--pink-neon),
-                0 0 15px var(--pink-accent);
+            text-shadow: 
+                0 0 10px var(--pink-neon),
+                0 0 20px var(--pink-neon),
+                0 0 40px var(--pink-neon);
             line-height: 1;
             padding: 0 0.25rem;
         }
@@ -352,7 +336,10 @@
 
         /* Footer */
         .footer {
-            position: relative;
+            position: absolute;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 2;
             text-align: center;
         }
@@ -407,49 +394,45 @@
 </head>
 <body>
     <div class="page-container">
-        <img src="images/coming-soon-bg.png" alt="" class="bg-image">
-
-        <div class="page-content">
+        <div class="content">
             <a href="/" class="logo">TheFitChecked</a>
-
-            <div class="content">
-                <!-- Countdown Timer -->
-                <div class="countdown-container">
-                    <div class="countdown">
-                        <div class="countdown-item">
-                            <span class="countdown-number" id="days">35</span>
-                            <span class="countdown-label">Days</span>
-                        </div>
-                        <span class="countdown-separator">:</span>
-                        <div class="countdown-item">
-                            <span class="countdown-number" id="hours">00</span>
-                            <span class="countdown-label">Hours</span>
-                        </div>
-                        <span class="countdown-separator">:</span>
-                        <div class="countdown-item">
-                            <span class="countdown-number" id="minutes">00</span>
-                            <span class="countdown-label">Minutes</span>
-                        </div>
-                        <span class="countdown-separator">:</span>
-                        <div class="countdown-item">
-                            <span class="countdown-number" id="seconds">00</span>
-                            <span class="countdown-label">Seconds</span>
-                        </div>
+            
+            <!-- Countdown Timer -->
+            <div class="countdown-container">
+                <div class="countdown">
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="days">35</span>
+                        <span class="countdown-label">Days</span>
                     </div>
-                    <p class="until-launch">Until Launch</p>
+                    <span class="countdown-separator">:</span>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="hours">00</span>
+                        <span class="countdown-label">Hours</span>
+                    </div>
+                    <span class="countdown-separator">:</span>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="minutes">00</span>
+                        <span class="countdown-label">Minutes</span>
+                    </div>
+                    <span class="countdown-separator">:</span>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="seconds">00</span>
+                        <span class="countdown-label">Seconds</span>
+                    </div>
                 </div>
-
-                <!-- Join Waitlist Button -->
-                <button class="waitlist-btn" onclick="openWaitlistModal()">Join the Waitlist</button>
+                <p class="until-launch">Until Launch</p>
             </div>
 
-            <!-- Footer -->
-            <div class="footer">
-                <div class="footer-links">
-                    <a href="/legal.html#privacy">Privacy Policy</a>
-                    <a href="/legal.html#terms">Terms of Service</a>
-                    <a href="/">Back to Home</a>
-                </div>
+            <!-- Join Waitlist Button -->
+            <button class="waitlist-btn" onclick="openWaitlistModal()">Join the Waitlist</button>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-links">
+                <a href="/legal.html#privacy">Privacy Policy</a>
+                <a href="/legal.html#terms">Terms of Service</a>
+                <a href="/">Back to Home</a>
             </div>
         </div>
     </div>

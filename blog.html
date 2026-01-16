@@ -123,10 +123,10 @@
         .wave-divider::before {
             content: '';
             position: absolute;
-            top: -20px;
+            top: -79px;
             left: 0;
             right: 0;
-            height: 20px;
+            height: 80px;
             background: var(--baby-pink);
             clip-path: ellipse(55% 100% at 50% 100%);
         }
@@ -620,7 +620,7 @@
             <a href="/blueprint.html">Blueprint</a>
         </div>
         <div class="nav-right">
-            <a href="/#waitlist" class="waitlist-btn">Join Waitlist</a>
+            <button onclick="openWaitlistModal()" class="waitlist-btn">Join Waitlist</button>
         </div>
     </nav>
 
@@ -781,7 +781,7 @@
         <div class="footer-links">
             <a href="/legal.html#privacy">Privacy Policy</a>
             <a href="/legal.html#terms">Terms of Service</a>
-            <a href="mailto:hello@thefitcheckedhomepage.com">Contact</a>
+            <a href="/cdn-cgi/l/email-protection#ec8489808083ac9884898a85988f84898f878988848381899c8d8b89c28f8381">Contact</a>
         </div>
         <div class="footer-social">
             <a href="#"><i class="fab fa-instagram"></i></a>
@@ -791,5 +791,193 @@
         </div>
         <p class="footer-copyright">© 2025 TheFitChecked. All rights reserved.</p>
     </footer>
+
+    <!-- Waitlist Modal -->
+    <div class="modal-overlay" id="waitlistModal">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeWaitlistModal()">×</button>
+            
+            <div class="modal-form" id="waitlistForm">
+                <h2 class="modal-title">Join the Waitlist</h2>
+                <p class="modal-subtitle">Be among the first to experience the future of fashion.</p>
+                
+                <form id="emailForm" onsubmit="submitWaitlist(event)">
+                    <input type="email" class="modal-input" placeholder="Enter your email" required id="emailInput">
+                    <button type="submit" class="modal-submit">Get Early Access</button>
+                </form>
+                
+                <div class="modal-perk">
+                    <span>🎁</span> First 20 users get lifetime premium features!
+                </div>
+            </div>
+
+            <div class="modal-success" id="waitlistSuccess">
+                <div class="success-icon">🎉</div>
+                <h3 class="success-title">You're on the list!</h3>
+                <p class="success-text">We'll notify you when we launch.</p>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .nav-right .waitlist-btn {
+            border: none;
+            cursor: pointer;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-box {
+            background: var(--white);
+            border-radius: 30px;
+            padding: 3rem 2.5rem;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 40px;
+            height: 40px;
+            background: var(--baby-pink);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--black);
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--pink-accent);
+            color: var(--white);
+        }
+
+        .modal-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: var(--black);
+            text-align: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .modal-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .modal-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .modal-input {
+            width: 100%;
+            padding: 1.25rem 1.5rem;
+            border: 2px solid var(--baby-pink);
+            border-radius: 50px;
+            font-size: 1rem;
+            font-family: 'Outfit', sans-serif;
+            outline: none;
+        }
+
+        .modal-input:focus {
+            border-color: var(--pink-accent);
+        }
+
+        .modal-submit {
+            width: 100%;
+            padding: 1.25rem;
+            background: var(--pink-accent);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .modal-submit:hover {
+            background: #FF1493;
+        }
+
+        .modal-perk {
+            background: var(--baby-pink);
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 1rem;
+            color: var(--pink-dark);
+            font-weight: 500;
+        }
+
+        .modal-success { display: none; text-align: center; padding: 2rem 0; }
+        .modal-success.active { display: block; }
+        .modal-form.hidden { display: none; }
+        .success-icon { font-size: 4rem; margin-bottom: 1rem; }
+        .success-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--black); margin-bottom: 0.5rem; }
+        .success-text { color: #666; }
+    </style>
+
+    <script>
+        function openWaitlistModal() {
+            document.getElementById('waitlistModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeWaitlistModal() {
+            document.getElementById('waitlistModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.getElementById('waitlistModal').addEventListener('click', function(e) {
+            if (e.target === this) closeWaitlistModal();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeWaitlistModal();
+        });
+
+        function submitWaitlist(e) {
+            e.preventDefault();
+            document.getElementById('waitlistForm').classList.add('hidden');
+            document.getElementById('waitlistSuccess').classList.add('active');
+            setTimeout(() => {
+                closeWaitlistModal();
+                setTimeout(() => {
+                    document.getElementById('waitlistForm').classList.remove('hidden');
+                    document.getElementById('waitlistSuccess').classList.remove('active');
+                    document.getElementById('emailInput').value = '';
+                }, 300);
+            }, 2500);
+        }
+    </script>
 </body>
 </html>
