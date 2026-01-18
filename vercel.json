@@ -1,6 +1,7 @@
 {
   "rewrites": [
-    { "source": "/blueprint", "destination": "/blueprint.html" }
+    { "source": "/blueprint", "destination": "/blueprint.html" },
+    { "source": "/blog", "destination": "/blog.html" }
   ],
   "trailingSlash": false
 }
