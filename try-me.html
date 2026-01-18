@@ -1971,13 +1971,15 @@ Return ONLY valid JSON, no other text.`;
 
                     if (results.shopping_results) {
                         results.shopping_results.slice(0, 2).forEach(product => {
+                            // Use product_link (direct URL) if available, otherwise fall back to link
+                            const productUrl = product.product_link || product.link || '#';
                             const div = document.createElement('div');
                             div.className = 'shopping-item';
                             div.innerHTML = `
                                 <img src="${product.thumbnail}" alt="${product.title}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%23f0f0f0%22 width=%22100%22 height=%22100%22/><text x=%2250%22 y=%2250%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22>No Image</text></svg>'">
                                 <div class="item-title">${product.title}</div>
                                 <div class="item-price">${product.price || 'See price'}</div>
-                                <a href="${product.link}" target="_blank">Shop Now →</a>
+                                <a href="${productUrl}" target="_blank" rel="noopener noreferrer">Shop Now →</a>
                             `;
                             grid.appendChild(div);
                         });
