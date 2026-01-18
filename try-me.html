@@ -1111,22 +1111,91 @@
             });
         }
 
-        // Poll FAL queue for result using status_url from FAL
-        async function pollFalStatus(statusUrl, maxAttempts = 90) {
+        // Poll FAL queue - first poll status URL, then fetch result from response URL
+        async function pollFalStatus(statusUrl, responseUrl, maxAttempts = 120) {
+            // Step 1: Poll status URL until COMPLETED
             for (let i = 0; i < maxAttempts; i++) {
-                await new Promise(r => setTimeout(r, 2000)); // Poll every 2 seconds
+                await new Promise(r => setTimeout(r, 2000));
 
-                const response = await fetch(`/api/fal-status?url=${encodeURIComponent(statusUrl)}`);
-                const status = await response.json();
+                try {
+                    const cacheBuster = Date.now();
+                    const response = await fetch(`/api/fal-status?url=${encodeURIComponent(statusUrl)}&_t=${cacheBuster}`);
+                    if (!response.ok) continue;
 
-                console.log('FAL status poll #' + (i + 1) + ':', status);
+                    const status = await response.json();
+                    console.log('FAL status poll #' + (i + 1) + ':', status.status, status.queue_position ?? '', status.metrics?.inference_time ? `(${status.metrics.inference_time.toFixed(1)}s)` : '');
 
-                if (status.status === 'COMPLETED') {
-                    return status.response;
-                } else if (status.status === 'FAILED') {
-                    throw new Error(status.error || 'FAL job failed');
+                    if (status.status === 'COMPLETED') {
+                        console.log('COMPLETED! Request ID:', status.request_id, 'Inference time:', status.metrics?.inference_time);
+
+                        // Check if response is already in the status
+                        if (status.response && status.response.images) {
+                            console.log('Found images in status.response!');
+                            return status.response;
+                        }
+
+                        // Wait a moment for FAL to finalize the result
+                        console.log('Waiting 3 seconds for result to be ready...');
+                        await new Promise(r => setTimeout(r, 3000));
+
+                        // Try multiple URLs to get the result, with retries
+                        const requestId = status.request_id;
+                        const urlsToTry = [
+                            `https://queue.fal.run/fal-ai/nano-banana-pro/edit/requests/${requestId}`,
+                            responseUrl
+                        ];
+
+                        // Retry up to 5 times with increasing delays
+                        for (let retry = 0; retry < 5; retry++) {
+                            if (retry > 0) {
+                                console.log(`Retry ${retry}/5, waiting ${retry * 2} seconds...`);
+                                await new Promise(r => setTimeout(r, retry * 2000));
+                            }
+
+                            for (const tryUrl of urlsToTry) {
+                                console.log(`Attempt ${retry + 1}: Trying`, tryUrl.includes('/edit/') ? 'edit URL' : 'original URL');
+                                const cb = Date.now();
+
+                                try {
+                                    const resultResponse = await fetch(`/api/fal-status?url=${encodeURIComponent(tryUrl)}&_t=${cb}`);
+                                    if (!resultResponse.ok) {
+                                        console.log('HTTP', resultResponse.status);
+                                        continue;
+                                    }
+
+                                    const result = await resultResponse.json();
+                                    const keys = Object.keys(result);
+                                    console.log('Result keys:', keys.join(', '));
+
+                                    if (result.images && result.images.length > 0) {
+                                        console.log('SUCCESS! Found images:', result.images[0].url);
+                                        return result;
+                                    }
+                                    if (result.response && result.response.images) {
+                                        console.log('SUCCESS! Found images in response:', result.response.images[0].url);
+                                        return result.response;
+                                    }
+
+                                    // If we got status info, log it
+                                    if (result.status) {
+                                        console.log('Got status:', result.status);
+                                    }
+                                } catch (e) {
+                                    console.log('Fetch error:', e.message);
+                                }
+                            }
+                        }
+
+                        console.log('Failed to get images after all retries');
+                        throw new Error('Could not retrieve generated image from FAL');
+                    }
+
+                    if (status.status === 'FAILED') {
+                        throw new Error(status.error || 'FAL job failed');
+                    }
+                } catch (pollError) {
+                    console.error('Poll error:', pollError);
                 }
-                // IN_QUEUE or IN_PROGRESS - keep polling
             }
             throw new Error('FAL job timeout after ' + maxAttempts + ' attempts');
         }
@@ -1196,6 +1265,15 @@ Natural standing pose showing COMPLETE FIGURE from head to BARE FEET. Profession
 
                 const falPath = '/fal-ai/nano-banana-pro/edit';
 
+                // Log what we're sending
+                console.log('Sending to /api/fal:', {
+                    path: falPath,
+                    promptLength: mainPrompt.length,
+                    promptStart: mainPrompt.substring(0, 50),
+                    headshotSize: compressedHeadshot.length,
+                    fullbodySize: compressedFullbody.length
+                });
+
                 // Submit to FAL queue (returns immediately with request_id)
                 const response = await fetch('/api/fal', {
                     method: 'POST',
@@ -1227,12 +1305,17 @@ Natural standing pose showing COMPLETE FIGURE from head to BARE FEET. Profession
                     throw new Error('No request_id or status_url returned: ' + JSON.stringify(queueResult));
                 }
 
-                // Use status_url from FAL response directly
-                const statusUrl = queueResult.status_url;
-                console.log('Using status URL:', statusUrl);
+                // FAL returns URLs without /edit, but we need /edit for this model
+                // Construct correct URLs using the request_id
+                const requestId = queueResult.request_id;
+                const statusUrl = `https://queue.fal.run/fal-ai/nano-banana-pro/edit/requests/${requestId}/status`;
+                const responseUrl = `https://queue.fal.run/fal-ai/nano-banana-pro/edit/requests/${requestId}`;
+                console.log('Request ID:', requestId);
+                console.log('Status URL (corrected):', statusUrl);
+                console.log('Response URL (corrected):', responseUrl);
 
-                // Poll for result
-                const result = await pollFalStatus(statusUrl);
+                // Poll status, then fetch result
+                const result = await pollFalStatus(statusUrl, responseUrl);
                 console.log('FAL final result:', result);
 
                 if (result.images && result.images[0]) {
@@ -1245,6 +1328,8 @@ Natural standing pose showing COMPLETE FIGURE from head to BARE FEET. Profession
 
             } catch (error) {
                 console.error('Avatar generation error:', error);
+                console.error('Error details:', error.message, error.stack);
+                alert('Avatar generation failed: ' + error.message + '\n\nUsing original photo as fallback.');
                 // Fallback - use uploaded image as "avatar" for demo
                 avatarUrl = fullbodyData;
                 showAvatarResult(avatarUrl);

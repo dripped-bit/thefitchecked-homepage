@@ -1,6 +1,6 @@
 export const config = {
   runtime: 'nodejs',
-  maxDuration: 30,
+  maxDuration: 60,
 };
 
 export default async function handler(req, res) {
@@ -25,15 +25,26 @@ export default async function handler(req, res) {
   try {
     const { path, body } = req.body;
 
+    if (!body || !body.prompt) {
+      console.error('Missing body or prompt:', { hasBody: !!body, hasPrompt: !!body?.prompt });
+      return res.status(400).json({ error: 'Missing prompt in request body' });
+    }
+
+    console.log('Received request for path:', path, 'prompt length:', body.prompt?.length);
+
     // Process body to convert base64 images to URLs using Vercel Blob
     const processedBody = { ...body };
 
     // Handle image_urls array for models that need multiple images
     if (processedBody.image_urls && Array.isArray(processedBody.image_urls)) {
+      console.log('Processing image_urls array, count:', processedBody.image_urls.length);
       processedBody.image_urls = await Promise.all(
-        processedBody.image_urls.map(async (img) => {
+        processedBody.image_urls.map(async (img, i) => {
           if (img && img.startsWith('data:')) {
-            return await uploadBase64ToBlob(img);
+            console.log(`Uploading image ${i} to blob...`);
+            const url = await uploadBase64ToBlob(img);
+            console.log(`Image ${i} result:`, url.startsWith('data:') ? 'base64 (no blob token)' : url);
+            return url;
           }
           return img;
         })
@@ -51,6 +62,22 @@ export default async function handler(req, res) {
     // Always use queue endpoint for async processing
     const targetUrl = `https://queue.fal.run${path}`;
 
+    // Log what we're sending (without full image data)
+    const imageTypes = processedBody.image_urls?.map(u => {
+      if (!u) return 'null';
+      if (u.startsWith('data:')) return 'base64:' + u.length;
+      return 'url';
+    }) || [];
+
+    console.log('Sending to FAL:', {
+      url: targetUrl,
+      hasPrompt: !!processedBody.prompt,
+      promptLength: processedBody.prompt?.length || 0,
+      promptStart: processedBody.prompt?.substring(0, 50) || 'MISSING',
+      image_urls_count: processedBody.image_urls?.length || 0,
+      image_urls_types: imageTypes
+    });
+
     const response = await fetch(targetUrl, {
       method: 'POST',
       headers: {
@@ -61,6 +88,7 @@ export default async function handler(req, res) {
     });
 
     const data = await response.json();
+    console.log('FAL response:', response.status, data.request_id || data.error || 'ok');
     return res.status(response.status).json(data);
 
   } catch (error) {
