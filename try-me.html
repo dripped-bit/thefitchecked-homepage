@@ -1496,14 +1496,18 @@ Return a JSON object with this exact structure:
 {
     "outfit_description": "A compelling 1-2 sentence description of the complete look",
     "items": [
-        { "type": "top", "name": "Specific item name", "color": "Exact color/shade", "style": "Style notes", "searchQuery": "search term for shopping" },
-        { "type": "bottom", "name": "Specific item name", "color": "Exact color/shade", "style": "Style notes", "searchQuery": "search term for shopping" },
+        { "type": "top/bottom/dress", "name": "Specific item name", "color": "Exact color/shade", "style": "Style notes", "searchQuery": "search term for shopping" },
         { "type": "shoes", "name": "Specific item name", "color": "Exact color/shade", "style": "Style notes", "searchQuery": "search term for shopping" },
         { "type": "accessory", "name": "Specific item name", "color": "Exact color/shade", "style": "Style notes", "searchQuery": "search term for shopping" }
     ],
     "styling_tips": "Professional styling advice for how to wear this look",
     "color_palette": ["primary color", "accent color", "neutral"]
 }
+
+IMPORTANT for clothing items:
+- If recommending a DRESS, jumpsuit, or romper: use type "dress" as a SINGLE item (do NOT also include separate top/bottom)
+- If recommending separates: include BOTH type "top" AND type "bottom" as separate items
+- Always include shoes and one accessory
 
 Be specific with item names (e.g., "Silk V-Neck Camisole" not just "top"). Include current fashion trends when appropriate. Return ONLY valid JSON, no other text.`;
 
@@ -1790,7 +1794,15 @@ Be specific with item names (e.g., "Silk V-Neck Camisole" not just "top"). Inclu
                 else if (budget === 'high') { budgetMin = 200; budgetMax = 500; }
                 else if (budget === 'luxury') { budgetMin = 400; }
 
+                // Check if outfit includes a dress - if so, skip top/bottom
+                const hasDress = currentOutfit.items.some(i => i.type === 'dress');
+
                 for (const item of currentOutfit.items) {
+                    // If outfit has a dress, skip separate top/bottom items
+                    if (hasDress && (item.type === 'top' || item.type === 'bottom')) {
+                        continue;
+                    }
+
                     // Use searchQuery if available, otherwise build from item details
                     const query = item.searchQuery || `${item.color} ${item.name}`;
 
