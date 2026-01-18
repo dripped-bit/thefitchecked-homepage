@@ -1138,12 +1138,8 @@
                         console.log('Waiting 3 seconds for result to be ready...');
                         await new Promise(r => setTimeout(r, 3000));
 
-                        // Try multiple URLs to get the result, with retries
-                        const requestId = status.request_id;
-                        const urlsToTry = [
-                            `https://queue.fal.run/fal-ai/nano-banana-pro/edit/requests/${requestId}`,
-                            responseUrl
-                        ];
+                        // Try the response URL to get the result
+                        const urlsToTry = [responseUrl];
 
                         // Retry up to 5 times with increasing delays
                         for (let retry = 0; retry < 5; retry++) {
@@ -1305,14 +1301,12 @@ Natural standing pose showing COMPLETE FIGURE from head to BARE FEET. Profession
                     throw new Error('No request_id or status_url returned: ' + JSON.stringify(queueResult));
                 }
 
-                // FAL returns URLs without /edit, but we need /edit for this model
-                // Construct correct URLs using the request_id
-                const requestId = queueResult.request_id;
-                const statusUrl = `https://queue.fal.run/fal-ai/nano-banana-pro/edit/requests/${requestId}/status`;
-                const responseUrl = `https://queue.fal.run/fal-ai/nano-banana-pro/edit/requests/${requestId}`;
-                console.log('Request ID:', requestId);
-                console.log('Status URL (corrected):', statusUrl);
-                console.log('Response URL (corrected):', responseUrl);
+                // Use FAL's provided URLs directly
+                const statusUrl = queueResult.status_url;
+                const responseUrl = queueResult.response_url;
+                console.log('Request ID:', queueResult.request_id);
+                console.log('Status URL:', statusUrl);
+                console.log('Response URL:', responseUrl);
 
                 // Poll status, then fetch result
                 const result = await pollFalStatus(statusUrl, responseUrl);
