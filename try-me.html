@@ -883,7 +883,7 @@
                         <!-- Outfit items will be inserted here -->
                     </div>
                     <div class="btn-row">
-                        <button class="retro-btn" onclick="tryOnOutfit()">👗 TRY IT ON</button>
+                        <button class="retro-btn" id="tryOnBtn" onclick="tryOnOutfit()">👗 TRY IT ON</button>
                         <button class="retro-btn primary" onclick="showShopping()">🛒 SHOP NOW</button>
                         <button class="retro-btn" onclick="retryOutfit()">↺ RETRY</button>
                     </div>
@@ -1680,10 +1680,21 @@ Be specific with item names (e.g., "Silk V-Neck Camisole" not just "top"). Inclu
 
         // Try on outfit
         async function tryOnOutfit() {
+            const tryOnBtn = document.getElementById('tryOnBtn');
+
+            // Only allow one try-on attempt
+            if (tryOnBtn.disabled) {
+                return;
+            }
+
             if (!avatarUrl || !outfitImageUrl) {
                 alert('Avatar or outfit not ready');
                 return;
             }
+
+            // Disable button immediately
+            tryOnBtn.disabled = true;
+            tryOnBtn.textContent = '👗 TRYING ON...';
 
             document.getElementById('outfitLoading').classList.remove('hidden');
             document.getElementById('outfitLoadingText').textContent = 'Trying on your outfit...';
@@ -1731,6 +1742,7 @@ Be specific with item names (e.g., "Silk V-Neck Camisole" not just "top"). Inclu
                 showTryOnResult(avatarUrl);
             } finally {
                 document.getElementById('outfitLoading').classList.add('hidden');
+                tryOnBtn.textContent = '👗 TRIED ON';
             }
         }
 
