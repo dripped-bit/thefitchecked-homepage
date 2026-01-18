@@ -1111,6 +1111,24 @@
             });
         }
 
+        // Poll FAL queue for result
+        async function pollFalStatus(requestId, path, maxAttempts = 60) {
+            for (let i = 0; i < maxAttempts; i++) {
+                await new Promise(r => setTimeout(r, 2000));
+
+                const response = await fetch(`/api/fal-status?request_id=${requestId}&path=${encodeURIComponent(path)}`);
+                const status = await response.json();
+
+                if (status.status === 'COMPLETED') {
+                    return status.response;
+                } else if (status.status === 'FAILED') {
+                    throw new Error(status.error || 'FAL job failed');
+                }
+                // IN_QUEUE or IN_PROGRESS - keep polling
+            }
+            throw new Error('FAL job timeout');
+        }
+
         // Avatar generation
         let avatarGenerated = false;
 
@@ -1177,11 +1195,15 @@ Natural standing pose showing COMPLETE FIGURE from head to BARE FEET. Profession
                 const compressedHeadshot = await compressImage(headshotData, 400);
                 const compressedFullbody = await compressImage(fullbodyData, 400);
 
+                const falPath = '/fal-ai/nano-banana-pro/edit';
+
+                // Submit job to FAL queue (async)
                 const response = await fetch('/api/fal', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        path: '/fal-ai/nano-banana-pro/edit',
+                        path: falPath,
+                        async: true,
                         body: {
                             image_urls: [compressedHeadshot, compressedFullbody],
                             prompt: mainPrompt,
@@ -1189,15 +1211,29 @@ Natural standing pose showing COMPLETE FIGURE from head to BARE FEET. Profession
                             num_images: 1,
                             strength: 0.75,
                             guidance_scale: 5.5,
-                            num_inference_steps: 100,
+                            num_inference_steps: 30,
                             image_size: { width: 1152, height: 2048 },
                             enable_safety_checker: false,
-                            seed: Date.now()
+                            seed: Date.now() % 4294967295
                         }
                     })
                 });
 
-                const result = await response.json();
+                const submitResult = await response.json();
+
+                if (!submitResult.request_id) {
+                    // Fallback: maybe got direct result
+                    if (submitResult.images && submitResult.images[0]) {
+                        avatarUrl = submitResult.images[0].url;
+                        showAvatarResult(avatarUrl);
+                        updateStep(2);
+                        return;
+                    }
+                    throw new Error('No request_id returned');
+                }
+
+                // Poll for result
+                const result = await pollFalStatus(submitResult.request_id, falPath);
 
                 if (result.images && result.images[0]) {
                     avatarUrl = result.images[0].url;

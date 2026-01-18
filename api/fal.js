@@ -23,21 +23,35 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { path, body } = req.body;
-    
+    const { path, body, async: useAsync } = req.body;
+
     // Process body to convert base64 images to URLs using Vercel Blob
     const processedBody = { ...body };
-    
+
     if (processedBody.image_url && processedBody.image_url.startsWith('data:')) {
       processedBody.image_url = await uploadBase64ToBlob(processedBody.image_url);
     }
-    
+
     if (processedBody.image && processedBody.image.startsWith('data:')) {
       processedBody.image = await uploadBase64ToBlob(processedBody.image);
     }
-    
-    const targetUrl = `https://fal.run${path}`;
-    
+
+    // Handle image_urls array for models that need multiple images
+    if (processedBody.image_urls && Array.isArray(processedBody.image_urls)) {
+      processedBody.image_urls = await Promise.all(
+        processedBody.image_urls.map(async (img) => {
+          if (img && img.startsWith('data:')) {
+            return await uploadBase64ToBlob(img);
+          }
+          return img;
+        })
+      );
+    }
+
+    // Use queue endpoint for async processing, or direct endpoint for sync
+    const baseUrl = useAsync ? 'https://queue.fal.run' : 'https://fal.run';
+    const targetUrl = `${baseUrl}${path}`;
+
     const response = await fetch(targetUrl, {
       method: 'POST',
       headers: {
@@ -58,7 +72,7 @@ export default async function handler(req, res) {
 
 async function uploadBase64ToBlob(base64String) {
   const blobToken = process.env.BLOB_READ_WRITE_TOKEN;
-  
+
   if (!blobToken) {
     // If no blob token, try passing base64 directly (some FAL models accept it)
     return base64String;
@@ -80,7 +94,7 @@ async function uploadBase64ToBlob(base64String) {
 
     // Upload to Vercel Blob
     const filename = `avatar-${Date.now()}.${extension}`;
-    
+
     const response = await fetch(`https://blob.vercel-storage.com/${filename}`, {
       method: 'PUT',
       headers: {
