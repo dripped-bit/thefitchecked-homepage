@@ -34,19 +34,25 @@ export default async function handler(req) {
   }
 
   try {
-    const url = new URL(req.url);
-    const requestId = url.searchParams.get('request_id');
-    const path = url.searchParams.get('path');
+    const reqUrl = new URL(req.url);
 
-    if (!requestId || !path) {
-      return new Response(JSON.stringify({ error: 'Missing request_id or path' }), {
+    // Accept the status URL directly from FAL's queue response
+    const statusUrl = reqUrl.searchParams.get('url');
+
+    if (!statusUrl) {
+      return new Response(JSON.stringify({ error: 'Missing url parameter' }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' },
       });
     }
 
-    // Construct status URL: https://queue.fal.run/{path}/requests/{request_id}/status
-    const statusUrl = `https://queue.fal.run${path}/requests/${requestId}/status`;
+    // Validate it's a FAL URL
+    if (!statusUrl.startsWith('https://queue.fal.run/') && !statusUrl.startsWith('https://fal.run/')) {
+      return new Response(JSON.stringify({ error: 'Invalid FAL URL' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
 
     const response = await fetch(statusUrl, {
       method: 'GET',

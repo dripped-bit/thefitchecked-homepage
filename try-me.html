@@ -1111,12 +1111,12 @@
             });
         }
 
-        // Poll FAL queue for result
-        async function pollFalStatus(requestId, path, maxAttempts = 90) {
+        // Poll FAL queue for result using status_url from FAL
+        async function pollFalStatus(statusUrl, maxAttempts = 90) {
             for (let i = 0; i < maxAttempts; i++) {
                 await new Promise(r => setTimeout(r, 2000)); // Poll every 2 seconds
 
-                const response = await fetch(`/api/fal-status?request_id=${requestId}&path=${encodeURIComponent(path)}`);
+                const response = await fetch(`/api/fal-status?url=${encodeURIComponent(statusUrl)}`);
                 const status = await response.json();
 
                 console.log('FAL status poll #' + (i + 1) + ':', status);
@@ -1216,7 +1216,7 @@ Natural standing pose showing COMPLETE FIGURE from head to BARE FEET. Profession
                 const queueResult = await response.json();
                 console.log('FAL queue result:', queueResult);
 
-                if (!queueResult.request_id) {
+                if (!queueResult.request_id && !queueResult.status_url) {
                     // Maybe got direct result (shouldn't happen with queue)
                     if (queueResult.images && queueResult.images[0]) {
                         avatarUrl = queueResult.images[0].url;
@@ -1224,11 +1224,15 @@ Natural standing pose showing COMPLETE FIGURE from head to BARE FEET. Profession
                         updateStep(2);
                         return;
                     }
-                    throw new Error('No request_id returned: ' + JSON.stringify(queueResult));
+                    throw new Error('No request_id or status_url returned: ' + JSON.stringify(queueResult));
                 }
 
+                // Use status_url from FAL response directly
+                const statusUrl = queueResult.status_url;
+                console.log('Using status URL:', statusUrl);
+
                 // Poll for result
-                const result = await pollFalStatus(queueResult.request_id, falPath);
+                const result = await pollFalStatus(statusUrl);
                 console.log('FAL final result:', result);
 
                 if (result.images && result.images[0]) {
