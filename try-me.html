@@ -1551,7 +1551,22 @@ Be specific with item names (e.g., "Silk V-Neck Camisole" not just "top"). Inclu
                     })
                 });
 
-                const imageResult = await imageResponse.json();
+                const queueResult = await imageResponse.json();
+                console.log('Outfit FAL queue result:', queueResult);
+
+                let imageResult;
+                if (queueResult.request_id && queueResult.status_url) {
+                    // Queue response - need to poll
+                    document.getElementById('outfitLoadingText').textContent = 'Creating outfit image...';
+                    imageResult = await pollFalStatus(queueResult.status_url, queueResult.response_url);
+                } else if (queueResult.images) {
+                    // Direct response
+                    imageResult = queueResult;
+                } else {
+                    console.error('Unexpected FAL response:', queueResult);
+                    imageResult = { images: [] };
+                }
+
                 outfitImageUrl = imageResult.images?.[0]?.url || null;
 
                 displayOutfitResults(outfitData, outfitImageUrl);
