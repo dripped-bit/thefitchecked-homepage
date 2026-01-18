@@ -812,18 +812,49 @@
             if (e.key === 'Escape') closeWaitlistModal();
         });
 
-        function submitWaitlist(e) {
+        async function submitWaitlist(e) {
             e.preventDefault();
-            document.getElementById('waitlistForm').classList.add('hidden');
-            document.getElementById('waitlistSuccess').classList.add('active');
-            setTimeout(() => {
-                closeWaitlistModal();
-                setTimeout(() => {
-                    document.getElementById('waitlistForm').classList.remove('hidden');
-                    document.getElementById('waitlistSuccess').classList.remove('active');
-                    document.getElementById('emailInput').value = '';
-                }, 300);
-            }, 2500);
+            const form = e.target;
+            const emailInput = form.querySelector('input[type="email"]');
+            const submitButton = form.querySelector('button[type="submit"]');
+            const email = emailInput.value;
+
+            submitButton.disabled = true;
+            submitButton.textContent = 'Joining...';
+
+            try {
+                const response = await fetch('https://kxmtbetklikewluwntyx.supabase.co/functions/v1/waitlist-signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: email,
+                        source: 'contact'
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    document.getElementById('waitlistForm').classList.add('hidden');
+                    document.getElementById('waitlistSuccess').classList.add('active');
+                    setTimeout(() => {
+                        closeWaitlistModal();
+                        setTimeout(() => {
+                            document.getElementById('waitlistForm').classList.remove('hidden');
+                            document.getElementById('waitlistSuccess').classList.remove('active');
+                            emailInput.value = '';
+                        }, 300);
+                    }, 2500);
+                } else {
+                    alert(data.error || 'Failed to join waitlist. Please try again.');
+                }
+            } catch (error) {
+                console.error('Signup error:', error);
+                alert('Network error. Please check your connection and try again.');
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Get Early Access';
+            }
         }
 
         // Mobile menu toggle
