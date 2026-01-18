@@ -1556,11 +1556,9 @@ Be specific with item names (e.g., "Silk V-Neck Camisole" not just "top"). Inclu
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        path: '/fal-ai/bytedance/seedream/v4.5/text-to-image',
+                        path: '/fal-ai/nano-banana-pro/edit',
                         body: {
-                            prompt: outfitPrompt + ' Do not include: person, model, mannequin, shoes, jewelry, accessories, bags, hats.',
-                            num_images: 1,
-                            image_size: 'portrait_16_9'
+                            prompt: outfitPrompt
                         }
                     })
                 });
