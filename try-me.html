@@ -1140,7 +1140,11 @@ Natural standing pose showing COMPLETE FIGURE from head to BARE FEET. Person's h
                             negative_prompt: negativePrompt,
                             num_images: 1,
                             strength: 0.75,
-                            guidance_scale: 7.5
+                            guidance_scale: 5.5,
+                            num_inference_steps: 100,
+                            image_size: { width: 1152, height: 2048 },
+                            enable_safety_checker: false,
+                            seed: Date.now()
                         }
                     })
                 });
