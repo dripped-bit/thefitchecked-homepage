@@ -1545,9 +1545,12 @@ Be specific with item names (e.g., "Silk V-Neck Camisole" not just "top"). Inclu
 
                 currentOutfit = outfitData;
 
-                // Generate outfit image with detailed prompt
-                const outfitItems = outfitData.items.map(i => `${i.color} ${i.name}`).join(', ');
-                const outfitPrompt = `Professional fashion flat lay photography arrangement on pure white background. Styled outfit featuring: ${outfitItems}. High-end editorial fashion photography, items arranged artistically, premium quality clothing, perfect lighting, magazine quality, vogue style, clean minimal composition. ${outfitData.outfit_description}`;
+                // Generate outfit image - only clothing items (no shoes/accessories) for FASHN try-on
+                const clothingOnly = outfitData.items.filter(i =>
+                    i.type === 'top' || i.type === 'bottom' || i.type === 'dress' || i.type === 'outerwear'
+                );
+                const clothingItems = clothingOnly.map(i => `${i.color} ${i.name}`).join(' and ');
+                const outfitPrompt = `Professional fashion flat lay photography on pure white background. Single complete outfit laid flat: ${clothingItems}. Clean minimal composition, clothing items arranged neatly as if laying on a flat surface, no mannequin, no person, no accessories, no shoes, no jewelry, just the clothing garments flat laid, high-end product photography, perfect lighting, centered composition.`;
 
                 const imageResponse = await fetch('/api/fal', {
                     method: 'POST',
@@ -1556,9 +1559,9 @@ Be specific with item names (e.g., "Silk V-Neck Camisole" not just "top"). Inclu
                         path: '/fal-ai/bytedance/seedream/v4.5/text-to-image',
                         body: {
                             prompt: outfitPrompt,
-                            negative_prompt: 'person, model, mannequin, blurry, low quality, distorted, watermark, text, logo',
+                            negative_prompt: 'person, model, mannequin, shoes, sneakers, heels, boots, jewelry, watch, bag, purse, accessories, sunglasses, hat, blurry, low quality, distorted, watermark, text, logo, multiple outfits',
                             num_images: 1,
-                            image_size: { width: 1024, height: 1024 }
+                            image_size: { width: 768, height: 1344 }
                         }
                     })
                 });
