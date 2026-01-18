@@ -20,7 +20,7 @@
             background-position: center;
             background-attachment: fixed;
             min-height: 100vh;
-            padding: 2rem;
+            padding: 80px 2rem 2rem 2rem;
         }
 
         /* Header */
@@ -596,9 +596,99 @@
                 padding: 1rem;
             }
         }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(255, 228, 236, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid rgba(255, 105, 180, 0.3);
+        }
+
+        .nav-logo {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.9rem;
+            color: #ff69b4;
+            text-decoration: none;
+            text-shadow: 2px 2px 0 #fff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ff69b4;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #ff69b4;
+        }
+
+        .nav-links a.active {
+            color: #ff69b4;
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                padding: 0.75rem 1rem;
+            }
+            .nav-logo {
+                font-size: 0.7rem;
+            }
+            .nav-links {
+                gap: 1rem;
+            }
+            .nav-links a {
+                font-size: 0.8rem;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
+    <nav>
+        <a href="/index.html" class="nav-logo">TheFitChecked</a>
+        <div class="nav-links">
+            <a href="/index.html">Home</a>
+            <a href="/blog.html">Blog</a>
+            <a href="/about.html">About</a>
+            <a href="/try-me.html" class="active">Try Me</a>
+        </div>
+    </nav>
     <!-- Email Gate Modal -->
     <div class="modal-overlay" id="emailModal">
         <div class="modal-window">
