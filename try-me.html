@@ -1178,7 +1178,6 @@
                 // Build prompt like the app does
                 const genderDescription = gender === 'female' ? 'Woman' : gender === 'male' ? 'Man' : 'Person';
                 const bodyTypeDesc = getBodyTypeDescription(bodyType, gender);
-                const bodyTypeNeg = getBodyTypeNegative(bodyType);
 
                 // Different clothing based on gender
                 const clothingDescription = gender === 'female'
@@ -1191,56 +1190,30 @@ ${genderDescription} with ${bodyType} build. ${bodyTypeDesc}. Height: ${heightCm
 
 Natural standing pose showing COMPLETE FIGURE from head to BARE FEET. Professional studio photography with pure white seamless background. ${clothingDescription}. BAREFOOT. Pose: standing naturally with arms at sides.`;
 
-                const negativePrompt = `wrong face, different person, face swap, identity change, facial distortion, different eye color, wrong eye shape, wrong nose shape, different mouth, different skin tone, wrong body shape, shoes, footwear, cropped legs, cropped feet, cut off legs, missing feet, blurry, distorted, deformed, bad anatomy, cartoon, anime, illustration, low quality`;
-
                 // Compress images to max 400KB before sending
                 const compressedHeadshot = await compressImage(headshotData, 400);
                 const compressedFullbody = await compressImage(fullbodyData, 400);
 
-                const falPath = '/fal-ai/nano-banana-pro/edit';
-
-                // Submit job to FAL queue (async)
+                // Call FAL API with sync_mode for immediate results
                 const response = await fetch('/api/fal', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        path: falPath,
-                        async: true,
+                        path: '/fal-ai/nano-banana-pro/edit',
                         body: {
-                            image_urls: [compressedHeadshot, compressedFullbody],
                             prompt: mainPrompt,
-                            negative_prompt: negativePrompt,
+                            image_urls: [compressedHeadshot, compressedFullbody],
                             num_images: 1,
-                            strength: 0.75,
-                            guidance_scale: 5.5,
-                            num_inference_steps: 30,
-                            image_size: { width: 1152, height: 2048 },
-                            enable_safety_checker: false,
-                            seed: Date.now() % 4294967295
+                            aspect_ratio: '9:16',
+                            output_format: 'png',
+                            resolution: '1K',
+                            sync_mode: true
                         }
                     })
                 });
 
-                const submitResult = await response.json();
-                console.log('FAL submit result:', submitResult);
-
-                if (!submitResult.request_id && !submitResult.status_url) {
-                    // Fallback: maybe got direct result
-                    if (submitResult.images && submitResult.images[0]) {
-                        avatarUrl = submitResult.images[0].url;
-                        showAvatarResult(avatarUrl);
-                        updateStep(2);
-                        return;
-                    }
-                    throw new Error('No request_id or status_url returned');
-                }
-
-                // Use status_url if provided, otherwise construct it
-                const statusUrl = submitResult.status_url ||
-                    `https://queue.fal.run${falPath}/requests/${submitResult.request_id}/status`;
-
-                // Poll for result
-                const result = await pollFalStatus(statusUrl);
+                const result = await response.json();
+                console.log('FAL result:', result);
 
                 if (result.images && result.images[0]) {
                     avatarUrl = result.images[0].url;
