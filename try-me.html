@@ -1645,7 +1645,9 @@ STYLE VIBE: ${vibe || 'versatile'}
 BUDGET: ${budget || 'mid-range'}
 USER NOTES: ${description || 'none provided'}
 
-Generate TWO distinct outfit options with different styles/vibes. Each should have perfect color coordination and be flattering for the body type.
+CRITICAL: Both options MUST follow the user's specifications from USER NOTES above. If the user specified a color, fit, style, fabric, cut, or length - BOTH options must match those requirements. The two options should be variations within the user's requested parameters, NOT completely different styles.
+
+For example, if user says "red dress, knee length" - both options should be red dresses at knee length, just different styles/cuts of red knee-length dresses.
 
 Return a JSON object with this exact structure:
 {
@@ -1664,7 +1666,8 @@ Return a JSON object with this exact structure:
 }
 
 RULES:
-- Option 1 and Option 2 should be DIFFERENT styles (e.g., one casual, one dressy; or different color palettes)
+- BOTH options must match user's specified: color, fit, style, fabric, cut, length (if provided)
+- Options should differ in: silhouette, neckline, sleeve style, or subtle design details
 - If using a DRESS/jumpsuit/romper: use type "dress" as SINGLE item
 - If using separates: include BOTH "top" AND "bottom"
 - Each option should include shoes and one accessory
