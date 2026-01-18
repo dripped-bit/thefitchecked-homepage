@@ -15,9 +15,10 @@
 
         body {
             font-family: 'Outfit', sans-serif;
-            background-image: url('images/pink-mosaic-bg.webp');
-            background-size: 400px;
-            background-repeat: repeat;
+            background-image: url('images/try-me-bg.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             min-height: 100vh;
             padding: 2rem;
         }
@@ -637,12 +638,6 @@
         </div>
     </div>
 
-    <!-- Header -->
-    <header class="page-header">
-        <h1 class="header-title">OUTFIT</h1>
-        <p class="header-subtitle">of the day</p>
-    </header>
-
     <!-- Step Indicator -->
     <div class="step-indicator">
         <div class="step active" id="step1">1</div>
@@ -1151,7 +1146,7 @@
 
                 const mainPrompt = `Professional full-body portrait photograph. Face and facial features must EXACTLY match the face reference photo - same eyes, nose, mouth, skin tone, hair color and style. Body shape and proportions must match the full body reference.
 
-${genderDescription} with ${bodyType} build. Body measurements: chest ${measurements.chest}cm, waist ${measurements.waist}cm, hips ${measurements.hips}cm.
+${genderDescription} with ${bodyType} build. ${bodyTypeDesc}. Height: ${heightCm}cm. Body measurements: chest ${measurements.chest}cm, waist ${measurements.waist}cm, hips ${measurements.hips}cm.
 
 Natural standing pose showing COMPLETE FIGURE from head to BARE FEET. Professional studio photography with pure white seamless background. Wearing form-fitting white tank top and blue athletic shorts. BAREFOOT. Pose: standing naturally with arms at sides.`;
 
