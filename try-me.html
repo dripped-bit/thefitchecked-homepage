@@ -1558,7 +1558,10 @@ Be specific with item names (e.g., "Silk V-Neck Camisole" not just "top"). Inclu
                     body: JSON.stringify({
                         path: '/fal-ai/nano-banana-pro',
                         body: {
-                            prompt: outfitPrompt
+                            prompt: outfitPrompt,
+                            aspect_ratio: '9:16',
+                            resolution: '1K',
+                            num_images: 1
                         }
                     })
                 });
