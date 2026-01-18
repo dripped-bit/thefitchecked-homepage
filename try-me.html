@@ -1448,6 +1448,13 @@ Natural standing pose showing COMPLETE FIGURE from head to BARE FEET. Profession
             const vibe = document.getElementById('styleVibe').value;
             const budget = document.getElementById('budget').value;
             const gender = document.getElementById('gender').value;
+            const heightFeet = document.getElementById('heightFeet').value;
+            const heightInches = document.getElementById('heightInches').value;
+            const weight = document.getElementById('weight').value;
+            const bodyType = document.getElementById('bodyType').value;
+
+            // Build height string
+            const heightStr = heightFeet ? `${heightFeet}'${heightInches || '0'}"` : '';
 
             if (!occasion) {
                 alert('Please select an occasion');
@@ -1473,12 +1480,17 @@ Respond ONLY with valid JSON.`;
 
                 const userPrompt = `Create a complete outfit for a ${gender} person.
 
+BODY PROFILE:
+- Height: ${heightStr || 'not specified'}
+- Weight: ${weight ? weight + ' lbs' : 'not specified'}
+- Body Type: ${bodyType || 'not specified'}
+
 OCCASION: ${occasion}
 STYLE VIBE: ${vibe || 'versatile'}
 BUDGET: ${budget || 'mid-range'}
 USER NOTES: ${description || 'none provided'}
 
-Generate a cohesive outfit with perfect color coordination, texture mixing, and style cohesion.
+Generate a cohesive outfit with perfect color coordination, texture mixing, and style cohesion. Consider the person's body type when recommending fits and silhouettes that will be most flattering.
 
 Return a JSON object with this exact structure:
 {
