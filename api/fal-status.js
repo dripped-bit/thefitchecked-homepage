@@ -42,7 +42,28 @@ export default async function handler(req) {
       },
     });
 
-    const data = await response.json();
+    // Get response as text first to handle non-JSON responses
+    const responseText = await response.text();
+
+    // Try to parse as JSON
+    let data;
+    try {
+      data = JSON.parse(responseText);
+    } catch (parseError) {
+      // Not JSON - return error with the raw response
+      return new Response(JSON.stringify({
+        error: 'FAL returned non-JSON response',
+        status: response.status,
+        statusText: response.statusText,
+        body: responseText.substring(0, 500) // First 500 chars for debugging
+      }), {
+        status: 502,
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+      });
+    }
 
     return new Response(JSON.stringify(data), {
       status: response.status,
