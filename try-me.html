@@ -753,7 +753,7 @@
                     </div>
 
                     <div class="btn-row">
-                        <button class="retro-btn primary" onclick="generateAvatar()">✨ GENERATE AVATAR</button>
+                        <button class="retro-btn primary" id="generateAvatarBtn" onclick="generateAvatar()">✨ GENERATE AVATAR</button>
                     </div>
                 </div>
 
@@ -1112,7 +1112,15 @@
         }
 
         // Avatar generation
+        let avatarGenerated = false;
+
         async function generateAvatar() {
+            // Only allow one generation
+            if (avatarGenerated) {
+                alert('Avatar already generated. Click "Start Over" to try again.');
+                return;
+            }
+
             if (!headshotData || !fullbodyData) {
                 alert('Please upload both headshot and full body photos');
                 return;
@@ -1129,14 +1137,22 @@
                 return;
             }
 
+            // Disable button immediately
+            const btn = document.getElementById('generateAvatarBtn');
+            btn.disabled = true;
+            btn.textContent = 'Generating...';
+
             // Convert to cm for prompt
             const heightCm = Math.round((parseInt(heightFeet) * 30.48) + (parseInt(heightInches) * 2.54));
-            
+
             // Estimate measurements based on body type
             const measurements = estimateMeasurements(gender, bodyType, heightCm, parseInt(weight) || 150);
 
             // Show loading
             document.getElementById('avatarLoading').classList.remove('hidden');
+
+            // Mark as generated
+            avatarGenerated = true;
 
             try {
                 // Build prompt like the app does
@@ -1267,6 +1283,12 @@ Natural standing pose showing COMPLETE FIGURE from head to BARE FEET. Profession
             headshotData = null;
             fullbodyData = null;
             avatarUrl = null;
+            avatarGenerated = false;
+
+            // Reset generate button
+            const btn = document.getElementById('generateAvatarBtn');
+            btn.disabled = false;
+            btn.textContent = '✨ GENERATE AVATAR';
 
             // Reset upload boxes
             ['headshotBox', 'fullbodyBox', 'avatarPreviewBox'].forEach(id => {
