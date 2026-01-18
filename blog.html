@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<!-- Deployed: Jan 18, 2026 - New Design -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TheFitChecked Fashion Blog - Style tips, wardrobe organization hacks, fashion trends, and AI styling insights.">
-    <meta name="keywords" content="fashion blog, style tips, wardrobe organization, outfit ideas, fashion trends, AI styling, personal fashion">
-    <title>Fashion Blog - TheFitChecked | Style Tips & Trends</title>
+    <meta name="description" content="TheFitChecked Blog - Fashion tips, style guides, and the latest trends in AI-powered styling">
+    <title>Blog - TheFitChecked | Style Tips & Trends</title>
 
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -21,509 +22,1013 @@
         }
 
         :root {
-            --primary-pink: #FF69B4;
-            --secondary-purple: #9370DB;
-            --text-dark: #2C2C2C;
-            --text-light: #666;
-            --bg-light: #FFF5F7;
+            --baby-pink: #FFE4EC;
+            --pink-medium: #FFB6C1;
+            --pink-accent: #FF69B4;
+            --pink-dark: #DB7093;
+            --white: #FFFFFF;
+            --black: #1a1a1a;
+            --gray: #666666;
+            --gray-light: #999999;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
+            font-family: 'Outfit', sans-serif;
+            background: var(--baby-pink);
+            color: var(--black);
+            line-height: 1.7;
         }
 
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
         }
 
-        /* Header */
-        header {
-            background: white;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            padding: 1.5rem 2rem;
-        }
-
-        .header-container {
-            max-width: 1400px;
-            margin: 0 auto;
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 3rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            z-index: 1000;
+            background: rgba(253, 248, 245, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 105, 180, 0.1);
         }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .nav-left {
+            display: flex;
+            gap: 2.5rem;
         }
 
-        nav a {
-            margin-left: 2rem;
+        .nav-left a {
             text-decoration: none;
-            color: var(--text-dark);
+            color: var(--black);
             font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
         }
 
-        /* Hero */
-        .blog-hero {
-            background: linear-gradient(135deg, #FFF5F7 0%, #F0E6FF 100%);
-            padding: 4rem 2rem;
-            text-align: center;
+        .nav-left a:hover {
+            color: var(--pink-accent);
         }
 
-        .blog-hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .blog-hero p {
-            font-size: 1.3rem;
-            color: var(--text-light);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* Search */
-        .search-section {
-            max-width: 600px;
-            margin: 2rem auto 0;
-        }
-
-        .search-box {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .search-box input {
-            flex: 1;
-            padding: 1rem 1.5rem;
-            border: 2px solid #ddd;
-            border-radius: 50px;
-            font-size: 1rem;
-        }
-
-        .search-box button {
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        /* Main Content */
-        .main-content {
-            max-width: 1400px;
-            margin: 4rem auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 1fr 350px;
-            gap: 4rem;
-        }
-
-        /* Categories */
-        .categories {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .category-tag {
-            padding: 0.5rem 1.5rem;
-            background: var(--bg-light);
-            border-radius: 50px;
-            border: 2px solid transparent;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .category-tag:hover, .category-tag.active {
-            border-color: var(--primary-pink);
-            background: white;
-            color: var(--primary-pink);
-        }
-
-        /* Blog Grid */
-        .blog-articles {
-            display: grid;
-            gap: 3rem;
-        }
-
-        .article-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: all 0.3s;
+        .nav-right .waitlist-btn {
+            background: var(--pink-accent);
+            color: var(--white);
+            padding: 0.75rem 1.75rem;
+            border-radius: 30px;
             text-decoration: none;
-            color: inherit;
-            display: flex;
-            gap: 2rem;
-        }
-
-        .article-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
-        }
-
-        .article-image {
-            width: 350px;
-            height: 250px;
-            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
-            flex-shrink: 0;
-        }
-
-        .article-content {
-            padding: 2rem 2rem 2rem 0;
-            flex: 1;
-        }
-
-        .article-meta {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-light);
+            font-weight: 500;
             font-size: 0.9rem;
+            transition: all 0.3s ease;
         }
 
-        .article-category {
-            color: var(--primary-pink);
-            font-weight: 600;
+        .nav-right .waitlist-btn:hover {
+            background: var(--pink-dark);
+            transform: translateY(-2px);
+        }
+
+        /* ===== HEADER ===== */
+        .blog-header {
+            padding-top: 80px;
+            background: var(--baby-pink);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Wavy Divider */
+        .wave-divider {
+            position: relative;
+            height: 80px;
+            background: var(--baby-pink);
+            margin-top: -1px;
+        }
+
+        .wave-divider::before {
+            content: '';
+            position: absolute;
+            top: -79px;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: var(--baby-pink);
+            clip-path: ellipse(55% 100% at 50% 100%);
+        }
+
+        /* ===== INTRO SECTION ===== */
+        .intro-section {
+            padding: 2rem 2rem 4rem;
+            text-align: center;
+            background: var(--baby-pink);
+        }
+
+        .intro-section h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--pink-dark);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .intro-section p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* ===== FEATURED SECTION ===== */
+        .featured-section {
+            background: var(--white);
+            position: relative;
+            padding: 4rem 2rem;
+        }
+
+        .featured-section::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: var(--white);
+            clip-path: ellipse(55% 100% at 50% 100%);
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .featured-image {
+            position: relative;
+        }
+
+        .featured-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(255, 105, 180, 0.2);
+        }
+
+        .featured-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 100px;
+            height: 100px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="3" fill="%23B76E79" opacity="0.3"/></svg>');
+            background-size: 15px 15px;
+        }
+
+        .featured-content h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            color: var(--pink-dark);
+            margin-bottom: 1rem;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        .article-card h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-        }
-
-        .article-excerpt {
-            color: var(--text-light);
-            line-height: 1.8;
-            margin-bottom: 1rem;
-        }
-
-        .read-more {
-            color: var(--primary-pink);
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        /* Sidebar */
-        .sidebar {
-            position: sticky;
-            top: 2rem;
-            height: fit-content;
-        }
-
-        .sidebar-widget {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            margin-bottom: 2rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-        }
-
-        .sidebar-widget h3 {
+        .featured-content p {
+            color: var(--gray);
             margin-bottom: 1.5rem;
-            color: var(--primary-pink);
+            font-size: 1rem;
+            line-height: 1.8;
         }
 
-        /* Newsletter Widget */
-        .newsletter-widget input {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #ddd;
-            border-radius: 10px;
+        .read-btn {
+            display: inline-block;
+            background: var(--pink-accent);
+            color: var(--white);
+            padding: 0.9rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .read-btn:hover {
+            background: var(--pink-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+        }
+
+        /* ===== MAUVE BANNER ===== */
+        .mauve-banner {
+            background: var(--pink-accent);
+            position: relative;
+            padding: 5rem 2rem;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .mauve-banner::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: var(--pink-accent);
+            clip-path: ellipse(55% 100% at 50% 100%);
+        }
+
+        .mauve-banner::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: var(--pink-accent);
+            clip-path: ellipse(55% 100% at 50% 0%);
+            z-index: 1;
+        }
+
+        .mauve-banner h2 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .mauve-banner p {
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .mauve-banner .read-btn {
+            background: var(--white);
+            color: var(--pink-accent);
+        }
+
+        .mauve-banner .read-btn:hover {
+            background: var(--baby-pink);
+        }
+
+        /* ===== CATEGORIES SECTION ===== */
+        .categories-section {
+            background: var(--baby-pink);
+            padding: 6rem 2rem 4rem;
+            position: relative;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .category-item {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .category-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .category-item img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--white);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             margin-bottom: 1rem;
         }
 
-        .newsletter-widget button {
-            width: 100%;
-            padding: 0.75rem;
-            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
-            color: white;
-            border: none;
-            border-radius: 10px;
+        .category-item span {
+            display: block;
+            font-size: 0.85rem;
             font-weight: 600;
-            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--black);
         }
 
-        /* Popular Posts */
-        .popular-post {
+        /* ===== ARTICLES GRID ===== */
+        .articles-section {
+            background: var(--white);
+            position: relative;
+            padding: 4rem 2rem 6rem;
+        }
+
+        .articles-section::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: var(--white);
+            clip-path: ellipse(55% 100% at 50% 100%);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            color: var(--pink-dark);
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .article-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .article-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(255, 105, 180, 0.15);
+        }
+
+        .article-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .article-card-content {
+            padding: 1.5rem;
+        }
+
+        .article-meta {
             display: flex;
             gap: 1rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid #eee;
+            font-size: 0.8rem;
+            color: var(--gray-light);
+            margin-bottom: 0.75rem;
         }
 
-        .popular-post:last-child {
-            border-bottom: none;
+        .article-card h3 {
+            font-size: 1.2rem;
+            color: var(--black);
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
         }
 
-        .popular-post-thumb {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            flex-shrink: 0;
+        .article-card p {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
-        .popular-post-content h4 {
-            font-size: 0.95rem;
+        .article-card .read-more {
+            color: var(--pink-accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .article-card .read-more:hover {
+            color: var(--pink-dark);
+        }
+
+        /* ===== NEWSLETTER ===== */
+        .newsletter-section {
+            background: var(--baby-pink);
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .newsletter-section::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: var(--baby-pink);
+            clip-path: ellipse(55% 100% at 50% 100%);
+        }
+
+        .newsletter-box {
+            background: var(--white);
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+        }
+
+        .newsletter-box h2 {
+            font-size: 2rem;
+            color: var(--pink-dark);
             margin-bottom: 0.5rem;
         }
 
-        .popular-post-meta {
-            font-size: 0.85rem;
-            color: var(--text-light);
+        .newsletter-box p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
         }
 
-        /* Ad Space */
-        .ad-widget {
-            background: var(--bg-light);
-            padding: 3rem 2rem;
-            text-align: center;
-            border: 2px dashed #ddd;
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
         }
 
-        .ad-widget p {
-            color: var(--text-light);
-            font-size: 0.9rem;
+        .newsletter-form input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 2px solid var(--white);
+            border-radius: 30px;
+            font-family: inherit;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s ease;
         }
 
-        /* Footer */
+        .newsletter-form input:focus {
+            border-color: var(--pink-accent);
+        }
+
+        .newsletter-form button {
+            background: var(--pink-accent);
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-family: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background: var(--pink-dark);
+        }
+
+        /* ===== FOOTER ===== */
         footer {
-            background: var(--text-dark);
-            color: white;
+            background: var(--pink-dark);
+            color: var(--white);
+            padding: 3rem 2rem 1.5rem;
             text-align: center;
-            padding: 3rem 2rem;
-            margin-top: 6rem;
         }
 
-        footer a {
-            color: var(--primary-pink);
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--white);
             text-decoration: none;
-            margin: 0 1rem;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
         }
 
-        /* Responsive */
-        @media (max-width: 968px) {
-            .main-content {
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-social a {
+            color: var(--white);
+            font-size: 1.3rem;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            opacity: 1;
+            transform: translateY(-3px);
+        }
+
+        .footer-copyright {
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .featured-grid {
                 grid-template-columns: 1fr;
+                gap: 2rem;
             }
 
-            .article-card {
+            .articles-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-left {
+                display: none;
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+
+            .newsletter-form {
                 flex-direction: column;
             }
 
-            .article-image {
-                width: 100%;
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
             }
+        }
 
-            .article-content {
-                padding: 2rem;
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-            .blog-hero h1 {
-                font-size: 2.5rem;
-            }
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-container">
-            <div class="logo">TheFitChecked</div>
-            <nav>
-                <a href="/">Home</a>
-                <a href="/blog.html">Blog</a>
-                <a href="/#features">Features</a>
-                <a href="/#waitlist">Download App</a>
-            </nav>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-left">
+            <a href="/">Home</a>
+            <a href="/blog.html">Blog</a>
+            <a href="/blueprint.html">Blueprint</a>
         </div>
+        <div class="nav-right">
+            <button onclick="openWaitlistModal()" class="waitlist-btn">Join Waitlist</button>
+        </div>
+    </nav>
+
+    <!-- Header with BLOGGED image -->
+    <header class="blog-header">
+        <img src="images/blogged.png" alt="BLOGGED - TheFitChecked Fashion Blog" class="header-image">
     </header>
 
-    <section class="blog-hero">
-        <h1>Fashion & Style Blog</h1>
-        <p>Your ultimate guide to mastering your wardrobe, discovering trends, and elevating your personal style</p>
+    <div class="wave-divider"></div>
 
-        <div class="search-section">
-            <div class="search-box">
-                <input type="search" placeholder="Search articles...">
-                <button><i class="fas fa-search"></i></button>
+    <!-- Intro Section -->
+    <section class="intro-section">
+        <h1>STYLE STORIES & TIPS</h1>
+        <p>Your ultimate guide to mastering your wardrobe, discovering trends, and elevating your personal style with AI-powered fashion</p>
+    </section>
+
+    <!-- Featured Article -->
+    <section class="featured-section">
+        <div class="featured-grid">
+            <div class="featured-image">
+                <img src="ai-avatar-dream-closet.png" alt="AI Avatar and Dream Closet">
+            </div>
+            <div class="featured-content">
+                <h2>From Cher's Closet to YOUR Closet</h2>
+                <p>Remember Cher's digital closet in Clueless? You have something 1000x better. Create clothes from imagination with AI text prompts, try them on YOUR digital twin avatar, then find real versions to buy. Fantasy has become reality.</p>
+                <a href="blog-ai-avatar-closet.html" class="read-btn">Read Article</a>
             </div>
         </div>
     </section>
 
-    <div class="main-content">
-        <main>
-            <div class="categories">
-                <span class="category-tag active">All</span>
-                <span class="category-tag">Style Tips</span>
-                <span class="category-tag">Wardrobe</span>
-                <span class="category-tag">Technology</span>
-                <span class="category-tag">Sustainability</span>
-                <span class="category-tag">Trends</span>
+    <!-- Mauve Banner -->
+    <section class="mauve-banner">
+        <h2>The AI Fashion Revolution</h2>
+        <p>Discover how smart technology is saving you $1,450+ per year</p>
+        <a href="blog-ai-fashion-revolution.html" class="read-btn">Shop Now</a>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories-section">
+        <div class="categories-grid">
+            <div class="category-item">
+                <img src="ai-fashion-blog.png" alt="New Articles">
+                <span>New</span>
             </div>
-
-            <div class="blog-articles">
-                <!-- Featured Article -->
-                <article class="article-card">
-                    <div class="article-image"><i class="fas fa-tshirt"></i></div>
-                    <div class="article-content">
-                        <div class="article-meta">
-                            <span class="article-category">Style Guide</span>
-                            <span><i class="far fa-calendar"></i> November 22, 2025</span>
-                            <span><i class="far fa-clock"></i> 8 min read</span>
-                        </div>
-                        <h2>10 Wardrobe Essentials Every Closet Needs in 2026</h2>
-                        <p class="article-excerpt">Building a versatile wardrobe starts with timeless essentials. Discover the must-have pieces that create endless outfit possibilities and never go out of style...</p>
-                        <span class="read-more">Read Full Article <i class="fas fa-arrow-right"></i></span>
-                    </div>
-                </article>
-
-                <article class="article-card">
-                    <div class="article-image"><i class="fas fa-robot"></i></div>
-                    <div class="article-content">
-                        <div class="article-meta">
-                            <span class="article-category">Technology</span>
-                            <span><i class="far fa-calendar"></i> November 20, 2025</span>
-                            <span><i class="far fa-clock"></i> 6 min read</span>
-                        </div>
-                        <h2>How AI is Revolutionizing Personal Styling</h2>
-                        <p class="article-excerpt">Artificial intelligence is transforming fashion. Learn how AI-powered apps analyze your style preferences, suggest outfits, and help you shop smarter...</p>
-                        <span class="read-more">Read Full Article <i class="fas fa-arrow-right"></i></span>
-                    </div>
-                </article>
-
-                <article class="article-card">
-                    <div class="article-image"><i class="fas fa-leaf"></i></div>
-                    <div class="article-content">
-                        <div class="article-meta">
-                            <span class="article-category">Sustainability</span>
-                            <span><i class="far fa-calendar"></i> November 18, 2025</span>
-                            <span><i class="far fa-clock"></i> 7 min read</span>
-                        </div>
-                        <h2>Build a Sustainable Wardrobe Without Sacrificing Style</h2>
-                        <p class="article-excerpt">Eco-friendly fashion is the future. Discover practical tips for creating a sustainable wardrobe that's both ethical and stylish...</p>
-                        <span class="read-more">Read Full Article <i class="fas fa-arrow-right"></i></span>
-                    </div>
-                </article>
-
-                <article class="article-card">
-                    <div class="article-image"><i class="fas fa-palette"></i></div>
-                    <div class="article-content">
-                        <div class="article-meta">
-                            <span class="article-category">Style Tips</span>
-                            <span><i class="far fa-calendar"></i> November 15, 2025</span>
-                            <span><i class="far fa-clock"></i> 5 min read</span>
-                        </div>
-                        <h2>Color Theory for Fashion: Match Your Outfits Like a Pro</h2>
-                        <p class="article-excerpt">Understanding color theory can elevate your style game. Learn the science behind color matching and create harmonious outfits effortlessly...</p>
-                        <span class="read-more">Read Full Article <i class="fas fa-arrow-right"></i></span>
-                    </div>
-                </article>
-
-                <article class="article-card">
-                    <div class="article-image"><i class="fas fa-suitcase"></i></div>
-                    <div class="article-content">
-                        <div class="article-meta">
-                            <span class="article-category">Travel</span>
-                            <span><i class="far fa-calendar"></i> November 12, 2025</span>
-                            <span><i class="far fa-clock"></i> 9 min read</span>
-                        </div>
-                        <h2>The Ultimate Capsule Wardrobe for Travel</h2>
-                        <p class="article-excerpt">Pack light, look great. Master the art of creating a travel capsule wardrobe with mix-and-match pieces for any destination...</p>
-                        <span class="read-more">Read Full Article <i class="fas fa-arrow-right"></i></span>
-                    </div>
-                </article>
+            <div class="category-item">
+                <img src="ai-personal-styling.png" alt="Best Sellers">
+                <span>Popular</span>
             </div>
-        </main>
-
-        <aside class="sidebar">
-            <!-- Newsletter Widget -->
-            <div class="sidebar-widget newsletter-widget">
-                <h3>Get Style Updates</h3>
-                <p style="margin-bottom: 1rem; color: #666; font-size: 0.95rem;">Join 50,000+ fashion lovers receiving weekly tips!</p>
-                <input type="email" placeholder="Your email">
-                <button>Subscribe</button>
+            <div class="category-item">
+                <img src="virtual-try-on-blog.png" alt="Style Tips">
+                <span>Style Tips</span>
             </div>
+            <div class="category-item">
+                <img src="fashion-evolution-blog.png" alt="Trends">
+                <span>Trends</span>
+            </div>
+        </div>
+    </section>
 
-            <!-- Popular Posts -->
-            <div class="sidebar-widget">
-                <h3>Popular Articles</h3>
-
-                <div class="popular-post">
-                    <div class="popular-post-thumb"><i class="fas fa-star"></i></div>
-                    <div class="popular-post-content">
-                        <h4>5 Style Mistakes Everyone Makes</h4>
-                        <div class="popular-post-meta">12.5K reads</div>
+    <!-- Latest Articles -->
+    <section class="articles-section">
+        <h2 class="section-title">Latest Articles</h2>
+        <div class="articles-grid">
+            <article class="article-card">
+                <img src="virtual-try-on-blog.png" alt="Virtual Try-On Technology">
+                <div class="article-card-content">
+                    <div class="article-meta">
+                        <span><i class="far fa-calendar"></i> Nov 22, 2025</span>
+                        <span><i class="far fa-clock"></i> 10 min</span>
                     </div>
+                    <h3>No More Guessing: How Virtual Try-On Technology Ended the Online Shopping Nightmare</h3>
+                    <p>Remember ordering 5 sizes and returning 4? Those days are over. Discover how virtual try-on technology is giving shoppers real confidence...</p>
+                    <a href="blog-virtual-try-on.html" class="read-more">Read More →</a>
                 </div>
+            </article>
 
-                <div class="popular-post">
-                    <div class="popular-post-thumb"><i class="fas fa-shopping-bag"></i></div>
-                    <div class="popular-post-content">
-                        <h4>Smart Shopping: Save 50% on Fashion</h4>
-                        <div class="popular-post-meta">10.2K reads</div>
+            <article class="article-card">
+                <img src="virtual-closet-blog.png" alt="Virtual Closet Analytics">
+                <div class="article-card-content">
+                    <div class="article-meta">
+                        <span><i class="far fa-calendar"></i> Nov 22, 2025</span>
+                        <span><i class="far fa-clock"></i> 12 min</span>
                     </div>
+                    <h3>The $1,700 Wake-Up Call: How a Virtual Closet Reveals Where Your Money Really Goes</h3>
+                    <p>You spend $1,700/year on clothes yet wear only 30% of your wardrobe. Virtual closet analytics expose the shocking truth...</p>
+                    <a href="blog-virtual-closet.html" class="read-more">Read More →</a>
                 </div>
+            </article>
 
-                <div class="popular-post">
-                    <div class="popular-post-thumb"><i class="fas fa-user-tie"></i></div>
-                    <div class="popular-post-content">
-                        <h4>Dress for Success: Career Fashion</h4>
-                        <div class="popular-post-meta">8.9K reads</div>
+            <article class="article-card">
+                <img src="fashion-evolution-blog.png" alt="Fashion Evolution">
+                <div class="article-card-content">
+                    <div class="article-meta">
+                        <span><i class="far fa-calendar"></i> Nov 22, 2025</span>
+                        <span><i class="far fa-clock"></i> 15 min</span>
                     </div>
+                    <h3>From One Look to Endless Looks: How Fashion Evolved from Conformity to Freedom</h3>
+                    <p>Your grandmother had ONE acceptable way to dress. You have 47 TikTok aesthetics before breakfast. Journey through 100 years of fashion...</p>
+                    <a href="blog-fashion-evolution.html" class="read-more">Read More →</a>
+                </div>
+            </article>
+
+            <article class="article-card">
+                <img src="ai-identity-authenticity.png" alt="AI Identity">
+                <div class="article-card-content">
+                    <div class="article-meta">
+                        <span><i class="far fa-calendar"></i> Nov 22, 2025</span>
+                        <span><i class="far fa-clock"></i> 14 min</span>
+                    </div>
+                    <h3>The Identity Revolution: How to Stay Authentically YOU While AI Transforms Everything</h3>
+                    <p>64% of businesses use AI for branding. 62% of people mistrust AI content. In this paradox lies your power...</p>
+                    <a href="blog-ai-identity.html" class="read-more">Read More →</a>
+                </div>
+            </article>
+
+            <article class="article-card">
+                <img src="ai-personal-styling.png" alt="AI Personal Styling">
+                <div class="article-card-content">
+                    <div class="article-meta">
+                        <span><i class="far fa-calendar"></i> Nov 22, 2025</span>
+                        <span><i class="far fa-clock"></i> 16 min</span>
+                    </div>
+                    <h3>The $16 Billion Revolution: How AI Personal Stylists Are Replacing Human Fashion Experts</h3>
+                    <p>The AI personal styling market is exploding from $127M to $2.8B by 2034. Human stylists cost $500/hour. AI? Free...</p>
+                    <a href="blog-ai-styling-revolution.html" class="read-more">Read More →</a>
+                </div>
+            </article>
+
+            <article class="article-card">
+                <img src="ai-fashion-blog.png" alt="AI Fashion">
+                <div class="article-card-content">
+                    <div class="article-meta">
+                        <span><i class="far fa-calendar"></i> Nov 22, 2025</span>
+                        <span><i class="far fa-clock"></i> 8 min</span>
+                    </div>
+                    <h3>The AI Fashion Revolution: How Smart Technology is Saving You $1,450+ Per Year</h3>
+                    <p>Stop wasting money on clothes you never wear. Discover how AI-powered fashion tools help you look incredible while cutting your budget...</p>
+                    <a href="blog-ai-fashion-revolution.html" class="read-more">Read More →</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter-section">
+        <div class="newsletter-box">
+            <h2>Get Style Updates</h2>
+            <p>Join 50,000+ fashion lovers receiving weekly tips!</p>
+            <form class="newsletter-form" id="newsletterForm" onsubmit="submitNewsletter(event)">
+                <input type="email" id="newsletterEmail" placeholder="Enter your email" required>
+                <button type="submit" id="newsletterBtn">Subscribe</button>
+            </form>
+            <p id="newsletterSuccess" style="display: none; color: var(--pink-accent); margin-top: 1rem; font-weight: 500;">You're subscribed!</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="/legal.html#privacy">Privacy Policy</a>
+            <a href="/legal.html#terms">Terms of Service</a>
+            <a href="/cdn-cgi/l/email-protection#ec8489808083ac9884898a85988f84898f878988848381899c8d8b89c28f8381">Contact</a>
+        </div>
+        <div class="footer-social">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p class="footer-copyright">© 2025 TheFitChecked. All rights reserved.</p>
+    </footer>
+
+    <!-- Waitlist Modal -->
+    <div class="modal-overlay" id="waitlistModal">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeWaitlistModal()">×</button>
+            
+            <div class="modal-form" id="waitlistForm">
+                <h2 class="modal-title">Join the Waitlist</h2>
+                <p class="modal-subtitle">Be among the first to experience the future of fashion.</p>
+                
+                <form id="emailForm" onsubmit="submitWaitlist(event)">
+                    <input type="email" class="modal-input" placeholder="Enter your email" required id="emailInput">
+                    <button type="submit" class="modal-submit">Get Early Access</button>
+                </form>
+                
+                <div class="modal-perk">
+                    <span>🎁</span> First 20 users get lifetime premium features!
                 </div>
             </div>
 
-            <!-- Ad Space -->
-            <div class="sidebar-widget ad-widget">
-                <p><strong>Advertisement Space</strong></p>
-                <p>300x250</p>
+            <div class="modal-success" id="waitlistSuccess">
+                <div class="success-icon">🎉</div>
+                <h3 class="success-title">You're on the list!</h3>
+                <p class="success-text">We'll notify you when we launch.</p>
             </div>
-
-            <!-- App Promo -->
-            <div class="sidebar-widget" style="background: linear-gradient(135deg, #FF69B4, #9370DB); color: white;">
-                <h3 style="color: white;">Get the App!</h3>
-                <p style="margin-bottom: 1rem;">Organize your wardrobe with AI-powered styling</p>
-                <a href="/#waitlist" style="display: block; background: white; color: #FF69B4; padding: 0.75rem; border-radius: 10px; text-align: center; font-weight: 600; text-decoration: none;">Download Now</a>
-            </div>
-        </aside>
+        </div>
     </div>
 
-    <footer>
-        <p>&copy; 2025 TheFitChecked. All rights reserved.</p>
-        <div style="margin-top: 1rem;">
-            <a href="/privacy-policy">Privacy Policy</a>
-            <a href="/terms-of-service">Terms of Service</a>
-            <a href="mailto:hello@thefitchecked.com">Contact</a>
-        </div>
-    </footer>
+    <style>
+        .nav-right .waitlist-btn {
+            border: none;
+            cursor: pointer;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-box {
+            background: var(--white);
+            border-radius: 30px;
+            padding: 3rem 2.5rem;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 40px;
+            height: 40px;
+            background: var(--baby-pink);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--black);
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--pink-accent);
+            color: var(--white);
+        }
+
+        .modal-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: var(--black);
+            text-align: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .modal-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .modal-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .modal-input {
+            width: 100%;
+            padding: 1.25rem 1.5rem;
+            border: 2px solid var(--baby-pink);
+            border-radius: 50px;
+            font-size: 1rem;
+            font-family: 'Outfit', sans-serif;
+            outline: none;
+        }
+
+        .modal-input:focus {
+            border-color: var(--pink-accent);
+        }
+
+        .modal-submit {
+            width: 100%;
+            padding: 1.25rem;
+            background: var(--pink-accent);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .modal-submit:hover {
+            background: #FF1493;
+        }
+
+        .modal-perk {
+            background: var(--baby-pink);
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 1rem;
+            color: var(--pink-dark);
+            font-weight: 500;
+        }
+
+        .modal-success { display: none; text-align: center; padding: 2rem 0; }
+        .modal-success.active { display: block; }
+        .modal-form.hidden { display: none; }
+        .success-icon { font-size: 4rem; margin-bottom: 1rem; }
+        .success-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--black); margin-bottom: 0.5rem; }
+        .success-text { color: #666; }
+    </style>
+
+    <script>
+        function openWaitlistModal() {
+            document.getElementById('waitlistModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeWaitlistModal() {
+            document.getElementById('waitlistModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.getElementById('waitlistModal').addEventListener('click', function(e) {
+            if (e.target === this) closeWaitlistModal();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeWaitlistModal();
+        });
+
+        async function submitWaitlist(e) {
+            e.preventDefault();
+            const email = document.getElementById('emailInput').value;
+            const submitBtn = document.querySelector('.modal-submit');
+            submitBtn.textContent = 'Joining...';
+            submitBtn.disabled = true;
+            
+            try {
+                const response = await fetch('https://kxmtbetklikewluwntyx.supabase.co/functions/v1/waitlist-signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+                
+                if (response.ok) {
+                    document.getElementById('waitlistForm').classList.add('hidden');
+                    document.getElementById('waitlistSuccess').classList.add('active');
+                    setTimeout(() => {
+                        closeWaitlistModal();
+                        setTimeout(() => {
+                            document.getElementById('waitlistForm').classList.remove('hidden');
+                            document.getElementById('waitlistSuccess').classList.remove('active');
+                            document.getElementById('emailInput').value = '';
+                            submitBtn.textContent = 'Get Early Access';
+                            submitBtn.disabled = false;
+                        }, 300);
+                    }, 2500);
+                } else {
+                    throw new Error('Signup failed');
+                }
+            } catch (error) {
+                alert('Something went wrong. Please try again.');
+                submitBtn.textContent = 'Get Early Access';
+                submitBtn.disabled = false;
+            }
+        }
+
+        async function submitNewsletter(e) {
+            e.preventDefault();
+            const email = document.getElementById('newsletterEmail').value;
+            const btn = document.getElementById('newsletterBtn');
+            btn.textContent = 'Subscribing...';
+            btn.disabled = true;
+            
+            try {
+                const response = await fetch('https://kxmtbetklikewluwntyx.supabase.co/functions/v1/waitlist-signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+                
+                if (response.ok) {
+                    document.getElementById('newsletterForm').style.display = 'none';
+                    document.getElementById('newsletterSuccess').style.display = 'block';
+                } else {
+                    throw new Error('Signup failed');
+                }
+            } catch (error) {
+                alert('Something went wrong. Please try again.');
+                btn.textContent = 'Subscribe';
+                btn.disabled = false;
+            }
+        }
+    </script>
 </body>
 </html>
