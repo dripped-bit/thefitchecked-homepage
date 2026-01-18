@@ -35,17 +35,23 @@ export default async function handler(req) {
 
   try {
     const url = new URL(req.url);
-    const requestId = url.searchParams.get('request_id');
-    const path = url.searchParams.get('path');
 
-    if (!requestId || !path) {
-      return new Response(JSON.stringify({ error: 'Missing request_id or path' }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' },
-      });
+    // Accept either status_url directly, or request_id + path
+    let statusUrl = url.searchParams.get('status_url');
+
+    if (!statusUrl) {
+      const requestId = url.searchParams.get('request_id');
+      const path = url.searchParams.get('path');
+
+      if (!requestId || !path) {
+        return new Response(JSON.stringify({ error: 'Missing status_url or (request_id and path)' }), {
+          status: 400,
+          headers: { 'Content-Type': 'application/json' },
+        });
+      }
+
+      statusUrl = `https://queue.fal.run${path}/requests/${requestId}/status`;
     }
-
-    const statusUrl = `https://queue.fal.run${path}/requests/${requestId}/status`;
 
     const response = await fetch(statusUrl, {
       method: 'GET',
@@ -62,12 +68,11 @@ export default async function handler(req) {
     try {
       data = JSON.parse(responseText);
     } catch (parseError) {
-      // Not JSON - return error with the raw response
       return new Response(JSON.stringify({
         error: 'FAL returned non-JSON response',
         status: response.status,
         statusText: response.statusText,
-        body: responseText.substring(0, 500) // First 500 chars for debugging
+        body: responseText.substring(0, 500)
       }), {
         status: 502,
         headers: {

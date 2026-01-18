@@ -1112,12 +1112,14 @@
         }
 
         // Poll FAL queue for result
-        async function pollFalStatus(requestId, path, maxAttempts = 60) {
+        async function pollFalStatus(statusUrl, maxAttempts = 60) {
             for (let i = 0; i < maxAttempts; i++) {
                 await new Promise(r => setTimeout(r, 2000));
 
-                const response = await fetch(`/api/fal-status?request_id=${requestId}&path=${encodeURIComponent(path)}`);
+                const response = await fetch(`/api/fal-status?status_url=${encodeURIComponent(statusUrl)}`);
                 const status = await response.json();
+
+                console.log('FAL status poll:', status);
 
                 if (status.status === 'COMPLETED') {
                     return status.response;
@@ -1220,8 +1222,9 @@ Natural standing pose showing COMPLETE FIGURE from head to BARE FEET. Profession
                 });
 
                 const submitResult = await response.json();
+                console.log('FAL submit result:', submitResult);
 
-                if (!submitResult.request_id) {
+                if (!submitResult.request_id && !submitResult.status_url) {
                     // Fallback: maybe got direct result
                     if (submitResult.images && submitResult.images[0]) {
                         avatarUrl = submitResult.images[0].url;
@@ -1229,11 +1232,15 @@ Natural standing pose showing COMPLETE FIGURE from head to BARE FEET. Profession
                         updateStep(2);
                         return;
                     }
-                    throw new Error('No request_id returned');
+                    throw new Error('No request_id or status_url returned');
                 }
 
+                // Use status_url if provided, otherwise construct it
+                const statusUrl = submitResult.status_url ||
+                    `https://queue.fal.run${falPath}/requests/${submitResult.request_id}/status`;
+
                 // Poll for result
-                const result = await pollFalStatus(submitResult.request_id, falPath);
+                const result = await pollFalStatus(statusUrl);
 
                 if (result.images && result.images[0]) {
                     avatarUrl = result.images[0].url;
