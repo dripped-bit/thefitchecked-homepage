@@ -1545,14 +1545,24 @@ Be specific with item names (e.g., "Silk V-Neck Camisole" not just "top"). Inclu
 
             try {
                 // Use FASHN API for virtual try-on
-                const response = await fetch('/api/fashn-run', {
+                const response = await fetch('/api/fashn/v1/run', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        model_image: avatarUrl,
-                        garment_image: outfitImageUrl,
-                        category: 'auto',
-                        mode: 'balanced'
+                        model_name: 'tryon-v1.6',
+                        inputs: {
+                            model_image: avatarUrl,
+                            garment_image: outfitImageUrl,
+                            category: 'auto',
+                            segmentation_free: false,
+                            moderation_level: 'none',
+                            garment_photo_type: 'auto',
+                            mode: 'balanced',
+                            num_samples: 1,
+                            seed: Date.now(),
+                            output_format: 'jpeg',
+                            return_base64: false
+                        }
                     })
                 });
 
@@ -1583,7 +1593,7 @@ Be specific with item names (e.g., "Silk V-Neck Camisole" not just "top"). Inclu
             for (let i = 0; i < maxAttempts; i++) {
                 await new Promise(r => setTimeout(r, 2000));
 
-                const response = await fetch(`/api/fashn-status?id=${jobId}`);
+                const response = await fetch(`/api/fashn/v1/status/${jobId}`);
                 const status = await response.json();
 
                 if (status.status === 'completed') {
