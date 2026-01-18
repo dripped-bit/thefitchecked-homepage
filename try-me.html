@@ -1119,15 +1119,13 @@
                 const bodyTypeDesc = getBodyTypeDescription(bodyType, gender);
                 const bodyTypeNeg = getBodyTypeNegative(bodyType);
 
-                const mainPrompt = `Professional full-body portrait photograph. Face and facial features must EXACTLY match the face reference photo - same eyes, nose, mouth, skin tone, hair color and style. Body shape, proportions, and figure must EXACTLY match the full body reference photo.
+                const mainPrompt = `Professional full-body portrait photograph. Face and facial features must EXACTLY match the face reference photo - same eyes, nose, mouth, skin tone, hair color and style. Body shape and proportions must match the full body reference.
 
-${genderDescription} with ${bodyType} build. ${bodyTypeDesc}.
+${genderDescription} with ${bodyType} build. Body measurements: chest ${measurements.chest}cm, waist ${measurements.waist}cm, hips ${measurements.hips}cm.
 
-Body measurements: bust/chest ${measurements.chest}cm, waist ${measurements.waist}cm, hips ${measurements.hips}cm, height ${heightCm}cm.
+Natural standing pose showing COMPLETE FIGURE from head to BARE FEET. Professional studio photography with pure white seamless background. Wearing form-fitting white tank top and blue athletic shorts. BAREFOOT. Pose: standing naturally with arms at sides.`;
 
-Natural standing pose showing COMPLETE FIGURE from head to BARE FEET. Person's head near top edge of frame, BARE FEET clearly visible at bottom edge of frame. Full body shot with entire legs visible - no cropping at knees or shins. Camera framed to capture complete standing figure from crown of head to toes. Professional studio photography with pure white seamless background, soft natural lighting, photorealistic high-quality image, natural skin texture and realistic proportions. Wearing form-fitting white tank top and blue athletic shorts. BAREFOOT - no shoes, no footwear, bare feet visible. Pose: standing naturally barefoot with arms at sides, FASHN-compatible pose. Pure white background, no shadows on background.`;
-
-                const negativePrompt = `wrong face, different person, face swap, identity change, wrong person entirely, facial distortion, different eye color, wrong eye shape, wrong nose shape, different mouth, wrong mouth shape, different skin tone, wrong body shape, different proportions than reference, frumpy, boxy figure, shapeless, generic body, ignoring reference body shape, wrong gender, wrong build type, ${bodyTypeNeg}, shoes, footwear, sneakers, sandals, socks, cropped legs, cropped feet, cut off legs, cut off feet, missing feet, missing legs, partial body, close-up framing, body parts cut off, headshot only, torso only, cut off at knees, cropped at knees, cropped at shins, cropped at calves, legs ending at knees, legs cut off at knee level, excessive empty space above head, excessive empty space below feet, small figure in frame, figure too far from camera, loose framing, too much background visible, colored background, grey background, dark background, blurry, distorted, deformed, bad anatomy, extra limbs, missing limbs, doll-like, mannequin, cartoon, anime, illustration, painting, drawing, low quality, mutation, disfigured`;
+                const negativePrompt = `wrong face, different person, face swap, identity change, facial distortion, different eye color, wrong eye shape, wrong nose shape, different mouth, different skin tone, wrong body shape, shoes, footwear, cropped legs, cropped feet, cut off legs, missing feet, blurry, distorted, deformed, bad anatomy, cartoon, anime, illustration, low quality`;
 
                 const response = await fetch('/api/fal', {
                     method: 'POST',
