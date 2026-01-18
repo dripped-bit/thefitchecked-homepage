@@ -3,12 +3,24 @@ export const config = {
 };
 
 export default async function handler(req) {
+  // CORS preflight
   if (req.method === 'OPTIONS') {
     return new Response(null, {
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET, OPTIONS',
         'Access-Control-Allow-Headers': 'Content-Type',
+      },
+    });
+  }
+
+  // Only allow GET
+  if (req.method !== 'GET') {
+    return new Response(JSON.stringify({ error: 'Method not allowed', method: req.method }), {
+      status: 405,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
       },
     });
   }
