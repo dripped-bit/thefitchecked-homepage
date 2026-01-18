@@ -3,5 +3,13 @@
     { "source": "/blueprint", "destination": "/blueprint.html" },
     { "source": "/blog", "destination": "/blog.html" }
   ],
+  "headers": [
+    {
+      "source": "/blog.html",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+      ]
+    }
+  ],
   "trailingSlash": false
 }
