@@ -1527,9 +1527,10 @@ Be specific with item names (e.g., "Silk V-Neck Camisole" not just "top"). Inclu
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        person_image: avatarUrl,
-                        cloth_image: outfitImageUrl,
-                        category: 'auto'
+                        model_image: avatarUrl,
+                        garment_image: outfitImageUrl,
+                        category: 'auto',
+                        mode: 'balanced'
                     })
                 });
 
