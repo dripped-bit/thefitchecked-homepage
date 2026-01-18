@@ -1133,13 +1133,14 @@ Natural standing pose showing COMPLETE FIGURE from head to BARE FEET. Person's h
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        path: '/fal-ai/bytedance/seedream/v4.5/text-to-image',
+                        path: '/fal-ai/nano-banana-pro/edit',
                         body: {
+                            image_url: fullbodyData,
                             prompt: mainPrompt,
                             negative_prompt: negativePrompt,
-                            image_url: fullbodyData,
                             num_images: 1,
-                            image_size: { width: 768, height: 1024 }
+                            strength: 0.75,
+                            guidance_scale: 7.5
                         }
                     })
                 });
