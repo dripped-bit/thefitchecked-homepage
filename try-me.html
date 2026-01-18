@@ -1112,14 +1112,14 @@
         }
 
         // Poll FAL queue for result
-        async function pollFalStatus(statusUrl, maxAttempts = 60) {
+        async function pollFalStatus(requestId, path, maxAttempts = 90) {
             for (let i = 0; i < maxAttempts; i++) {
-                await new Promise(r => setTimeout(r, 2000));
+                await new Promise(r => setTimeout(r, 2000)); // Poll every 2 seconds
 
-                const response = await fetch(`/api/fal-status?status_url=${encodeURIComponent(statusUrl)}`);
+                const response = await fetch(`/api/fal-status?request_id=${requestId}&path=${encodeURIComponent(path)}`);
                 const status = await response.json();
 
-                console.log('FAL status poll:', status);
+                console.log('FAL status poll #' + (i + 1) + ':', status);
 
                 if (status.status === 'COMPLETED') {
                     return status.response;
@@ -1128,7 +1128,7 @@
                 }
                 // IN_QUEUE or IN_PROGRESS - keep polling
             }
-            throw new Error('FAL job timeout');
+            throw new Error('FAL job timeout after ' + maxAttempts + ' attempts');
         }
 
         // Avatar generation
@@ -1194,26 +1194,42 @@ Natural standing pose showing COMPLETE FIGURE from head to BARE FEET. Profession
                 const compressedHeadshot = await compressImage(headshotData, 400);
                 const compressedFullbody = await compressImage(fullbodyData, 400);
 
-                // Call FAL API with sync_mode for immediate results
+                const falPath = '/fal-ai/nano-banana-pro/edit';
+
+                // Submit to FAL queue (returns immediately with request_id)
                 const response = await fetch('/api/fal', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        path: '/fal-ai/nano-banana-pro/edit',
+                        path: falPath,
                         body: {
                             prompt: mainPrompt,
                             image_urls: [compressedHeadshot, compressedFullbody],
                             num_images: 1,
                             aspect_ratio: '9:16',
                             output_format: 'png',
-                            resolution: '1K',
-                            sync_mode: true
+                            resolution: '1K'
                         }
                     })
                 });
 
-                const result = await response.json();
-                console.log('FAL result:', result);
+                const queueResult = await response.json();
+                console.log('FAL queue result:', queueResult);
+
+                if (!queueResult.request_id) {
+                    // Maybe got direct result (shouldn't happen with queue)
+                    if (queueResult.images && queueResult.images[0]) {
+                        avatarUrl = queueResult.images[0].url;
+                        showAvatarResult(avatarUrl);
+                        updateStep(2);
+                        return;
+                    }
+                    throw new Error('No request_id returned: ' + JSON.stringify(queueResult));
+                }
+
+                // Poll for result
+                const result = await pollFalStatus(queueResult.request_id, falPath);
+                console.log('FAL final result:', result);
 
                 if (result.images && result.images[0]) {
                     avatarUrl = result.images[0].url;

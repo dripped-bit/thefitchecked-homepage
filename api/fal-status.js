@@ -35,23 +35,18 @@ export default async function handler(req) {
 
   try {
     const url = new URL(req.url);
+    const requestId = url.searchParams.get('request_id');
+    const path = url.searchParams.get('path');
 
-    // Accept either status_url directly, or request_id + path
-    let statusUrl = url.searchParams.get('status_url');
-
-    if (!statusUrl) {
-      const requestId = url.searchParams.get('request_id');
-      const path = url.searchParams.get('path');
-
-      if (!requestId || !path) {
-        return new Response(JSON.stringify({ error: 'Missing status_url or (request_id and path)' }), {
-          status: 400,
-          headers: { 'Content-Type': 'application/json' },
-        });
-      }
-
-      statusUrl = `https://queue.fal.run${path}/requests/${requestId}/status`;
+    if (!requestId || !path) {
+      return new Response(JSON.stringify({ error: 'Missing request_id or path' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
     }
+
+    // Construct status URL: https://queue.fal.run/{path}/requests/{request_id}/status
+    const statusUrl = `https://queue.fal.run${path}/requests/${requestId}/status`;
 
     const response = await fetch(statusUrl, {
       method: 'GET',
@@ -72,6 +67,7 @@ export default async function handler(req) {
         error: 'FAL returned non-JSON response',
         status: response.status,
         statusText: response.statusText,
+        url: statusUrl,
         body: responseText.substring(0, 500)
       }), {
         status: 502,
