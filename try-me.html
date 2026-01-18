@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Try Me - TheFitChecked</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-image: url('images/pink-mosaic-bg.webp');
+            background-size: 400px;
+            background-repeat: repeat;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        /* Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2.5rem;
+            color: #ff69b4;
+            text-shadow: 3px 3px 0 #fff, 6px 6px 0 rgba(255,105,180,0.3);
+            letter-spacing: 2px;
+        }
+
+        .header-subtitle {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2rem;
+            color: #ff1493;
+            font-style: italic;
+            font-weight: 300;
+            margin-top: -10px;
+        }
+
+        /* Retro Window */
+        .retro-window {
+            background: #c0c0c0;
+            border: 3px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .window-titlebar {
+            background: linear-gradient(90deg, #000080, #1084d0);
+            padding: 4px 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .window-title {
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .window-title-icon {
+            width: 16px;
+            height: 16px;
+        }
+
+        .window-controls {
+            display: flex;
+            gap: 2px;
+        }
+
+        .window-btn {
+            width: 16px;
+            height: 14px;
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+            font-size: 10px;
+            line-height: 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .window-menubar {
+            background: #c0c0c0;
+            padding: 2px 8px;
+            border-bottom: 1px solid #808080;
+            font-size: 12px;
+        }
+
+        .window-menubar span {
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+        .window-menubar span:first-letter {
+            text-decoration: underline;
+        }
+
+        .window-content {
+            display: flex;
+            background: #c0c0c0;
+            padding: 10px;
+        }
+
+        .window-toolbar {
+            width: 50px;
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-right: 10px;
+        }
+
+        .tool-btn {
+            width: 32px;
+            height: 32px;
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .tool-btn:active {
+            border-color: #808080 #ffffff #ffffff #808080;
+        }
+
+        .window-main {
+            flex: 1;
+            background: white;
+            border: 2px solid;
+            border-color: #808080 #ffffff #ffffff #808080;
+            padding: 15px;
+            min-height: 300px;
+        }
+
+        /* Upload Boxes */
+        .upload-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .upload-box {
+            aspect-ratio: 3/4;
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: #fafafa;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .upload-box:hover {
+            border-color: #ff69b4;
+            background: #fff5f8;
+        }
+
+        .upload-box.has-image {
+            border-style: solid;
+            border-color: #ff69b4;
+        }
+
+        .upload-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .upload-box .upload-icon {
+            font-size: 2rem;
+            color: #ccc;
+            margin-bottom: 5px;
+        }
+
+        .upload-box .upload-label {
+            font-size: 0.75rem;
+            color: #888;
+            text-align: center;
+        }
+
+        .upload-box input {
+            display: none;
+        }
+
+        /* Avatar Display - Sims Style */
+        .avatar-display {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .avatar-display.visible {
+            display: flex;
+        }
+
+        .plumbob {
+            width: 40px;
+            height: 50px;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .avatar-container {
+            position: relative;
+        }
+
+        .avatar-image {
+            max-height: 350px;
+            max-width: 100%;
+            object-fit: contain;
+        }
+
+        .avatar-pedestal {
+            width: 200px;
+            height: 40px;
+            background: linear-gradient(180deg, #c8a2c8 0%, #9370db 50%, #7b68ee 100%);
+            border-radius: 50%;
+            margin-top: -20px;
+            box-shadow: 0 10px 30px rgba(147, 112, 219, 0.4);
+        }
+
+        .avatar-arrows {
+            display: flex;
+            justify-content: space-between;
+            width: 250px;
+            margin-top: 10px;
+        }
+
+        .avatar-arrow {
+            font-size: 2rem;
+            color: #ff69b4;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .avatar-arrow:hover {
+            transform: scale(1.2);
+        }
+
+        /* Form Inputs */
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .form-group {
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px 12px;
+            border: 2px solid;
+            border-color: #808080 #ffffff #ffffff #808080;
+            background: white;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        /* Buttons */
+        .retro-btn {
+            background: #c0c0c0;
+            border: 3px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+            padding: 10px 25px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.1s;
+        }
+
+        .retro-btn:active {
+            border-color: #808080 #ffffff #ffffff #808080;
+        }
+
+        .retro-btn.primary {
+            background: linear-gradient(180deg, #ff69b4, #ff1493);
+            color: white;
+            border-color: #ffb6c1 #c71585 #c71585 #ffb6c1;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Outfit Grid */
+        .outfit-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .outfit-item {
+            aspect-ratio: 1;
+            border: 2px solid #ddd;
+            background: #fafafa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .outfit-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .outfit-item.large {
+            grid-row: span 2;
+            aspect-ratio: auto;
+        }
+
+        /* Email Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-overlay.hidden {
+            display: none;
+        }
+
+        .modal-window {
+            background: #c0c0c0;
+            border: 3px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .modal-content {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .modal-icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+
+        .modal-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            color: #ff1493;
+            margin-bottom: 15px;
+        }
+
+        .modal-text {
+            font-size: 0.95rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .modal-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid;
+            border-color: #808080 #ffffff #ffffff #808080;
+            font-size: 1rem;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .tries-remaining {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        /* Loading State */
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.9);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .loading-overlay.hidden {
+            display: none;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #ff69b4;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            margin-top: 15px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Shopping Results */
+        .shopping-results {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .shopping-results.visible {
+            display: block;
+        }
+
+        .shopping-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .shopping-item {
+            background: white;
+            border: 2px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .shopping-item img {
+            width: 100%;
+            height: 120px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .shopping-item .item-title {
+            font-size: 0.75rem;
+            color: #333;
+            margin-bottom: 5px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .shopping-item .item-price {
+            font-weight: 600;
+            color: #ff1493;
+        }
+
+        .shopping-item a {
+            display: inline-block;
+            margin-top: 8px;
+            font-size: 0.75rem;
+            color: #0066cc;
+        }
+
+        /* Section Headers */
+        .section-header {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            color: #ff1493;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed #ffb6c1;
+        }
+
+        /* Step Indicator */
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .step {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .step.active {
+            background: #ff69b4;
+            color: white;
+        }
+
+        .step.completed {
+            background: #9370db;
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .header-title {
+                font-size: 1.5rem;
+            }
+
+            .header-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .upload-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .upload-grid .upload-box:nth-child(3) {
+                grid-column: span 2;
+            }
+
+            .window-toolbar {
+                display: none;
+            }
+
+            body {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Email Gate Modal -->
+    <div class="modal-overlay" id="emailModal">
+        <div class="modal-window">
+            <div class="window-titlebar">
+                <span class="window-title">✨ Unlock Your Style Session</span>
+                <div class="window-controls">
+                    <div class="window-btn">×</div>
+                </div>
+            </div>
+            <div class="modal-content">
+                <div class="modal-icon">👗</div>
+                <h2 class="modal-title">TRY IT FREE</h2>
+                <p class="modal-text">Enter your email to unlock 2 free styling sessions. Create your avatar, generate outfits, and try them on!</p>
+                <input type="email" class="modal-input" id="emailInput" placeholder="your@email.com">
+                <button class="retro-btn primary" id="unlockBtn" onclick="unlockSession()">UNLOCK NOW</button>
+                <p class="tries-remaining" id="triesInfo"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Limit Reached Modal -->
+    <div class="modal-overlay hidden" id="limitModal">
+        <div class="modal-window">
+            <div class="window-titlebar">
+                <span class="window-title">⚠️ Trial Complete</span>
+                <div class="window-controls">
+                    <div class="window-btn">×</div>
+                </div>
+            </div>
+            <div class="modal-content">
+                <div class="modal-icon">🎀</div>
+                <h2 class="modal-title">LOVED IT?</h2>
+                <p class="modal-text">You've used your 2 free tries! Join the waitlist to get unlimited styling when we launch on the App Store.</p>
+                <input type="email" class="modal-input" id="waitlistEmail" placeholder="your@email.com">
+                <button class="retro-btn primary" onclick="joinWaitlist()">JOIN WAITLIST</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="page-header">
+        <h1 class="header-title">OUTFIT</h1>
+        <p class="header-subtitle">of the day</p>
+    </header>
+
+    <!-- Step Indicator -->
+    <div class="step-indicator">
+        <div class="step active" id="step1">1</div>
+        <div class="step" id="step2">2</div>
+        <div class="step" id="step3">3</div>
+        <div class="step" id="step4">4</div>
+    </div>
+
+    <!-- Window 1: Create Avatar -->
+    <div class="retro-window" id="avatarWindow">
+        <div class="window-titlebar">
+            <span class="window-title">
+                <span>⭐</span> Create Your Avatar
+            </span>
+            <div class="window-controls">
+                <div class="window-btn">_</div>
+                <div class="window-btn">□</div>
+                <div class="window-btn">×</div>
+            </div>
+        </div>
+        <div class="window-menubar">
+            <span>File</span>
+            <span>Edit</span>
+            <span>Style</span>
+            <span>Font</span>
+        </div>
+        <div class="window-content">
+            <div class="window-toolbar">
+                <div class="tool-btn">✂️</div>
+                <div class="tool-btn">📷</div>
+                <div class="tool-btn">T</div>
+                <div class="tool-btn">⭐</div>
+                <div class="tool-btn">🔍</div>
+            </div>
+            <div class="window-main" id="avatarMain">
+                <!-- Upload Section -->
+                <div id="uploadSection">
+                    <p class="section-header">STEP 1: UPLOAD YOUR PHOTOS</p>
+                    <div class="upload-grid">
+                        <div class="upload-box" id="headshotBox" onclick="document.getElementById('headshotInput').click()">
+                            <span class="upload-icon">📷</span>
+                            <span class="upload-label">Headshot<br>Front facing</span>
+                            <input type="file" id="headshotInput" accept="image/*" onchange="handleUpload(this, 'headshot')">
+                        </div>
+                        <div class="upload-box" id="fullbodyBox" onclick="document.getElementById('fullbodyInput').click()">
+                            <span class="upload-icon">📷</span>
+                            <span class="upload-label">Full Body<br>Head to toe</span>
+                            <input type="file" id="fullbodyInput" accept="image/*" onchange="handleUpload(this, 'fullbody')">
+                        </div>
+                        <div class="upload-box" id="avatarPreviewBox">
+                            <span class="upload-icon">✨</span>
+                            <span class="upload-label">Your Avatar<br>Will appear here</span>
+                        </div>
+                    </div>
+
+                    <p class="section-header">STEP 2: YOUR MEASUREMENTS</p>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Height</label>
+                            <select id="heightFeet">
+                                <option value="">Feet</option>
+                                <option value="4">4'</option>
+                                <option value="5">5'</option>
+                                <option value="6">6'</option>
+                                <option value="7">7'</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>&nbsp;</label>
+                            <select id="heightInches">
+                                <option value="">Inches</option>
+                                <option value="0">0"</option>
+                                <option value="1">1"</option>
+                                <option value="2">2"</option>
+                                <option value="3">3"</option>
+                                <option value="4">4"</option>
+                                <option value="5">5"</option>
+                                <option value="6">6"</option>
+                                <option value="7">7"</option>
+                                <option value="8">8"</option>
+                                <option value="9">9"</option>
+                                <option value="10">10"</option>
+                                <option value="11">11"</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Weight (lbs)</label>
+                            <input type="number" id="weight" placeholder="150">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Body Type</label>
+                            <select id="bodyType">
+                                <option value="">Select...</option>
+                                <option value="hourglass">Hourglass</option>
+                                <option value="pear">Pear</option>
+                                <option value="apple">Apple</option>
+                                <option value="rectangle">Rectangle</option>
+                                <option value="inverted-triangle">Inverted Triangle</option>
+                                <option value="athletic">Athletic</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Gender</label>
+                            <select id="gender">
+                                <option value="">Select...</option>
+                                <option value="female">Female</option>
+                                <option value="male">Male</option>
+                                <option value="non-binary">Non-binary</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="btn-row">
+                        <button class="retro-btn primary" onclick="generateAvatar()">✨ GENERATE AVATAR</button>
+                    </div>
+                </div>
+
+                <!-- Avatar Display (hidden initially) -->
+                <div class="avatar-display" id="avatarDisplay">
+                    <svg class="plumbob" viewBox="0 0 100 120">
+                        <defs>
+                            <linearGradient id="plumbobGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#7fff7f"/>
+                                <stop offset="50%" style="stop-color:#00ff00"/>
+                                <stop offset="100%" style="stop-color:#006600"/>
+                            </linearGradient>
+                        </defs>
+                        <polygon points="50,0 100,60 50,120 0,60" fill="url(#plumbobGrad)" stroke="#004400" stroke-width="2"/>
+                    </svg>
+                    <div class="avatar-container">
+                        <img src="" alt="Your Avatar" class="avatar-image" id="avatarImage">
+                    </div>
+                    <div class="avatar-pedestal"></div>
+                    <div class="avatar-arrows">
+                        <span class="avatar-arrow">◀</span>
+                        <span class="avatar-arrow">▶</span>
+                    </div>
+                    <div class="btn-row" style="margin-top: 20px;">
+                        <button class="retro-btn" onclick="resetAvatar()">↺ Start Over</button>
+                        <button class="retro-btn primary" onclick="showOutfitWindow()">NEXT: Style Outfit →</button>
+                    </div>
+                </div>
+
+                <!-- Loading -->
+                <div class="loading-overlay hidden" id="avatarLoading">
+                    <div class="loading-spinner"></div>
+                    <p class="loading-text">Creating your avatar...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Window 2: Style Outfit -->
+    <div class="retro-window" id="outfitWindow" style="display: none;">
+        <div class="window-titlebar">
+            <span class="window-title">
+                <span>👗</span> Style Your Outfit
+            </span>
+            <div class="window-controls">
+                <div class="window-btn">_</div>
+                <div class="window-btn">□</div>
+                <div class="window-btn">×</div>
+            </div>
+        </div>
+        <div class="window-menubar">
+            <span>File</span>
+            <span>Edit</span>
+            <span>Style</span>
+            <span>Font</span>
+        </div>
+        <div class="window-content">
+            <div class="window-toolbar">
+                <div class="tool-btn">👗</div>
+                <div class="tool-btn">👠</div>
+                <div class="tool-btn">👜</div>
+                <div class="tool-btn">💍</div>
+                <div class="tool-btn">🎨</div>
+            </div>
+            <div class="window-main" id="outfitMain">
+                <!-- Outfit Form -->
+                <div id="outfitForm">
+                    <p class="section-header">STEP 3: DESCRIBE YOUR LOOK</p>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Occasion</label>
+                            <select id="occasion">
+                                <option value="">Select occasion...</option>
+                                <option value="date-night">Date Night</option>
+                                <option value="work">Work / Office</option>
+                                <option value="casual">Casual Outing</option>
+                                <option value="party">Party / Club</option>
+                                <option value="brunch">Brunch</option>
+                                <option value="wedding">Wedding Guest</option>
+                                <option value="vacation">Vacation</option>
+                                <option value="interview">Job Interview</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Describe Your Ideal Outfit</label>
+                            <textarea id="outfitDescription" placeholder="e.g., Something elegant but comfortable, love pink and florals, want to show off my legs..."></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Style Vibe</label>
+                            <select id="styleVibe">
+                                <option value="">Select vibe...</option>
+                                <option value="elegant">Elegant / Classy</option>
+                                <option value="casual">Casual / Relaxed</option>
+                                <option value="bold">Bold / Statement</option>
+                                <option value="minimalist">Minimalist / Clean</option>
+                                <option value="romantic">Romantic / Feminine</option>
+                                <option value="edgy">Edgy / Street</option>
+                                <option value="boho">Bohemian / Free Spirit</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Budget</label>
+                            <select id="budget">
+                                <option value="">Select budget...</option>
+                                <option value="budget">Under $100</option>
+                                <option value="mid">$100 - $300</option>
+                                <option value="high">$300 - $500</option>
+                                <option value="luxury">$500+</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="btn-row">
+                        <button class="retro-btn" onclick="showAvatarWindow()">← Back</button>
+                        <button class="retro-btn primary" onclick="generateOutfit()">✨ GENERATE OUTFIT</button>
+                    </div>
+                </div>
+
+                <!-- Outfit Results (hidden initially) -->
+                <div id="outfitResults" style="display: none;">
+                    <p class="section-header">YOUR STYLED OUTFIT</p>
+                    <div class="outfit-grid" id="outfitGrid">
+                        <!-- Outfit items will be inserted here -->
+                    </div>
+                    <div class="btn-row">
+                        <button class="retro-btn" onclick="tryOnOutfit()">👗 TRY IT ON</button>
+                        <button class="retro-btn primary" onclick="showShopping()">🛒 SHOP NOW</button>
+                        <button class="retro-btn" onclick="retryOutfit()">↺ RETRY</button>
+                    </div>
+                </div>
+
+                <!-- Try On Result -->
+                <div id="tryOnResult" style="display: none;">
+                    <p class="section-header">YOU IN THIS OUTFIT</p>
+                    <div class="avatar-display visible" style="margin: 0;">
+                        <svg class="plumbob" viewBox="0 0 100 120">
+                            <defs>
+                                <linearGradient id="plumbobGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#ff69b4"/>
+                                    <stop offset="50%" style="stop-color:#ff1493"/>
+                                    <stop offset="100%" style="stop-color:#c71585"/>
+                                </linearGradient>
+                            </defs>
+                            <polygon points="50,0 100,60 50,120 0,60" fill="url(#plumbobGrad2)" stroke="#8b008b" stroke-width="2"/>
+                        </svg>
+                        <div class="avatar-container">
+                            <img src="" alt="Try On Result" class="avatar-image" id="tryOnImage">
+                        </div>
+                        <div class="avatar-pedestal"></div>
+                    </div>
+                    <div class="btn-row">
+                        <button class="retro-btn primary" onclick="showShopping()">🛒 SHOP THIS LOOK</button>
+                        <button class="retro-btn" onclick="retryOutfit()">↺ TRY DIFFERENT OUTFIT</button>
+                    </div>
+                </div>
+
+                <!-- Shopping Results -->
+                <div class="shopping-results" id="shoppingResults">
+                    <p class="section-header">SHOP THE LOOK</p>
+                    <div class="shopping-grid" id="shoppingGrid">
+                        <!-- Shopping items inserted here -->
+                    </div>
+                </div>
+
+                <!-- Loading -->
+                <div class="loading-overlay hidden" id="outfitLoading">
+                    <div class="loading-spinner"></div>
+                    <p class="loading-text" id="outfitLoadingText">Generating your outfit...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // State
+        let userEmail = '';
+        let triesRemaining = 2;
+        let headshotData = null;
+        let fullbodyData = null;
+        let avatarUrl = null;
+        let currentOutfit = null;
+        let outfitImageUrl = null;
+
+        // Supabase config
+        const SUPABASE_URL = 'https://kxmtbetklikewluwntyx.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt4bXRiZXRrbGlrZXdsdXdudHl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzY3MTkxNDcsImV4cCI6MjA1MjI5NTE0N30.I-NTEPfPCgpPqVqbvXkqRGSENLDpWpvXyfJqXrPqcvY';
+
+        // Check email and trial count
+        async function unlockSession() {
+            const email = document.getElementById('emailInput').value.trim();
+            if (!email || !email.includes('@')) {
+                alert('Please enter a valid email');
+                return;
+            }
+
+            try {
+                // Check if email exists and get try count
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/demo_trials?email=eq.${encodeURIComponent(email)}`, {
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                    }
+                });
+
+                const data = await response.json();
+
+                if (data.length > 0) {
+                    // Existing user
+                    triesRemaining = 2 - data[0].tries_used;
+                    if (triesRemaining <= 0) {
+                        showLimitModal(email);
+                        return;
+                    }
+                } else {
+                    // New user - create record
+                    await fetch(`${SUPABASE_URL}/rest/v1/demo_trials`, {
+                        method: 'POST',
+                        headers: {
+                            'apikey': SUPABASE_ANON_KEY,
+                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                            'Content-Type': 'application/json',
+                            'Prefer': 'return=minimal'
+                        },
+                        body: JSON.stringify({ email, tries_used: 0 })
+                    });
+                    triesRemaining = 2;
+                }
+
+                userEmail = email;
+                document.getElementById('emailModal').classList.add('hidden');
+                updateTriesDisplay();
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Something went wrong. Please try again.');
+            }
+        }
+
+        function showLimitModal(email) {
+            document.getElementById('emailModal').classList.add('hidden');
+            document.getElementById('waitlistEmail').value = email || '';
+            document.getElementById('limitModal').classList.remove('hidden');
+        }
+
+        async function joinWaitlist() {
+            const email = document.getElementById('waitlistEmail').value.trim();
+            if (!email) return;
+
+            try {
+                await fetch(`${SUPABASE_URL}/functions/v1/waitlist-signup`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, source: 'demo_limit' })
+                });
+
+                alert('You\'re on the waitlist! We\'ll notify you when we launch.');
+                document.getElementById('limitModal').classList.add('hidden');
+            } catch (error) {
+                alert('Something went wrong. Please try again.');
+            }
+        }
+
+        function updateTriesDisplay() {
+            // Could add a tries counter to the UI if desired
+        }
+
+        async function incrementTryCount() {
+            if (!userEmail) return;
+
+            try {
+                // Get current count
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/demo_trials?email=eq.${encodeURIComponent(userEmail)}`, {
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                    }
+                });
+                const data = await response.json();
+
+                if (data.length > 0) {
+                    const newCount = data[0].tries_used + 1;
+                    await fetch(`${SUPABASE_URL}/rest/v1/demo_trials?email=eq.${encodeURIComponent(userEmail)}`, {
+                        method: 'PATCH',
+                        headers: {
+                            'apikey': SUPABASE_ANON_KEY,
+                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ tries_used: newCount })
+                    });
+                    triesRemaining = 2 - newCount;
+                }
+            } catch (error) {
+                console.error('Error updating try count:', error);
+            }
+        }
+
+        // Image upload handling
+        function handleUpload(input, type) {
+            const file = input.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const base64 = e.target.result;
+
+                if (type === 'headshot') {
+                    headshotData = base64;
+                    updateUploadBox('headshotBox', base64);
+                } else {
+                    fullbodyData = base64;
+                    updateUploadBox('fullbodyBox', base64);
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function updateUploadBox(boxId, imageData) {
+            const box = document.getElementById(boxId);
+            box.innerHTML = `<img src="${imageData}" alt="Uploaded">`;
+            box.classList.add('has-image');
+        }
+
+        // Avatar generation
+        async function generateAvatar() {
+            if (!headshotData || !fullbodyData) {
+                alert('Please upload both headshot and full body photos');
+                return;
+            }
+
+            const height = document.getElementById('heightFeet').value;
+            const weight = document.getElementById('weight').value;
+            const bodyType = document.getElementById('bodyType').value;
+            const gender = document.getElementById('gender').value;
+
+            if (!height || !bodyType || !gender) {
+                alert('Please fill in all measurements');
+                return;
+            }
+
+            // Show loading
+            document.getElementById('avatarLoading').classList.remove('hidden');
+
+            try {
+                const response = await fetch('/api/fal', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        path: '/fal-ai/bytedance/seedream/v4.5/text-to-image',
+                        body: {
+                            prompt: `Full body fashion portrait of a ${gender} person, ${bodyType} body type, standing pose, clean white background, high fashion photography style, photorealistic, full length from head to toe, facing forward`,
+                            image_url: fullbodyData,
+                            num_images: 1,
+                            image_size: { width: 768, height: 1024 }
+                        }
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.images && result.images[0]) {
+                    avatarUrl = result.images[0].url;
+                    showAvatarResult(avatarUrl);
+                    updateStep(2);
+                } else {
+                    throw new Error('No image generated');
+                }
+
+            } catch (error) {
+                console.error('Avatar generation error:', error);
+                // Fallback - use uploaded image as "avatar" for demo
+                avatarUrl = fullbodyData;
+                showAvatarResult(avatarUrl);
+                updateStep(2);
+            } finally {
+                document.getElementById('avatarLoading').classList.add('hidden');
+            }
+        }
+
+        function showAvatarResult(imageUrl) {
+            document.getElementById('uploadSection').style.display = 'none';
+            document.getElementById('avatarDisplay').classList.add('visible');
+            document.getElementById('avatarImage').src = imageUrl;
+
+            // Also show in preview box
+            const previewBox = document.getElementById('avatarPreviewBox');
+            previewBox.innerHTML = `<img src="${imageUrl}" alt="Avatar">`;
+            previewBox.classList.add('has-image');
+        }
+
+        function resetAvatar() {
+            document.getElementById('uploadSection').style.display = 'block';
+            document.getElementById('avatarDisplay').classList.remove('visible');
+            headshotData = null;
+            fullbodyData = null;
+            avatarUrl = null;
+
+            // Reset upload boxes
+            ['headshotBox', 'fullbodyBox', 'avatarPreviewBox'].forEach(id => {
+                const box = document.getElementById(id);
+                box.classList.remove('has-image');
+            });
+
+            document.getElementById('headshotBox').innerHTML = `
+                <span class="upload-icon">📷</span>
+                <span class="upload-label">Headshot<br>Front facing</span>
+                <input type="file" id="headshotInput" accept="image/*" onchange="handleUpload(this, 'headshot')">
+            `;
+            document.getElementById('fullbodyBox').innerHTML = `
+                <span class="upload-icon">📷</span>
+                <span class="upload-label">Full Body<br>Head to toe</span>
+                <input type="file" id="fullbodyInput" accept="image/*" onchange="handleUpload(this, 'fullbody')">
+            `;
+            document.getElementById('avatarPreviewBox').innerHTML = `
+                <span class="upload-icon">✨</span>
+                <span class="upload-label">Your Avatar<br>Will appear here</span>
+            `;
+
+            updateStep(1);
+        }
+
+        // Window navigation
+        function showOutfitWindow() {
+            document.getElementById('avatarWindow').style.display = 'none';
+            document.getElementById('outfitWindow').style.display = 'block';
+            updateStep(3);
+        }
+
+        function showAvatarWindow() {
+            document.getElementById('outfitWindow').style.display = 'none';
+            document.getElementById('avatarWindow').style.display = 'block';
+        }
+
+        // Outfit generation
+        async function generateOutfit() {
+            const occasion = document.getElementById('occasion').value;
+            const description = document.getElementById('outfitDescription').value;
+            const vibe = document.getElementById('styleVibe').value;
+            const budget = document.getElementById('budget').value;
+            const gender = document.getElementById('gender').value;
+
+            if (!occasion) {
+                alert('Please select an occasion');
+                return;
+            }
+
+            document.getElementById('outfitLoading').classList.remove('hidden');
+            document.getElementById('outfitLoadingText').textContent = 'Generating your outfit...';
+
+            try {
+                // Generate outfit suggestion using OpenAI
+                const prompt = `You are a fashion stylist. Create a complete outfit for a ${gender} person for a ${occasion} occasion.
+                Style vibe: ${vibe || 'versatile'}
+                Budget: ${budget || 'mid-range'}
+                User notes: ${description || 'none'}
+
+                Return a JSON object with this structure:
+                {
+                    "outfit_description": "Brief description of the complete look",
+                    "items": [
+                        { "type": "top", "name": "Item name", "color": "color", "style": "style notes" },
+                        { "type": "bottom", "name": "Item name", "color": "color", "style": "style notes" },
+                        { "type": "shoes", "name": "Item name", "color": "color", "style": "style notes" },
+                        { "type": "accessory", "name": "Item name", "color": "color", "style": "style notes" }
+                    ],
+                    "styling_tips": "How to wear this look"
+                }
+                
+                Return ONLY valid JSON, no other text.`;
+
+                const response = await fetch('/api/openai', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        model: 'gpt-4o',
+                        messages: [{ role: 'user', content: prompt }],
+                        temperature: 0.8,
+                        max_tokens: 1000
+                    })
+                });
+
+                const data = await response.json();
+                let outfitData;
+
+                try {
+                    const content = data.choices[0].message.content;
+                    const jsonMatch = content.match(/\{[\s\S]*\}/);
+                    outfitData = JSON.parse(jsonMatch[0]);
+                } catch (e) {
+                    // Fallback outfit
+                    outfitData = {
+                        outfit_description: "A chic ensemble perfect for your occasion",
+                        items: [
+                            { type: "top", name: "Silk Blouse", color: "Blush Pink", style: "Elegant drape" },
+                            { type: "bottom", name: "High-Waisted Trousers", color: "Black", style: "Tailored fit" },
+                            { type: "shoes", name: "Strappy Heels", color: "Nude", style: "Block heel" },
+                            { type: "accessory", name: "Gold Hoop Earrings", color: "Gold", style: "Statement" }
+                        ],
+                        styling_tips: "Keep accessories minimal for an elegant look"
+                    };
+                }
+
+                currentOutfit = outfitData;
+
+                // Now generate an outfit image
+                const outfitPrompt = `Fashion flat lay photography of ${outfitData.items.map(i => `${i.color} ${i.name}`).join(', ')}, arranged beautifully on white background, high-end fashion photography, editorial style`;
+
+                const imageResponse = await fetch('/api/fal', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        path: '/fal-ai/bytedance/seedream/v4.5/text-to-image',
+                        body: {
+                            prompt: outfitPrompt,
+                            num_images: 1,
+                            image_size: { width: 1024, height: 1024 }
+                        }
+                    })
+                });
+
+                const imageResult = await imageResponse.json();
+                outfitImageUrl = imageResult.images?.[0]?.url || null;
+
+                displayOutfitResults(outfitData, outfitImageUrl);
+                updateStep(4);
+
+                // Increment try count
+                await incrementTryCount();
+
+                if (triesRemaining <= 0) {
+                    setTimeout(() => showLimitModal(userEmail), 1000);
+                }
+
+            } catch (error) {
+                console.error('Outfit generation error:', error);
+                alert('Something went wrong generating your outfit. Please try again.');
+            } finally {
+                document.getElementById('outfitLoading').classList.add('hidden');
+            }
+        }
+
+        function displayOutfitResults(outfitData, imageUrl) {
+            document.getElementById('outfitForm').style.display = 'none';
+            document.getElementById('outfitResults').style.display = 'block';
+
+            const grid = document.getElementById('outfitGrid');
+            grid.innerHTML = '';
+
+            // Add outfit items
+            outfitData.items.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'outfit-item';
+                div.innerHTML = `
+                    <div style="padding: 10px; text-align: center;">
+                        <div style="font-size: 2rem;">${getItemEmoji(item.type)}</div>
+                        <div style="font-size: 0.75rem; margin-top: 5px;">${item.name}</div>
+                        <div style="font-size: 0.65rem; color: #888;">${item.color}</div>
+                    </div>
+                `;
+                grid.appendChild(div);
+            });
+
+            // Add main outfit image if available
+            if (imageUrl) {
+                const mainDiv = document.createElement('div');
+                mainDiv.className = 'outfit-item large';
+                mainDiv.innerHTML = `<img src="${imageUrl}" alt="Generated Outfit">`;
+                grid.appendChild(mainDiv);
+            }
+        }
+
+        function getItemEmoji(type) {
+            const emojis = {
+                top: '👚',
+                bottom: '👖',
+                dress: '👗',
+                shoes: '👠',
+                accessory: '💍',
+                bag: '👜',
+                outerwear: '🧥'
+            };
+            return emojis[type] || '👕';
+        }
+
+        // Try on outfit
+        async function tryOnOutfit() {
+            if (!avatarUrl || !outfitImageUrl) {
+                alert('Avatar or outfit not ready');
+                return;
+            }
+
+            document.getElementById('outfitLoading').classList.remove('hidden');
+            document.getElementById('outfitLoadingText').textContent = 'Trying on your outfit...';
+
+            try {
+                // Use FASHN API for virtual try-on
+                const response = await fetch('/api/fashn/v1/run', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        person_image: avatarUrl,
+                        cloth_image: outfitImageUrl,
+                        category: 'auto'
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.id) {
+                    // Poll for completion
+                    const tryOnResult = await pollFashnStatus(result.id);
+                    if (tryOnResult.output) {
+                        showTryOnResult(tryOnResult.output);
+                    } else {
+                        throw new Error('No output');
+                    }
+                } else {
+                    throw new Error('No job ID');
+                }
+
+            } catch (error) {
+                console.error('Try-on error:', error);
+                // Fallback - show avatar with outfit overlay description
+                showTryOnResult(avatarUrl);
+            } finally {
+                document.getElementById('outfitLoading').classList.add('hidden');
+            }
+        }
+
+        async function pollFashnStatus(jobId, maxAttempts = 30) {
+            for (let i = 0; i < maxAttempts; i++) {
+                await new Promise(r => setTimeout(r, 2000));
+
+                const response = await fetch(`/api/fashn/v1/status/${jobId}`);
+                const status = await response.json();
+
+                if (status.status === 'completed') {
+                    return status;
+                } else if (status.status === 'failed') {
+                    throw new Error('Try-on failed');
+                }
+            }
+            throw new Error('Timeout');
+        }
+
+        function showTryOnResult(imageUrl) {
+            document.getElementById('outfitResults').style.display = 'none';
+            document.getElementById('tryOnResult').style.display = 'block';
+            document.getElementById('tryOnImage').src = imageUrl;
+        }
+
+        // Shopping
+        async function showShopping() {
+            if (!currentOutfit) return;
+
+            document.getElementById('outfitLoading').classList.remove('hidden');
+            document.getElementById('outfitLoadingText').textContent = 'Finding shopping links...';
+            document.getElementById('shoppingResults').classList.add('visible');
+
+            const grid = document.getElementById('shoppingGrid');
+            grid.innerHTML = '';
+
+            try {
+                const gender = document.getElementById('gender').value;
+
+                for (const item of currentOutfit.items) {
+                    const query = `${gender}'s ${item.color} ${item.name}`;
+
+                    const response = await fetch('/api/serpapi-search', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ query, num: 2, userGender: gender })
+                    });
+
+                    const results = await response.json();
+
+                    if (results.shopping_results) {
+                        results.shopping_results.slice(0, 2).forEach(product => {
+                            const div = document.createElement('div');
+                            div.className = 'shopping-item';
+                            div.innerHTML = `
+                                <img src="${product.thumbnail}" alt="${product.title}">
+                                <div class="item-title">${product.title}</div>
+                                <div class="item-price">${product.price || 'See price'}</div>
+                                <a href="${product.link}" target="_blank">Shop Now →</a>
+                            `;
+                            grid.appendChild(div);
+                        });
+                    }
+                }
+
+            } catch (error) {
+                console.error('Shopping search error:', error);
+                grid.innerHTML = '<p style="text-align: center; color: #888;">Shopping links unavailable</p>';
+            } finally {
+                document.getElementById('outfitLoading').classList.add('hidden');
+            }
+        }
+
+        // Retry
+        function retryOutfit() {
+            if (triesRemaining <= 0) {
+                showLimitModal(userEmail);
+                return;
+            }
+
+            document.getElementById('outfitResults').style.display = 'none';
+            document.getElementById('tryOnResult').style.display = 'none';
+            document.getElementById('shoppingResults').classList.remove('visible');
+            document.getElementById('outfitForm').style.display = 'block';
+            currentOutfit = null;
+            outfitImageUrl = null;
+            updateStep(3);
+        }
+
+        // Step indicator
+        function updateStep(step) {
+            for (let i = 1; i <= 4; i++) {
+                const el = document.getElementById(`step${i}`);
+                el.classList.remove('active', 'completed');
+                if (i < step) {
+                    el.classList.add('completed');
+                } else if (i === step) {
+                    el.classList.add('active');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
