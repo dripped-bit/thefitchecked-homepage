@@ -1144,11 +1144,16 @@
                 const bodyTypeDesc = getBodyTypeDescription(bodyType, gender);
                 const bodyTypeNeg = getBodyTypeNegative(bodyType);
 
+                // Different clothing based on gender
+                const clothingDescription = gender === 'female'
+                    ? 'Wearing pink plunge neckline cotton rib skin-tight tank top and buttery-soft mid-rise boy shorts with feminine stretchy lace trim details along the leg openings with maximum back coverage'
+                    : 'Wearing form-fitting white tank top and blue athletic shorts';
+
                 const mainPrompt = `Professional full-body portrait photograph. Face and facial features must EXACTLY match the face reference photo - same eyes, nose, mouth, skin tone, hair color and style. Body shape and proportions must match the full body reference.
 
 ${genderDescription} with ${bodyType} build. ${bodyTypeDesc}. Height: ${heightCm}cm. Body measurements: chest ${measurements.chest}cm, waist ${measurements.waist}cm, hips ${measurements.hips}cm.
 
-Natural standing pose showing COMPLETE FIGURE from head to BARE FEET. Professional studio photography with pure white seamless background. Wearing form-fitting white tank top and blue athletic shorts. BAREFOOT. Pose: standing naturally with arms at sides.`;
+Natural standing pose showing COMPLETE FIGURE from head to BARE FEET. Professional studio photography with pure white seamless background. ${clothingDescription}. BAREFOOT. Pose: standing naturally with arms at sides.`;
 
                 const negativePrompt = `wrong face, different person, face swap, identity change, facial distortion, different eye color, wrong eye shape, wrong nose shape, different mouth, different skin tone, wrong body shape, shoes, footwear, cropped legs, cropped feet, cut off legs, missing feet, blurry, distorted, deformed, bad anatomy, cartoon, anime, illustration, low quality`;
 
