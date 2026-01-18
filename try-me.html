@@ -708,6 +708,58 @@
             width: 100%;
         }
 
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #333;
+            z-index: 1001;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 228, 236, 0.98);
+            z-index: 999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            font-size: 1.5rem;
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu a:hover {
+            color: #ff69b4;
+        }
+
+        .mobile-menu .close-btn {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #333;
+        }
+
         @media (max-width: 600px) {
             nav {
                 padding: 0.75rem 1rem;
@@ -716,10 +768,10 @@
                 font-size: 0.7rem;
             }
             .nav-links {
-                gap: 1rem;
+                display: none;
             }
-            .nav-links a {
-                font-size: 0.8rem;
+            .mobile-menu-btn {
+                display: block;
             }
         }
     </style>
@@ -734,7 +786,17 @@
             <a href="/about.html">About</a>
             <a href="/try-me.html" class="active">Try Me</a>
         </div>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
     </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-btn" onclick="toggleMobileMenu()">✕</button>
+        <a href="/index.html">Home</a>
+        <a href="/blog.html">Blog</a>
+        <a href="/about.html">About</a>
+        <a href="/try-me.html">Try Me</a>
+    </div>
     <!-- Email Gate Modal -->
     <div class="modal-overlay" id="emailModal">
         <div class="modal-window">
@@ -1084,6 +1146,13 @@
     </div>
 
     <script>
+        // Mobile Menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+            document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+        }
+
         // State
         let userEmail = '';
         let triesRemaining = 2;
