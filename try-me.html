@@ -1559,7 +1559,7 @@ Be specific with item names (e.g., "Silk V-Neck Camisole" not just "top"). Inclu
                             garment_photo_type: 'auto',
                             mode: 'balanced',
                             num_samples: 1,
-                            seed: Date.now(),
+                            seed: Date.now() % 4294967295,
                             output_format: 'jpeg',
                             return_base64: false
                         }
