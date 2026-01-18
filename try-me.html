@@ -1093,27 +1093,50 @@
                 return;
             }
 
-            const height = document.getElementById('heightFeet').value;
+            const heightFeet = document.getElementById('heightFeet').value;
+            const heightInches = document.getElementById('heightInches').value || 0;
             const weight = document.getElementById('weight').value;
             const bodyType = document.getElementById('bodyType').value;
             const gender = document.getElementById('gender').value;
 
-            if (!height || !bodyType || !gender) {
+            if (!heightFeet || !bodyType || !gender) {
                 alert('Please fill in all measurements');
                 return;
             }
+
+            // Convert to cm for prompt
+            const heightCm = Math.round((parseInt(heightFeet) * 30.48) + (parseInt(heightInches) * 2.54));
+            
+            // Estimate measurements based on body type
+            const measurements = estimateMeasurements(gender, bodyType, heightCm, parseInt(weight) || 150);
 
             // Show loading
             document.getElementById('avatarLoading').classList.remove('hidden');
 
             try {
+                // Build prompt like the app does
+                const genderDescription = gender === 'female' ? 'Woman' : gender === 'male' ? 'Man' : 'Person';
+                const bodyTypeDesc = getBodyTypeDescription(bodyType, gender);
+                const bodyTypeNeg = getBodyTypeNegative(bodyType);
+
+                const mainPrompt = `Professional full-body portrait photograph. Face and facial features must EXACTLY match the face reference photo - same eyes, nose, mouth, skin tone, hair color and style. Body shape, proportions, and figure must EXACTLY match the full body reference photo.
+
+${genderDescription} with ${bodyType} build. ${bodyTypeDesc}.
+
+Body measurements: bust/chest ${measurements.chest}cm, waist ${measurements.waist}cm, hips ${measurements.hips}cm, height ${heightCm}cm.
+
+Natural standing pose showing COMPLETE FIGURE from head to BARE FEET. Person's head near top edge of frame, BARE FEET clearly visible at bottom edge of frame. Full body shot with entire legs visible - no cropping at knees or shins. Camera framed to capture complete standing figure from crown of head to toes. Professional studio photography with pure white seamless background, soft natural lighting, photorealistic high-quality image, natural skin texture and realistic proportions. Wearing form-fitting white tank top and blue athletic shorts. BAREFOOT - no shoes, no footwear, bare feet visible. Pose: standing naturally barefoot with arms at sides, FASHN-compatible pose. Pure white background, no shadows on background.`;
+
+                const negativePrompt = `wrong face, different person, face swap, identity change, wrong person entirely, facial distortion, different eye color, wrong eye shape, wrong nose shape, different mouth, wrong mouth shape, different skin tone, wrong body shape, different proportions than reference, frumpy, boxy figure, shapeless, generic body, ignoring reference body shape, wrong gender, wrong build type, ${bodyTypeNeg}, shoes, footwear, sneakers, sandals, socks, cropped legs, cropped feet, cut off legs, cut off feet, missing feet, missing legs, partial body, close-up framing, body parts cut off, headshot only, torso only, cut off at knees, cropped at knees, cropped at shins, cropped at calves, legs ending at knees, legs cut off at knee level, excessive empty space above head, excessive empty space below feet, small figure in frame, figure too far from camera, loose framing, too much background visible, colored background, grey background, dark background, blurry, distorted, deformed, bad anatomy, extra limbs, missing limbs, doll-like, mannequin, cartoon, anime, illustration, painting, drawing, low quality, mutation, disfigured`;
+
                 const response = await fetch('/api/fal', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         path: '/fal-ai/bytedance/seedream/v4.5/text-to-image',
                         body: {
-                            prompt: `Full body fashion portrait of a ${gender} person, ${bodyType} body type, standing pose, clean white background, high fashion photography style, photorealistic, full length from head to toe, facing forward`,
+                            prompt: mainPrompt,
+                            negative_prompt: negativePrompt,
                             image_url: fullbodyData,
                             num_images: 1,
                             image_size: { width: 768, height: 1024 }
@@ -1140,6 +1163,54 @@
             } finally {
                 document.getElementById('avatarLoading').classList.add('hidden');
             }
+        }
+
+        function estimateMeasurements(gender, bodyType, heightCm, weightLbs) {
+            // Basic estimation based on body type
+            const base = gender === 'female' 
+                ? { chest: 90, waist: 70, hips: 95 }
+                : { chest: 100, waist: 85, hips: 95 };
+            
+            const adjustments = {
+                'hourglass': { chest: 5, waist: -5, hips: 5 },
+                'pear': { chest: -5, waist: 0, hips: 10 },
+                'apple': { chest: 5, waist: 10, hips: 0 },
+                'rectangle': { chest: 0, waist: 5, hips: 0 },
+                'inverted-triangle': { chest: 10, waist: 0, hips: -5 },
+                'athletic': { chest: 0, waist: -5, hips: 0 }
+            };
+
+            const adj = adjustments[bodyType] || { chest: 0, waist: 0, hips: 0 };
+            
+            return {
+                chest: base.chest + adj.chest,
+                waist: base.waist + adj.waist,
+                hips: base.hips + adj.hips
+            };
+        }
+
+        function getBodyTypeDescription(bodyType, gender) {
+            const descriptions = {
+                'hourglass': 'Well-defined waist with balanced bust and hips, classic hourglass proportions',
+                'pear': 'Narrower shoulders with wider hips, elegant pear-shaped silhouette',
+                'apple': 'Fuller midsection with slimmer legs, apple body shape',
+                'rectangle': 'Balanced proportions with similar bust, waist, and hip measurements',
+                'inverted-triangle': 'Broader shoulders tapering to narrower hips',
+                'athletic': 'Toned, fit physique with defined musculature'
+            };
+            return descriptions[bodyType] || 'Natural proportions';
+        }
+
+        function getBodyTypeNegative(bodyType) {
+            const negatives = {
+                'hourglass': 'boxy figure, no waist definition, straight up and down',
+                'pear': 'top-heavy, broad shoulders, narrow hips',
+                'apple': 'extremely thin midsection, exaggerated curves',
+                'rectangle': 'extreme hourglass, exaggerated curves',
+                'inverted-triangle': 'wide hips, narrow shoulders, pear shape',
+                'athletic': 'soft, undefined, no muscle tone'
+            };
+            return negatives[bodyType] || '';
         }
 
         function showAvatarResult(imageUrl) {
@@ -1213,34 +1284,54 @@
             document.getElementById('outfitLoadingText').textContent = 'Generating your outfit...';
 
             try {
-                // Generate outfit suggestion using OpenAI
-                const prompt = `You are a fashion stylist. Create a complete outfit for a ${gender} person for a ${occasion} occasion.
-                Style vibe: ${vibe || 'versatile'}
-                Budget: ${budget || 'mid-range'}
-                User notes: ${description || 'none'}
+                // Use the app's sophisticated system message
+                const systemMessage = `You are a world-class fashion stylist with expertise in:
+- Current fashion trends and seasonal styles
+- Weather-appropriate dressing
+- Personal style analysis and wardrobe curation
+- Color theory and outfit coordination
+- Lifestyle-based styling (office, remote, casual, athletic)
+- Body type and fit recommendations
 
-                Return a JSON object with this structure:
-                {
-                    "outfit_description": "Brief description of the complete look",
-                    "items": [
-                        { "type": "top", "name": "Item name", "color": "color", "style": "style notes" },
-                        { "type": "bottom", "name": "Item name", "color": "color", "style": "style notes" },
-                        { "type": "shoes", "name": "Item name", "color": "color", "style": "style notes" },
-                        { "type": "accessory", "name": "Item name", "color": "color", "style": "style notes" }
-                    ],
-                    "styling_tips": "How to wear this look"
-                }
-                
-                Return ONLY valid JSON, no other text.`;
+Create outfits that are perfectly tailored to the user's unique style, not generic recommendations.
+
+Respond ONLY with valid JSON.`;
+
+                const userPrompt = `Create a complete outfit for a ${gender} person.
+
+OCCASION: ${occasion}
+STYLE VIBE: ${vibe || 'versatile'}
+BUDGET: ${budget || 'mid-range'}
+USER NOTES: ${description || 'none provided'}
+
+Generate a cohesive outfit with perfect color coordination, texture mixing, and style cohesion.
+
+Return a JSON object with this exact structure:
+{
+    "outfit_description": "A compelling 1-2 sentence description of the complete look",
+    "items": [
+        { "type": "top", "name": "Specific item name", "color": "Exact color/shade", "style": "Style notes", "searchQuery": "search term for shopping" },
+        { "type": "bottom", "name": "Specific item name", "color": "Exact color/shade", "style": "Style notes", "searchQuery": "search term for shopping" },
+        { "type": "shoes", "name": "Specific item name", "color": "Exact color/shade", "style": "Style notes", "searchQuery": "search term for shopping" },
+        { "type": "accessory", "name": "Specific item name", "color": "Exact color/shade", "style": "Style notes", "searchQuery": "search term for shopping" }
+    ],
+    "styling_tips": "Professional styling advice for how to wear this look",
+    "color_palette": ["primary color", "accent color", "neutral"]
+}
+
+Be specific with item names (e.g., "Silk V-Neck Camisole" not just "top"). Include current fashion trends when appropriate. Return ONLY valid JSON, no other text.`;
 
                 const response = await fetch('/api/openai', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         model: 'gpt-4o',
-                        messages: [{ role: 'user', content: prompt }],
+                        messages: [
+                            { role: 'system', content: systemMessage },
+                            { role: 'user', content: userPrompt }
+                        ],
                         temperature: 0.8,
-                        max_tokens: 1000
+                        max_tokens: 1500
                     })
                 });
 
@@ -1256,19 +1347,21 @@
                     outfitData = {
                         outfit_description: "A chic ensemble perfect for your occasion",
                         items: [
-                            { type: "top", name: "Silk Blouse", color: "Blush Pink", style: "Elegant drape" },
-                            { type: "bottom", name: "High-Waisted Trousers", color: "Black", style: "Tailored fit" },
-                            { type: "shoes", name: "Strappy Heels", color: "Nude", style: "Block heel" },
-                            { type: "accessory", name: "Gold Hoop Earrings", color: "Gold", style: "Statement" }
+                            { type: "top", name: "Silk Blouse", color: "Blush Pink", style: "Elegant drape", searchQuery: "silk blouse blush pink" },
+                            { type: "bottom", name: "High-Waisted Trousers", color: "Black", style: "Tailored fit", searchQuery: "high waisted tailored trousers black" },
+                            { type: "shoes", name: "Strappy Heels", color: "Nude", style: "Block heel", searchQuery: "strappy block heels nude" },
+                            { type: "accessory", name: "Gold Hoop Earrings", color: "Gold", style: "Statement", searchQuery: "gold hoop earrings statement" }
                         ],
-                        styling_tips: "Keep accessories minimal for an elegant look"
+                        styling_tips: "Keep accessories minimal for an elegant look",
+                        color_palette: ["Blush Pink", "Black", "Gold"]
                     };
                 }
 
                 currentOutfit = outfitData;
 
-                // Now generate an outfit image
-                const outfitPrompt = `Fashion flat lay photography of ${outfitData.items.map(i => `${i.color} ${i.name}`).join(', ')}, arranged beautifully on white background, high-end fashion photography, editorial style`;
+                // Generate outfit image with detailed prompt
+                const outfitItems = outfitData.items.map(i => `${i.color} ${i.name}`).join(', ');
+                const outfitPrompt = `Professional fashion flat lay photography arrangement on pure white background. Styled outfit featuring: ${outfitItems}. High-end editorial fashion photography, items arranged artistically, premium quality clothing, perfect lighting, magazine quality, vogue style, clean minimal composition. ${outfitData.outfit_description}`;
 
                 const imageResponse = await fetch('/api/fal', {
                     method: 'POST',
@@ -1277,6 +1370,7 @@
                         path: '/fal-ai/bytedance/seedream/v4.5/text-to-image',
                         body: {
                             prompt: outfitPrompt,
+                            negative_prompt: 'person, model, mannequin, blurry, low quality, distorted, watermark, text, logo',
                             num_images: 1,
                             image_size: { width: 1024, height: 1024 }
                         }
@@ -1311,6 +1405,14 @@
             const grid = document.getElementById('outfitGrid');
             grid.innerHTML = '';
 
+            // Show outfit description at top
+            if (outfitData.outfit_description) {
+                const descDiv = document.createElement('div');
+                descDiv.style.cssText = 'grid-column: 1/-1; text-align: center; padding: 15px; background: #fff5f8; border-radius: 8px; margin-bottom: 10px;';
+                descDiv.innerHTML = `<p style="font-style: italic; color: #333; margin: 0;">"${outfitData.outfit_description}"</p>`;
+                grid.appendChild(descDiv);
+            }
+
             // Add outfit items
             outfitData.items.forEach(item => {
                 const div = document.createElement('div');
@@ -1318,8 +1420,9 @@
                 div.innerHTML = `
                     <div style="padding: 10px; text-align: center;">
                         <div style="font-size: 2rem;">${getItemEmoji(item.type)}</div>
-                        <div style="font-size: 0.75rem; margin-top: 5px;">${item.name}</div>
-                        <div style="font-size: 0.65rem; color: #888;">${item.color}</div>
+                        <div style="font-size: 0.8rem; font-weight: 600; margin-top: 5px;">${item.name}</div>
+                        <div style="font-size: 0.7rem; color: #ff69b4;">${item.color}</div>
+                        <div style="font-size: 0.65rem; color: #888; margin-top: 3px;">${item.style || ''}</div>
                     </div>
                 `;
                 grid.appendChild(div);
@@ -1331,6 +1434,30 @@
                 mainDiv.className = 'outfit-item large';
                 mainDiv.innerHTML = `<img src="${imageUrl}" alt="Generated Outfit">`;
                 grid.appendChild(mainDiv);
+            }
+
+            // Show styling tips
+            if (outfitData.styling_tips) {
+                const tipsDiv = document.createElement('div');
+                tipsDiv.style.cssText = 'grid-column: 1/-1; padding: 15px; background: linear-gradient(135deg, #f8f0ff, #fff0f5); border-radius: 8px; margin-top: 10px;';
+                tipsDiv.innerHTML = `
+                    <div style="font-size: 0.75rem; font-weight: 600; color: #9370db; margin-bottom: 5px;">STYLING TIP</div>
+                    <p style="font-size: 0.85rem; color: #333; margin: 0;">${outfitData.styling_tips}</p>
+                `;
+                grid.appendChild(tipsDiv);
+            }
+
+            // Show color palette if available
+            if (outfitData.color_palette && outfitData.color_palette.length > 0) {
+                const paletteDiv = document.createElement('div');
+                paletteDiv.style.cssText = 'grid-column: 1/-1; display: flex; justify-content: center; gap: 10px; margin-top: 10px;';
+                outfitData.color_palette.forEach(color => {
+                    const colorChip = document.createElement('div');
+                    colorChip.style.cssText = `padding: 5px 15px; background: #f5f5f5; border-radius: 20px; font-size: 0.7rem; color: #666;`;
+                    colorChip.textContent = color;
+                    paletteDiv.appendChild(colorChip);
+                });
+                grid.appendChild(paletteDiv);
             }
         }
 
@@ -1427,14 +1554,29 @@
 
             try {
                 const gender = document.getElementById('gender').value;
+                const budget = document.getElementById('budget').value;
+                
+                // Get budget range
+                let budgetMin, budgetMax;
+                if (budget === 'budget') { budgetMax = 100; }
+                else if (budget === 'mid') { budgetMin = 50; budgetMax = 300; }
+                else if (budget === 'high') { budgetMin = 200; budgetMax = 500; }
+                else if (budget === 'luxury') { budgetMin = 400; }
 
                 for (const item of currentOutfit.items) {
-                    const query = `${gender}'s ${item.color} ${item.name}`;
+                    // Use searchQuery if available, otherwise build from item details
+                    const query = item.searchQuery || `${item.color} ${item.name}`;
 
                     const response = await fetch('/api/serpapi-search', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ query, num: 2, userGender: gender })
+                        body: JSON.stringify({ 
+                            query, 
+                            num: 2, 
+                            userGender: gender,
+                            budgetMin,
+                            budgetMax
+                        })
                     });
 
                     const results = await response.json();
@@ -1444,7 +1586,7 @@
                             const div = document.createElement('div');
                             div.className = 'shopping-item';
                             div.innerHTML = `
-                                <img src="${product.thumbnail}" alt="${product.title}">
+                                <img src="${product.thumbnail}" alt="${product.title}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%23f0f0f0%22 width=%22100%22 height=%22100%22/><text x=%2250%22 y=%2250%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22>No Image</text></svg>'">
                                 <div class="item-title">${product.title}</div>
                                 <div class="item-price">${product.price || 'See price'}</div>
                                 <a href="${product.link}" target="_blank">Shop Now →</a>
@@ -1454,9 +1596,13 @@
                     }
                 }
 
+                if (grid.children.length === 0) {
+                    grid.innerHTML = '<p style="text-align: center; color: #888; grid-column: 1/-1;">No shopping results found. Try a different outfit!</p>';
+                }
+
             } catch (error) {
                 console.error('Shopping search error:', error);
-                grid.innerHTML = '<p style="text-align: center; color: #888;">Shopping links unavailable</p>';
+                grid.innerHTML = '<p style="text-align: center; color: #888; grid-column: 1/-1;">Shopping links unavailable. Please try again.</p>';
             } finally {
                 document.getElementById('outfitLoading').classList.add('hidden');
             }
