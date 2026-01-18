@@ -1728,7 +1728,8 @@ Return ONLY valid JSON, no other text.`;
                         i.type === 'top' || i.type === 'bottom' || i.type === 'dress' || i.type === 'outerwear'
                     );
                     const clothingItems = clothingOnly.map(i => `${i.color} ${i.name}`).join(' and ');
-                    return `Professional fashion flat lay photography on pure white background. Single complete outfit laid flat: ${clothingItems}. Clean minimal composition, clothing items arranged neatly as if laying on a flat surface, no mannequin, no person, no accessories, no shoes, no jewelry, just the clothing garments flat laid, high-end product photography, perfect lighting, centered composition.`;
+                    const genderStyle = gender === 'male' ? "men's fashion" : "women's fashion";
+                    return `Professional ${genderStyle} flat lay photography on pure white background. Single complete ${gender} outfit laid flat: ${clothingItems}. Clean minimal composition, ${gender} clothing items arranged neatly as if laying on a flat surface, no mannequin, no person, no accessories, no shoes, no jewelry, just the ${gender} clothing garments flat laid, high-end product photography, perfect lighting, centered composition.`;
                 };
 
                 const outfitPrompt1 = buildOutfitPrompt(currentOutfit);
